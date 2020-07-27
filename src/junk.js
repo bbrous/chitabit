@@ -74,7 +74,7 @@ const Header= styled(AppBar)({
   justifyContent:  'center',
   alignItems: 'flex-start',
   position :'fixed',
-  backgroundColor: '#363738',
+  backgroundColor: 'black',
   height: '3rem'
 })
 
@@ -100,7 +100,7 @@ const LogoWrapper= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
  
-  height: '1.6rem', 
+  height: '1.8rem', 
   width: '30%',
   marginLeft: '8px' 
 })
@@ -124,7 +124,7 @@ const MainWrapper= styled('div')({
   maxWidth: '960px',
   minHeight: '600px',
   height: '100%',
-backgroundColor: 'orange',
+
   [theme.breakpoints.down('sm')] : {
     
   },
@@ -142,7 +142,6 @@ const SideNavWrapper= styled('div')({
     alignItems: 'center',
   position: 'absolute',
   zIndex: '55',
-  backgroundColor: 'pink',
 
   [theme.breakpoints.down('xs')] : {
     display: 'flex',
@@ -182,7 +181,7 @@ const BottomNavWrapper= styled('div')({
     height: '3rem',
 zIndex: '10000',
     color: 'white',
-backgroundColor: '#363738',
+
   },
 
   [theme.breakpoints.down('xs')] : {
@@ -287,7 +286,7 @@ const BottomNavSpacer = styled('div')({
 // ----- Content Area here -------------
 
 const MainContentWrapper= styled('div')({
-  
+  // backgroundColor: 'orange',
   display: 'block',
   height: '95%',
   paddingTop: '3rem',
@@ -347,7 +346,7 @@ const ContentArea = styled('div')({
   marginLeft: '15rem',
   height: '100%',
 
-  backgroundColor: 'green',
+  
  
 
   [theme.breakpoints.down('sm')] : {

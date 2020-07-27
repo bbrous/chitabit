@@ -9,7 +9,7 @@ import Login from './Header_login'
 const BodyWrapper= styled('div')({
   display: 'block',
   
-  backgroundColor: darkGrey,
+  backgroundColor: '#363738',
   height: '100vh',
   overflowY: 'auto',
   overflowX: 'hidden',

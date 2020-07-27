@@ -15,7 +15,6 @@ const StyledForm= styled('form')({
   [theme.breakpoints.down('sm')] : {
 
  
-    display: 'none'
     }
 
   // background: testColors.testRed,
