@@ -11,13 +11,14 @@
         } from '../store/storeConstants';
 
 
-  export const  openCloseSidePanel = (sidePanelState) => {
 
-    return {
-      type: OPEN_CLOSE_SIDE_PANEL,
-      payload: {
-        displaySidePanel: sidePanelState
-        
-      }
-    }
-  }
+        export const  openCloseSidePanel = (sidePanelState) => {
+          console.log("[ACTION] - clicked : state is: ", sidePanelState)
+          return {
+            type: OPEN_CLOSE_SIDE_PANEL,
+            payload: {
+              displaySidePanel: sidePanelState
+              
+            }
+          }
+        }

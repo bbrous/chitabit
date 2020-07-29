@@ -4,7 +4,7 @@ import { createReducer } from './reducerUtil'
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
  
 import {  
-          OPEN_CLOSE_SIDE_PANEL,
+          OPEN_CLOSE_SIDE_PANEL
         
         } from '../store/storeConstants';
 
@@ -19,6 +19,7 @@ import {
   const initialState = {
 
     view: 'journal',
+    displaySidePanel: 'hide',
 
   }
 
@@ -35,17 +36,17 @@ import {
   }
 
 
-  export const changeView = (state, payload) => {
-    // console.log(   'changeView view fired'  )
+
+  export const openCloseSidePanel = (state, payload) => {
+    // console.log("hey change display clicked")
    return  Object.assign({...state}, payload)
- 
- }
+  
+  }
+//  export const openCloseSidePanel = (state, payload) => {
+//   // console.log("hey change display clicked")
+//  return  Object.assign({...state}, payload)
 
- export const openCloseSidePanel = (state, payload) => {
-  // console.log("hey change display clicked")
- return  Object.assign({...state}, payload)
-
-}
+// }
   
 
     

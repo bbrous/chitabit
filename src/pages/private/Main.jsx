@@ -1,6 +1,8 @@
 import React , {useState} from 'react'
-// import{veryLightGrey,darkGrey, chitBlueDull, } from '../../styles/colors'
-import Logo from '../../images/logoChitabit_small.svg'
+import HeaderMain from './mainElements/Header_main'
+
+import{chitOrange } from '../../styles/colors'
+
 
 
 // import MainLanding from './elements_landing/Main_Landing'
@@ -9,7 +11,7 @@ import Logo from '../../images/logoChitabit_small.svg'
 
 // import { NavLink, withRouter, useLocation} from 'react-router-dom'
 import {connect} from 'react-redux'
-// import{changeView} from '../../app/redux/actions/mainActions'
+import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
 
 // import Modal from '../../components/modal/Modal.jsx'
 
@@ -47,7 +49,7 @@ import {connect} from 'react-redux'
 // import IconNav from './navElements/IconNav'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
-import AppBar from '@material-ui/core/AppBar';
+ 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 
@@ -68,15 +70,7 @@ overflow: 'hidden',
 
 })
 
-const Header= styled(AppBar)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent:  'center',
-  alignItems: 'flex-start',
-  position :'fixed',
-  backgroundColor: '#363738',
-  height: '3rem'
-})
+ 
 
 const ToolbarSpacer= styled('div')({
 
@@ -94,24 +88,6 @@ const ToolbarSpacer= styled('div')({
 })
 
 
-const LogoWrapper= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'flex-start',
- 
-  height: '1.6rem', 
-  width: '30%',
-  marginLeft: '8px' 
-})
-
-const LogoStyle= styled('img')({
-
-  height: '100%'
-  
-
-
-})
 
 const MainWrapper= styled('div')({
 
@@ -199,7 +175,7 @@ const SidePanelWrapper= styled('div')({
 // paddingBottom: '.5rem',
   backgroundColor: 'lightgrey',
   width: '15rem',
-  // height: '100%',
+  height: '100%',
   zIndex: '31',
 
 
@@ -243,7 +219,7 @@ const Handle= styled('div')({
   width: '1.5rem',
   height: '3rem',
   borderRadius: '0 5px 5px 0',
- 
+  
 
   [theme.breakpoints.down('sm')] : {
     display: 'flex',
@@ -255,7 +231,7 @@ const Handle= styled('div')({
 
     
 
-    background: 'blue'
+    background: chitOrange,
   },
   
 
@@ -367,42 +343,44 @@ const ContentArea = styled('div')({
 
 const Main = (props) => {
 
-
+  
 
 
   // let view = props.view.private.display
   // let view = props.view.private.view
   // console.log('[Main ]... props --- ', view)
 
-  // let viewSidePanel = props.view.private.sidePanelView
-  let viewSidePanel = 'show'
+  let viewSidePanel = props.view.private.displaySidePanel
+ 
+  console.log('[Main ]... props --- ', props.view)
+ 
+  // let viewSidePanel = 'show'
   // let modalShow = props.view.private.modalDisplayed
 
   // const [viewSidePanel, setViewSidePanel ] = useState('hide');
   
-  // const handleSidePanelChange = (evt)=>{
-  //   evt.persist()
-  //   const newSidePanelView = (viewSidePanel==='show') ? 'hide': 'show'
+  // func handleSidePanelChange - open or close the side panel
 
-  //   setViewSidePanel(newSidePanelView)
+  const handleSidePanelChange = (evt)=>{
+    evt.persist()
+    const newSidePanelView = (viewSidePanel==='show') ? 'hide': 'show'
+
+    console.log('[Main - handleSidePanelChange]... props passed --- ', newSidePanelView)
 
 
-  // }
 
-  
+    props.openCloseSidePanel(newSidePanelView)
+
+
+  }
+
   return (
     <BodyWrapper>
-            <Header>
-      <LogoWrapper>
-        <LogoStyle src= {Logo}   alt="Chit Git Logo" />
-          
-          
-        </LogoWrapper>
-      </Header>
+
        
 
 
-      {/* <HeaderMain/> */}
+      <HeaderMain/>
       <ToolbarSpacer/>
 
       <MainWrapper>
@@ -420,7 +398,7 @@ const Main = (props) => {
 
 
           <Handle 
-          // onClick = {handleSidePanelChange}
+          onClick = {handleSidePanelChange}
           >
             {viewSidePanel === 'hide' && 
               <KeyboardArrowRightIcon style={{ color: 'white' }}/>
@@ -460,14 +438,13 @@ nav here
   )
 }
 
-// const actions = {
-//   changeView 
-// }
+const actions = {
+  openCloseSidePanel 
+}
 
-// const mapState = state => ({
-//   view: state
-// });
+const mapState = state => ({
+  view: state
+});
 
-// export default connect(mapState)(Main)
-
-export default Main
+export default connect(mapState, actions)(Main)
+ 
