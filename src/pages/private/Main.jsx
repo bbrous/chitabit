@@ -1,7 +1,7 @@
 import React , {useState} from 'react'
 import HeaderMain from './mainElements/Header_main'
 
-import{chitOrange } from '../../styles/colors'
+import{chitOrange, chitOrangeLight, chitRedDark } from '../../styles/colors'
 
 
 
@@ -16,35 +16,10 @@ import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
 // import Modal from '../../components/modal/Modal.jsx'
 import JournalButtons from '../../components/JournalButtons'
 
-
-
-
-//  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-
-// &&&&   TEMP Initial Store Import -- Get from Database
-// import InitialStore from '../../app/redux/store/InitialStore'
-
-
-
-
-//  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-// import Info from './Info'
- 
-// import TwoPartyNav from './navElements/twoParty/TwoPartyNav'
-// import PersonalNav from './navElements/personal/PersonalNav'
-// import WorkNav from './navElements/work/WorkNav'
-// import JournalNav from './navElements/journal/JournalNav'
-// import ReportsNav from './navElements/reports/ReportsNav'
-// import NoticesNav from './navElements/notice/NoticesNav'
-// import InfoNav from './navElements/InfoNav'
-
-// import IconNav from './navElements/IconNav'
+import Paper from '@material-ui/core/Paper'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
  
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
@@ -340,10 +315,41 @@ const WysiwygWrapper= styled('div')({
 const Content= styled('div')({
   display: 'flex',
   flexDirection: 'column',
-
+  justifyContent: 'flex-start',
+  alignItems: 'center',
   marginTop: '1.75rem',
   width: '100%',
-  backgroundColor: 'pink',
+  backgroundColor: 'white',
+ 
+   
+})
+
+const InitialMessage= styled(Paper)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  margin: '1.75rem 0',
+  padding: '1rem',
+  width: '50%',
+  backgroundColor: chitOrangeLight,
+ fontSize: '.8rem',
+ 
+ '& li' :{
+   marginBottom: '4px',
+
+ },
+   
+})
+
+const Begin= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  fontWeight: 'bold',
+  color: chitRedDark,
+
  
    
 })
@@ -433,9 +439,37 @@ Nav Stuff
             <Content>
               
               
-              <div>
-                Content Area
-              </div>
+              <InitialMessage elevation = {3}>
+                <ul>
+                  <li>
+                    To start your journal - click on "New Day"
+                  </li>
+                  <li> After creating "New Day" - click on "Add Section" to 
+                    begin adding content to your journal
+                  </li>
+                  <li>
+                    Create an optional inspirational message or 
+                      goal to be shown whenever you start working
+                      on your  journal  -- click on  "Spotlight" in side panel
+                  </li>
+                  <li>
+                    Add search terms and a category for each section when
+                    you've completed the section. 
+                    <span>(note: you can also add keywords
+                    to your section by highlighting the word and right-clicking) </span>
+                  </li>
+                  <li>
+                    Clicking on any completed section will make it active
+                    again - BUT any unsaved changes in current active area 
+                    will be lost
+                  </li>
+                </ul>
+
+                <Begin>
+                  <div>Begin</div>
+                  <ArrowDownwardIcon/>
+                   </Begin>
+              </InitialMessage>
 
               <JournalButtons/>
 

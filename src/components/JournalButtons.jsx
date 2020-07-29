@@ -65,7 +65,7 @@ const JournalButtons = () => {
       <ActionButton>New Day</ActionButton>
       <ActionButton>Add Section</ActionButton>
       <ActionButton>New Chit</ActionButton>
-      <ActionButton>Save and Exit </ActionButton>
+      <ActionButton>Save </ActionButton>
 
 
     </Wrapper>
