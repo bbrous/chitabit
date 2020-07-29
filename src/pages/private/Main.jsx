@@ -14,13 +14,9 @@ import {connect} from 'react-redux'
 import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
 
 // import Modal from '../../components/modal/Modal.jsx'
+import JournalButtons from '../../components/JournalButtons'
 
-// import TwoParty from './TwoParty'
-// import Personal from './Personal'
-// import Work from './Work'
-// import Journal from './Journal'
-// import Reports from './Reports'
-// import Notices from './Notices'
+
 
 
 //  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -261,13 +257,13 @@ const BottomNavSpacer = styled('div')({
 
 
 // ----- Content Area here -------------
-
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const MainContentWrapper= styled('div')({
   
   display: 'block',
-  height: '95%',
-  paddingTop: '3rem',
-  paddingLeft: '3rem',
+  height: '100%',
+ 
+ 
   '&::-webkit-scrollbar': {
     width: '0.75em' 
   },
@@ -298,17 +294,7 @@ const MainContentWrapper= styled('div')({
 
 })
 
-// const IconWrapper= styled('div')({
-//   display: 'flex',
-//   justifyContent: 'flex-start',
-//   alignItems: 'center',
-  
-//   fontSize: '.6rem',
 
-// marginTop: '1.5rem',
- 
-   
-// })
 
 /**This area --------------------------+++++++++++++++++++++++++++
  * 
@@ -320,9 +306,10 @@ const MainContentWrapper= styled('div')({
 const ContentArea = styled('div')({
 
   display: 'block',
+  position: 'relative',
   marginLeft: '15rem',
   height: '100%',
-
+  paddingTop:  '1.75rem',
   backgroundColor: 'green',
  
 
@@ -338,6 +325,28 @@ const ContentArea = styled('div')({
 
 })
 
+const WysiwygWrapper= styled('div')({
+  display: 'flex',
+  position: 'absolute',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '1.75rem',
+  width: '100%',
+  backgroundColor: 'aqua',
+ 
+   
+})
+
+const Content= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+
+  marginTop: '1.75rem',
+  width: '100%',
+  backgroundColor: 'pink',
+ 
+   
+})
 
 //=======================================================
 
@@ -386,7 +395,7 @@ const Main = (props) => {
       <MainWrapper>
 
         <SideNavWrapper>
-  Nav her
+FILTERS HERE
         </SideNavWrapper>   
 
         <MainContentWrapper>
@@ -416,12 +425,26 @@ Nav Stuff
 
           </SidePanelWrapper>
 
-
+{/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
           <ContentArea>
-Content Area
+
+            <WysiwygWrapper>WYSIWYG</WysiwygWrapper>
+
+            <Content>
+              
+              
+              <div>
+                Content Area
+              </div>
+
+              <JournalButtons/>
+
+
+            </Content>
+
           </ContentArea>
 
-
+{/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
 
 
 
