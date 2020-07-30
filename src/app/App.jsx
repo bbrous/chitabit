@@ -12,7 +12,7 @@ import theme from '../styles/Theme'
 
 import Landing from '../pages/public/Landing'
 import Home from '../pages/private/Main'
-
+import Try from '../pages/sandBox/aTry'
 
 // import Features from '../pages/public/Features'
 // import Plans from '../pages/public/Plans'
@@ -54,6 +54,7 @@ class App extends Component {
 <Fragment>
               
                 <Route   path ={`${process.env.PUBLIC_URL}/main`}   component = {Home} /> 
+                <Route   path ={`${process.env.PUBLIC_URL}/try`}   component = {Try} /> 
                 {/* <Route   path ={`${process.env.PUBLIC_URL}/TwoParty`}   component = {TwoParty} />   
                 <Route   path ={`${process.env.PUBLIC_URL}/Personal`}   component = {Personal} />  
                 <Route   path ={`${process.env.PUBLIC_URL}/Work`}   component = {Work} />   */}

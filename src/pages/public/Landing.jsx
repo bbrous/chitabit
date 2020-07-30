@@ -1,5 +1,6 @@
 import React from 'react'
 import {darkGrey} from '../../styles/colors'
+import {NavLink, withRouter, useLocation} from 'react-router-dom'
 
 import { styled} from '@material-ui/core/styles'
 import Logo from '../../images/logoChitabit.svg'
@@ -51,6 +52,22 @@ const LogoStyle= styled('img')({
 
 })
 
+const TryIt= styled(NavLink)({
+  display: 'block',
+  position: 'absolute',
+  top: '1rem',
+  right: '1rem',
+
+  height: '2rem',
+  width: '2rem',
+  backgroundImage: 'radial-gradient(#FF6347, #DC143C)',
+  borderRadius: '50px',
+
+  '&:hover': {
+    backgroundImage: 'radial-gradient(#FF6347, orange)',
+  }
+
+})
 
 // ================================
 
@@ -58,6 +75,7 @@ const Landing = () => {
   return (
     <BodyWrapper>
       <ContentWrapper>
+        <TryIt to="/Try">  </TryIt>
         <LogoWrapper>
         <LogoStyle src= {Logo}   alt="Chit Git Logo" />
           
