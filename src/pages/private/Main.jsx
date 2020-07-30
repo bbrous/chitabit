@@ -1,8 +1,9 @@
 import React , {useState} from 'react'
 import HeaderMain from './mainElements/Header_main'
 
-import{chitOrange, chitOrangeLight, chitRedDark } from '../../styles/colors'
+import{chitOrange} from '../../styles/colors'
 
+import InitialMessage from './journalElements/InitialMessage'
 
 
 // import MainLanding from './elements_landing/Main_Landing'
@@ -16,11 +17,10 @@ import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
 // import Modal from '../../components/modal/Modal.jsx'
 import JournalButtons from '../../components/JournalButtons'
 
-import Paper from '@material-ui/core/Paper'
+
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
- 
+
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 
@@ -324,35 +324,7 @@ const Content= styled('div')({
    
 })
 
-const InitialMessage= styled(Paper)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  margin: '1.75rem 0',
-  padding: '1rem',
-  width: '50%',
-  backgroundColor: chitOrangeLight,
- fontSize: '.8rem',
- 
- '& li' :{
-   marginBottom: '4px',
 
- },
-   
-})
-
-const Begin= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  fontWeight: 'bold',
-  color: chitRedDark,
-
- 
-   
-})
 
 //=======================================================
 
@@ -437,39 +409,8 @@ Nav Stuff
             <WysiwygWrapper>WYSIWYG</WysiwygWrapper>
 
             <Content>
-              
-              
-              <InitialMessage elevation = {3}>
-                <ul>
-                  <li>
-                    To start your journal - click on "New Day"
-                  </li>
-                  <li> After creating "New Day" - click on "Add Section" to 
-                    begin adding content to your journal
-                  </li>
-                  <li>
-                    Create an optional inspirational message or 
-                      goal to be shown whenever you start working
-                      on your  journal  -- click on  "Spotlight" in side panel
-                  </li>
-                  <li>
-                    Add search terms and a category for each section when
-                    you've completed the section. 
-                    <span>(note: you can also add keywords
-                    to your section by highlighting the word and right-clicking) </span>
-                  </li>
-                  <li>
-                    Clicking on any completed section will make it active
-                    again - BUT any unsaved changes in current active area 
-                    will be lost
-                  </li>
-                </ul>
+              <InitialMessage/>
 
-                <Begin>
-                  <div>Begin</div>
-                  <ArrowDownwardIcon/>
-                   </Begin>
-              </InitialMessage>
 
               <JournalButtons/>
 
