@@ -1,8 +1,9 @@
 import React from 'react'
-import{ chitOrangeLight, chitVeryLightYellow, darkGrey, lightGrey, mediumLightGrey, veryLightGrey } from '../../../styles/colors'
+import{ chitOrangeLight, chitOrange, darkGrey, lightGrey, mediumLightGrey, veryLightGrey } from '../../../styles/colors'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Paper from '@material-ui/core/Paper'
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -74,6 +75,7 @@ const DateWrapper= styled('div')({
 
 const SectionContent= styled('div')({
   display: 'block',
+  position: 'relative',
   flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
@@ -85,6 +87,38 @@ const SectionContent= styled('div')({
 
    
 })
+
+
+  const Delete= styled('div')({
+    display: 'block', 
+    position: 'absolute',
+    bottom: '5px',
+    right: '5px',
+    height: '1rem',
+    width: '1rem',
+    color: chitOrange,
+
+  '&:hover' : {
+    color: chitOrangeLight,
+    cursor: 'pointer',
+  
+   
+  },
+  
+    
+    [theme.breakpoints.down('sm')] : {
+      // height: '1.25rem',
+      // backgroundColor: 'red'
+    },
+  
+  })
+
+  
+const DeleteIcon= styled(DeleteForeverIcon)({
+  fontSize: '1.3rem',
+   
+})
+
 
 // =============================================
 
@@ -102,6 +136,12 @@ const Section = () => {
       </SectionHeader>
 
       <SectionContent>
+      <Delete
+              // onClick = {handleDelete}
+            > 
+              <DeleteIcon/>
+            </Delete>
+
       <div>Sections one</div> 
 
         Lorem ipsum dolor sit amet. Kasd eu esse invidunt nulla. Sed voluptua dolor stet sea at vel magna. Ex dolore duo dolore clita vero. Ut eu ut duis diam. Vulputate et consetetur vero. Clita eos 

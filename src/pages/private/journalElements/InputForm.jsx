@@ -1,8 +1,27 @@
 import React from 'react'
-import{ chitOrangeLight, chitVeryLightYellow, darkGrey, lightGrey, mediumLightGrey, veryLightGrey, chitRedDark } from '../../../styles/colors'
+import{ chitOrangeLight, chitOrange, darkGrey, lightGrey, mediumLightGrey, veryLightGrey, chitRedDark } from '../../../styles/colors'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+
+/*READ ME
+
+  The template for accordion is in Chit_Pro
+     specifically in Notice Row
+
+     src > pages > private > noticeElements > NoticeRow
+
+     Note:  Look at the delete ref - needs to reflect Redux Id
+     for whehter expand or not.
+
+*/
+
+
+
+
+
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import Paper from '@material-ui/core/Paper'
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -56,7 +75,7 @@ const FilterWrapper= styled('div')({
   display: 'flex',
   
   bottom: '0',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
   alignItems: 'center',
  
   padding: '0 1rem',
@@ -66,8 +85,65 @@ const FilterWrapper= styled('div')({
   color: 'white',
   fontSize: '.7rem',
   
+   
+})
+
+
+const IconWrapper= styled('span')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  // margin: 'center',
+  margin: '0 .7rem',
+  color: 'white'
+
+ 
 
    
+})
+
+const ChevronWrapper = styled('div')({
+  width: '5%',
+ 
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+
+})
+
+const ChevronClosed= styled(ExpandMoreIcon)({
+ 
+  fontSize: '1.2rem',
+  cursor:'pointer',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+
+})
+
+const ChevronOpen =  styled(ExpandMoreIcon)({
+ 
+  fontSize: '1.2rem',
+  cursor:'pointer',
+  transform: 'rotate(180deg)',
+  color: chitOrange,
+
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+
 })
 
 // =============================================
@@ -82,6 +158,38 @@ const InputForm = () => {
 
       </InputFormHeader>
 
+      <FilterWrapper> 
+        <ChevronWrapper data-ref= 'Mikey'>
+
+          <ChevronClosed/>
+          
+
+          {/* {stateReferenceId !=='Brad' && 
+              <ChevronClosed
+                onClick = {handleExpandPanelChevron}
+                id = 'Brad'
+                data-ref= 'Brad'
+              />        
+          }
+
+          { stateReferenceId ==='Brad' && 
+              <ChevronOpen
+                onClick = {handleExpandPanelChevron}
+                id = 'Brad'
+                data-ref= 'Brad'
+              />        
+          } */}
+
+
+
+        </ChevronWrapper>
+          
+          <span> Add Topic for Search   </span>
+
+      </FilterWrapper>
+
+
+
       <InputFormContent>
       <div>InputForms one</div> 
 
@@ -93,7 +201,38 @@ const InputForm = () => {
 
 
       </InputFormContent>
-      <FilterWrapper> - Add Filter Terms </FilterWrapper>
+
+      <FilterWrapper> 
+        <ChevronWrapper data-ref= 'Shelby'>
+
+          <ChevronClosed/>
+
+
+          {/* {stateReferenceId !=='Brad' && 
+              <ChevronClosed
+                onClick = {handleExpandPanelChevron}
+                id = 'Brad'
+                data-ref= 'Brad'
+              />        
+          }
+
+          { stateReferenceId ==='Brad' && 
+              <ChevronOpen
+                onClick = {handleExpandPanelChevron}
+                id = 'Brad'
+                data-ref= 'Brad'
+              />        
+          } */}
+
+
+
+        </ChevronWrapper>
+          
+          <span> Add Key Words for Search  </span>
+
+      </FilterWrapper>
+
+
     </Wrapper>
   )
 }
