@@ -84,7 +84,8 @@ const ChitContent= styled('div')({
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   // margin: '1.75rem 0',
-  padding: '.7rem',
+
+  padding: '1.5rem .7rem .7rem .7rem',
   width: '100%',
 
  
@@ -129,7 +130,8 @@ const TopSection= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
   // padding: '0 1%',
-  // width: '41%',
+  width: '100%',
+  backgroundColor: 'pink'
      
 })
 
@@ -140,7 +142,7 @@ const LeftSide= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
   // padding: '0 1%',
-  // width: '41%',
+  width: '15%',
      
 })
 
@@ -151,7 +153,7 @@ const Middle = styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
   // padding: '0 1%',
-  // width: '41%',
+  width: '15%',
      
 })
 
@@ -159,10 +161,10 @@ const RightSide= styled('div')({
   display: 'flex',
   flexDirection: 'column',
 
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
   alignItems: 'center',
   // padding: '0 1%',
-  // width: '41%',
+  width: '60%',
      
 })
 
@@ -173,17 +175,7 @@ const CoinStyle= styled('img')({
 
 })
 
-const CoinHeader = styled('div')({
-  display: 'flex' ,
-  width: '45%',
-  fontWeight: 'bold',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginTop: '8px',
-  color: chitRedDark,
 
-
-})
 
 const DetailRow = styled('div')({
   display: 'flex',
@@ -213,12 +205,50 @@ const Detail = styled('div')({
 
 const Content = styled('div')({
   display: 'block' ,
-  width: '50%',
+  width: '95%',
   color: 'black',
+  margin: '.5rem 0',
+   
+
+})
+
+const ContentTitle = styled('div')({
+  display: 'block' ,
+  width: '100%',
+  color: 'black',
+  margin: '.35rem 0',
+   
+
+})
+
+const ContentDetail = styled('div')({
+  display: 'block' ,
+  width: '100%',
+  color: 'black',
+  margin: '.35rem 0',
+   
+
+})
+
+const View = styled('div')({
+  display: 'flex' ,
+  justifyContent: 'center',
+  alignItems: 'center',
+  position: 'absolute',
+  top: '2px',
+  right: '2px',
+  width: '6rem',
+  height: '1.2rem',
+
+  textDecoration: 'underline',
+  fontSize: '.7rem',
+  color: 'blue',
 
   backgroundColor: 'yellow'
 
 })
+
+
 // =============================================
 
 const Chit = () => {
@@ -257,13 +287,10 @@ const Chit = () => {
             </Delete>
 
       <TopSection>
-        
+        <View> View Chit Detail</View>
       <LeftSide>
       <CoinStyle src= {coinDisplayed}   alt= {srcDisplayed} /> 
-              
-          <CoinHeader> 
-          Personal
-          </CoinHeader>
+
          
       </LeftSide>
 
@@ -272,10 +299,7 @@ const Chit = () => {
         
           <CoinStyle src= {milestoneDisplayed}   alt="Star" /> 
               
-              <CoinHeader> 
-              Milestone
-              </CoinHeader>
-            
+
         </Middle>
       }
 
@@ -283,7 +307,7 @@ const Chit = () => {
         
       <DetailRow>         
         <DetailHeader> 
-          Who:  
+          Who With:  
         </DetailHeader>
         <Detail> 
           Boogie 
@@ -315,7 +339,12 @@ const Chit = () => {
 
 
       <Content>
+        <ContentTitle>Here goes a title</ContentTitle>
+        <ContentDetail>
         Lorem ipsum dolor sit amet. Kasd eu esse invidunt nulla. Sed voluptua dolor stet sea at vel magna. Ex dolore duo dolore clita vero. Ut eu ut duis diam. Vulputate et consetetur vero. Clita eos 
+          
+        </ContentDetail>
+        
       </Content>
          
 
