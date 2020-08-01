@@ -262,7 +262,13 @@ export function nameDisplay(firstName, lastName, nameSub){
 
 //==============================
 export function chooseChitcoin(type, chitColor){
+  
+/*
 
+  NOTE :  These addresses come from the public folder not src
+
+
+*/
 
   const address ={
     standardCopper:   'images/chitCoins/copper_standard.svg ',
@@ -335,7 +341,12 @@ export function choosePersonalCoin(chitColor){
   let coinColor = chitColor
   let coinAddress
   
+/*
 
+  NOTE :  These addresses come from the public folder not src
+
+
+*/
   const address ={
 
 
