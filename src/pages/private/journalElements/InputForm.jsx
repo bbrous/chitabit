@@ -52,7 +52,7 @@ const InputFormHeader= styled('div')({
   backgroundColor: chitOrangeLight,
   color: chitRedDark,
   fontSize: '.8rem',
-  
+  fontWeight: 'bold'
 
    
 })

@@ -131,31 +131,31 @@ const TopSection= styled('div')({
   alignItems: 'flex-start',
   // padding: '0 1%',
   width: '100%',
-  backgroundColor: 'pink'
+ 
      
 })
 
 const LeftSide= styled('div')({
   display: 'flex',
-  flexDirection: 'column',
 
   justifyContent: 'flex-start',
   alignItems: 'center',
   // padding: '0 1%',
-  width: '15%',
+  width: '45%',
      
 })
 
-const Middle = styled('div')({
+const CoinWrapper= styled('div')({
   display: 'flex',
   flexDirection: 'column',
 
   justifyContent: 'flex-start',
   alignItems: 'center',
-  // padding: '0 1%',
-  width: '15%',
+  margin: '0 1.5rem',
+  // width: '50%',
      
 })
+
 
 const RightSide= styled('div')({
   display: 'flex',
@@ -189,7 +189,7 @@ const DetailRow = styled('div')({
 
 const DetailHeader = styled('div')({
   display: 'block' ,
-  width: '45%',
+  width: '8rem',
   fontWeight: 'bold',
 
 
@@ -197,7 +197,7 @@ const DetailHeader = styled('div')({
 
 const Detail = styled('div')({
   display: 'block' ,
-  width: '50%',
+  // width: '50%',
   color: 'black',
 
 
@@ -217,7 +217,7 @@ const ContentTitle = styled('div')({
   width: '100%',
   color: 'black',
   margin: '.35rem 0',
-   
+  color: chitRedDark
 
 })
 
@@ -235,7 +235,7 @@ const View = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
-  top: '2px',
+  top: '5px',
   right: '2px',
   width: '6rem',
   height: '1.2rem',
@@ -243,8 +243,12 @@ const View = styled('div')({
   textDecoration: 'underline',
   fontSize: '.7rem',
   color: 'blue',
+  cursor: 'pointer',
+  
+'&:hover':{
+  color: chitOrange
+}
 
-  backgroundColor: 'yellow'
 
 })
 
@@ -289,19 +293,26 @@ const Chit = () => {
       <TopSection>
         <View> View Chit Detail</View>
       <LeftSide>
-      <CoinStyle src= {coinDisplayed}   alt= {srcDisplayed} /> 
+          <CoinWrapper>
+            
+          <CoinStyle src= {coinDisplayed}   alt= {srcDisplayed} /> 
+          
+          </CoinWrapper>
+          {milestone &&
+          <CoinWrapper>
+          
+            <CoinStyle src= {milestoneDisplayed}   alt="Star" /> 
+                
+
+          </CoinWrapper>
+      }
+
+    
 
          
       </LeftSide>
 
-      {milestone &&
-        <Middle>
-        
-          <CoinStyle src= {milestoneDisplayed}   alt="Star" /> 
-              
 
-        </Middle>
-      }
 
     <RightSide>
         
