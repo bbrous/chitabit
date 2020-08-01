@@ -1,10 +1,10 @@
 import React , {useState} from 'react'
 import HeaderMain from './mainElements/Header_main'
 
-import{chitOrange} from '../../styles/colors'
+import{chitOrange, lightGrey} from '../../styles/colors'
 
 import InitialMessage from './journalElements/InitialMessage'
-
+import Day from './journalElements/Day'
 
 // import MainLanding from './elements_landing/Main_Landing'
 // import HeaderMain from './mainElements/Header_main'
@@ -71,7 +71,7 @@ const MainWrapper= styled('div')({
   maxWidth: '960px',
   minHeight: '600px',
   height: '100%',
-backgroundColor: 'orange',
+// backgroundColor: 'orange',
   [theme.breakpoints.down('sm')] : {
     
   },
@@ -239,19 +239,7 @@ const MainContentWrapper= styled('div')({
   height: '100%',
  
  
-  '&::-webkit-scrollbar': {
-    width: '0.75em' 
-  },
-  '&::-webkit-scrollbar-track': {
-    boxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)',
-    webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)'
-  },
-  '&::-webkit-scrollbar-thumb': {
-    backgroundColor: 'rgba(0,0,0,.3)',
-    border: '2px solid rgba(0,0,0,.1)',
-    borderRadius: '5px'
-  },
-  overflow: 'auto',
+
 
 
   [theme.breakpoints.down('sm')] : {
@@ -283,10 +271,11 @@ const ContentArea = styled('div')({
   display: 'block',
   position: 'relative',
   marginLeft: '15rem',
-  height: '100%',
+  height: '92vh',
   paddingTop:  '1.75rem',
-  backgroundColor: 'green',
- 
+  overflow: 'hidden',
+
+
 
   [theme.breakpoints.down('sm')] : {
     // display: 'block'
@@ -302,12 +291,12 @@ const ContentArea = styled('div')({
 
 const WysiwygWrapper= styled('div')({
   display: 'flex',
-  position: 'absolute',
+  // position: 'absolute',
   justifyContent: 'center',
   alignItems: 'center',
   height: '1.75rem',
   width: '100%',
-  backgroundColor: 'aqua',
+  backgroundColor: 'grey',
  
    
 })
@@ -317,11 +306,27 @@ const Content= styled('div')({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  marginTop: '1.75rem',
-  width: '100%',
-  backgroundColor: 'white',
  
+  width: '100%',
+  height: '90%',
+  marginBottom: '3px',
+  backgroundColor: 'white',
+  borderBottom: '1px solid lightgrey',
    
+  // backgroundColor: 'green',
+  '&::-webkit-scrollbar': {
+    width: '0.75em' 
+  },
+  '&::-webkit-scrollbar-track': {
+    boxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)',
+    webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)'
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: 'rgba(0,0,0,.3)',
+    border: '2px solid rgba(0,0,0,.1)',
+    borderRadius: '5px'
+  },
+  overflow: 'auto',
 })
 
 
@@ -337,11 +342,20 @@ const Main = (props) => {
   // let view = props.view.private.view
   // console.log('[Main ]... props --- ', view)
 
+
+
   let viewSidePanel = props.view.private.displaySidePanel
+
+  /* const - lastSectionDisplayed
+      determine the last section worked on from Redux store
+      if no section exists then the Initial MessageChannel
+      will be displayed in render
+  */
+  const lastSectionDisplayed = props.view.private.journalDisplay.lastSection
+
  
-  console.log('[Main ]... props --- ', props.view)
- 
-  // let viewSidePanel = 'show'
+  // console.log('[Main ]... props --- ', props.view)
+
   // let modalShow = props.view.private.modalDisplayed
 
   // const [viewSidePanel, setViewSidePanel ] = useState('hide');
@@ -371,7 +385,7 @@ const Main = (props) => {
       <ToolbarSpacer/>
 
       <MainWrapper>
-
+      
         <SideNavWrapper>
 FILTERS HERE
         </SideNavWrapper>   
@@ -405,18 +419,25 @@ Nav Stuff
 
 {/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
           <ContentArea>
-
-            <WysiwygWrapper>WYSIWYG</WysiwygWrapper>
-
+          <WysiwygWrapper>WYSIWYG</WysiwygWrapper>
+            
+          <JournalButtons/>
             <Content>
-              <InitialMessage/>
+
+              {lastSectionDisplayed && 
+                <InitialMessage/>
+              }
 
 
-              <JournalButtons/>
+              <Day/>
+              <Day/>
 
+              
+              
+              
 
             </Content>
-
+            
           </ContentArea>
 
 {/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}

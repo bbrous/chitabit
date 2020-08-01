@@ -20,6 +20,11 @@ import {
 
     view: 'journal',
     displaySidePanel: 'hide',
+    journalDisplay: {
+      currentDaY: '',
+      currentSection: '',
+      lastSection: ''
+    }
 
   }
 

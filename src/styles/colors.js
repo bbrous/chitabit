@@ -14,6 +14,8 @@ export const testColors = {
 export const chitOrange = '#F58634'
 export const chitOrangeLight = '#FADAC1'
 
+export const chitVeryLightYellow = '#FFFEF7'
+
 export const chitRedDark ='#781F1C'
 export const chitRed = '#FF5451'
 export const chitRedLight = '#FFC3C2'

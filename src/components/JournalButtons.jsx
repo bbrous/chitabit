@@ -9,7 +9,8 @@ const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 const Wrapper= styled('div')({
   display: 'flex',
-   
+  //  position: 'absolute',
+  //  top: '3.5rem',
   justifyContent: 'center',
   alignItems: 'center',
   height: '1.7rem',
@@ -17,7 +18,7 @@ const Wrapper= styled('div')({
   backgroundColor: 'white',
   padding: '4px 0',
 
-   
+    borderBottom: '1px solid lightgrey',
 })
 
 // const ButtonWrapper= styled('div')({
@@ -48,7 +49,7 @@ const ActionButton= styled('div')({
   '&:hover' : {
     backgroundColor: chitBlueLight,
     textDecoration: 'none',
-    color: 'yellow'
+    color: 'white'
   }
    
 })
@@ -65,7 +66,7 @@ const JournalButtons = () => {
       <ActionButton>New Day</ActionButton>
       <ActionButton>Add Section</ActionButton>
       <ActionButton>New Chit</ActionButton>
-      <ActionButton>Save </ActionButton>
+      <ActionButton>Save  </ActionButton>
 
 
     </Wrapper>
