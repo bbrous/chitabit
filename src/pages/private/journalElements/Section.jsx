@@ -23,19 +23,54 @@ const Wrapper= styled(Paper)({
 const SectionHeader= styled('div')({
   display: 'flex',
 
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   alignItems: 'center',
  
   padding: '0 1rem',
   width: '100%',
   height: '1.2rem',
-  backgroundColor: mediumLightGrey,
-  color: 'white',
+  backgroundColor: 'white',
+  color: mediumLightGrey,
+  borderBottom: '1px solid #CFD0D1',
   fontSize: '.8rem',
+
   
 
    
 })
+
+const Spacer= styled('div')({
+  display: 'flex',
+
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  whiteSpace: 'pre-wrap',
+  padding: '0 1%',
+  width: '26%',
+ 
+
+})
+
+const CategoryWrapper= styled('div')({
+  display: 'flex',
+
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '0 1%',
+  width: '41%',
+     
+})
+
+const DateWrapper= styled('div')({
+  display: 'flex',
+
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  padding: '0 1%',
+  width: '26%',
+
+})
+
 
 const SectionContent= styled('div')({
   display: 'block',
@@ -57,12 +92,13 @@ const Section = () => {
   return (
     <Wrapper> 
        <SectionHeader>
-        <div>
-          Category Placeholder
-        </div>
-        <div>
+         <Spacer> {''} </Spacer>
+        <CategoryWrapper>
+          Exercise (Category) 
+        </CategoryWrapper>
+        <DateWrapper>
           June 10 2020
-        </div>
+        </DateWrapper>
       </SectionHeader>
 
       <SectionContent>
