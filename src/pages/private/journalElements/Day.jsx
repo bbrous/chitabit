@@ -37,6 +37,7 @@ const DayHeader= styled('div')({
   backgroundColor: darkGrey,
   color: 'white',
   fontSize: '1.1rem',
+  borderRadius: '5px 5px 0 0',
   
 
    

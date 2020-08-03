@@ -1,5 +1,5 @@
 import React from 'react'
-import{chitOrange, chitBlueDull, chitBlueLight } from '../styles/colors'
+import{chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight } from '../styles/colors'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
@@ -47,15 +47,31 @@ const ActionButton= styled('div')({
   color: 'white',
  
   '&:hover' : {
-    backgroundColor: chitBlueLight,
+    backgroundColor: chitOrangeLight,
     textDecoration: 'none',
-    color: 'white'
+    color: chitBlueDull,
+    fontWeight: 'bold'
   }
    
 })
 
 
+const ActionButtonDisabled= styled('div')({
+  display: 'flex',
+  
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  height: '100%',
+  width: '24%',
+  margin: '0 2px',
+  backgroundColor: chitBlueVeryLight,
+  borderRadius: '5px',
+  fontSize: '.8rem',
+  color: 'white',
+ 
 
+   
+})
 
 
 // ==============================
@@ -66,7 +82,7 @@ const JournalButtons = () => {
       <ActionButton>New Day</ActionButton>
       <ActionButton>Add Section</ActionButton>
       <ActionButton>New Chit</ActionButton>
-      <ActionButton>Save  </ActionButton>
+      <ActionButtonDisabled>Save  </ActionButtonDisabled>
 
 
     </Wrapper>

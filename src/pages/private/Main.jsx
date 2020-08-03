@@ -5,7 +5,7 @@ import{chitOrange, lightGrey} from '../../styles/colors'
 
 import InitialMessage from './journalElements/InitialMessage'
 import Day from './journalElements/Day'
-
+import FilterPanel from './navElements/FilterPanel'
 // import MainLanding from './elements_landing/Main_Landing'
 // import HeaderMain from './mainElements/Header_main'
 
@@ -83,7 +83,7 @@ const MainWrapper= styled('div')({
 
 const SideNavWrapper= styled('div')({
 
-  display: 'none',
+  display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -149,9 +149,7 @@ const SidePanelWrapper= styled('div')({
   height: '100%',
   zIndex: '31',
 
-
-
-
+ 
   
   
   [theme.breakpoints.down('sm')] : {
@@ -271,7 +269,7 @@ const ContentArea = styled('div')({
   display: 'block',
   position: 'relative',
   marginLeft: '15rem',
-  height: '92vh',
+  height: '95vh',
   paddingTop:  '1.75rem',
   overflow: 'hidden',
 
@@ -387,7 +385,8 @@ const Main = (props) => {
       <MainWrapper>
       
         <SideNavWrapper>
-FILTERS HERE
+        
+
         </SideNavWrapper>   
 
         <MainContentWrapper>
@@ -412,7 +411,7 @@ FILTERS HERE
 
 
 
-Nav Stuff
+          <FilterPanel/>
           
 
           </SidePanelWrapper>

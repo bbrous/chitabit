@@ -22,6 +22,7 @@ export const chitRedLight = '#FFC3C2'
 
 export const chitBlueDull = '#4B6599'
 export const chitBlueLight = '#8293B8'
+export const chitBlueVeryLight = '#A3B8E6'
 
 export const chitGreen = '#006633'
 
