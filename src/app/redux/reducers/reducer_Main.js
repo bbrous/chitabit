@@ -4,7 +4,9 @@ import { createReducer } from './reducerUtil'
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
  
 import {  
-          OPEN_CLOSE_SIDE_PANEL
+          OPEN_CLOSE_SIDE_PANEL,
+          SHOW_SPOTLIGHT,
+          CLOSE_SPOTLIGHT
         
         } from '../store/storeConstants';
 
@@ -20,6 +22,7 @@ import {
 
     view: 'journal',
     displaySidePanel: 'hide',
+    displaySpotLight: 'unseen',
     journalDisplay: {
       currentDaY: '',
       currentSection: '',
@@ -54,7 +57,17 @@ import {
 // }
   
 
-    
+export const showSpotLight = (state, payload) => {
+  // console.log("hey change display clicked")
+ return  Object.assign({...state}, payload)
+
+}  
+
+export const closeSpotLight = (state, payload) => {
+  // console.log("hey change display clicked")
+ return  Object.assign({...state}, payload)
+
+}  
 
 
 
@@ -80,6 +93,8 @@ import {
   export default createReducer(initialState, {
   
     [OPEN_CLOSE_SIDE_PANEL] : openCloseSidePanel,
+    [SHOW_SPOTLIGHT] : showSpotLight,
+    [CLOSE_SPOTLIGHT] : closeSpotLight,
 
 
     
