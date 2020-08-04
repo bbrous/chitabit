@@ -1,4 +1,7 @@
-import React from 'react'
+import React, {useeffect} from 'react'
+import {connect} from 'react-redux'
+import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
+
 
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled} from '@material-ui/core/styles'
@@ -60,7 +63,26 @@ const ContentArea = styled('div')({
 
 // ============================
 
-export const aTry = () => {
+export const aTry = (props) => {
+
+    let spotLightStatus = props.view.private.displaySpotLight
+
+    console.log('[aTry] - displaySpotLight status BEFORE :  ' , spotLightStatus )
+
+    if(spotLightStatus === 'unseen') {
+      props.showSpotLight()
+
+      console.log('[aTry] - displaySpotLight status on IF :  ' , spotLightStatus )
+
+      setTimeout(() => props.closeSpotLight() , 2000)
+    }
+    console.log('[aTry] - displaySpotLight status AFTER IF :  ' , spotLightStatus )
+
+
+ 
+
+   
+
   return (
     <BodyWrapper>
       <Wrapper>
@@ -68,10 +90,8 @@ export const aTry = () => {
         <PageHeader> aTry Javascript and Redux  </PageHeader>
         
         <ContentArea>
-
-
-
-          Put Content Here
+        <div> Put Content Here </div>
+        {spotLightStatus === 'show' && <div> SHOW ME THE SPOTLIGHT</div>}
 
 
 
@@ -86,4 +106,13 @@ export const aTry = () => {
   )
 }
 
-export default aTry
+const actions = {
+  showSpotLight,
+  closeSpotLight
+}
+
+const mapState = state => ({
+  view: state
+});
+
+export default connect(mapState, actions)(aTry)

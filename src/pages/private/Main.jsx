@@ -1,7 +1,7 @@
-import React , {useState} from 'react'
+import React , {useState, useEffect} from 'react'
 import HeaderMain from './mainElements/Header_main'
 
-import{chitOrange, lightGrey} from '../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight} from '../../styles/colors'
 
 import InitialMessage from './journalElements/InitialMessage'
 import Day from './journalElements/Day'
@@ -12,12 +12,12 @@ import FilterPanel from './navElements/FilterPanel'
 
 // import { NavLink, withRouter, useLocation} from 'react-router-dom'
 import {connect} from 'react-redux'
-import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
+import{openCloseSidePanel, showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
 // import Modal from '../../components/modal/Modal.jsx'
 import JournalButtons from '../../components/JournalButtons'
 
-
+import Paper from '@material-ui/core/Paper'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 
@@ -287,6 +287,91 @@ const ContentArea = styled('div')({
 
 })
 
+const SpotLightModal = styled('div')({
+
+  display: 'flex',
+  position: 'absolute',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  backgroundColor: chitOrangeLight,
+  zIndex: '12',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // display: 'block'
+
+  },
+
+  [theme.breakpoints.down('xs')] : {
+    // display:  'none',
+
+  }
+
+})
+
+const CloseSpotLight = styled('div')({
+
+  display: 'flex',
+  position: 'absolute',
+  justifyContent: 'center',
+  alignItems: 'center',
+  top: '2px',
+  right: '2px',
+  height: '2rem',
+  width: '2rem',
+  color: 'red',
+  fontSize: '1.2rem',
+  borderRadius: '50px',
+
+  '&:hover': {
+    backgroundColor: chitOrangeLight
+
+  },
+
+  [theme.breakpoints.down('sm')] : {
+    // display: 'block'
+
+  },
+
+  [theme.breakpoints.down('xs')] : {
+    // display:  'none',
+
+  }
+
+})
+
+const SpotLightWrapper = styled(Paper)({
+
+  display: 'flex',
+  position: 'relative',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '50%',
+  width: '50%',
+  backgroundColor: 'yellow',
+  marginTop: '3rem',
+ 
+ 
+  
+ 
+
+
+
+  [theme.breakpoints.down('sm')] : {
+    // display: 'block'
+    marginLeft: '0',
+  },
+
+  [theme.breakpoints.down('xs')] : {
+    // display:  'none',
+
+  }
+
+})
+
+
+
 const WysiwygWrapper= styled('div')({
   display: 'flex',
   // position: 'absolute',
@@ -335,14 +420,30 @@ const Main = (props) => {
 
   
 
+  let viewSidePanel = props.view.private.displaySidePanel
+
+ 
+  /*  Show Spotlight modal
+      - modal on a timer 
+      - gets / sets status -- redux store
+
+  */
+    let spotLightStatus = props.view.private.displaySpotLight
+    
+    if(spotLightStatus === 'unseen') {
+      props.showSpotLight()
+  
+  
+      setTimeout(() => props.closeSpotLight() , 4000)
+    }
+  
+
 
   // let view = props.view.private.display
   // let view = props.view.private.view
   // console.log('[Main ]... props --- ', view)
 
 
-
-  let viewSidePanel = props.view.private.displaySidePanel
 
   /* const - lastSectionDisplayed
       determine the last section worked on from Redux store
@@ -360,6 +461,8 @@ const Main = (props) => {
   
   // func handleSidePanelChange - open or close the side panel
 
+  
+
   const handleSidePanelChange = (evt)=>{
     evt.persist()
     const newSidePanelView = (viewSidePanel==='show') ? 'hide': 'show'
@@ -370,6 +473,21 @@ const Main = (props) => {
 
     props.openCloseSidePanel(newSidePanelView)
 
+
+  // Handle Spotlight
+
+  
+
+    
+
+    if(spotLightStatus === 'unseen') {
+      props.showSpotLight()
+
+      console.log('[MAIN] - displaySpotLight status on IF :  ' , spotLightStatus )
+
+      setTimeout(() => props.closeSpotLight() , 2000)
+    }
+    console.log('[MAIN] - displaySpotLight status AFTER IF :  ' , spotLightStatus )
 
   }
 
@@ -418,6 +536,18 @@ const Main = (props) => {
 
 {/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
           <ContentArea>
+
+          {spotLightStatus === 'show' && 
+            <SpotLightModal>
+              
+              <SpotLightWrapper>
+              <CloseSpotLight>X</CloseSpotLight>
+                SpotLight here
+              </SpotLightWrapper>
+              
+            </SpotLightModal>
+          }
+
           <WysiwygWrapper>WYSIWYG</WysiwygWrapper>
             
           <JournalButtons/>
@@ -457,7 +587,9 @@ nav here
 }
 
 const actions = {
-  openCloseSidePanel 
+  openCloseSidePanel,
+  showSpotLight,
+  closeSpotLight 
 }
 
 const mapState = state => ({
