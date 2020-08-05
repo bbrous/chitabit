@@ -95,10 +95,10 @@ const GoalWrapper = styled(Paper)({
 
 })
 
-const Goal = styled('div')({
+const Goal = styled('th')({
 
  
-  display: 'flex',
+  display: 'block',
   width: '100%',
   justifyContent: 'center',
   margin: '0 0 1.5rem 0',
@@ -107,62 +107,51 @@ const Goal = styled('div')({
   color: chitRedDark,
   fontWeight: 'bold',
   textAlign: 'center',
-
+ 
 
 })
 
-const TimerWrapper = styled('div')({
+const TimerWrapper = styled('table')({
 
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '100%',
+ 
   // backgroundColor: 'aqua',
   fontSize: '.8rem'
 })
 
-const TimerRow = styled('div')({
-  display: 'flex',
+const TimerRow = styled('tr')({
  
-  justifyContent: 'flex-start',
-  alignItems: 'center',
- 
-  width: '80%',
-  margin: '.8rem',
-
+  width: '90%',
+  margin: '0 .8rem .4rem 0',
+  textAlign: 'left',
+  paddingLeft: '3rem'
   // backgroundColor: 'indigo'
 
 
 })
 
-const TimerLeft= styled('div')({
-  display: 'flex',
+const TimerLeft= styled('td')({
  
-  justifyContent: 'flex-start',
-  alignItems: 'center',
   width: '6rem',
-  marginRigth: '5px',
-  color: 'black'
+  marginRight: '2.5rem',
+  color: 'black',
+  // backgroundColor: 'green'
 })
 
-const TimerRight= styled('div')({
-
-  display: 'flex',
- 
-  justifyContent: 'flex-start',
-  alignItems: 'center',
+const TimerRight= styled('td')({
+  width: '12rem',
+  
   color: chitBlueDull
   // backgroundColor: 'white'
 
 })
 
-const TimerRemaining= styled('div')({
+const TimerRemaining= styled('td')({
 
-  display: 'flex',
- 
-  justifyContent: 'flex-start',
-  alignItems: 'center',
+   width: '12rem',
   color: 'red'
   // backgroundColor: 'white'
 
@@ -192,19 +181,20 @@ const SpotLight = (props) => {
       
       <GoalWrapper elevation = {3}>
 
-        <Goal>
-          Complete SpotLight 
-        </Goal>
+       
         <TimerWrapper>
+        <Goal>
+          SpotLight CRUD from Firestore
+        </Goal>
           <TimerRow> 
             <TimerLeft>  Start Time </TimerLeft>
-            <TimerRight> May 10 2020 7:32AM </TimerRight>
+            <TimerRight> Aug 5 2020 7:32AM </TimerRight>
 
           </TimerRow>
 
           <TimerRow> 
             <TimerLeft>  End Date Est </TimerLeft>
-            <TimerRight> May 18 2020 7:32AM  </TimerRight>
+            <TimerRight> Aug 31 2020 7:32AM  </TimerRight>
 
           </TimerRow>
 
@@ -218,7 +208,7 @@ const SpotLight = (props) => {
 
           <TimerRow> 
             <TimerLeft>  Remaining </TimerLeft>
-            <TimerRemaining> 2 days 11 hours 11 min </TimerRemaining>
+            <TimerRemaining> 25 days 11 hours 11 min </TimerRemaining>
 
           </TimerRow>
           

@@ -427,7 +427,7 @@ const ProgressBarInner= styled('div')({
 
   display: 'block',
   height: '100%',
- 
+  borderRight: '2px solid #CFD0D1',
   backgroundColor: lightGrey
 
 })
