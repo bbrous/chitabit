@@ -1,4 +1,4 @@
-import React, {useeffect} from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
