@@ -1,12 +1,12 @@
 import React , {useState, useEffect} from 'react'
 import HeaderMain from './mainElements/Header_main'
 
-import{chitOrange, lightGrey, chitOrangeLight} from '../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow} from '../../styles/colors'
 
 import InitialMessage from './journalElements/InitialMessage'
 import Day from './journalElements/Day'
 import FilterPanel from './navElements/FilterPanel'
-// import MainLanding from './elements_landing/Main_Landing'
+import SpotLight from './spotLight/SpotLight'
 // import HeaderMain from './mainElements/Header_main'
 
 
@@ -323,7 +323,7 @@ const CloseSpotLight = styled('div')({
   color: 'red',
   fontSize: '1.2rem',
   borderRadius: '50px',
-
+  zIndex: '30',
   '&:hover': {
     backgroundColor: chitOrangeLight
 
@@ -341,22 +341,33 @@ const CloseSpotLight = styled('div')({
 
 })
 
+const CountDown = styled('div')({
+
+  display: 'flex',
+  position: 'absolute',
+  justifyContent: 'flex-end',
+  alignItems: 'flex-end',
+  bottom: '2px',
+  right: '8px',
+  width: '2rem',
+  color: 'red',
+  fontSize: '1rem',
+  zIndex: '30'
+
+})
+
+
 const SpotLightWrapper = styled(Paper)({
 
   display: 'flex',
   position: 'relative',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   height: '50%',
   width: '50%',
   backgroundColor: 'yellow',
   marginTop: '3rem',
  
- 
-  
- 
-
-
 
   [theme.breakpoints.down('sm')] : {
     // display: 'block'
@@ -372,18 +383,6 @@ const SpotLightWrapper = styled(Paper)({
 
 
 
-const WysiwygWrapper= styled('div')({
-  display: 'flex',
-  // position: 'absolute',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '1.75rem',
-  width: '100%',
-  backgroundColor: 'grey',
- 
-   
-})
-
 const Content= styled('div')({
   display: 'flex',
   flexDirection: 'column',
@@ -394,8 +393,8 @@ const Content= styled('div')({
   height: '90%',
   marginBottom: '3px',
   backgroundColor: 'white',
+  borderTop: '1px solid lightgrey',
   borderBottom: '1px solid lightgrey',
-   
   // backgroundColor: 'green',
   '&::-webkit-scrollbar': {
     width: '0.75em' 
@@ -412,6 +411,26 @@ const Content= styled('div')({
   overflow: 'auto',
 })
 
+const ProgressBar= styled('div')({
+
+  display: 'block',
+  position: 'absolute',
+  top: '0',
+  width: '100%',
+  height: '8px',
+  // border: '1px solid blue',
+  backgroundColor: 'none'
+
+})
+
+const ProgressBarInner= styled('div')({
+
+  display: 'block',
+  height: '100%',
+ 
+  backgroundColor: lightGrey
+
+})
 
 
 //=======================================================
@@ -428,13 +447,15 @@ const Main = (props) => {
       - gets / sets status -- redux store
 
   */
+
     let spotLightStatus = props.view.private.displaySpotLight
+    let displayTime = 9000
     
     if(spotLightStatus === 'unseen') {
       props.showSpotLight()
   
   
-      setTimeout(() => props.closeSpotLight() , 4000)
+      setTimeout(() => props.closeSpotLight() , displayTime)
     }
   
 
@@ -483,13 +504,40 @@ const Main = (props) => {
     if(spotLightStatus === 'unseen') {
       props.showSpotLight()
 
-      console.log('[MAIN] - displaySpotLight status on IF :  ' , spotLightStatus )
 
       setTimeout(() => props.closeSpotLight() , 2000)
     }
-    console.log('[MAIN] - displaySpotLight status AFTER IF :  ' , spotLightStatus )
+
 
   }
+
+
+  // Handle countdown to end popup display ---------
+
+    let displayTimeSec = displayTime / 1000
+    const [timeLeft, setTimeLeft] = useState(displayTimeSec);
+
+    useEffect(() => {
+      // exit early when we reach 0
+      if (!timeLeft) return;
+
+      // save intervalId to clear the interval when the
+      // component re-renders
+      const intervalId = setInterval(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+
+      // clear interval on re-render to avoid memory leaks
+      return () => clearInterval(intervalId);
+      // add timeLeft as a dependency to re-rerun the effect
+      // when we update it
+      
+
+    }, [timeLeft]);
+
+  // convert time left to a string % to style of progress width 
+    let progressMade = ((displayTimeSec - timeLeft)/displayTimeSec) * 100
+    let progress = progressMade.toString() + '%'
 
   return (
     <BodyWrapper>
@@ -539,16 +587,35 @@ const Main = (props) => {
 
           {spotLightStatus === 'show' && 
             <SpotLightModal>
+
+
               
               <SpotLightWrapper>
-              <CloseSpotLight>X</CloseSpotLight>
-                SpotLight here
+              <CloseSpotLight
+                onClick = {()=>{
+                  props.closeSpotLight()
+                }}
+              >
+                X</CloseSpotLight>
+                <SpotLight/>
+                {/* <CountDown>{timeLeft} </CountDown> */}
+
+                <ProgressBar> 
+
+<ProgressBarInner style={{width: progress}}>  {'\u00A0'} </ProgressBarInner>
+
+</ProgressBar>
+
+
+
+
               </SpotLightWrapper>
               
+
             </SpotLightModal>
           }
 
-          <WysiwygWrapper>WYSIWYG</WysiwygWrapper>
+ 
             
           <JournalButtons/>
             <Content>

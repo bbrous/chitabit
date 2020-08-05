@@ -3,9 +3,9 @@ import React from 'react'
 
 import Paper from '@material-ui/core/Paper'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import { chitRedDark } from '../../../styles/colors';
+import { chitBlueDull, chitOrange, chitOrangeLight } from '../../../styles/colors';
 
-
+import AddCircleIcon from '@material-ui/icons/AddCircle'
 
 
 
@@ -46,6 +46,7 @@ const ToolbarSpacer= styled('div')({
 const SpotLightWrapper= styled(Paper)({
 
   display: 'flex',
+  position: 'relative',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
@@ -64,7 +65,7 @@ const SpotLightWrapper= styled(Paper)({
 
 const SpotLightLink= styled('div')({
 
-  fontSize: '.8rem',
+  fontSize: '.9rem',
   color: 'red',
   textDecoration: 'underline',
   fontWeight: 'bold',
@@ -77,6 +78,38 @@ const SpotLightLink= styled('div')({
 
 })
 
+const SpotLightNew = styled('div')({
+
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  position: 'absolute',
+  right: '5px',
+  bottom: '5px',
+
+  width: '100%',
+  color: 'black',
+  
+
+  fontSize: '.8rem',
+
+
+
+})
+
+
+
+const AddCircleIconWrapper= styled(AddCircleIcon)({
+
+  color: chitOrange,
+  fontSize : '1.5rem',
+  
+  '&:hover' : {
+    backgroundColor: chitOrangeLight,
+    borderRadius: '50px',
+  },
+
+})
 
 const FilterWrapper= styled(Paper)({
 
@@ -186,6 +219,8 @@ const KeyWordWrapper= styled(Paper)({
 
 })
 
+
+
 // =========================================
 
 const FilterPanel = () => {
@@ -193,7 +228,12 @@ const FilterPanel = () => {
     <Wrapper>
       <ToolbarSpacer/>
       <SpotLightWrapper elevation = {3}>
-        <SpotLightLink> SpotLight </SpotLightLink>
+        <SpotLightLink> SpotLights </SpotLightLink>
+        <SpotLightNew>
+         
+ 
+ <AddCircleIconWrapper/>
+        </SpotLightNew>
       </SpotLightWrapper>
 
       <FilterWrapper>

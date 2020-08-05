@@ -17,8 +17,8 @@ const Wrapper= styled('div')({
   width: '100%',
   backgroundColor: 'white',
   padding: '4px 0',
-
-    borderBottom: '1px solid lightgrey',
+  margin: '1.5rem 0 1rem 0',
+ 
 })
 
 // const ButtonWrapper= styled('div')({

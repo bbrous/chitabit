@@ -146,6 +146,20 @@ const ChevronOpen =  styled(ExpandMoreIcon)({
 
 })
 
+
+
+const WysiwygWrapper= styled('div')({
+  display: 'flex',
+  // position: 'absolute',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '1.2rem',
+  width: '100%',
+  backgroundColor: 'lightgrey',
+ 
+   
+})
+
 // =============================================
 
 const InputForm = () => {
@@ -189,8 +203,10 @@ const InputForm = () => {
       </FilterWrapper>
 
 
-
+      <WysiwygWrapper>WYSIWYG</WysiwygWrapper>
       <InputFormContent>
+
+      
       <div>InputForms one</div> 
 
         Lorem ipsum dolor sit amet. Kasd eu esse invidunt nulla. Sed voluptua dolor stet sea at vel magna. Ex dolore duo dolore clita vero. Ut eu ut duis diam. Vulputate et consetetur vero. Clita eos 
