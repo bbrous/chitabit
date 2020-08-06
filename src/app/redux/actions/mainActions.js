@@ -5,7 +5,11 @@
   
 //   SHOW_ACCORDION_DETAIL,CLOSE_ACCORDION_DETAIL, CHANGE_MONTH} from '../../app/store/storeConstants';
 
-  import {OPEN_CLOSE_SIDE_PANEL, SHOW_SPOTLIGHT, CLOSE_SPOTLIGHT
+  import {OPEN_CLOSE_SIDE_PANEL, 
+          SHOW_SPOTLIGHT, 
+          CLOSE_SPOTLIGHT,
+          OPEN_MODAL,
+          CLOSE_MODAL,
           
           
         } from '../store/storeConstants';
@@ -45,3 +49,33 @@
             }
           }
         }
+
+        export const  openModal = (modalType, newChit) => {
+
+          console.log('[mainActions I be clicked')
+
+          return {
+            type: OPEN_MODAL,
+            payload: {
+              modalType: modalType, 
+              chitIdDisplayed: newChit,
+              modalDisplayed: true
+              
+            }
+          }
+        }
+        
+        
+        export const  closeModal = () => {
+          
+          return {
+            type: CLOSE_MODAL,
+            payload: {
+              modalType: '',
+              chitIdDisplayed: '',
+              modalDisplayed: false
+              
+            }
+          }
+        }
+        

@@ -63,6 +63,26 @@ const ContentArea = styled('div')({
 
 // ============================
 
+function convertMS( milliseconds ) {
+
+  // from Remino / msconvert.js
+  
+  var day, hour, minute, seconds;
+  seconds = Math.floor(milliseconds / 1000);
+  minute = Math.floor(seconds / 60);
+  seconds = seconds % 60;
+  hour = Math.floor(minute / 60);
+  minute = minute % 60;
+  day = Math.floor(hour / 24);
+  hour = hour % 24;
+  return {
+      day: day,
+      hour: hour,
+      minute: minute,
+      seconds: seconds
+  };
+}
+
 export const aTry = (props) => {
 
     let spotLightStatus = props.view.private.displaySpotLight
@@ -80,6 +100,13 @@ export const aTry = (props) => {
 
 
  
+    let start = 1596721784000
+    let end =  1597997591000
+    let msRemaining = end - start
+    let timeRemainingObject =  convertMS(msRemaining)
+
+    console.log('[aTry] ms remaining: ', msRemaining)
+    console.log('[aTry] timeRemainingObject: ', timeRemainingObject)
 
    
 

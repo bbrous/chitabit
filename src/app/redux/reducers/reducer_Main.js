@@ -6,7 +6,9 @@ import { createReducer } from './reducerUtil'
 import {  
           OPEN_CLOSE_SIDE_PANEL,
           SHOW_SPOTLIGHT,
-          CLOSE_SPOTLIGHT
+          CLOSE_SPOTLIGHT,
+          OPEN_MODAL,
+          CLOSE_MODAL,
         
         } from '../store/storeConstants';
 
@@ -27,7 +29,10 @@ import {
       currentDaY: '',
       currentSection: '',
       lastSection: ''
-    }
+    },
+
+    modalDisplayed: false,
+    modalType: '',
 
   }
 
@@ -70,24 +75,17 @@ export const closeSpotLight = (state, payload) => {
 }  
 
 
-
-//   export const showAccordionDetail = (state, payload) => {
-
-
-//     return  Object.assign({...state}, payload)
-//   }
-
-//   export const closeAccordionDetail = (state, payload) => {
-     
-//     return  Object.assign({...state}, payload)
-//   }
+export const openModal = (state, payload) => {
 
 
-//   export const changeMonth = (state, payload) => {
-     
-//    return  Object.assign({...state}, payload)
- 
-//  }
+  return  Object.assign({...state}, payload)
+}
+
+export const closeModal = (state, payload) => {
+   
+  return  Object.assign({...state}, payload)
+}
+
 // =================================================
 
   export default createReducer(initialState, {
@@ -96,6 +94,8 @@ export const closeSpotLight = (state, payload) => {
     [SHOW_SPOTLIGHT] : showSpotLight,
     [CLOSE_SPOTLIGHT] : closeSpotLight,
 
+    [OPEN_MODAL] : openModal,
+    [CLOSE_MODAL] : closeModal,
 
     
   })

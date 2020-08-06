@@ -3,6 +3,7 @@ import HeaderMain from './mainElements/Header_main'
 
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow} from '../../styles/colors'
 
+import Modal from '../../components/modal/Modal.jsx'
 import InitialMessage from './journalElements/InitialMessage'
 import Day from './journalElements/Day'
 import FilterPanel from './navElements/FilterPanel'
@@ -539,10 +540,14 @@ const Main = (props) => {
     let progressMade = ((displayTimeSec - timeLeft)/displayTimeSec) * 100
     let progress = progressMade.toString() + '%'
 
+    let modalShow = props.view.private.modalDisplayed
+
+    
+
   return (
     <BodyWrapper>
 
-       
+{modalShow && <Modal/>}
 
 
       <HeaderMain/>

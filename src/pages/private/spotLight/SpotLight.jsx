@@ -95,7 +95,7 @@ const GoalWrapper = styled(Paper)({
 
 })
 
-const Goal = styled('th')({
+const Goal = styled('div')({
 
  
   display: 'block',
@@ -111,7 +111,7 @@ const Goal = styled('th')({
 
 })
 
-const TimerWrapper = styled('table')({
+const TimerWrapper = styled('div')({
 
   display: 'flex',
   flexDirection: 'column',
@@ -119,10 +119,10 @@ const TimerWrapper = styled('table')({
   alignItems: 'center',
  
   // backgroundColor: 'aqua',
-  fontSize: '.8rem'
+  fontSize: '.75rem'
 })
 
-const TimerRow = styled('tr')({
+const TimerRow = styled('div')({
  
   width: '90%',
   margin: '0 .8rem .4rem 0',
@@ -133,7 +133,7 @@ const TimerRow = styled('tr')({
 
 })
 
-const TimerLeft= styled('td')({
+const TimerLeft= styled('div')({
  
   width: '6rem',
   marginRight: '2.5rem',
@@ -141,19 +141,33 @@ const TimerLeft= styled('td')({
   // backgroundColor: 'green'
 })
 
-const TimerRight= styled('td')({
+const TimerRight= styled('div')({
   width: '12rem',
   
-  color: chitBlueDull
+  color: 'black'
   // backgroundColor: 'white'
 
 })
 
-const TimerRemaining= styled('td')({
+const Remaining= styled('div')({
 
-   width: '12rem',
-  color: 'red'
-  // backgroundColor: 'white'
+    
+  display: 'block',
+  width: '100%',
+  justifyContent: 'center',
+  margin: '0 0 1.5rem 0',
+  
+  fontSize: '1.2rem',
+  marginTop: '2rem',
+  color: 'red',
+  fontWeight: 'bold',
+  textAlign: 'center',
+
+  '& span': {
+    fontSize: '1rem',
+    fontStyle: 'italic',
+    marginRight: '1.5rem'
+  }
 
 })
 
@@ -181,11 +195,11 @@ const SpotLight = (props) => {
       
       <GoalWrapper elevation = {3}>
 
-       
-        <TimerWrapper>
-        <Goal>
+<Goal>
           SpotLight CRUD from Firestore
         </Goal>
+        <TimerWrapper>
+      
           <TimerRow> 
             <TimerLeft>  Start Time </TimerLeft>
             <TimerRight> Aug 5 2020 7:32AM </TimerRight>
@@ -206,14 +220,15 @@ const SpotLight = (props) => {
           </TimerRow>
           }
 
-          <TimerRow> 
-            <TimerLeft>  Remaining </TimerLeft>
-            <TimerRemaining> 25 days 11 hours 11 min </TimerRemaining>
-
-          </TimerRow>
-          
+ 
         </TimerWrapper>
-        
+     
+  
+
+          <Remaining>
+          <span> Time Remaining: </span> 25 days 11 hours
+        </Remaining>
+
       </GoalWrapper>
 
     }

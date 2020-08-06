@@ -1,5 +1,6 @@
 import React from 'react'
-
+import {connect} from 'react-redux'
+import{openModal} from '../../../app/redux/actions/mainActions'
 
 import Paper from '@material-ui/core/Paper'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -223,13 +224,33 @@ const KeyWordWrapper= styled(Paper)({
 
 // =========================================
 
-const FilterPanel = () => {
+const FilterPanel = (props) => {
+  console.log('[FILTERPANEL props are: ', props)
+  //funct newSpotLight opens the modal to display spotlight form
+  const newSpotLight = ()=>{
+
+    /* convert the chit Id to an array of 1 element so
+     detailChit can map it ... map is because detailChit modal
+       sometimes maps multiple chitsIdArray
+    */
+    // let chitsIdArray = []
+    // chitsIdArray.push(chitId.chitId)
+
+    console.log('[FILTERPANEL cicked')
+
+    props.openModal('spotLightForm', 'Brad')
+  
+  }
+
+
+
   return (
     <Wrapper>
       <ToolbarSpacer/>
       <SpotLightWrapper elevation = {3}>
-        <SpotLightLink> SpotLights </SpotLightLink>
-        <SpotLightNew>
+        <SpotLightLink > SpotLightsssss </SpotLightLink>
+
+        <SpotLightNew onClick = {()=> newSpotLight()}>
          
  
  <AddCircleIconWrapper/>
@@ -261,5 +282,14 @@ const FilterPanel = () => {
   )
 }
 
+ 
 
-export default  FilterPanel
+const actions = {
+  openModal 
+}
+
+const mapState = state => ({
+  display: state
+});
+
+export default connect(mapState, actions)(FilterPanel)
