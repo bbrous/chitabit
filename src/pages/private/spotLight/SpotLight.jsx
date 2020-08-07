@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import{chitOrange, chitVeryLightYellow, chitOrangeLight, chitBlueDull, chitRedDark} from '../../../styles/colors'
+
+import {convertMS} from '../../../app/helpers/dateHelper'
 
 import { NavLink, withRouter, useLocation} from 'react-router-dom'
 
@@ -38,10 +40,10 @@ const Wrapper = styled('div')({
 
 })
 
-const Inspiration = styled('div')({
+const InspirationWrapper = styled('div')({
 
   display: 'flex',
- 
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   height: '100%',
@@ -64,6 +66,19 @@ const Inspiration = styled('div')({
 
   }
 
+})
+
+const Inspiration = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+
+})
+
+const Author = styled('div')({
+  fontSize: '.7rem',
+  color: 'grey'
 })
 
 const GoalWrapper = styled(Paper)({
@@ -180,15 +195,22 @@ const SpotLight = (props) => {
   let type = 'goal'
   let revised = true
 
+  let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
+  let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
+
+  let msRemaining = endDate - startDate
+  let timeRemainingObject =  convertMS(msRemaining)
+  console.log('[SPOTLIGHT] timeRemainingObject: ', timeRemainingObject)
   return (
     <Wrapper>
 
       {type === 'inspiration' &&
-      
+      <InspirationWrapper>
         <Inspiration>
           It's a great day to be me and It's always great to be Shelby
         </Inspiration>
-
+        <Author>Brad the sage </Author>
+      </InspirationWrapper>
       }
 
     {type === 'goal' &&
@@ -226,7 +248,9 @@ const SpotLight = (props) => {
   
 
           <Remaining>
-          <span> Time Remaining: </span> 25 days 11 hours
+          <span> Time Remaining: </span> 
+          {timeRemainingObject.day} days - {timeRemainingObject.hour} hours
+          
         </Remaining>
 
       </GoalWrapper>

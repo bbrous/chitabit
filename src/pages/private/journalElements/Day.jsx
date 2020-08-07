@@ -3,7 +3,7 @@ import{ chitOrangeLight, chitVeryLightYellow, darkGrey } from '../../../styles/c
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 import Section from './Section'
-import InputForm from './InputForm'
+import InputForm from '../../../forms/InputForm'
 import Chit from './Chit'
 import Paper from '@material-ui/core/Paper'
 

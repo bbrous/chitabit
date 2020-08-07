@@ -248,7 +248,7 @@ const FilterPanel = (props) => {
     <Wrapper>
       <ToolbarSpacer/>
       <SpotLightWrapper elevation = {3}>
-        <SpotLightLink > SpotLightsssss </SpotLightLink>
+        <SpotLightLink > SpotLightss </SpotLightLink>
 
         <SpotLightNew onClick = {()=> newSpotLight()}>
          

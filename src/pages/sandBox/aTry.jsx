@@ -106,7 +106,7 @@ export const aTry = (props) => {
     let timeRemainingObject =  convertMS(msRemaining)
 
     console.log('[aTry] ms remaining: ', msRemaining)
-    console.log('[aTry] timeRemainingObject: ', timeRemainingObject)
+    // console.log('[aTry] timeRemainingObject: ', timeRemainingObject)
 
    
 
@@ -118,7 +118,9 @@ export const aTry = (props) => {
         
         <ContentArea>
         <div> Put Content Here </div>
-        {spotLightStatus === 'show' && <div> SHOW ME THE SPOTLIGHT</div>}
+
+
+
 
 
 
