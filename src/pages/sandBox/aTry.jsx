@@ -1,10 +1,23 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
 
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled} from '@material-ui/core/styles'
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
+
+
+
+
+
+
+
+
+
 
 
 const BodyWrapper= styled('div')({
@@ -60,52 +73,111 @@ const ContentArea = styled('div')({
   border: '1px solid black'
 })
 
+const DivArea = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 
-// ============================
+  width: '90%',
+  height: '90%',
+  backgroundColor: 'yellow'
+})
 
-function convertMS( milliseconds ) {
+const SectionArea = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
 
-  // from Remino / msconvert.js
-  
-  var day, hour, minute, seconds;
-  seconds = Math.floor(milliseconds / 1000);
-  minute = Math.floor(seconds / 60);
-  seconds = seconds % 60;
-  hour = Math.floor(minute / 60);
-  minute = minute % 60;
-  day = Math.floor(hour / 24);
-  hour = hour % 24;
-  return {
-      day: day,
-      hour: hour,
-      minute: minute,
-      seconds: seconds
+  width: '90%',
+  height: '90%',
+
+  '& div' :{
+    display: 'block',
+    width: '5rem',
+    height: '5rem',
+    margin: '3rem',
+    backgroundColor: 'white',
+
+
+  }
+})
+
+const FormArea = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+
+  width: '90%',
+  height: '90%',
+
+  '& div' :{
+    display: 'block',
+    width: '5rem',
+    height: '5rem',
+    margin: '3rem',
+    backgroundColor: 'lightgrey'
+
+  }
+
+
+})
+
+const ItemWrapper = styled(MenuItem)({
+  color: 'blue',
+  fontSize: '.9rem',
+  textDecoration:'underline'
+
+
+})
+
+const MenuWrapper = styled(Menu)({
+  border: '1px solid grey',
+  borderRadius: '3px',
+
+
+})
+
+
+
+// =================================================
+
+const initialState = {
+  mouseX: null,
+  mouseY: null,
+};
+
+
+
+
+
+const ATry = (props) => {
+
+  const [state, setState] = useState(initialState);
+
+  const handleClick = (evt, id) => {
+    evt.preventDefault();
+
+    console.log('[aTry] id: ', id)
+
+    setState({
+      mouseX: evt.clientX - 2,
+      mouseY: evt.clientY - 4,
+    });
   };
-}
+  
+  const handleClose = () => {
+    setState(initialState);
+  };
 
-export const aTry = (props) => {
+
 
     let spotLightStatus = props.view.private.displaySpotLight
 
     console.log('[aTry] - displaySpotLight status BEFORE :  ' , spotLightStatus )
 
-    if(spotLightStatus === 'unseen') {
-      props.showSpotLight()
-
-      console.log('[aTry] - displaySpotLight status on IF :  ' , spotLightStatus )
-
-      setTimeout(() => props.closeSpotLight() , 2000)
-    }
-    console.log('[aTry] - displaySpotLight status AFTER IF :  ' , spotLightStatus )
-
-
- 
-    let start = 1596721784000
-    let end =  1597997591000
-    let msRemaining = end - start
-    let timeRemainingObject =  convertMS(msRemaining)
-
-    console.log('[aTry] ms remaining: ', msRemaining)
     // console.log('[aTry] timeRemainingObject: ', timeRemainingObject)
 
    
@@ -118,7 +190,51 @@ export const aTry = (props) => {
         
         <ContentArea>
         <div> Put Content Here </div>
+        <DivArea>
+          <SectionArea>
+            <div
+            id = 'section1'
+             onContextMenu={(evt)=>handleClick(evt,'section1')} style={{ cursor: 'context-menu' }}> Section 1 </div>
+            <div
+            id = 'section2'
+             onContextMenu={handleClick} style={{ cursor: 'context-menu' }}> Section 2 </div>
+            <div
+            id = 'section3'
+             onContextMenu={handleClick} style={{ cursor: 'context-menu' }}> Section 3 </div>
+            <div
+            id = 'section4'
+             onContextMenu={handleClick} style={{ cursor: 'context-menu' }}> Section 4 </div>
 
+
+          </SectionArea>
+
+          <FormArea>
+            <div> Form 1 </div>
+            <div> Form 2 </div>
+            <div> Form 3 </div>
+            <div> Form 4 </div>
+
+
+          </FormArea>
+          <MenuWrapper  elevation= {3}
+        keepMounted
+        open={state.mouseY !== null}
+        onClose={handleClose}
+        anchorReference="anchorPosition"
+        anchorPosition={
+          state.mouseY !== null && state.mouseX !== null
+            ? { top: state.mouseY, left: state.mouseX }
+            : undefined
+        }
+      >
+        <ItemWrapper onClick={handleClose}>Edit</ItemWrapper>
+        <ItemWrapper onClick={handleClose}>Display Similar Sections</ItemWrapper>
+        <ItemWrapper onClick={handleClose}>Delete </ItemWrapper>
+        
+      </MenuWrapper>
+      
+
+        </DivArea>
 
 
 
@@ -144,4 +260,7 @@ const mapState = state => ({
   view: state
 });
 
-export default connect(mapState, actions)(aTry)
+export default connect(mapState, actions)(ATry)
+
+
+

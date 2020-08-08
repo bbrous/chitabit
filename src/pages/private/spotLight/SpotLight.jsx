@@ -186,6 +186,22 @@ const Remaining= styled('div')({
 
 })
 
+const LinksWrapper= styled('div')({
+  display: 'flex',
+  width: '90%',
+  justifyContent: 'space-between',
+  position: 'absolute',
+  bottom: '3px',
+  '& div' : {
+    color: chitBlueDull,
+    textDecoration: 'underline',
+    cursor: 'pointer'
+  }
+
+})
+
+
+
 
 //===============================================================
 
@@ -256,6 +272,12 @@ const SpotLight = (props) => {
       </GoalWrapper>
 
     }
+
+
+<LinksWrapper>
+      <div> edit </div>
+      <div> delete </div>
+    </LinksWrapper>
        
     </Wrapper>
   )

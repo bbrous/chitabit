@@ -3,11 +3,14 @@ import {connect} from 'react-redux'
 import{openModal} from '../../../app/redux/actions/mainActions'
 
 import Paper from '@material-ui/core/Paper'
-import { styled, createMuiTheme } from "@material-ui/core/styles"
-import { chitBlueDull, chitOrange, chitOrangeLight } from '../../../styles/colors';
+
+
+import { styled, makeStyles, createMuiTheme } from "@material-ui/core/styles"
+import clsx from 'clsx'// for checkbox
+import { chitBlueDull, chitOrange, chitOrangeLight, darkGrey } from '../../../styles/colors';
 
 import AddCircleIcon from '@material-ui/icons/AddCircle'
-
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -49,7 +52,7 @@ const SpotLightWrapper= styled(Paper)({
   display: 'flex',
   position: 'relative',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   alignItems: 'center',
   width: '96%',
   height: '4.25rem',
@@ -65,7 +68,8 @@ const SpotLightWrapper= styled(Paper)({
 })
 
 const SpotLightLink= styled('div')({
-
+  display: 'block',
+  marginTop: '.7rem',
   fontSize: '.9rem',
   color: 'red',
   textDecoration: 'underline',
@@ -79,16 +83,16 @@ const SpotLightLink= styled('div')({
 
 })
 
-const SpotLightNew = styled('div')({
+const SpotLightLinksWrapper = styled('div')({
 
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
   position: 'absolute',
-  right: '5px',
+
   bottom: '5px',
 
-  width: '100%',
+  width: '90%',
   color: 'black',
   
 
@@ -111,6 +115,27 @@ const AddCircleIconWrapper= styled(AddCircleIcon)({
   },
 
 })
+
+const DisableWrapper = styled('div')({
+
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  position: 'absolute',
+  left: '5px',
+  bottom: '5px',
+
+  width: '70%',
+  color: darkGrey,
+ 
+
+  fontSize: '.85rem',
+
+
+
+})
+
+
 
 const FilterWrapper= styled(Paper)({
 
@@ -221,10 +246,54 @@ const KeyWordWrapper= styled(Paper)({
 })
 
 
+const useStyles = makeStyles({
+  root: {
+    padding: 0,
+    marginRight: 8,
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+  icon: {
+    borderRadius: 3,
+    width: 14,
+    height: 14,
+    boxShadow: 'inset 0 0 0 1px rgba(39,34,88,.3)',
+    backgroundColor: '#f5f8fa',
+    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+    '$root.Mui-focusVisible &': {
+      outline: '2px auto rgba(19,124,189,.6)',
+      outlineOffset: 2,
+    },
 
+    'input:disabled ~ &': {
+      boxShadow: 'none',
+      background: 'rgba(206,217,224,.5)',
+    },
+  },
+  checkedIcon: {
+    backgroundColor: chitOrange,
+    boxShadow: 'none',
+    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+    '&:before': {
+      display: 'block',
+      width: 16,
+      height: 16,
+      backgroundImage:
+        "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
+        " fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
+        "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
+      content: '""',
+    },
+
+  },
+});
 // =========================================
 
 const FilterPanel = (props) => {
+
+  const classes = useStyles();
+
   console.log('[FILTERPANEL props are: ', props)
   //funct newSpotLight opens the modal to display spotlight form
   const newSpotLight = ()=>{
@@ -248,13 +317,25 @@ const FilterPanel = (props) => {
     <Wrapper>
       <ToolbarSpacer/>
       <SpotLightWrapper elevation = {3}>
-        <SpotLightLink > SpotLightss </SpotLightLink>
+        <SpotLightLink onClick = {()=> newSpotLight()} > SpotLights </SpotLightLink>
 
-        <SpotLightNew onClick = {()=> newSpotLight()}>
-         
- 
+        <SpotLightLinksWrapper >
+        <DisableWrapper>
+          <Checkbox
+          default = 'checked'
+          className={classes.root}
+          disableRipple
+          color="default"
+          checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+          icon={<span className={classes.icon} />}
+          inputProps={{ 'aria-label': 'decorative checkbox' }}
+          {...props}
+          />
+          <div> show popup  </div>
+        </DisableWrapper>
+
  <AddCircleIconWrapper/>
-        </SpotLightNew>
+        </SpotLightLinksWrapper>
       </SpotLightWrapper>
 
       <FilterWrapper>
