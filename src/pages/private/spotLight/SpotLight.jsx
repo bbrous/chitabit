@@ -2,6 +2,14 @@ import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import{chitOrange, chitVeryLightYellow, chitOrangeLight, chitBlueDull, chitRedDark} from '../../../styles/colors'
 
+
+// ##############################################
+
+  import InitialStore from '../../../app/redux/store/InitialStore'
+
+//###############################################
+
+
 import {convertMS} from '../../../app/helpers/dateHelper'
 
 import { NavLink, withRouter, useLocation} from 'react-router-dom'
@@ -46,7 +54,7 @@ const InspirationWrapper = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '100%',
+  height: '900px',
   width: '100%',
  
   fontSize: '1.4rem',
@@ -207,8 +215,17 @@ const LinksWrapper= styled('div')({
 
 const SpotLight = (props) => {
 
-  // let type = 'inspiration'
-  let type = 'goal'
+  // ########### TEMPORARY - Initial Store   ######################
+
+    let spotlight = InitialStore
+
+    // console.log('[Spotlight] - props', spotlight.spotlights.spot1)
+
+
+  // ##############################################################
+
+  let type = 'inspiration'
+  // let type = 'goal'
   let revised = true
 
   let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
@@ -216,7 +233,7 @@ const SpotLight = (props) => {
 
   let msRemaining = endDate - startDate
   let timeRemainingObject =  convertMS(msRemaining)
-  console.log('[SPOTLIGHT] timeRemainingObject: ', timeRemainingObject)
+  // console.log('[SPOTLIGHT] timeRemainingObject: ', timeRemainingObject)
   return (
     <Wrapper>
 

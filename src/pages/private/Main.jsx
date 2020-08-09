@@ -7,6 +7,7 @@ import Modal from '../../components/modal/Modal.jsx'
 import InitialMessage from './journalElements/InitialMessage'
 import Day from './journalElements/Day'
 import FilterPanel from './navElements/FilterPanel'
+import SpotLightPage from './spotLight/SpotLightPage'
 import SpotLight from './spotLight/SpotLight'
 // import HeaderMain from './mainElements/Header_main'
 
@@ -458,6 +459,13 @@ const Main = (props) => {
   
       setTimeout(() => props.closeSpotLight() , displayTime)
     }
+
+    if(spotLightStatus === 'unseen') {
+      props.showSpotLight()
+  
+  
+      setTimeout(() => props.closeSpotLight() , displayTime)
+    }
   
 
 
@@ -520,6 +528,9 @@ const Main = (props) => {
 
     useEffect(() => {
       // exit early when we reach 0
+
+
+
       if (!timeLeft) return;
 
       // save intervalId to clear the interval when the
@@ -542,12 +553,12 @@ const Main = (props) => {
 
     let modalShow = props.view.private.modalDisplayed
 
-    
+    let displaySpotLightPage = true
 
   return (
     <BodyWrapper>
 
-{modalShow && <Modal/>}
+      {modalShow && <Modal/>}
 
 
       <HeaderMain/>
@@ -588,6 +599,13 @@ const Main = (props) => {
           </SidePanelWrapper>
 
 {/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
+{/*   choose content or spotlight page to display  
+      note: content has a spotlight popup... spotlight page does not
+
+*/}
+
+
+{!displaySpotLightPage && 
           <ContentArea>
 
           {spotLightStatus === 'show' && 
@@ -620,6 +638,9 @@ const Main = (props) => {
             </SpotLightModal>
           }
 
+
+
+ 
  
             
           <JournalButtons/>
@@ -640,7 +661,18 @@ const Main = (props) => {
             </Content>
             
           </ContentArea>
+        }
 
+{displaySpotLightPage && 
+
+
+<ContentArea>
+  <SpotLightPage/>
+
+
+</ContentArea>
+ 
+}
 {/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
 
 

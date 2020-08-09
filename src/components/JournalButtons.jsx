@@ -1,5 +1,5 @@
 import React from 'react'
-import{chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight } from '../styles/colors'
+import{chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, lightGrey } from '../styles/colors'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
@@ -64,7 +64,8 @@ const ActionButtonDisabled= styled('div')({
   height: '100%',
   width: '24%',
   margin: '0 2px',
-  backgroundColor: chitBlueVeryLight,
+  backgroundColor: lightGrey,
+  border: '1px solid #E6E7E8',
   borderRadius: '5px',
   fontSize: '.8rem',
   color: 'white',

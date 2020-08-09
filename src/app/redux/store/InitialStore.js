@@ -23,9 +23,53 @@ const InitialStore = {
  // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-  'chitSummaries':  {
+  'journal':  {
 
-      journal: {
+      sections: {
+
+        // 'tp11': {
+          
+        //   chitId: 'tp11',
+        //   timeStamp: 1556990799000, //May 4, 2019 (date of chit action),
+        //   chitDate: 155890799000, //May 4, 2019 (date of chit action)
+                           
+        //   otherParty: {
+        //     otherPartyId: 'nam10',
+        //     name: {firstName: 'Fran' , 
+        //     lastName: 'Nicastro', 
+        //     nameSubstitute: null},
+
+        //   },
+
+        //   deedPerformedBy: 'nam0',
+
+
+        //   workRelated: false,
+        //   shared: false,
+        //   attachment: null,
+
+        //   title: 'Pool use', 
+        //   description: null,  
+
+        //   chitType: 'standard',
+        //   chitColor: 'gold',
+
+          
+
+
+          
+       
+          
+
+        // } , //end TP chit
+
+      }//end journal Summaries
+
+},
+
+  'daySummaries':  {
+
+      dayxxxxx: {
 
         // 'tp11': {
           
@@ -69,8 +113,6 @@ const InitialStore = {
 
 
 
-
-
  
 // ==========================================================
 
@@ -87,9 +129,35 @@ const InitialStore = {
         
     // },
 
+  },// end topics
+
+  'spotlights': {
+
+    'spot1': {
+      id: 'spot1',
+      type: 'goal',
+      popupShow: true,
+      goal: 'Finish Spotlight',
+      startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
+      endEst: 1580537943000, // 1 Feb 2020 (date of chit action)
+      endEstModified: 1580537943000 , // 1 Feb 2020 (date of chit action)
+        
+
+    },
+
+    'spot2': {
+      id: 'spot2',
+      type: 'inspiration',
+      popupShow: false,
+      goal: 'You be the Best',
+      author: 'Brad the Wise',
+      startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
+      
+        
+
+    },
+
   }// end topics
-
-
  // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // ==================================================

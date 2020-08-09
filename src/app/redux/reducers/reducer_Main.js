@@ -25,6 +25,7 @@ import {
     view: 'journal',
     displaySidePanel: 'hide',
     displaySpotLight: 'unseen',
+    displaySpotLightPage: false,
     journalDisplay: {
       currentDaY: '',
       currentSection: '',

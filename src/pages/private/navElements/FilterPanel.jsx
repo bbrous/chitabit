@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import{openModal} from '../../../app/redux/actions/mainActions'
+// import{openModal} from '../../../app/redux/actions/mainActions'
 
 import Paper from '@material-ui/core/Paper'
 
@@ -256,8 +256,8 @@ const useStyles = makeStyles({
   },
   icon: {
     borderRadius: 3,
-    width: 14,
-    height: 14,
+    width: 16,
+    height: 16,
     boxShadow: 'inset 0 0 0 1px rgba(39,34,88,.3)',
     backgroundColor: '#f5f8fa',
     backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
@@ -273,7 +273,7 @@ const useStyles = makeStyles({
   },
   checkedIcon: {
     backgroundColor: chitOrange,
-    boxShadow: 'none',
+    boxShadow: 'inset 0 0 0 1px #F58634',
     backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
     '&:before': {
       display: 'block',
@@ -294,7 +294,8 @@ const FilterPanel = (props) => {
 
   const classes = useStyles();
 
-  console.log('[FILTERPANEL props are: ', props)
+  // console.log('[FILTERPANEL props are: ', props)
+
   //funct newSpotLight opens the modal to display spotlight form
   const newSpotLight = ()=>{
 
@@ -307,7 +308,7 @@ const FilterPanel = (props) => {
 
     console.log('[FILTERPANEL cicked')
 
-    props.openModal('spotLightForm', 'Brad')
+    // props.openModal('spotLightForm', 'Brad')
   
   }
 
@@ -317,12 +318,14 @@ const FilterPanel = (props) => {
     <Wrapper>
       <ToolbarSpacer/>
       <SpotLightWrapper elevation = {3}>
-        <SpotLightLink onClick = {()=> newSpotLight()} > SpotLights </SpotLightLink>
+        <SpotLightLink 
+        onClick = {()=> newSpotLight()} 
+        > SpotLights </SpotLightLink>
 
         <SpotLightLinksWrapper >
         <DisableWrapper>
           <Checkbox
-          default = 'checked'
+          
           className={classes.root}
           disableRipple
           color="default"
@@ -366,7 +369,7 @@ const FilterPanel = (props) => {
  
 
 const actions = {
-  openModal 
+  // openModal 
 }
 
 const mapState = state => ({
