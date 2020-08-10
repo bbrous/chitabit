@@ -3,6 +3,8 @@ import { createReducer } from './reducerUtil'
 
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
  
+import InitialStore from '../store/InitialStore'
+
 import {  
           OPEN_CLOSE_SIDE_PANEL,
           SHOW_SPOTLIGHT,
@@ -25,6 +27,7 @@ import {
     view: 'journal',
     displaySidePanel: 'hide',
     displaySpotLight: 'unseen',
+    displayedSpotLightId: 'spot1',
     displaySpotLightPage: false,
     journalDisplay: {
       currentDaY: '',
@@ -34,6 +37,8 @@ import {
 
     modalDisplayed: false,
     modalType: '',
+
+    data: InitialStore
 
   }
 

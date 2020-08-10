@@ -138,9 +138,9 @@ const Section = () => {
       <SectionContent>
       <Delete
               // onClick = {handleDelete}
-            > 
-              <DeleteIcon/>
-            </Delete>
+        > 
+          <DeleteIcon/>
+      </Delete>
 
       <div>Sections one</div> 
 

@@ -8,7 +8,7 @@ import InitialMessage from './journalElements/InitialMessage'
 import Day from './journalElements/Day'
 import FilterPanel from './navElements/FilterPanel'
 import SpotLightPage from './spotLight/SpotLightPage'
-import SpotLight from './spotLight/SpotLight'
+import SpotLightPopup from './spotLight/SpotLightPopup'
 // import HeaderMain from './mainElements/Header_main'
 
 
@@ -553,7 +553,7 @@ const Main = (props) => {
 
     let modalShow = props.view.private.modalDisplayed
 
-    let displaySpotLightPage = true
+    let displaySpotLightPage = false
 
   return (
     <BodyWrapper>
@@ -620,7 +620,7 @@ const Main = (props) => {
                 }}
               >
                 X</CloseSpotLight>
-                <SpotLight/>
+                <SpotLightPopup/>
                 {/* <CountDown>{timeLeft} </CountDown> */}
 
                 <ProgressBar> 

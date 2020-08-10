@@ -16,6 +16,8 @@ import { NavLink, withRouter, useLocation} from 'react-router-dom'
 
 // import{openCloseSidePanel, showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import EditIcon from '@material-ui/icons/Edit'
 import Paper from '@material-ui/core/Paper'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
@@ -52,13 +54,13 @@ const InspirationWrapper = styled('div')({
 
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   alignItems: 'center',
-  height: '900px',
+  height: '60rem',
   width: '100%',
  
   fontSize: '1.4rem',
-  color: 'blue',
+  color: chitBlueDull,
   fontWeight: 'bold',
   textAlign: 'center',
  
@@ -81,7 +83,7 @@ const Inspiration = styled('div')({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-
+  margin: '7rem 0 .8rem 0'
 })
 
 const Author = styled('div')({
@@ -199,7 +201,7 @@ const LinksWrapper= styled('div')({
   width: '90%',
   justifyContent: 'space-between',
   position: 'absolute',
-  bottom: '3px',
+  bottom: '8px',
   '& div' : {
     color: chitBlueDull,
     textDecoration: 'underline',
@@ -209,23 +211,107 @@ const LinksWrapper= styled('div')({
 })
 
 
+const Delete= styled('div')({
+  display: 'block', 
+  // position: 'absolute',
+  bottom: '5px',
+  right: '5px',
+  height: '1rem',
+  width: '1rem',
+  color: chitOrange,
+
+'&:hover' : {
+  color: chitBlueDull,
+  cursor: 'pointer',
+
+ 
+},
+
+  
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+
+})
 
 
+const DeleteIcon= styled(DeleteForeverIcon)({
+fontSize: '1.3rem',
+color: chitOrange,
+
+'&:hover' : {
+  color: chitBlueDull,
+  cursor: 'pointer',
+
+ 
+},
+})
+
+const Edit= styled('div')({
+  display: 'block', 
+  // position: 'absolute',
+  bottom: '5px',
+  right: '5px',
+  height: '1rem',
+  width: '1rem',
+  color: chitOrange,
+
+'&:hover' : {
+  color: chitBlueDull,
+  cursor: 'pointer',
+
+ 
+},
+
+  
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+
+})
+
+
+const IconEdit= styled(EditIcon)({
+fontSize: '1.3rem',
+color: chitOrange,
+
+'&:hover' : {
+  color: chitBlueDull,
+  cursor: 'pointer',
+
+ 
+},
+})
 //===============================================================
 
-const SpotLight = (props) => {
+const SpotLightPopup = (props) => {
 
-  // ########### TEMPORARY - Initial Store   ######################
+  // ########### TEMPORARY   ######################
 
-    let spotlight = InitialStore
+    // let spotlight = InitialStore
 
-    // console.log('[Spotlight] - props', spotlight.spotlights.spot1)
+   
 
+    let displayedSpotlight = props.view.private.displayedSpotLightId
 
+  
+    let spotlightDataObject = props.view.private.data.spotlights
+
+    let spotlightData = spotlightDataObject[displayedSpotlight] 
+    
+    const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = spotlightData
+    console.log('[Spotlight] - props spotlightData : ',  spotlightData )
+    console.log('[Spotlight] - props type : ', spotlightData.type  )
+    
+
+    // let displayedSpotlightData = props.data.displayedSpotlight
+  
   // ##############################################################
 
-  let type = 'inspiration'
-  // let type = 'goal'
+  
+  let displayType = type
   let revised = true
 
   let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
@@ -237,7 +323,7 @@ const SpotLight = (props) => {
   return (
     <Wrapper>
 
-      {type === 'inspiration' &&
+      {displayType === 'inspiration' &&
       <InspirationWrapper>
         <Inspiration>
           It's a great day to be me and It's always great to be Shelby
@@ -246,7 +332,7 @@ const SpotLight = (props) => {
       </InspirationWrapper>
       }
 
-    {type === 'goal' &&
+    {displayType === 'goal' &&
       
       <GoalWrapper elevation = {3}>
 
@@ -292,23 +378,36 @@ const SpotLight = (props) => {
 
 
 <LinksWrapper>
-      <div> edit </div>
-      <div> delete </div>
+      <Edit
+              // onClick = {handleEdit}
+        > 
+          <IconEdit/>
+      </Edit>
+
+      <Delete
+              // onClick = {handleDelete}
+        > 
+          <DeleteIcon/>
+      </Delete>
+
     </LinksWrapper>
        
     </Wrapper>
   )
 }
 
-export default  SpotLight
+// export default  SpotLightPopup
 
 // const actions = {
 //   showSpotLight,
 //   closeSpotLight
 // }
 
-// const mapState = state => ({
-//   view: state
-// });
+const mapState = state => ({
+  view: state,
+  data: state.private.data.spotlights
+});
 
-// export default connect(mapState, actions)(SpotLight)
+export default connect(mapState)(SpotLightPopup)
+
+// export default connect(mapState, actions)(SpotLightPopup)
