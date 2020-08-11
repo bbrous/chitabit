@@ -9,8 +9,8 @@ import{chitOrange, chitVeryLightYellow, chitOrangeLight, chitBlueDull, chitRedDa
 
 //###############################################
 
+import RemainingTime from './RemainingTime'
 
-import {convertMS} from '../../../app/helpers/dateHelper'
 
 import { NavLink, withRouter, useLocation} from 'react-router-dom'
 
@@ -303,7 +303,7 @@ const SpotLightPopup = (props) => {
     
     const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = spotlightData
     console.log('[Spotlight] - props spotlightData : ',  spotlightData )
-    console.log('[Spotlight] - props type : ', spotlightData.type  )
+    console.log('[Spotlight] - props type : ',startDay  )
     
 
     // let displayedSpotlightData = props.data.displayedSpotlight
@@ -311,19 +311,18 @@ const SpotLightPopup = (props) => {
   // ##############################################################
 
   
-  let displayType = type
+  // let displayType = type
   let revised = true
 
   let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
   let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
 
-  let msRemaining = endDate - startDate
-  let timeRemainingObject =  convertMS(msRemaining)
+
   // console.log('[SPOTLIGHT] timeRemainingObject: ', timeRemainingObject)
   return (
     <Wrapper>
 
-      {displayType === 'inspiration' &&
+      {type === 'inspiration' &&
       <InspirationWrapper>
         <Inspiration>
           It's a great day to be me and It's always great to be Shelby
@@ -332,12 +331,12 @@ const SpotLightPopup = (props) => {
       </InspirationWrapper>
       }
 
-    {displayType === 'goal' &&
+    {type === 'goal' &&
       
       <GoalWrapper elevation = {3}>
 
 <Goal>
-          SpotLight CRUD from Firestore
+          {goal}
         </Goal>
         <TimerWrapper>
       
@@ -367,8 +366,7 @@ const SpotLightPopup = (props) => {
   
 
           <Remaining>
-          <span> Time Remaining: </span> 
-          {timeRemainingObject.day} days - {timeRemainingObject.hour} hours
+          <RemainingTime/>
           
         </Remaining>
 
