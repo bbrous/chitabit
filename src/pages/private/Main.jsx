@@ -271,7 +271,7 @@ const ContentArea = styled('div')({
   display: 'block',
   position: 'relative',
   marginLeft: '15rem',
-  height: '95vh',
+  height: '97vh',
   paddingTop:  '1.75rem',
   overflow: 'hidden',
 
@@ -553,7 +553,22 @@ const Main = (props) => {
 
     let modalShow = props.view.private.modalDisplayed
 
-    let displaySpotLightPage = false
+
+
+
+// ##################################################
+
+    let displaySpotLightPage = props.view.private.displaySpotLightPage
+
+    console.log('[Main] displaySpotlightPage :  ', props.view.private.displaySpotLightPage)
+// ##################################################
+
+
+
+
+
+
+
 
   return (
     <BodyWrapper>
@@ -599,8 +614,8 @@ const Main = (props) => {
           </SidePanelWrapper>
 
 {/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
-{/*   choose content or spotlight page to display  
-      note: content has a spotlight popup... spotlight page does not
+{/*   choose Journal content or spotlight Page to display  
+      note: Journal content has a spotlight popup... spotlight page does not
 
 */}
 
@@ -625,9 +640,11 @@ const Main = (props) => {
 
                 <ProgressBar> 
 
-<ProgressBarInner style={{width: progress}}>  {'\u00A0'} </ProgressBarInner>
+                  <ProgressBarInner 
+                    style={{width: progress}}>  {'\u00A0'} 
+                  </ProgressBarInner>
 
-</ProgressBar>
+                </ProgressBar>
 
 
 
@@ -663,16 +680,16 @@ const Main = (props) => {
           </ContentArea>
         }
 
-{displaySpotLightPage && 
+  {displaySpotLightPage && 
 
 
-<ContentArea>
-  <SpotLightPage/>
+  <ContentArea>
 
+    <SpotLightPage/>
 
-</ContentArea>
- 
-}
+  </ContentArea>
+  
+  }
 {/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
 
 

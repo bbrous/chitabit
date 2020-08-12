@@ -28,7 +28,7 @@ import {
     displaySidePanel: 'hide',
     displaySpotLight: 'unseen',
     displayedSpotLightId: 'spot1',
-    displaySpotLightPage: false,
+    displaySpotLightPage: true,
     journalDisplay: {
       currentDaY: '',
       currentSection: '',

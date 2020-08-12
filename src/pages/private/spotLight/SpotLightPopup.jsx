@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
-import{chitOrange, chitVeryLightYellow, chitOrangeLight, chitBlueDull, chitRedDark} from '../../../styles/colors'
+import{chitOrange, chitVeryLightYellow, chitOrangeLight, chitBlueDull, chitRedDark, mediumGrey} from '../../../styles/colors'
 
 
 // ##############################################
@@ -126,9 +126,9 @@ const Goal = styled('div')({
   display: 'block',
   width: '100%',
   justifyContent: 'center',
-  margin: '0 0 1.5rem 0',
+  margin: '0 0 .5rem 0',
   
-  fontSize: '1.4rem',
+  fontSize: '1.5rem',
   color: chitRedDark,
   fontWeight: 'bold',
   textAlign: 'center',
@@ -148,28 +148,31 @@ const TimerWrapper = styled('div')({
 })
 
 const TimerRow = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
  
   width: '90%',
   margin: '0 .8rem .4rem 0',
-  textAlign: 'left',
-  paddingLeft: '3rem'
+  
   // backgroundColor: 'indigo'
 
 
 })
 
-const TimerLeft= styled('div')({
+const TimerTop= styled('div')({
  
-  width: '6rem',
-  marginRight: '2.5rem',
-  color: 'black',
+ 
+  color: mediumGrey,
   // backgroundColor: 'green'
 })
 
-const TimerRight= styled('div')({
+const TimerBottom = styled('div')({
   width: '12rem',
+  fontSize: '.9rem',
   
-  color: 'black'
+  color: mediumGrey
   // backgroundColor: 'white'
 
 })
@@ -340,25 +343,13 @@ const SpotLightPopup = (props) => {
         </Goal>
         <TimerWrapper>
       
+
           <TimerRow> 
-            <TimerLeft>  Start Time </TimerLeft>
-            <TimerRight> Aug 5 2020 7:32AM </TimerRight>
+            <TimerTop>  End Date Est </TimerTop>
+            <TimerBottom> Aug 31 2020 7:32AM  </TimerBottom>
 
           </TimerRow>
 
-          <TimerRow> 
-            <TimerLeft>  End Date Est </TimerLeft>
-            <TimerRight> Aug 31 2020 7:32AM  </TimerRight>
-
-          </TimerRow>
-
-          {revised && 
-          <TimerRow> 
-            <TimerLeft>  Original Est </TimerLeft>
-            <TimerRight> May 21 2020 9:44PM </TimerRight>
-
-          </TimerRow>
-          }
 
  
         </TimerWrapper>

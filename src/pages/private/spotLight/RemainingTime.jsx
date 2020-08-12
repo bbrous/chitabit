@@ -3,6 +3,7 @@ import React, {useEffect, useState }  from 'react'
 import {convertMS} from '../../../app/helpers/dateHelper'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
+import { mediumGrey } from '../../../styles/colors';
 
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -41,20 +42,61 @@ const TimeLeftWrapper = styled('div')({
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '100%',
-  width: '90%',
+  width: '70%',
 
 
   
 
   [theme.breakpoints.down('sm')] : {
     // display: 'block'
-    marginLeft: '0',
   },
 
   [theme.breakpoints.down('xs')] : {
     // display:  'none',
 
   }
+
+})
+const Header = styled('div')({
+
+  color: mediumGrey,
+  fontSize: '.8rem'
+
+})
+
+const TimeSegmentWrapper = styled('div')({
+
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+
+  
+
+  [theme.breakpoints.down('sm')] : {
+    // display: 'block'
+  },
+
+  [theme.breakpoints.down('xs')] : {
+    // display:  'none',
+
+  }
+
+})
+
+const Time = styled('div')({
+
+  color: 'red',
+  fontSize: '1.3em'
+
+})
+
+const TimeLabel = styled('div')({
+
+  color: mediumGrey,
+  fontSize: '.8rem'
 
 })
 // ================================================
@@ -95,28 +137,28 @@ let secs = timeRemainingObject.seconds
 
   return (
     <Wrapper>
-      <div> Time Remaining: </div> 
+      <Header> Time Remaining: </Header> 
           {/* {timeRemainingObject.day} days - {timeRemainingObject.hour} hours - - {timeRemainingObject.minute} min - - {timeRemainingObject.seconds} sec */}
     <TimeLeftWrapper> 
-          <div>
-            <div> {days} </div>
-            <div>  days  </div>
-          </div>
+          <TimeSegmentWrapper>
+            <Time> {days} </Time>
+            <TimeLabel>  days  </TimeLabel>
+          </TimeSegmentWrapper>
 
-          <div>
-            <div> {hours} </div>
-            <div>  hours  </div>
-          </div>
+          <TimeSegmentWrapper>
+            <Time> {hours} </Time>
+            <TimeLabel>  hours  </TimeLabel>
+          </TimeSegmentWrapper>
 
-          <div>
-            <div> {mins} </div>
-            <div>  mins  </div>
-          </div>
+          <TimeSegmentWrapper>
+            <Time> {mins} </Time>
+            <TimeLabel>  mins  </TimeLabel>
+          </TimeSegmentWrapper>
 
-          <div>
-            <div> {secs} </div>
-            <div>  secs  </div>
-          </div>
+          <TimeSegmentWrapper>
+            <Time> {secs} </Time>
+            <TimeLabel>  secs  </TimeLabel>
+          </TimeSegmentWrapper>
 
         </TimeLeftWrapper>
 

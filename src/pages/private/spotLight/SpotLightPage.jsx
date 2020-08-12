@@ -11,7 +11,7 @@ SpotLight page contains all spotlights
 
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import { chitOrangeLight, chitOrange} from '../../../styles/colors';
+import { chitOrangeLight, chitOrange, chitBlueDull} from '../../../styles/colors';
 
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit'
@@ -20,10 +20,12 @@ const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 const Wrapper= styled('div')({
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  position: 'relative',
   width: '100%', 
-  height: '100%',
+  height: '96vh',
+  padding: '4vh 1% 0 1%',
 
   backgroundColor: chitOrangeLight
 
@@ -31,15 +33,29 @@ const Wrapper= styled('div')({
 
 })
 
+const CloseSpotlightPage= styled('div')({
+  display: 'block',
+  position: 'absolute',
+  top: '6px',
+  left: '6px',
+  color: chitBlueDull,
+  fontWeight: 'bold',
+  textDecoration: 'underline',
+  cursor: 'pointer'
+
+
+})
+
+
 const SpotLightsWrapper= styled('div')({
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
   alignItems: 'center',
-  width: '50%', 
-  height: '80%',
-overflowX: 'hidden',
-overflowY: 'auto', 
+  height: '95%',
+  overflow: 'auto',
+ 
+
 
 backgroundColor: 'white',
 
@@ -51,9 +67,9 @@ const SingleWrapper= styled('div')({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  width: '100%', 
-  height: '15rem',
-  marginBottom: '4px',
+  width: '12rem',
+  height: '12rem',
+  margin: '4px',
 
 
   backgroundColor: 'yellow',
@@ -143,7 +159,93 @@ const SpotLightPage = () => {
   return (
     <Wrapper>
 
+      <CloseSpotlightPage>X  Close Spotlight Page</CloseSpotlightPage>
+
       <SpotLightsWrapper>
+
+        <SingleWrapper>
+          <div> First Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> 2nd Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> First Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> 2nd Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> First Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> 2nd Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> First Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> 2nd Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> First Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> 2nd Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> First Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> 2nd Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> First Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
+
+        <SingleWrapper>
+          <div> 2nd Wrapper </div>
+          <div> duh </div>
+          <div> duh </div>
+        </SingleWrapper>
 
         <SingleWrapper>
           <div> First Wrapper </div>
