@@ -5,13 +5,13 @@ import {connect} from 'react-redux'
 import Paper from '@material-ui/core/Paper'
 
 
-import { styled, makeStyles, createMuiTheme } from "@material-ui/core/styles"
-import clsx from 'clsx'// for checkbox
+import {  makeStyles, styled, createMuiTheme } from "@material-ui/core/styles"
+
 import { chitBlueDull, chitOrange, chitOrangeLight, darkGrey } from '../../../styles/colors';
 
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import Checkbox from '@material-ui/core/Checkbox';
-
+import clsx from 'clsx'// for checkbox
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 //--------------------------------------
@@ -287,7 +287,7 @@ const useStyles = makeStyles({
     },
 
   },
-});
+})
 // =========================================
 
 const FilterPanel = (props) => {
