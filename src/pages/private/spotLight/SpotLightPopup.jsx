@@ -305,8 +305,8 @@ const SpotLightPopup = (props) => {
     let spotlightData = spotlightDataObject[displayedSpotlight] 
     
     const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = spotlightData
-    console.log('[Spotlight] - props spotlightData : ',  spotlightData )
-    console.log('[Spotlight] - props type : ',startDay  )
+    // console.log('[Spotlight] - props spotlightData : ',  spotlightData )
+    // console.log('[Spotlight] - props type : ',startDay  )
     
 
     // let displayedSpotlightData = props.data.displayedSpotlight

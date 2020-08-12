@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import SpotLightPopup from './SpotLightPopup'
-
+import { chitOrangeLight, chitOrange, chitBlueDull} from '../../../styles/colors';
+import SpotLight from './SpotLight'
 /* Read me
 
 SpotLight page contains all spotlights
@@ -11,7 +11,8 @@ SpotLight page contains all spotlights
 
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import { chitOrangeLight, chitOrange, chitBlueDull} from '../../../styles/colors';
+import Paper from '@material-ui/core/Paper'
+
 
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit'
@@ -61,7 +62,7 @@ const SpotLightsWrapper= styled('div')({
 
 })
 
-const SingleWrapper= styled('div')({
+const SingleWrapper= styled(Paper)({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
@@ -178,12 +179,24 @@ const SpotLightPage = (props) => {
         
         return(
     
-          <SingleWrapper  key = {index} >
+          <SpotLight
+            
+            id = {id}
+            type = {type}
+            popupShow = {popupShow}
+            goal = {goal}
+            startDay = {startDay}
+            endEst = {endEst}
+            endEstModified = {endEstModified}
+            author = {author}
+             
 
-            <div> {goal} </div>
-            <div> {author} </div>
+          
+          />
 
-          </SingleWrapper>
+            
+
+        
     
     
         )}) // end allRows map
@@ -207,41 +220,13 @@ const SpotLightPage = (props) => {
           {displaySpotlights(sortedSpotlightsArray)}
      
 
-        <SingleWrapper>
+        {/* <SingleWrapper>
           <div> 2nd Wrapper </div>
           <div> duh </div>
           <div> duh </div>
-        </SingleWrapper>
+        </SingleWrapper> */}
 
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
 
-        <SingleWrapper>
-          <div> 2nd Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> 2nd Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
 
 
 

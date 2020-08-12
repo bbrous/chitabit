@@ -161,7 +161,7 @@ const InitialStore = {
       id: 'spot3',
       type: 'inspiration',
       popupShow: false,
-      goal: 'Dog lovers are best',
+      goal: 'Dog lovers are better',
       author: 'Brad the fool',
       startDay:  1597227180000, // Aug 12 2020 10:13AM 
       
