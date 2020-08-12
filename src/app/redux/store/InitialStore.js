@@ -138,9 +138,9 @@ const InitialStore = {
       type: 'goal',
       popupShow: true,
       goal: 'Finish Spotlight',
-      startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
-      endEst: 1580537943000, // 1 Feb 2020 (date of chit action)
-      endEstModified: 1580537943000 , // 1 Feb 2020 (date of chit action)
+      startDay:  1596963600000, // Aug 9 2020 9AM
+      endEst: 1597708740000, // Aug 9 2020 11:59PM
+      endEstModified: 1580537943000 , // ?
         
 
     },
@@ -151,11 +151,36 @@ const InitialStore = {
       popupShow: false,
       goal: 'You be the Best',
       author: 'Brad the Wise',
-      startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
+      startDay:  1597103940000, // Aug 10 11:59 PM
       
         
 
     },
+
+    'spot3': {
+      id: 'spot3',
+      type: 'inspiration',
+      popupShow: false,
+      goal: 'Dog lovers are best',
+      author: 'Brad the fool',
+      startDay:  1597227180000, // Aug 12 2020 10:13AM 
+      
+        
+
+    },
+
+    'spot4': {
+      id: 'spot4',
+      type: 'goal',
+      popupShow: true,
+      goal: 'Spotlight Up on Firebase',
+      startDay:  1596931140000, // Aug 8 2020 11:59PM
+      endEst: 1598915580000, // 1 Aug 31 2020 11:13PM
+      endEstModified: 1580537943000 , // ?
+        
+
+    },
+    
 
   }// end topics
  // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

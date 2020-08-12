@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {connect} from 'react-redux'
 import SpotLightPopup from './SpotLightPopup'
 
 /* Read me
@@ -24,8 +24,8 @@ const Wrapper= styled('div')({
   alignItems: 'flex-start',
   position: 'relative',
   width: '100%', 
-  height: '96vh',
-  padding: '4vh 1% 0 1%',
+  height: '95vh',
+  padding: '4vh 1% 0 1vh',
 
   backgroundColor: chitOrangeLight
 
@@ -57,7 +57,6 @@ const SpotLightsWrapper= styled('div')({
  
 
 
-backgroundColor: 'white',
 
 
 })
@@ -155,7 +154,48 @@ color: chitOrange,
 
 // ======================================
 
-const SpotLightPage = () => {
+const SpotLightPage = (props) => {
+
+  // get spotlights from Redux store
+  let spotlightsObject = props.storeData.private.data.spotlights
+
+  // convert object of objects to array of objects
+  let unsortedSpotlightsArray = Object.values(spotlightsObject)
+  const sortedSpotlightsArray = unsortedSpotlightsArray.sort((a, b) => (a.startDate > b.startDate) ? -1 : 1)
+  console.log('[SpotLight Page] props: ', sortedSpotlightsArray)
+
+  let spotlightsDisplayed
+
+    // main function to be displayed in Render
+
+    function displaySpotlights(spotlights){
+
+      // map through the chitsArray to display the individual ones
+        const allSpotlights =spotlights.map((spotlight, index) => {
+    
+         
+        const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = spotlight
+        
+        return(
+    
+          <SingleWrapper  key = {index} >
+
+            <div> {goal} </div>
+            <div> {author} </div>
+
+          </SingleWrapper>
+    
+    
+        )}) // end allRows map
+    
+        if(sortedSpotlightsArray.length > 0){
+    
+      
+         return allSpotlights
+        }
+  }//end function displaySpotlights
+
+
   return (
     <Wrapper>
 
@@ -163,11 +203,9 @@ const SpotLightPage = () => {
 
       <SpotLightsWrapper>
 
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
+        
+          {displaySpotlights(sortedSpotlightsArray)}
+     
 
         <SingleWrapper>
           <div> 2nd Wrapper </div>
@@ -205,59 +243,8 @@ const SpotLightPage = () => {
           <div> duh </div>
         </SingleWrapper>
 
-        <SingleWrapper>
-          <div> 2nd Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
 
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
 
-        <SingleWrapper>
-          <div> 2nd Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> 2nd Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> 2nd Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> First Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
-
-        <SingleWrapper>
-          <div> 2nd Wrapper </div>
-          <div> duh </div>
-          <div> duh </div>
-        </SingleWrapper>
 
       </SpotLightsWrapper>
       
@@ -266,4 +253,11 @@ const SpotLightPage = () => {
   )
 }
 
-export default  SpotLightPage
+ 
+
+const mapState = state => ({
+  storeData: state
+});
+
+export default connect(mapState)(SpotLightPage)
+
