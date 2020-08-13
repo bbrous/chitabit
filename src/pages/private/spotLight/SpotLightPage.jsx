@@ -13,7 +13,7 @@ SpotLight page contains all spotlights
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
 
-
+import InfoIcon from '@material-ui/icons/Info';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit'
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -25,7 +25,7 @@ const Wrapper= styled('div')({
   alignItems: 'flex-start',
   position: 'relative',
   width: '100%', 
-  height: '95vh',
+  height: '90vh',
   padding: '4vh 1% 0 1vh',
 
   backgroundColor: chitOrangeLight
@@ -37,9 +37,9 @@ const Wrapper= styled('div')({
 const CloseSpotlightPage= styled('div')({
   display: 'block',
   position: 'absolute',
-  top: '6px',
-  left: '6px',
-  color: chitBlueDull,
+  top: '1rem',
+  left: '1rem',
+  color: 'red',
   fontWeight: 'bold',
   textDecoration: 'underline',
   cursor: 'pointer'
@@ -47,16 +47,29 @@ const CloseSpotlightPage= styled('div')({
 
 })
 
+const Info= styled(InfoIcon)({
+  display: 'block',
+  position: 'absolute',
+  top: '1rem',
+  right: '1rem',
+  color: chitOrange,
+  fontWeight: 'bold',
+  textDecoration: 'underline',
+  cursor: 'pointer'
+
+
+})
 
 const SpotLightsWrapper= styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   height: '95%',
+  marginTop: '1.5rem',
   overflow: 'auto',
  
-
+  borderTop: '1px solid lightgrey'
 
 
 
@@ -180,7 +193,7 @@ const SpotLightPage = (props) => {
         return(
     
           <SpotLight
-            
+            key = {id}
             id = {id}
             type = {type}
             popupShow = {popupShow}
@@ -212,13 +225,16 @@ const SpotLightPage = (props) => {
   return (
     <Wrapper>
 
-      <CloseSpotlightPage>X  Close Spotlight Page</CloseSpotlightPage>
-
+      <CloseSpotlightPage>Close Spotlight Page</CloseSpotlightPage>
+      <Info/>
       <SpotLightsWrapper>
 
         
           {displaySpotlights(sortedSpotlightsArray)}
      
+          {displaySpotlights(sortedSpotlightsArray)}
+          {displaySpotlights(sortedSpotlightsArray)}
+          {displaySpotlights(sortedSpotlightsArray)}
 
         {/* <SingleWrapper>
           <div> 2nd Wrapper </div>
