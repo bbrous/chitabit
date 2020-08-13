@@ -287,6 +287,13 @@ color: chitOrange,
  
 },
 })
+
+const Header = styled('div')({
+
+  color: mediumGrey,
+  fontSize: '.8rem'
+
+})
 //===============================================================
 
 const SpotLightPopup = (props) => {
@@ -357,6 +364,8 @@ const SpotLightPopup = (props) => {
   
 
           <Remaining>
+
+          <Header> Time Remaining: </Header> 
           <RemainingTime/>
           
         </Remaining>

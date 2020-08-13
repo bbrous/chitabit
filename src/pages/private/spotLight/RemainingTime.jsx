@@ -3,7 +3,7 @@ import React, {useEffect, useState }  from 'react'
 import {convertMS} from '../../../app/helpers/dateHelper'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import { mediumGrey } from '../../../styles/colors';
+import { mediumGrey, lightGrey, chitVeryLightYellow } from '../../../styles/colors';
 
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -42,7 +42,7 @@ const TimeLeftWrapper = styled('div')({
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '100%',
-  width: '70%',
+  width: '90%',
 
 
   
@@ -57,12 +57,7 @@ const TimeLeftWrapper = styled('div')({
   }
 
 })
-const Header = styled('div')({
 
-  color: mediumGrey,
-  fontSize: '.8rem'
-
-})
 
 const TimeSegmentWrapper = styled('div')({
 
@@ -87,9 +82,14 @@ const TimeSegmentWrapper = styled('div')({
 })
 
 const Time = styled('div')({
-
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   color: 'red',
-  fontSize: '1.3em'
+  fontSize: '1.3em',
+  width: '2.3rem',
+  margin: '0 2px',
+  backgroundColor: chitVeryLightYellow
 
 })
 
@@ -137,9 +137,11 @@ let secs = timeRemainingObject.seconds
 
   return (
     <Wrapper>
-      <Header> Time Remaining: </Header> 
+      
           {/* {timeRemainingObject.day} days - {timeRemainingObject.hour} hours - - {timeRemainingObject.minute} min - - {timeRemainingObject.seconds} sec */}
-    <TimeLeftWrapper> 
+
+          
+        <TimeLeftWrapper> 
           <TimeSegmentWrapper>
             <Time> {days} </Time>
             <TimeLabel>  days  </TimeLabel>

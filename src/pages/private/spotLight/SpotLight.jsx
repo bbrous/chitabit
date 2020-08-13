@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import{chitOrange, chitLightYellow, chitOrangeLight, chitBlueDull, chitRedDark, mediumGrey, chitBlueVeryVeryLight} from '../../../styles/colors'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
-
+import RemainingTime from './RemainingTime'
  
 
 // import Checkbox from '@material-ui/core/Checkbox';
@@ -16,7 +16,7 @@ import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 
 //###############################################
 
-import RemainingTime from './RemainingTime'
+ 
 
 
 import { NavLink, withRouter, useLocation} from 'react-router-dom'
@@ -43,7 +43,7 @@ const BlueWrapper= styled(Paper)({
   alignItems: 'center',
   width: '12rem',
   height: '12rem',
-  paddingTop: '3rem',
+  paddingTop: '2rem',
   margin: '4px',
 
 
@@ -60,7 +60,7 @@ const YellowWrapper= styled(Paper)({
   alignItems: 'center',
   width: '12rem',
   height: '12rem',
-  paddingTop: '3rem',
+  paddingTop: '2rem',
   margin: '4px',
 
 
@@ -77,11 +77,44 @@ const Goal= styled('div')({
   
   // height: '100%',
   width: '100%',
+  fontSize: '1.1rem',
+  color: chitRedDark,
+  // marginBottom: '.5rem'
+
+ 
+})
+
+const TimeLeft= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+   
+  
+  // height: '100%',
+  width: '100%',
   fontSize: '1.2rem',
   color: chitRedDark,
 
  
 })
+
+const ElapsedTime = styled('div')({
+  display: 'block',
+  textAlign: 'center',
+   
+  
+  // height: '100%',
+  width: '100%',
+  color: mediumGrey,
+  fontSize: '.7rem',
+  lineHeight: '1rem',
+  marginBottom: '.75rem'
+
+ 
+})
+
 
 // ------------------------------------
 
@@ -193,7 +226,12 @@ color: chitOrange,
 
 
 
- 
+const Header = styled('div')({
+
+  color: mediumGrey,
+  fontSize: '.8rem'
+
+})
 //===============================================================
 
 const SpotLight = (props) => {
@@ -201,6 +239,13 @@ const SpotLight = (props) => {
   const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = props
  
   console.log('SpotLight] type: ', type)
+
+
+// --------------------------------
+let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
+let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
+
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -218,9 +263,14 @@ const SpotLight = (props) => {
         </DefaultWrapper>
 
           <Goal> {goal} </Goal>
-          <div> {author} </div>
+          <ElapsedTime>Elapsed: 4 days 3 hrs 27 min</ElapsedTime>
+          <TimeLeft>
+            <Header> Time Remaining: </Header> 
+            <RemainingTime/>
+          </TimeLeft>
 
-
+          
+          
         <LinksWrapper>
           <Edit
                   // onClick = {handleEdit}

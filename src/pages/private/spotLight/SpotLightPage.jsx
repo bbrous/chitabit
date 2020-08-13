@@ -10,12 +10,23 @@ SpotLight page contains all spotlights
 
 
 
-import { styled, createMuiTheme } from "@material-ui/core/styles"
+import { styled, makeStyles, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
 
 import InfoIcon from '@material-ui/icons/Info';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit'
+
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+  typography: {
+    padding: theme.spacing(2),
+  },
+}));
+
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 //--------------------------------------
 
@@ -165,10 +176,40 @@ color: chitOrange,
 },
 })
 
+const InfoMessage= styled('div')({
+  display: 'block',
+  textAlign: 'left',
+  // textJustify: 'inter-word',
+  fontSize: '.7rem',
+  padding: '.5rem',
+  color: 'black',
+  maxWidth: '10rem'
+  })
+
 
 // ======================================
 
 const SpotLightPage = (props) => {
+
+  // material ui Popover stuff ----------------
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopper = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+ // material ui Popover stuff ----------------
+
+
+
 
   // get spotlights from Redux store
   let spotlightsObject = props.storeData.private.data.spotlights
@@ -226,7 +267,34 @@ const SpotLightPage = (props) => {
     <Wrapper>
 
       <CloseSpotlightPage>Close Spotlight Page</CloseSpotlightPage>
-      <Info/>
+      <Info onClick={handlePopper}/>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+
+        anchorPosition={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <InfoMessage className={classes.InfoMessage}>
+          A random spotlight is displayed initially in journal
+          unless a single spotlight is chosen as default, or
+          Popups are disabled
+          
+          </InfoMessage>
+      </Popover>
       <SpotLightsWrapper>
 
         
