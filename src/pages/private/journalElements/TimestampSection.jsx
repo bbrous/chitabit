@@ -1,5 +1,5 @@
 import React from 'react'
-import{ chitOrangeLight, chitOrange, darkGrey, lightGrey, mediumGrey, veryLightGrey } from '../../../styles/colors'
+import{ chitOrangeLight, chitOrange, darkGrey, lightGrey, mediumLightGrey, mediumGrey, veryLightGrey } from '../../../styles/colors'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 
@@ -43,9 +43,12 @@ const SectionHeader= styled('div')({
 const Spacer= styled('div')({
   display: 'flex',
 
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
   alignItems: 'center',
   whiteSpace: 'pre-wrap',
+  color: chitOrange,
+  fontWeight: 'bold',
+  fontStyle: 'italic',
   padding: '0 1%',
   width: '26%',
  
@@ -122,13 +125,13 @@ const DeleteIcon= styled(DeleteForeverIcon)({
 
 // =============================================
 
-const Section = () => {
+const TimestampSection = () => {
   return (
     <Wrapper> 
        <SectionHeader>
-         <Spacer> {''} </Spacer>
+         <Spacer> Timestamped </Spacer>
         <CategoryWrapper>
-          Exercise (Category) 
+          Chitabit Idea (Category) 
         </CategoryWrapper>
         <DateWrapper>
           June 10 2020
@@ -142,9 +145,9 @@ const Section = () => {
           <DeleteIcon/>
       </Delete>
 
-      <div>Sections one</div> 
+      <div>Timestamp Sections one</div> 
 
-        Lorem ipsum dolor sit amet. Kasd eu esse invidunt nulla. Sed voluptua dolor stet sea at vel magna. Ex dolore duo dolore clita vero. Ut eu ut duis diam. Vulputate et consetetur vero. Clita eos 
+        TimeStamp sectionLorem ipsum dolor sit amet. Kasd eu esse invidunt nulla. Sed voluptua dolor stet sea at vel magna. Ex dolore duo dolore clita vero. Ut eu ut duis diam. Vulputate et consetetur vero. Clita eos 
 
          
 
@@ -155,4 +158,4 @@ const Section = () => {
   )
 }
 
-export default Section
+export default TimestampSection

@@ -1,5 +1,5 @@
 import React from 'react'
-import{ chitOrangeLight, chitOrange, chitRedDark, lightGrey, mediumLightGrey, veryLightGrey } from '../../../styles/colors'
+import{ chitOrangeLight, chitOrange, chitRedDark, lightGrey, mediumGrey, veryLightGrey } from '../../../styles/colors'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import {nameDisplay, choosePersonalCoin} from '../../../app/helpers/commonHelpers'
 
@@ -31,7 +31,7 @@ const ChitHeader= styled('div')({
   width: '100%',
   height: '1.2rem',
   backgroundColor: 'white',
-  color: mediumLightGrey,
+  color: mediumGrey,
   borderBottom: '1px solid #CFD0D1',
   fontSize: '.8rem',
 

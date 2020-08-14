@@ -2,10 +2,12 @@ import React from 'react'
 import{ chitOrangeLight, chitVeryLightYellow, darkGrey } from '../../../styles/colors'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
+import TimestampSection from './TimestampSection'
 import Section from './Section'
 import InputForm from '../../../forms/InputForm'
 import Chit from './Chit'
 import Paper from '@material-ui/core/Paper'
+
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 //--------------------------------------
@@ -72,6 +74,7 @@ const Day = () => {
 
 
           <Section/>
+          <TimestampSection/>
           <Section/>
           <Chit/>
           <InputForm/>
