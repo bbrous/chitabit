@@ -79,7 +79,7 @@ const SpotLightsWrapper= styled('div')({
   flexWrap: 'wrap',
   justifyContent: 'center',
   alignItems: 'flex-start',
-  height: '95%',
+  // height: '95%',
   marginTop: '1.5rem',
   overflow: 'auto',
  
@@ -319,9 +319,7 @@ const SpotLightPage = (props) => {
         
           {displaySpotlights(sortedSpotlightsArray)}
      
-          {displaySpotlights(sortedSpotlightsArray)}
-          {displaySpotlights(sortedSpotlightsArray)}
-          {displaySpotlights(sortedSpotlightsArray)}
+      
 
         {/* <SingleWrapper>
           <div> 2nd Wrapper </div>

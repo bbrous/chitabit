@@ -149,8 +149,8 @@ const InitialStore = {
       id: 'spot2',
       type: 'inspiration',
       popupShow: false,
-      goal: 'You be the Best',
-      author: 'Brad the Wise',
+      goal: 'Make Some Money',
+      author: 'Everyone',
       startDay:  1597103940000, // Aug 10 11:59 PM
       
         
@@ -161,9 +161,21 @@ const InitialStore = {
       id: 'spot3',
       type: 'inspiration',
       popupShow: false,
-      goal: 'Dog lovers are better',
-      author: 'Brad the fool',
+      goal: 'Get into Zone ... just take one small step',
+      author: 'Brad the learned',
       startDay:  1597227180000, // Aug 12 2020 10:13AM 
+      
+        
+
+    },
+
+    'spot5': {
+      id: 'spot5',
+      type: 'inspiration',
+      popupShow: false,
+      goal: 'Just Do It',
+      author: 'Nike',
+      startDay:  1597227180001, // Aug 12 2020 10:14AM 
       
         
 

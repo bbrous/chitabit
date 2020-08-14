@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
  
 import {connect} from 'react-redux'
-import{chitOrange, chitLightYellow, chitOrangeLight, chitBlueDull, chitRedDark, mediumGrey, chitBlueVeryVeryLight} from '../../../styles/colors'
+import{chitOrange, chitLightYellow, chitOrangeLight, chitBlueDull, chitRedDark, mediumGrey, chitBlueVeryVeryLight, mediumLightGrey} from '../../../styles/colors'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 import RemainingTime from './RemainingTime'
@@ -43,7 +43,7 @@ const BlueWrapper= styled(Paper)({
   alignItems: 'center',
   width: '12rem',
   height: '12rem',
-  paddingTop: '2rem',
+  paddingTop: '3rem',
   margin: '4px',
 
 
@@ -62,7 +62,7 @@ const YellowWrapper= styled(Paper)({
   height: '12rem',
   paddingTop: '2rem',
   margin: '4px',
-
+  lineHeight: '1',
 
   backgroundColor: chitLightYellow,
 
@@ -79,6 +79,20 @@ const Goal= styled('div')({
   width: '100%',
   fontSize: '1.1rem',
   color: chitRedDark,
+  // marginBottom: '.5rem'
+
+ 
+})
+
+const Author= styled('div')({
+  display: 'block',
+  textAlign: 'center',
+   
+  
+  // height: '100%',
+  width: '100%',
+  fontSize: '.7rem',
+  color: chitBlueDull,
   // marginBottom: '.5rem'
 
  
@@ -302,7 +316,7 @@ let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
         </DefaultWrapper>
 
           <Goal> {goal} </Goal>
-          <div> {author} </div>
+          <Author> {author} </Author>
 
 
         <LinksWrapper>

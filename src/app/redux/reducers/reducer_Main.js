@@ -29,8 +29,13 @@ import {
     view: 'journal',
     displaySidePanel: 'hide',
     displaySpotLight: 'unseen',
+
+    defaultSpotLight: 'spot1',
     displayedSpotLightId: 'spot1',
+    lastDisplayedSpotLightId: 'spot1',  // for choosing random ommitting last 
+    
     displaySpotLightPage: false,
+
     journalDisplay: {
       currentDaY: '',
       currentSection: '',
