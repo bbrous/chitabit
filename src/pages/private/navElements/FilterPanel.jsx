@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-// import{openModal} from '../../../app/redux/actions/mainActions'
+import{closeSpotLight, openSpotLightPage} from '../../../app/redux/actions/mainActions'
 
 import Paper from '@material-ui/core/Paper'
 
@@ -270,12 +270,19 @@ const FilterPanel = (props) => {
   
   }
 
+  const openSpotlightpage = ()=>{
 
+
+    console.log('[FILTERPANEL] openSpotLightPage cicked', props)
+    props.closeSpotLight()
+    props.openSpotLightPage()
+  
+  }
 
   return (
     <Wrapper>
       <ToolbarSpacer/>
-      <SpotLightWrapper elevation = {3}>
+      <SpotLightWrapper elevation = {3}   onClick = {()=> openSpotlightpage()} >
         <SpotLightLink 
         onClick = {()=> newSpotLight()} 
         > SpotLights </SpotLightLink>
@@ -318,7 +325,8 @@ const FilterPanel = (props) => {
  
 
 const actions = {
-  // openModal 
+  openSpotLightPage,
+  closeSpotLight 
 }
 
 const mapState = state => ({

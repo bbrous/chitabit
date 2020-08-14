@@ -1,13 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { chitOrangeLight, chitOrange, chitBlueDull} from '../../../styles/colors';
+
+import{closeSpotLightPage} from '../../../app/redux/actions/mainActions'
+
 import SpotLight from './SpotLight'
 /* Read me
 
 SpotLight page contains all spotlights
 
 */
-
+import {InfoPopperLeftBottom} from '../../../components/InfoPoppers'
 
 
 import { styled, makeStyles, createMuiTheme } from "@material-ui/core/styles"
@@ -17,9 +20,9 @@ import InfoIcon from '@material-ui/icons/Info';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit'
 
-import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+// import Popover from '@material-ui/core/Popover';
+// import Typography from '@material-ui/core/Typography';
+// import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -58,18 +61,18 @@ const CloseSpotlightPage= styled('div')({
 
 })
 
-const Info= styled(InfoIcon)({
-  display: 'block',
-  position: 'absolute',
-  top: '1rem',
-  right: '1rem',
-  color: chitOrange,
-  fontWeight: 'bold',
-  textDecoration: 'underline',
-  cursor: 'pointer'
+// const Info= styled(InfoIcon)({
+//   display: 'block',
+//   position: 'absolute',
+//   top: '1rem',
+//   right: '1rem',
+//   color: chitOrange,
+//   fontWeight: 'bold',
+//   textDecoration: 'underline',
+//   cursor: 'pointer'
 
 
-})
+// })
 
 const SpotLightsWrapper= styled('div')({
   display: 'flex',
@@ -262,12 +265,27 @@ const SpotLightPage = (props) => {
         }
   }//end function displaySpotlights
 
+  const closeSpotlightpage = ()=>{
 
+
+    console.log('[SPOTLIGHTPAGE] closeSpotLightPage cicked', props)
+   
+    props.closeSpotLightPage()
+  
+  }
   return (
     <Wrapper>
 
-      <CloseSpotlightPage>Close Spotlight Page</CloseSpotlightPage>
-      <Info onClick={handlePopper}/>
+      <CloseSpotlightPage onClick = {()=> closeSpotlightpage()}>
+        Close Spotlight Page
+      </CloseSpotlightPage>
+
+        {InfoPopperLeftBottom(` For multiple spotlights - a random one chosen is  to 
+        be displayed as a Popup when you first come to the journal - 
+        unless a single spotlight is chosen as default, or
+        Popups are disabled `)}
+      
+      {/* <Info onClick={handlePopper}/>
       <Popover
         id={id}
         open={open}
@@ -289,12 +307,13 @@ const SpotLightPage = (props) => {
         }}
       >
         <InfoMessage className={classes.InfoMessage}>
-          A random spotlight is displayed initially in journal
+          In the case of many spotlights - a random one chosen is  to 
+          be displayed as a popup when you first come to the journal - 
           unless a single spotlight is chosen as default, or
           Popups are disabled
           
           </InfoMessage>
-      </Popover>
+      </Popover> */}
       <SpotLightsWrapper>
 
         
@@ -322,11 +341,13 @@ const SpotLightPage = (props) => {
   )
 }
 
- 
+const actions = {
+  closeSpotLightPage 
+} 
 
 const mapState = state => ({
   storeData: state
 });
 
-export default connect(mapState)(SpotLightPage)
+export default connect(mapState, actions)(SpotLightPage)
 

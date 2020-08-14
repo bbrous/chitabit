@@ -11,6 +11,8 @@ import {
           CLOSE_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
+          OPEN_SPOTLIGHT_PAGE,
+          CLOSE_SPOTLIGHT_PAGE
         
         } from '../store/storeConstants';
 
@@ -28,7 +30,7 @@ import {
     displaySidePanel: 'hide',
     displaySpotLight: 'unseen',
     displayedSpotLightId: 'spot1',
-    displaySpotLightPage: true,
+    displaySpotLightPage: false,
     journalDisplay: {
       currentDaY: '',
       currentSection: '',
@@ -92,6 +94,17 @@ export const closeModal = (state, payload) => {
   return  Object.assign({...state}, payload)
 }
 
+export const openSpotLightPage = (state, payload) => {
+
+
+  return  Object.assign({...state}, payload)
+}
+
+export const closeSpotLightPage = (state, payload) => {
+   
+  return  Object.assign({...state}, payload)
+}
+
 // =================================================
 
   export default createReducer(initialState, {
@@ -102,6 +115,9 @@ export const closeModal = (state, payload) => {
 
     [OPEN_MODAL] : openModal,
     [CLOSE_MODAL] : closeModal,
+
+    [OPEN_SPOTLIGHT_PAGE] : openSpotLightPage,
+    [CLOSE_SPOTLIGHT_PAGE] : closeSpotLightPage,
 
     
   })

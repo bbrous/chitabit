@@ -10,6 +10,8 @@
           CLOSE_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
+          OPEN_SPOTLIGHT_PAGE,
+          CLOSE_SPOTLIGHT_PAGE
           
           
         } from '../store/storeConstants';
@@ -74,6 +76,32 @@
               modalType: '',
               chitIdDisplayed: '',
               modalDisplayed: false
+              
+            }
+          }
+        }
+
+        export const  openSpotLightPage = (modalType, newChit) => {
+
+          console.log('[mainActions I be clicked')
+
+          return {
+            type: OPEN_SPOTLIGHT_PAGE,
+            payload: {
+              displaySpotLightPage: true,
+              
+            }
+          }
+        }
+        
+        
+        export const  closeSpotLightPage= () => {
+          
+          return {
+            type: CLOSE_SPOTLIGHT_PAGE,
+            payload: {
+              
+              displaySpotLightPage: false,
               
             }
           }
