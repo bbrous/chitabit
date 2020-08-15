@@ -324,11 +324,11 @@ const SpotLightPopup = (props) => {
   // let displayType = type
   let revised = true
 
-  let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
-  let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
+  let startDate = startDay  //Aug 7, 2020 5:46 - Friday
+  let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
 
 
-  // console.log('[SPOTLIGHT] timeRemainingObject: ', timeRemainingObject)
+  console.log('[SPOTLIGHT POPUP] start Date: ', props)
   return (
     <Wrapper>
 
@@ -366,7 +366,7 @@ const SpotLightPopup = (props) => {
           <Remaining>
 
           <Header> Time Remaining: </Header> 
-          <RemainingTime/>
+          <RemainingTime startDate = {startDate} endDate = {endDate}/>
           
         </Remaining>
 

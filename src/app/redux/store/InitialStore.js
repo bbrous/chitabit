@@ -185,10 +185,10 @@ const InitialStore = {
       id: 'spot4',
       type: 'goal',
       popupShow: true,
-      goal: 'Spotlight Up on Firebase',
-      startDay:  1596931140000, // Aug 8 2020 11:59PM
-      endEst: 1598915580000, // 1 Aug 31 2020 11:13PM
-      endEstModified: 1580537943000 , // ?
+      goal: 'Diet - 180 pounds',
+      startDay:  1597486158000, // Aug 15 2020 11:59PM
+      endEst: 1598954958000, // 1 Aug 31 2020 11:13PM
+      endEstModified: 1598954958000 , // ?
         
 
     },

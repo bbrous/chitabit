@@ -101,11 +101,11 @@ const TimeLabel = styled('div')({
 })
 // ================================================
 
-const RemainingTime = () => {
+const RemainingTime = (props) => {
 
 
-  let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
-  let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
+  let startDate = props.startDate  //Aug 7, 2020 5:46 - Friday
+  let endDate = props.endDate   // Aug 15, 2020 10:31 AM ? - Saturday
   let msRemaining = endDate - startDate
  
 

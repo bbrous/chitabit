@@ -256,8 +256,8 @@ const SpotLight = (props) => {
 
 
 // --------------------------------
-let startDate = 1596807987000  //Aug 7, 2020 5:46 - Friday
-let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
+let startDate = startDay //Aug 7, 2020 5:46 - Friday
+let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
 
 
   const handleChange = (event) => {
@@ -268,7 +268,7 @@ let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
     let spotlightId = evt.currentTarget.parentElement.parentElement.id
 
     console.log('[SPOTLIGHt] - evt parent : ', spotlightId)
-    
+
   };
 
   return (
@@ -290,7 +290,10 @@ let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
           <ElapsedTime>Elapsed: 4 days 3 hrs 27 min</ElapsedTime>
           <TimeLeft>
             <Header> Time Remaining: </Header> 
-            <RemainingTime/>
+            <RemainingTime 
+            startDate = {startDate} 
+            endDate = {endDate}
+            />
           </TimeLeft>
 
           
