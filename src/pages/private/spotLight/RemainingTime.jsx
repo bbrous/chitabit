@@ -127,8 +127,8 @@ const RemainingTime = () => {
     }, [counter]);
 
     let timeRemainingObject =  convertMS(counter)
-console.log('[RemainingTime] time left min: ', timeRemainingObject.minute)
-console.log('[RemainingTime] time left: sec', timeRemainingObject.seconds)
+// console.log('[RemainingTime] time left min: ', timeRemainingObject.minute)
+// console.log('[RemainingTime] time left: sec', timeRemainingObject.seconds)
 
 let days = timeRemainingObject.day
 let hours = timeRemainingObject.hour

@@ -252,7 +252,7 @@ const SpotLight = (props) => {
   const [checked, setChecked] = React.useState(true);
   const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = props
  
-  console.log('SpotLight] type: ', type)
+  console.log('SpotLight] id: ', id)
 
 
 // --------------------------------
@@ -264,15 +264,25 @@ let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
     setChecked(event.target.checked);
   };
 
+  const handleDefault = (evt) => {
+    let spotlightId = evt.currentTarget.parentElement.parentElement.id
+
+    console.log('[SPOTLIGHt] - evt parent : ', spotlightId)
+    
+  };
+
   return (
 <Fragment>
     {type === 'goal' && 
-      <YellowWrapper  >
+      <YellowWrapper  id = {id}>
 
-        <DefaultWrapper>
+        <DefaultWrapper  >
 
 
-        <SpotlightCheckbox />
+        <SpotlightCheckbox   
+          checked = {true}  
+          onClick = {(evt)=> handleDefault(evt)}
+        />
           <div> default Popup  </div>
         </DefaultWrapper>
 
@@ -306,12 +316,15 @@ let endDate = 1597516287000   // Aug 15, 2020 10:31 AM ? - Saturday
     }
 
 {type === 'inspiration' && 
-      <BlueWrapper  >
+      <BlueWrapper  id = {id}>
 
         <DefaultWrapper>
 
 
-        <SpotlightCheckbox />
+        <SpotlightCheckbox  
+          checked = {true}  
+          onClick = {(evt)=> handleDefault(evt)}
+        />
           <div> default Popup  </div>
         </DefaultWrapper>
 

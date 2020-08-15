@@ -497,7 +497,7 @@ const Main = (props) => {
     evt.persist()
     const newSidePanelView = (viewSidePanel==='show') ? 'hide': 'show'
 
-    console.log('[Main - handleSidePanelChange]... props passed --- ', newSidePanelView)
+    // console.log('[Main - handleSidePanelChange]... props passed --- ', newSidePanelView)
 
 
 
@@ -560,7 +560,7 @@ const Main = (props) => {
 
     let displaySpotLightPage = props.view.private.displaySpotLightPage
 
-    console.log('[Main] displaySpotlightPage :  ', props.view.private.displaySpotLightPage)
+    // console.log('[Main] displaySpotlightPage :  ', props.view.private.displaySpotLightPage)
 // ##################################################
 
 

@@ -79,7 +79,7 @@ const SpotLightsWrapper= styled('div')({
   flexWrap: 'wrap',
   justifyContent: 'center',
   alignItems: 'flex-start',
-  // height: '95%',
+  maxHeight: '95%',
   marginTop: '1.5rem',
   overflow: 'auto',
  
@@ -268,7 +268,7 @@ const SpotLightPage = (props) => {
   const closeSpotlightpage = ()=>{
 
 
-    console.log('[SPOTLIGHTPAGE] closeSpotLightPage cicked', props)
+    // console.log('[SPOTLIGHTPAGE] closeSpotLightPage cicked', props)
    
     props.closeSpotLightPage()
   
