@@ -319,7 +319,7 @@ const SpotLightPopup = (props) => {
 
    
 
-    let displayedSpotlight = props.view.private.displayedSpotLightId
+    let displayedSpotlight = props.view.private.spotLightViews.displayedSpotLightId
 
   
     let spotlightDataObject = props.view.private.data.spotlights
@@ -337,18 +337,18 @@ const SpotLightPopup = (props) => {
 
   
   // let displayType = type
-  let revised = true
+
 
   let startDate = startDay  //Aug 7, 2020 5:46 - Friday
   let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
   let msElapsed =   startDate - endDate
   let timeElapsedObject =  convertMS(msElapsed)
-let days = Math.abs(timeElapsedObject.day)
-let hours = Math.abs(timeElapsedObject.hour)
+  let days = Math.abs(timeElapsedObject.day)
+  let hours = Math.abs(timeElapsedObject.hour)
 
 
 
-  console.log('[SPOTLIGHT POPUP] start Date: ', props)
+  // console.log('[SPOTLIGHT POPUP] start Date: ', props)
   return (
     <Wrapper>
 
@@ -365,25 +365,23 @@ let hours = Math.abs(timeElapsedObject.hour)
       
       <GoalWrapper elevation = {3}>
 
-<Goal>
+      <Goal>
           {goal}
-        </Goal>
+      </Goal>
         <TimerWrapper>
       
+        <TimerRow> 
+          <TimerTop>  End Date Est </TimerTop>
+          
+          <TimerBottom> Aug 31 2020 7:32AM  </TimerBottom>
 
-          <TimerRow> 
-            <TimerTop>  End Date Est </TimerTop>
-            
-            <TimerBottom> Aug 31 2020 7:32AM  </TimerBottom>
+        </TimerRow>
 
-          </TimerRow>
+        <ElapsedTime>Elapsed: {days} days {hours} hrs </ElapsedTime>
 
-          <ElapsedTime>Elapsed: {days} days {hours} hrs </ElapsedTime>
- 
-        </TimerWrapper>
+      </TimerWrapper>
      
   
-
           <Remaining>
 
           <Header> Time Remaining: </Header> 

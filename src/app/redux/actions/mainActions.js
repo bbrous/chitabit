@@ -35,7 +35,15 @@
           return {
             type: SHOW_SPOTLIGHT,
             payload: {
-              displaySpotLight: 'show'
+               
+              spotLightViews: {
+
+              displaySpotLight: 'show',
+               
+              defaultSpotLight: 'spot1',
+              displayedSpotLightId: 'spot1',
+              spotLightsArray: ['spot1','spot2','spot3','spot4','spot5'],  
+              }
               
             }
           }
@@ -46,7 +54,28 @@
           return {
             type: CLOSE_SPOTLIGHT,
             payload: {
+               
+              spotLightViews: {
               displaySpotLight: 'seen'
+              }
+            }
+          }
+        }
+
+        export const  updateSpotLightView = () => {
+  
+          return {
+            type: SHOW_SPOTLIGHT,
+            payload: {
+               
+              spotLightViews: {
+
+      
+               
+              defaultSpotLight: 'spot1',
+              displayedSpotLightId: 'spot1',
+              spotLightsArray: ['spot1','spot2','spot3','spot4','spot5'],  
+              }
               
             }
           }

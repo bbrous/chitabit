@@ -271,20 +271,20 @@ const SpotLight = (props) => {
   const [checked, setChecked] = React.useState(true);
   const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = props
  
-  console.log('SpotLight] id: ', id)
+  // console.log('SpotLight] id: ', id)
 
 
 // --------------------------------
-let startDate = startDay //Aug 7, 2020 5:46 - Friday
-let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
+  let startDate = startDay //Aug 7, 2020 5:46 - Friday
+  let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
 
-let msElapsed =   startDate - endDate
+  let msElapsed =   startDate - endDate
 
-let timeElapsedObject =  convertMS(msElapsed)
-let days = Math.abs(timeElapsedObject.day)
-let hours = Math.abs(timeElapsedObject.hour)
-let mins = Math.abs(timeElapsedObject.minute)
-let secs = Math.abs(timeElapsedObject.seconds)
+  let timeElapsedObject =  convertMS(msElapsed)
+  let days = Math.abs(timeElapsedObject.day)
+  let hours = Math.abs(timeElapsedObject.hour)
+  let mins = Math.abs(timeElapsedObject.minute)
+  let secs = Math.abs(timeElapsedObject.seconds)
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -298,97 +298,100 @@ let secs = Math.abs(timeElapsedObject.seconds)
   };
 
   return (
-<Fragment>
-    {type === 'goal' && 
-      <YellowWrapper  id = {id}>
 
-        <DefaultWrapper  >
+    <Fragment>
+      {type === 'goal' && 
+        <YellowWrapper  id = {id}>
+
+          <DefaultWrapper  >
 
 
-        <SpotlightCheckbox   
-          checked = {true}  
-          onClick = {(evt)=> handleDefault(evt)}
-        />
-          <div> default Popup  </div>
-        </DefaultWrapper>
+          <SpotlightCheckbox   
+            checked = {true}  
+            onClick = {(evt)=> handleDefault(evt)}
+          />
+            <div> default Popup  </div>
+          </DefaultWrapper>
 
-          <Goal> {goal} </Goal>
-          <ElapsedTime>Elapsed: {days} days {hours} hrs {mins} min</ElapsedTime>
-          <TimeLeft>
-            <Header> Time Remaining: </Header> 
+            <Goal> {goal} </Goal>
+            <ElapsedTime>Elapsed: {days} days {hours} hrs {mins} min</ElapsedTime>
+            <TimeLeft>
+              <Header> Time Remaining: </Header> 
 
-            <RemainingTimeWrapper>
+              <RemainingTimeWrapper>
 
-              <RemainingTimeSmall 
-                startDate = {startDate} 
-                endDate = {endDate}
-              />
-  
-            </RemainingTimeWrapper>
+                <RemainingTimeSmall 
+                  startDate = {startDate} 
+                  endDate = {endDate}
+                />
+    
+              </RemainingTimeWrapper>
 
-          </TimeLeft>
+            </TimeLeft>
 
+            
+            
+          <LinksWrapper>
+            <Edit
+                    // onClick = {handleEdit}
+              > 
+                <IconEdit/>
+            </Edit>
+
+            <Delete
+                    // onClick = {handleDelete}
+              > 
+                <DeleteIcon/>
+            </Delete>
+
+          </LinksWrapper>
           
+      </YellowWrapper>
+
+
+      }
+
+      {type === 'inspiration' && 
+        <BlueWrapper  id = {id}>
+
+          <DefaultWrapper>
+
+
+          <SpotlightCheckbox  
+            checked = {true}  
+            onClick = {(evt)=> handleDefault(evt)}
+          />
+            <div> default Popup  </div>
+          </DefaultWrapper>
+
+            <Goal> {goal} </Goal>
+            <Author> {author} </Author>
+
+
+          <LinksWrapper>
+            <Edit
+                    // onClick = {handleEdit}
+              > 
+                <IconEdit/>
+            </Edit>
+
+            <Delete
+                    // onClick = {handleDelete}
+              > 
+                <DeleteIcon/>
+            </Delete>
+
+          </LinksWrapper>
           
-        <LinksWrapper>
-          <Edit
-                  // onClick = {handleEdit}
-            > 
-              <IconEdit/>
-          </Edit>
-
-          <Delete
-                  // onClick = {handleDelete}
-            > 
-              <DeleteIcon/>
-          </Delete>
-
-        </LinksWrapper>
-        
-    </YellowWrapper>
+      </BlueWrapper>
 
 
-    }
+      }
 
-{type === 'inspiration' && 
-      <BlueWrapper  id = {id}>
+    </Fragment>
 
-        <DefaultWrapper>
-
-
-        <SpotlightCheckbox  
-          checked = {true}  
-          onClick = {(evt)=> handleDefault(evt)}
-        />
-          <div> default Popup  </div>
-        </DefaultWrapper>
-
-          <Goal> {goal} </Goal>
-          <Author> {author} </Author>
-
-
-        <LinksWrapper>
-          <Edit
-                  // onClick = {handleEdit}
-            > 
-              <IconEdit/>
-          </Edit>
-
-          <Delete
-                  // onClick = {handleDelete}
-            > 
-              <DeleteIcon/>
-          </Delete>
-
-        </LinksWrapper>
-        
-    </BlueWrapper>
-
-
-    }
-</Fragment>
-)
-  }
+  )
+}
 
 
 

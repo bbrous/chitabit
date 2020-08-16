@@ -173,8 +173,8 @@ const InitialStore = {
       id: 'spot5',
       type: 'inspiration',
       popupShow: false,
-      goal: 'Just Do It',
-      author: 'Nike',
+      goal: 'Just Do It Brad',
+      author: '',
       startDay:  1597227180001, // Aug 12 2020 10:14AM 
       
         

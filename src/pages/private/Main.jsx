@@ -444,13 +444,17 @@ const Main = (props) => {
   let viewSidePanel = props.view.private.displaySidePanel
 
  
-  /*  Show Spotlight modal
+  /*  Show Spotlight modal ------------------------------------------
       - modal on a timer 
       - gets / sets status -- redux store
 
+      - if the spotlight was "unseen" ... spotlight will be shown
+         for "displayTime milliseconds"... then status will be set to "seen"
+
   */
 
-    let spotLightStatus = props.view.private.displaySpotLight
+    //  get spotlight status from store (unseen or seen)
+    let spotLightStatus = props.view.private.spotLightViews.displaySpotLight
     let displayTime = 9000
     
     if(spotLightStatus === 'unseen') {
@@ -468,18 +472,6 @@ const Main = (props) => {
     }
   
 
-
-  // let view = props.view.private.display
-  // let view = props.view.private.view
-  // console.log('[Main ]... props --- ', view)
-
-
-
-  /* const - lastSectionDisplayed
-      determine the last section worked on from Redux store
-      if no section exists then the Initial MessageChannel
-      will be displayed in render
-  */
   const lastSectionDisplayed = props.view.private.journalDisplay.lastSection
 
  
