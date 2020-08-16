@@ -9,8 +9,8 @@ import{chitOrange, chitVeryLightYellow, chitOrangeLight, chitBlueDull, chitRedDa
 
 //###############################################
 
-import RemainingTime from './RemainingTime'
-
+import {RemainingTime} from './RemainingTime'
+import {convertMS} from '../../../app/helpers/dateHelper'
 
 import { NavLink, withRouter, useLocation} from 'react-router-dom'
 
@@ -294,6 +294,21 @@ const Header = styled('div')({
   fontSize: '.8rem'
 
 })
+
+const ElapsedTime = styled('div')({
+  display: 'block',
+  textAlign: 'center',
+   
+  
+  // height: '100%',
+  width: '100%',
+  color: chitBlueDull,
+  fontSize: '.7rem',
+  lineHeight: '1rem',
+  marginBottom: '.75rem'
+
+ 
+})
 //===============================================================
 
 const SpotLightPopup = (props) => {
@@ -326,6 +341,11 @@ const SpotLightPopup = (props) => {
 
   let startDate = startDay  //Aug 7, 2020 5:46 - Friday
   let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
+  let msElapsed =   startDate - endDate
+  let timeElapsedObject =  convertMS(msElapsed)
+let days = Math.abs(timeElapsedObject.day)
+let hours = Math.abs(timeElapsedObject.hour)
+
 
 
   console.log('[SPOTLIGHT POPUP] start Date: ', props)
@@ -353,11 +373,12 @@ const SpotLightPopup = (props) => {
 
           <TimerRow> 
             <TimerTop>  End Date Est </TimerTop>
+            
             <TimerBottom> Aug 31 2020 7:32AM  </TimerBottom>
 
           </TimerRow>
 
-
+          <ElapsedTime>Elapsed: {days} days {hours} hrs </ElapsedTime>
  
         </TimerWrapper>
      

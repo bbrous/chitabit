@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import{chitOrange, chitLightYellow, chitOrangeLight, chitBlueDull, chitRedDark, mediumGrey, chitBlueVeryVeryLight, mediumLightGrey} from '../../../styles/colors'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
-import RemainingTime from './RemainingTime'
+import {RemainingTimeSmall} from './RemainingTime'
  
+import {convertMS} from '../../../app/helpers/dateHelper'
 
 // import Checkbox from '@material-ui/core/Checkbox';
 // import clsx from 'clsx'// for checkbox
@@ -78,7 +79,8 @@ const Goal= styled('div')({
   // height: '100%',
   width: '100%',
   fontSize: '1.1rem',
-  color: chitRedDark,
+  color: 'red',
+  fontWeight: 'bold'
   // marginBottom: '.5rem'
 
  
@@ -125,6 +127,23 @@ const ElapsedTime = styled('div')({
   fontSize: '.7rem',
   lineHeight: '1rem',
   marginBottom: '.75rem'
+
+ 
+})
+
+
+const RemainingTimeWrapper = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+   
+    
+    height: '3rem',
+    width: '90%',
+
+    padding: '0 auto .75rem auto',
+
+ 
 
  
 })
@@ -259,6 +278,13 @@ const SpotLight = (props) => {
 let startDate = startDay //Aug 7, 2020 5:46 - Friday
 let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
 
+let msElapsed =   startDate - endDate
+
+let timeElapsedObject =  convertMS(msElapsed)
+let days = Math.abs(timeElapsedObject.day)
+let hours = Math.abs(timeElapsedObject.hour)
+let mins = Math.abs(timeElapsedObject.minute)
+let secs = Math.abs(timeElapsedObject.seconds)
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -287,13 +313,19 @@ let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
         </DefaultWrapper>
 
           <Goal> {goal} </Goal>
-          <ElapsedTime>Elapsed: 4 days 3 hrs 27 min</ElapsedTime>
+          <ElapsedTime>Elapsed: {days} days {hours} hrs {mins} min</ElapsedTime>
           <TimeLeft>
             <Header> Time Remaining: </Header> 
-            <RemainingTime 
-            startDate = {startDate} 
-            endDate = {endDate}
-            />
+
+            <RemainingTimeWrapper>
+
+              <RemainingTimeSmall 
+                startDate = {startDate} 
+                endDate = {endDate}
+              />
+  
+            </RemainingTimeWrapper>
+
           </TimeLeft>
 
           
