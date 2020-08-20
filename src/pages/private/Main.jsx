@@ -1,14 +1,14 @@
 import React , {useState, useEffect} from 'react'
 import HeaderMain from './mainElements/Header_main'
 
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow} from '../../styles/colors'
+import{chitOrange, veryLightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow} from '../../styles/colors'
 
 import Modal from '../../components/modal/Modal.jsx'
 import InitialMessage from './journalElements/InitialMessage'
 import Day from './journalElements/Day'
-import FilterPanel from './navElements/FilterPanel'
+import JournalNav from './navElements/JournalNav'
 import SpotLightPage from './spotLight/SpotLightPage'
-import SpotLightPopup from './spotLight/SpotLightPopup'
+import Journal from './Journal'
 // import HeaderMain from './mainElements/Header_main'
 
 
@@ -60,8 +60,6 @@ const ToolbarSpacer= styled('div')({
 
 })
 
-
-
 const MainWrapper= styled('div')({
 
   display: 'block',
@@ -73,173 +71,32 @@ const MainWrapper= styled('div')({
   maxWidth: '960px',
   minHeight: '600px',
   height: '100%',
-// backgroundColor: 'orange',
+
   [theme.breakpoints.down('sm')] : {
     
   },
 
 })
 
-//  ---- phone Navigation panels -------
-
-
-const SideNavWrapper= styled('div')({
-
-  display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  position: 'absolute',
-  zIndex: '55',
-  backgroundColor: 'pink',
-
-  [theme.breakpoints.down('xs')] : {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    position: 'fixed',
-
-    width: '3rem',
-  
-    height: '100%',
-    color: 'white',
-    background: 'grey'
-  },
-  
-
-})
-
-
-
-
-
-const BottomNavWrapper= styled('div')({
-
-  display: 'none',
-
-  background: 'grey',
-
-  [theme.breakpoints.down('sm')] : {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'fixed',
-    bottom: '0',
-    width: '100vw',
-    height: '3rem',
-zIndex: '10000',
-    color: 'white',
-backgroundColor: '#363738',
-  },
-
-  [theme.breakpoints.down('xs')] : {
-    display: 'none',
- 
-  }
-
-})
-
-const SidePanelWrapper= styled('div')({
-  display: 'block',
-  position: 'absolute',
-  // display: 'none',
-// paddingBottom: '.5rem',
-  backgroundColor: 'lightgrey',
-  width: '15rem',
-  height: '100%',
-  zIndex: '31',
-
- 
-  
-  
-  [theme.breakpoints.down('sm')] : {
-    marginLeft: '0',
-    // display: 'none'
-
-    '&.hide' : {
-      left: '-15rem'
-    },
-  
-    '&.show' : {
-      left: '0rem'
-    },
-  },
-  [theme.breakpoints.down('xs')] : {
-    
-    left: '3rem',
-    '&.hide' : {
-      left: '-12rem'
-    },
-  
-    '&.show' : {
-      left: '3rem'
-    },
-    
-  },
-
- 
-
-})
-
-const Handle= styled('div')({
-
-  display: 'none',
-  position:'absolute',
-  width: '1.5rem',
-  height: '3rem',
-  borderRadius: '0 5px 5px 0',
-  
-
-  [theme.breakpoints.down('sm')] : {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    right: '-1.5rem',
-    top: '3rem',
-
-    
-
-    background: chitOrange,
-  },
-  
-
-})
-
-
-
-
-const BottomNavSpacer = styled('div')({
-
-  display: 'none',
-
-  height: '3rem',
-  
-  // backgroundColor: 'red',
-
-  [theme.breakpoints.down('sm')] : {
-    display: 'block'
-  },
-
-  [theme.breakpoints.down('xs')] : {
-    display:  'none',
-
-  }
-
-})
-
-
-// ----- Content Area here -------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const MainContentWrapper= styled('div')({
-  
-  display: 'block',
-  height: '100%',
- 
- 
 
+  display: 'block',
+  height: '95%',
+  paddingTop: '3rem',
+  paddingLeft: '3rem',
+  '&::-webkit-scrollbar': {
+    width: '0.75em' 
+  },
+  '&::-webkit-scrollbar-track': {
+    boxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)',
+    webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)'
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: 'rgba(0,0,0,.3)',
+    border: '2px solid rgba(0,0,0,.1)',
+    borderRadius: '5px'
+  },
+  overflow: 'auto',
 
 
   [theme.breakpoints.down('sm')] : {
@@ -257,189 +114,117 @@ const MainContentWrapper= styled('div')({
 
 })
 
+//  ---- phone Navigation panels -------
 
 
-/**This area --------------------------+++++++++++++++++++++++++++
- * 
- * COntent Area has to be pushed to the right for
- * full size screens::::  !!!!!!!
- * 
- */
+const SidePanelWrapper= styled('div')({
+  display: 'block',
+  position: 'absolute',
+
+  backgroundColor: veryLightGrey,
+  width: '15rem',
+
+  zIndex: '31',
+
+
+  [theme.breakpoints.down('sm')] : {
+    
+    left: '3rem',
+    '&.hide' : {
+      left: '-12rem'
+    },
+  
+    '&.show' : {
+      left: '3rem'
+    },
+    
+  },
+
+  
+  
+  [theme.breakpoints.down('xs')] : {
+    marginLeft: '0',
+    // display: 'none'
+
+    '&.hide' : {
+      left: '-15rem'
+    },
+  
+    '&.show' : {
+      left: '0rem'
+    },
+  },
+
+})
+
+const Handle= styled('div')({
+
+  display: 'none',
+  position:'absolute',
+  width: '1.5rem',
+  height: '3rem',
+  borderRadius: '0 5px 5px 0',
+ 
+
+  [theme.breakpoints.down('sm')] : {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: '-1.5rem',
+    top: '3rem',
+
+    
+
+    background: chitOrange
+  },
+  
+
+})
 
 const ContentArea = styled('div')({
 
   display: 'block',
-  position: 'relative',
   marginLeft: '15rem',
-  height: '97vh',
-  paddingTop:  '1.75rem',
-  overflow: 'hidden',
-
-
-
-  [theme.breakpoints.down('sm')] : {
-    // display: 'block'
-    marginLeft: '0',
-  },
-
-  [theme.breakpoints.down('xs')] : {
-    // display:  'none',
-
-  }
-
-})
-
-const SpotLightModal = styled('div')({
-
-  display: 'flex',
-  position: 'absolute',
-  justifyContent: 'center',
   height: '100%',
-  width: '100%',
-  backgroundColor: chitOrangeLight,
-  zIndex: '12',
 
-
-  [theme.breakpoints.down('sm')] : {
-    // display: 'block'
-
-  },
-
-  [theme.breakpoints.down('xs')] : {
-    // display:  'none',
-
-  }
-
-})
-
-const CloseSpotLight = styled('div')({
-
-  display: 'flex',
-  position: 'absolute',
-  justifyContent: 'center',
-  alignItems: 'center',
-  top: '2px',
-  right: '2px',
-  height: '2rem',
-  width: '2rem',
-  color: 'red',
-  fontSize: '1.2rem',
-  borderRadius: '50px',
-  zIndex: '30',
-  '&:hover': {
-    backgroundColor: chitOrangeLight
-
-  },
-
-  [theme.breakpoints.down('sm')] : {
-    // display: 'block'
-
-  },
-
-  [theme.breakpoints.down('xs')] : {
-    // display:  'none',
-
-  }
-
-})
-
-const CountDown = styled('div')({
-
-  display: 'flex',
-  position: 'absolute',
-  justifyContent: 'flex-end',
-  alignItems: 'flex-end',
-  bottom: '2px',
-  right: '8px',
-  width: '2rem',
-  color: 'red',
-  fontSize: '1rem',
-  zIndex: '30'
-
-})
-
-
-const SpotLightWrapper = styled(Paper)({
-
-  display: 'flex',
-  position: 'relative',
-  justifyContent: 'center',
-  alignItems: 'flex-start',
-  height: '50%',
-  width: '50%',
-  backgroundColor: 'yellow',
-  marginTop: '3rem',
+  
  
 
   [theme.breakpoints.down('sm')] : {
     // display: 'block'
-    marginLeft: '0',
+    marginLeft: '3rem',
   },
 
   [theme.breakpoints.down('xs')] : {
-    // display:  'none',
+    marginLeft: '0',
 
   }
 
 })
 
+const BottomNavSpacer = styled('div')({
+
+  display: 'none',
+  height: '3rem',
 
 
-const Content= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
- 
-  width: '100%',
-  height: '90%',
-  marginBottom: '3px',
-  backgroundColor: 'white',
-  borderTop: '1px solid lightgrey',
-  borderBottom: '1px solid lightgrey',
-  // backgroundColor: 'green',
-  '&::-webkit-scrollbar': {
-    width: '0.75em' 
+  [theme.breakpoints.down('sm')] : {
+    display: 'block'
   },
-  '&::-webkit-scrollbar-track': {
-    boxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)',
-    webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)'
-  },
-  '&::-webkit-scrollbar-thumb': {
-    backgroundColor: 'rgba(0,0,0,.3)',
-    border: '2px solid rgba(0,0,0,.1)',
-    borderRadius: '5px'
-  },
-  overflow: 'auto',
-})
 
-const ProgressBar= styled('div')({
+  [theme.breakpoints.down('xs')] : {
+    display:  'none',
 
-  display: 'block',
-  position: 'absolute',
-  top: '0',
-  width: '100%',
-  height: '8px',
-  // border: '1px solid blue',
-  backgroundColor: 'none'
+  }
 
 })
-
-const ProgressBarInner= styled('div')({
-
-  display: 'block',
-  height: '100%',
-  borderRight: '2px solid #CFD0D1',
-  backgroundColor: lightGrey
-
-})
-
 
 //=======================================================
 
 const Main = (props) => {
 
-  
+   
 
   let viewSidePanel = props.view.private.displaySidePanel
 
@@ -453,35 +238,9 @@ const Main = (props) => {
 
   */
 
-    //  get spotlight status from store (unseen or seen)
-    let spotLightStatus = props.view.private.spotLightViews.displaySpotLight
-    let displayTime = 9000
-    
-    if(spotLightStatus === 'unseen') {
-      props.showSpotLight()
-  
-  
-      setTimeout(() => props.closeSpotLight() , displayTime)
-    }
 
-    if(spotLightStatus === 'unseen') {
-      props.showSpotLight()
-  
-  
-      setTimeout(() => props.closeSpotLight() , displayTime)
-    }
   
 
-  const lastSectionDisplayed = props.view.private.journalDisplay.lastSection
-
- 
-  // console.log('[Main ]... props --- ', props.view)
-
-  // let modalShow = props.view.private.modalDisplayed
-
-  // const [viewSidePanel, setViewSidePanel ] = useState('hide');
-  
-  // func handleSidePanelChange - open or close the side panel
 
   
 
@@ -500,48 +259,12 @@ const Main = (props) => {
 
   
 
-    
-
-    if(spotLightStatus === 'unseen') {
-      props.showSpotLight()
-
-
-      setTimeout(() => props.closeSpotLight() , 2000)
-    }
-
 
   }
 
 
-  // Handle countdown to end popup display ---------
-
-    let displayTimeSec = displayTime / 1000
-    const [timeLeft, setTimeLeft] = useState(displayTimeSec);
-
-    useEffect(() => {
-      // exit early when we reach 0
 
 
-
-      if (!timeLeft) return;
-
-      // save intervalId to clear the interval when the
-      // component re-renders
-      const intervalId = setInterval(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
-
-      // clear interval on re-render to avoid memory leaks
-      return () => clearInterval(intervalId);
-      // add timeLeft as a dependency to re-rerun the effect
-      // when we update it
-      
-
-    }, [timeLeft]);
-
-  // convert time left to a string % to style of progress width 
-    let progressMade = ((displayTimeSec - timeLeft)/displayTimeSec) * 100
-    let progress = progressMade.toString() + '%'
 
     let modalShow = props.view.private.modalDisplayed
 
@@ -557,38 +280,23 @@ const Main = (props) => {
 
 
 
-
-
-
-
-
   return (
-    <BodyWrapper>
+  <BodyWrapper>
 
-      {modalShow && <Modal/>}
+    {modalShow && <Modal/>}
+    <HeaderMain/>
+    <ToolbarSpacer/>
 
-
-      <HeaderMain/>
-      <ToolbarSpacer/>
-
-      <MainWrapper>
-      
-        <SideNavWrapper>
-        
-
-        </SideNavWrapper>   
-
-        <MainContentWrapper>
-        
-        <SidePanelWrapper 
-        className = {viewSidePanel}
-        
-        >
+    <MainWrapper>
 
 
-          <Handle 
-          onClick = {handleSidePanelChange}
-          >
+      <MainContentWrapper>
+
+        <SidePanelWrapper className = {viewSidePanel}>
+
+
+          <Handle onClick = {handleSidePanelChange}>
+
             {viewSidePanel === 'hide' && 
               <KeyboardArrowRightIcon style={{ color: 'white' }}/>
             }
@@ -600,109 +308,54 @@ const Main = (props) => {
 
 
 
-          <FilterPanel/>
-          
+          {/* {view === 'twoParty' &&  <TwoPartyNav people = {people} />  }
+          {view === 'personal' &&  <PersonalNav categories = {categories}/>  }
+          {view === 'work' &&  <WorkNav
+            people = {people}
+            categories = {categories}
+          />  }
+          {view === 'journal' &&  <JournalNav/>  }
+          {view === 'reports' &&  <ReportsNav/>  }
+          {view === 'notices' &&  <NoticesNav/>  } */}
+<JournalNav/>
+        
 
-          </SidePanelWrapper>
-
-{/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
-{/*   choose Journal content or spotlight Page to display  
-      note: Journal content has a spotlight popup... spotlight page does not
-
-*/}
+        </SidePanelWrapper>
 
 
-{!displaySpotLightPage && 
           <ContentArea>
+            {/* {view === 'twoParty' &&  <TwoParty chits = {chits} people = {people}/>  }
+            {view === 'personal' &&  <Personal chits = {chits} categories = {categories}/>  }
+            {view === 'work' &&  <Work 
+            chits = {chits} 
+            people = {people}
+            categories = {categories}
+            />  }
+            {view === 'journal' &&  <Journal/>  }
+            {view === 'reports' &&  <Reports/>  }
+            {view === 'notices' &&  <Notices chits = {chits} />  } */}
 
-          {spotLightStatus === 'show' && 
-            <SpotLightModal>
+            Main Content area
+            <Journal/>
 
-
-              
-              <SpotLightWrapper>
-              <CloseSpotLight
-                onClick = {()=>{
-                  props.closeSpotLight()
-                }}
-              >
-                X</CloseSpotLight>
-                <SpotLightPopup/>
-                {/* <CountDown>{timeLeft} </CountDown> */}
-
-                <ProgressBar> 
-
-                  <ProgressBarInner 
-                    style={{width: progress}}>  {'\u00A0'} 
-                  </ProgressBarInner>
-
-                </ProgressBar>
-
-
-
-
-              </SpotLightWrapper>
-              
-
-            </SpotLightModal>
-          }
-
-
-
- 
- 
-            
-          <JournalButtons/>
-            <Content>
-
-              {lastSectionDisplayed && 
-                <InitialMessage/>
-              }
-
-
-              <Day/>
-              <Day/>
-
-              
-              
-              
-
-            </Content>
-            
           </ContentArea>
-        }
-
-  {displaySpotLightPage && 
-
-
-  <ContentArea>
-
-    <SpotLightPage/>
-
-  </ContentArea>
-  
-  }
-{/*   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  */}
-
 
 
           <BottomNavSpacer/>
-        </MainContentWrapper>
+      </MainContentWrapper>
+    </MainWrapper>
 
-      </MainWrapper>
 
-      <BottomNavWrapper> 
-nav here 
-      </BottomNavWrapper> 
-      
-    </BodyWrapper>
+
+
+
+  </BodyWrapper>
   )
 }
 
 const actions = {
   openCloseSidePanel,
-  showSpotLight,
-  closeSpotLight 
+
 }
 
 const mapState = state => ({
