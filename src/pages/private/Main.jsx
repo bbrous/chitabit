@@ -4,11 +4,17 @@ import HeaderMain from './mainElements/Header_main'
 import{chitOrange, veryLightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow} from '../../styles/colors'
 
 import Modal from '../../components/modal/Modal.jsx'
-import InitialMessage from './journalElements/InitialMessage'
-import Day from './journalElements/Day'
+// import InitialMessage from './journalElements/InitialMessage'
+// import Day from './journalElements/Day'
+
 import JournalNav from './navElements/JournalNav'
-import SpotLightPage from './spotLight/SpotLightPage'
+ 
+import SpotlightNav from './navElements/SpotlightNav'
+
+// import SpotLightPage from './spotLight/SpotLightPage'
+
 import Journal from './Journal'
+import Spotlight from './Spotlight'
 // import HeaderMain from './mainElements/Header_main'
 
 
@@ -49,7 +55,7 @@ const ToolbarSpacer= styled('div')({
 
   display: 'block',
 
-  height: '2.25rem',
+  height: '1.75rem',
   
   // backgroundColor: 'red',
 
@@ -84,19 +90,7 @@ const MainContentWrapper= styled('div')({
   height: '95%',
   paddingTop: '3rem',
   paddingLeft: '3rem',
-  '&::-webkit-scrollbar': {
-    width: '0.75em' 
-  },
-  '&::-webkit-scrollbar-track': {
-    boxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)',
-    webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.4)'
-  },
-  '&::-webkit-scrollbar-thumb': {
-    backgroundColor: 'rgba(0,0,0,.3)',
-    border: '2px solid rgba(0,0,0,.1)',
-    borderRadius: '5px'
-  },
-  overflow: 'auto',
+
 
 
   [theme.breakpoints.down('sm')] : {
@@ -123,7 +117,7 @@ const SidePanelWrapper= styled('div')({
 
   backgroundColor: veryLightGrey,
   width: '15rem',
-
+height: '100%',
   zIndex: '31',
 
 
@@ -275,6 +269,9 @@ const Main = (props) => {
 
     let displaySpotLightPage = props.view.private.displaySpotLightPage
 
+    const view = 'spotlight'
+    // const view = 'journal'
+
     // console.log('[Main] displaySpotlightPage :  ', props.view.private.displaySpotLightPage)
 // ##################################################
 
@@ -317,7 +314,14 @@ const Main = (props) => {
           {view === 'journal' &&  <JournalNav/>  }
           {view === 'reports' &&  <ReportsNav/>  }
           {view === 'notices' &&  <NoticesNav/>  } */}
-<JournalNav/>
+
+
+
+{/* <JournalNav/> */}
+<SpotlightNav/>
+
+
+
         
 
         </SidePanelWrapper>
@@ -331,13 +335,17 @@ const Main = (props) => {
             people = {people}
             categories = {categories}
             />  }
-            {view === 'journal' &&  <Journal/>  }
+            
             {view === 'reports' &&  <Reports/>  }
             {view === 'notices' &&  <Notices chits = {chits} />  } */}
 
-            Main Content area
-            <Journal/>
 
+
+
+
+{view === 'journal' &&  <Journal/>  }
+{view === 'spotlight' &&  <Spotlight/>  }
+      
           </ContentArea>
 
 

@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-
+import MainNav from '../navElements/Main_nav'
 import{headerGrey} from '../../../styles/colors'
 
 import {styled, createMuiTheme}  from '@material-ui/core/styles'
@@ -101,7 +101,7 @@ const Greeting = styled('div')({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  width: '13.5%',
+  width: '50%',
   paddingLeft: '1.5%',
   color: 'black',
   // backgroundColor: 'aqua',
@@ -171,6 +171,7 @@ const Header_main = (props) => {
 
             
             <Greeting>Hi Brad</Greeting>
+            <MainNav/>
             <NavWrapper> 
 
 
