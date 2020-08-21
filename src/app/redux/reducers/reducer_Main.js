@@ -12,7 +12,8 @@ import {
           OPEN_MODAL,
           CLOSE_MODAL,
           OPEN_SPOTLIGHT_PAGE,
-          CLOSE_SPOTLIGHT_PAGE
+          CLOSE_SPOTLIGHT_PAGE,
+          CHANGE_DISPLAY, 
         
         } from '../store/storeConstants';
 
@@ -28,7 +29,7 @@ import {
 
     view: 'journal',
     displaySidePanel: 'hide',
-
+    display: 'spotlight',
     
 
     spotLightViews: {
@@ -114,6 +115,13 @@ export const closeSpotLightPage = (state, payload) => {
   return  Object.assign({...state}, payload)
 }
 
+
+
+export const changeDisplay = (state, payload) => {
+  // console.log("hey change display clicked")
+ return  Object.assign({...state}, payload)
+
+}
 // =================================================
 
   export default createReducer(initialState, {
@@ -127,6 +135,7 @@ export const closeSpotLightPage = (state, payload) => {
 
     [OPEN_SPOTLIGHT_PAGE] : openSpotLightPage,
     [CLOSE_SPOTLIGHT_PAGE] : closeSpotLightPage,
+    [CHANGE_DISPLAY] : changeDisplay
 
     
   })

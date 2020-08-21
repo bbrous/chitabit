@@ -11,7 +11,8 @@
           OPEN_MODAL,
           CLOSE_MODAL,
           OPEN_SPOTLIGHT_PAGE,
-          CLOSE_SPOTLIGHT_PAGE
+          CLOSE_SPOTLIGHT_PAGE,
+          CHANGE_DISPLAY
           
           
         } from '../store/storeConstants';
@@ -132,6 +133,15 @@
               
               displaySpotLightPage: false,
               
+            }
+          }
+        }
+
+        export const  changeDisplay = (newDisplay) => {
+          return {
+            type: CHANGE_DISPLAY,
+            payload: {
+              display: newDisplay
             }
           }
         }

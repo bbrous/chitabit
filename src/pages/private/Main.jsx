@@ -269,10 +269,10 @@ const Main = (props) => {
 
     let displaySpotLightPage = props.view.private.displaySpotLightPage
 
-    const view = 'spotlight'
+    const view = props.view.private.display
     // const view = 'journal'
 
-    // console.log('[Main] displaySpotlightPage :  ', props.view.private.displaySpotLightPage)
+    console.log('[Main] view :  ', view)
 // ##################################################
 
 

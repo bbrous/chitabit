@@ -3,9 +3,9 @@ import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 import { NavLink, withRouter, useLocation} from 'react-router-dom'
 import {connect} from 'react-redux'
-// import{changeDisplay} from '../../../app/redux/actions/mainActions'
+import{changeDisplay} from '../../../app/redux/actions/mainActions'
 
-// import {getPage} from '../../../app/helpers/locationHelper'
+import {getPage} from '../../../app/helpers/locationHelper'
 
  
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -103,21 +103,20 @@ function MainNav(props) {
   }
 
 
-// let display = props.display.private.display
+let display = props.display.private.display
 
 
 
-// let location = useLocation()
-//   let page = getPage(location)
+let location = useLocation()
+  let page = getPage(location)
 
 //---works ---
-    // useEffect(
-    //   ()=>{props.changeDisplay(page)},[page] 
-    //   )
+    useEffect(
+      ()=>{props.changeDisplay(page)},[page] 
+      )
   
   // console.log('[Main Nav]... props --- ', page)
-
-  let display = 'spotlight'
+ 
 
   return (
 
@@ -140,7 +139,7 @@ function MainNav(props) {
             id = 'journal' 
             
           
-          >2 party </NavButtonDisabled>
+          >Journal </NavButtonDisabled>
         }
 
       </StyledLink>
@@ -160,11 +159,10 @@ function MainNav(props) {
             id = 'spotlight' 
             
           
-          >Spotlights </NavButtonDisabled>
+          >spotlight </NavButtonDisabled>
         }
 
-
-        </StyledLink>
+      </StyledLink>
 
 
       
@@ -182,7 +180,7 @@ function MainNav(props) {
 }
 
 const actions = {
-  // changeDisplay 
+  changeDisplay 
 }
 
 const mapState = state => ({
