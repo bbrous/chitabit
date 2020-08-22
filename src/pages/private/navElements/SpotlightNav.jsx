@@ -460,8 +460,8 @@ const SpotlightNav = (props) => {
         }}
       >
           <TitleWrapper>{spotTitle}</TitleWrapper>
-          <TimeRemainingWrapperOrange
-          > est complete: {dateEst}</TimeRemainingWrapperOrange>
+          <TimeRemainingWrapper
+          > est complete: {dateEst}</TimeRemainingWrapper>
         </SpotlightWrapper>
       
 

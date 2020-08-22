@@ -28,7 +28,7 @@ import {
 
   const initialState = {
 
-    view: 'journal',
+    view: '',
     displaySidePanel: 'hide',
     display: 'spotlight',
     

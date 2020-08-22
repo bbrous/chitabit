@@ -82,7 +82,7 @@ const Header_login = () => {
          
        />
 
-       <SubmitButton to="/main">Login </SubmitButton>
+       <SubmitButton to="/main/spotlight">Login </SubmitButton>
       </StyledForm>
       
     </Fragment>
