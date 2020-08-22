@@ -9,6 +9,7 @@ import {
           OPEN_CLOSE_SIDE_PANEL,
           SHOW_SPOTLIGHT,
           CLOSE_SPOTLIGHT,
+          CHANGE_DISPLAY_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
           OPEN_SPOTLIGHT_PAGE,
@@ -35,7 +36,7 @@ import {
     spotLightViews: {
       displaySpotLight: 'unseen',
       defaultSpotLight: 'spot1',
-      displayedSpotLightId: 'spot1',
+      displayedSpotLightId: 'all',
       spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
       
       displaySpotLightPage: false,
@@ -115,6 +116,9 @@ export const closeSpotLightPage = (state, payload) => {
   return  Object.assign({...state}, payload)
 }
 
+export const changeDisplaySpotlight = (state, payload) => {
+  return  Object.assign({...state}, payload)
+}
 
 
 export const changeDisplay = (state, payload) => {
@@ -133,6 +137,7 @@ export const changeDisplay = (state, payload) => {
     [OPEN_MODAL] : openModal,
     [CLOSE_MODAL] : closeModal,
 
+    [CHANGE_DISPLAY_SPOTLIGHT] : changeDisplaySpotlight,
     [OPEN_SPOTLIGHT_PAGE] : openSpotLightPage,
     [CLOSE_SPOTLIGHT_PAGE] : closeSpotLightPage,
     [CHANGE_DISPLAY] : changeDisplay

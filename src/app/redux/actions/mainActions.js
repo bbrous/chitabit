@@ -10,6 +10,7 @@
           CLOSE_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
+          CHANGE_DISPLAY_SPOTLIGHT,
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
           CHANGE_DISPLAY
@@ -74,13 +75,24 @@
       
                
               defaultSpotLight: 'spot1',
-              displayedSpotLightId: 'spot1',
+              displayedSpotLightId: 'all',
               spotLightsArray: ['spot1','spot2','spot3','spot4','spot5'],  
               }
               
             }
           }
         }
+
+        export const  changeDisplaySpotlight= (newSpotlight) => {
+          return {
+            type: CHANGE_DISPLAY_SPOTLIGHT,
+            payload: {
+              spotLightViews: {
+              displayedSpotLightId: newSpotlight
+            }}
+          }
+        }
+        
 
         export const  openModal = (modalType, newChit) => {
 

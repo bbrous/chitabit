@@ -151,7 +151,7 @@ let location = useLocation()
             id = 'spotlight' 
             
           
-          >spotlight </NavButton>
+          >Spotlight </NavButton>
         }
 
         {display === 'spotlight' && 
@@ -159,7 +159,7 @@ let location = useLocation()
             id = 'spotlight' 
             
           
-          >spotlight </NavButtonDisabled>
+          >Spotlight </NavButtonDisabled>
         }
 
       </StyledLink>
