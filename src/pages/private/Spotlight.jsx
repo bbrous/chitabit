@@ -8,7 +8,8 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import InfoIcon from '@material-ui/icons/Info'
-
+import NotesIcon from '@material-ui/icons/Notes';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
@@ -90,7 +91,7 @@ const Container= styled(Paper)({
    
   margin: '4rem auto',
   color: chitOrange,
-  width: '22rem',
+  width: '80%',
 
   minHeight: '10rem',
 
@@ -109,8 +110,9 @@ const TitleWrapper= styled('div')({
    
   margin: '4px 0',
   color: 'red',
-  width: '99%',
-
+ 
+  width: '98%',
+  padding: '.5% 1%',
 
   fontSize: '1rem',
   
@@ -164,6 +166,208 @@ const CheckCircle= styled('div')({
   },
 })
 
+// -----------------------------------
+
+const DetailContainer= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+   
+  width: '98%',
+  margin: '.5% 1%',
+  height: '4rem',
+  
+  color: 'black',
+  fontSize: '.8rem',
+
+  // backgroundColor: 'purple',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  
+  width: '90%',
+  height: '100%',
+  
+  // backgroundColor: 'red',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+const DetailRow= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowOrange= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  color: chitOrange,
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowLeft= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  width: '6rem',
+
+  // backgroundColor: 'aqua',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowRight= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  flexGrow: '1',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  // backgroundColor: 'green',
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+const IconsWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '100%',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const NoteIcon= styled(NotesIcon)({
+  backgroundColor: chitOrange,
+  borderRadius: '5px',
+  fontSize: '1.3rem',
+  color: 'white',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const ClockIcon= styled(QueryBuilderIcon)({
+  
+  color:chitOrange,
+  fontSize: '1.6rem',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+// ----------------------
+const FormContainer= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+   
+  width: '98%',
+  margin: '1rem 1%',
+  height: '4rem',
+  
+  backgroundColor: 'grey',
+  fontSize: '.8rem',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const FormRow= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  
+  width: '90%',
+  
+  backgroundColor: 'red',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
 
 // ====================================
 
@@ -197,6 +401,47 @@ export const Spotlight = () => {
 
       </Title>
     </TitleWrapper>
+
+
+    <DetailContainer>
+
+      <DetailWrapper>
+
+        <DetailRow>
+          <DetailRowLeft>Target: </DetailRowLeft>
+          <DetailRowRight>Wed Aug 19 2020</DetailRowRight>
+        </DetailRow>
+
+        <DetailRowOrange>
+          <DetailRowLeft>Remaining: </DetailRowLeft>
+          <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
+        </DetailRowOrange>
+
+        <DetailRow>
+          <DetailRowLeft>Elapsed: </DetailRowLeft>
+          <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
+        </DetailRow>
+
+      </DetailWrapper>
+
+
+      <IconsWrapper>
+       <NoteIcon/>
+       <ClockIcon/>
+      </IconsWrapper>
+    </DetailContainer>
+
+    <FormContainer>
+      <FormRow>
+        <div> Form input here</div>
+      </FormRow>
+      <FormRow>
+        <div>New Tasks</div>
+        <div>New Child Spotlight</div>
+      </FormRow>
+
+    </FormContainer>
+
       Tasks here
 
 
