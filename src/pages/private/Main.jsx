@@ -75,11 +75,11 @@ const MainWrapper= styled('div')({
   alignItems: 'center',
   margin: '0 auto',
   maxWidth: '960px',
-  minHeight: '600px',
+  // minHeight: '600px',
   height: '100%',
 
   [theme.breakpoints.down('sm')] : {
-    
+     
   },
 
 })
@@ -87,7 +87,7 @@ const MainWrapper= styled('div')({
 const MainContentWrapper= styled('div')({
 
   display: 'block',
-  height: '95%',
+  height: '99%',
   paddingTop: '3rem',
   paddingLeft: '3rem',
 
@@ -96,13 +96,13 @@ const MainContentWrapper= styled('div')({
   [theme.breakpoints.down('sm')] : {
     paddingTop: '1.5rem',
     paddingLeft: '0',
-    height: '90%',
+    // height: '90%',
 
   },
 
   [theme.breakpoints.down('xs')] : {
   
-    paddingLeft: '3rem',
+    // paddingLeft: '3rem',
 
   }
 
@@ -125,7 +125,7 @@ height: '100%',
     
     left: '3rem',
     '&.hide' : {
-      left: '-12rem'
+      left: '-15rem'
     },
   
     '&.show' : {
