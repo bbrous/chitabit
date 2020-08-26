@@ -5,15 +5,25 @@ import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled} from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+
+// Material UI Context Menu  -------------------------------------
+
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+// Material UI Context Menu  -------------------------------------
 
 
 
 
 
+// React Sortable HOC ----------------------------------------------
 
+import { SortableContainer, SortableElement } from "react-sortable-hoc";
+import arrayMove from "array-move";
+
+// React Sortable HOC ----------------------------------------------
 
 
 
@@ -75,148 +85,82 @@ const ContentArea = styled('div')({
 
 const DivArea = styled('div')({
   display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-
-  width: '90%',
-  height: '90%',
-  backgroundColor: 'yellow'
-})
-
-const SectionArea = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-
-  width: '90%',
-  height: '90%',
-
-  '& div' :{
-    display: 'block',
-    width: '5rem',
-    height: '5rem',
-    margin: '3rem',
-    backgroundColor: 'white',
-
-
-  }
-})
-
-const FormArea = styled('div')({
-  display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
 
-  width: '90%',
+  width: '300px',
   height: '90%',
+  backgroundColor: 'yellow',
 
-  '& div' :{
-    display: 'block',
-    width: '5rem',
-    height: '5rem',
-    margin: '3rem',
-    backgroundColor: 'lightgrey'
+  '& ul': {
+    width: '98%',
+    backgroundColor: 'purple',
+    listStyleType: 'none',
+    margin: '0',
+    padding: '0',
+  },
 
+  '& li': {
+    width: '98%',
+    backgroundColor: 'white'
+    
   }
 
 
 })
 
-const ItemWrapper = styled(MenuItem)({
-  color: 'blue',
-  fontSize: '.9rem',
-  textDecoration:'underline'
+const ItemWrapper = styled(Paper)({
+  display: 'flex',
+  justifyContent: 'space-between',
+ alignItems: 'center',
 
-
-})
-
-const MenuWrapper = styled(Menu)({
-  border: '1px solid grey',
-  borderRadius: '3px',
-
-
+  width: '99%',
+  height: '3rem',
+  margin: '2px 0',
+  
 })
 
 
 
-// =================================================
+
+
+ 
 
 const initialState = {
   mouseX: null,
   mouseY: null,
 };
+// =================================================
+const SortableItem = SortableElement(({ handleClick,value }) => 
 
 
+{
 
+  const [state, setState] = React.useState(initialState);
 
-
-const ATry = (props) => {
-
-  const [state, setState] = useState(initialState);
-
-  const handleClick = (evt, id) => {
-    evt.preventDefault();
-
-    console.log('[aTry] id: ', id)
-
+  const handleRightClick = (event) => {
+    event.preventDefault();
     setState({
-      mouseX: evt.clientX - 2,
-      mouseY: evt.clientY - 4,
+      mouseX: event.clientX - 2,
+      mouseY: event.clientY - 4,
     });
   };
-  
+
   const handleClose = () => {
     setState(initialState);
   };
 
 
 
-    let spotLightStatus = props.view.private.displaySpotLight
+  return(
+ 
+<ItemWrapper
+onContextMenu={handleRightClick} 
 
-    console.log('[aTry] - displaySpotLight status BEFORE :  ' , spotLightStatus )
+><div>Title: {value.title}</div> <div>Time: {value.Time}</div>
 
-    // console.log('[aTry] timeRemainingObject: ', timeRemainingObject)
-
-   
-
-  return (
-    <BodyWrapper>
-      <Wrapper>
-        <TryIt to="/">  </TryIt>
-        <PageHeader> aTry Javascript and Redux  </PageHeader>
-        
-        <ContentArea>
-        <div> Put Content Here </div>
-        <DivArea>
-          <SectionArea>
-            <div
-            id = 'section1'
-             onContextMenu={(evt)=>handleClick(evt,'section1')} style={{ cursor: 'context-menu' }}> Section 1 </div>
-            <div
-            id = 'section2'
-             onContextMenu={handleClick} style={{ cursor: 'context-menu' }}> Section 2 </div>
-            <div
-            id = 'section3'
-             onContextMenu={handleClick} style={{ cursor: 'context-menu' }}> Section 3 </div>
-            <div
-            id = 'section4'
-             onContextMenu={handleClick} style={{ cursor: 'context-menu' }}> Section 4 </div>
-
-
-          </SectionArea>
-
-          <FormArea>
-            <div> Form 1 </div>
-            <div> Form 2 </div>
-            <div> Form 3 </div>
-            <div> Form 4 </div>
-
-
-          </FormArea>
-          <MenuWrapper  elevation= {3}
+<Menu
         keepMounted
         open={state.mouseY !== null}
         onClose={handleClose}
@@ -227,22 +171,117 @@ const ATry = (props) => {
             : undefined
         }
       >
-        <ItemWrapper onClick={handleClose}>Edit</ItemWrapper>
-        <ItemWrapper onClick={handleClose}>Display Similar Sections</ItemWrapper>
-        <ItemWrapper onClick={handleClose}>Delete </ItemWrapper>
+        <MenuItem onClick={handleClose}>Copy - {value.id}</MenuItem>
+        <MenuItem onClick={handleClose}>Print</MenuItem>
+        <MenuItem onClick={handleClose}>Highlight</MenuItem>
+        <MenuItem onClick={handleClose}>Email</MenuItem>
+      </Menu>
+</ItemWrapper>
+)}
+
+)
+    
+
+
+
+
+
+
+
+const SortableList = SortableContainer(({ items }) => {
+  return (
+    <ul>
+      {items.map((value, index) => (
+        <SortableItem key={`item-${index}`} index={index} value={value} 
+       
+        />
+      ))}
+    </ul>
+  );
+});
+
+
+
+
+
+const ATry = (props) => {
+
+  // const [state, setState] = useState(initialState);
+
+
+  const [items, setItems] = useState([
+    {id: "Item 1", title: "Item 1", Time: '0889977'},
+    {id: "Item 1", title: "Item 2", Time: '0889977'},
+    {id: "Item 1", title: "Item 3", Time: '0889977'},
+    {id: "Item 1", title: "Item 4", Time: '0889977'},
+    {id: "Item 1", title: "Item 5", Time: '0889977'},
+    {id: "Item 1", title: "Item 6", Time: '0889977'}
+  ]);
+
+
+  useEffect(() => {
+    console.log(items)
+    
+  }, [items]);
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setItems(arrayMove(items, oldIndex, newIndex));
+  };
+
+
+
+  // const handleClick = (evt, id) => {
+  //   evt.preventDefault();
+
+  //   console.log('[aTry] id: ', id)
+
+  //   setState({
+  //     mouseX: evt.clientX - 2,
+  //     mouseY: evt.clientY - 4,
+  //   });
+  // };
+  
+  // const handleClose = () => {
+  //   setState(initialState);
+  // };
+
+
+
+    // let spotLightStatus = props.view.private.displaySpotLight
+
+    // console.log('[aTry] - displaySpotLight status BEFORE :  ' , spotLightStatus )
+
+    // console.log('[aTry] timeRemainingObject: ', timeRemainingObject)
+
+
+
+  return (
+    <BodyWrapper>
+      <Wrapper>
+        <TryIt to="/">  </TryIt>
+        <PageHeader> aTry Javascript and Redux  </PageHeader>
         
-      </MenuWrapper>
-      
+        <ContentArea>
+        <div> Put Content Here </div>
+        <DivArea>
+         
+          {/* <ItemWrapper>Item 1 </ItemWrapper>
+          <ItemWrapper>Item 2 </ItemWrapper>
+          <ItemWrapper>Item 3 </ItemWrapper>
+          <ItemWrapper>Item 4 </ItemWrapper>
+          <ItemWrapper>Item 5 </ItemWrapper>
+          <ItemWrapper>Item 6</ItemWrapper>
+          <ItemWrapper>Item 7 </ItemWrapper> */}
+         
+
+          <SortableList items={items} onSortEnd={onSortEnd} />
+
+
 
         </DivArea>
-
-
-
-
-
-
-
-
+        <div>
+       
+        </div>
 
         </ContentArea>
       </Wrapper>
@@ -252,8 +291,8 @@ const ATry = (props) => {
 }
 
 const actions = {
-  showSpotLight,
-  closeSpotLight
+  // showSpotLight,
+  // closeSpotLight
 }
 
 const mapState = state => ({

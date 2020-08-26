@@ -135,22 +135,41 @@ const InitialStore = {
 
     'spot1': {
       id: 'spot1',
-      type: 'goal',
-      popupShow: true,
-      goal: 'Finish Spotlight',
-      startDay:  1596963600000, // Aug 9 2020 9AM
+      title: 'Finish Spotlight',
+
+      timeStamp:  1596963600000, // Aug 9 2020 9AM
       endEst: 1597708740000, // Aug 9 2020 11:59PM
-      endEstModified: 1580537943000 , // ?
+
+      startClock:  1596963600000, // Aug 9 2020 9AM
+      pauseClock: 1596963609999, // Aug 9 2020 9AM
+      endClock: 1596963609999, // Aug 9 2020 9AM
+      elapsedTime: 1596963609999, //calculate
+      
+      subTasks: [
+        {
+          id: 'task1',
+          type: 'task',  //or spotlight
+          completed: false,
+        },
+
+        {
+          id: 'spot2',
+          type: 'spotlight',  //or spotlight
+          completed: false,
+          timeStamp: 1597103940000, 
+          endEst: 1597103940000, // Aug 10 11:59 PM
+          elapsedTime: 1596963609999 //calculate
+        },
+      ]
         
 
     },
 
     'spot2': {
       id: 'spot2',
-      type: 'inspiration',
-      popupShow: false,
-      goal: 'Make Some Money',
-      author: 'Everyone',
+
+ 
+     
       startDay:  1597103940000, // Aug 10 11:59 PM
       
         
@@ -159,10 +178,8 @@ const InitialStore = {
 
     'spot3': {
       id: 'spot3',
-      type: 'inspiration',
-      popupShow: false,
-      goal: 'Get into Zone ... just take one small step',
-      author: 'Brad the learned',
+ 
+ 
       startDay:  1597227180000, // Aug 12 2020 10:13AM 
       
         
@@ -171,10 +188,7 @@ const InitialStore = {
 
     'spot5': {
       id: 'spot5',
-      type: 'inspiration',
-      popupShow: false,
-      goal: 'Just Do It Brad',
-      author: '',
+ 
       startDay:  1597227180001, // Aug 12 2020 10:14AM 
       
         
@@ -183,9 +197,8 @@ const InitialStore = {
 
     'spot4': {
       id: 'spot4',
-      type: 'goal',
-      popupShow: true,
-      goal: 'Diet - 180 pounds',
+ 
+      
       startDay:  1597486158000, // Aug 15 2020 11:59PM
       endEst: 1598954958000, // 1 Aug 31 2020 11:13PM
       endEstModified: 1598954958000 , // ?
