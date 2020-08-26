@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
 import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
@@ -141,9 +141,13 @@ const SortableItem = SortableElement(({ handleClick,value }) =>
 
   const handleRightClick = (event) => {
     event.preventDefault();
+
+    console.log( '[aTry] event', event.currentTarget.id)
     setState({
       mouseX: event.clientX - 2,
       mouseY: event.clientY - 4,
+     
+
     });
   };
 
@@ -154,10 +158,13 @@ const SortableItem = SortableElement(({ handleClick,value }) =>
 
 
   return(
- 
+
+   
+
 <ItemWrapper
 onContextMenu={handleRightClick} 
-
+onClick = {handleClose}
+id = {value.id}
 ><div>Title: {value.title}</div> <div>Time: {value.Time}</div>
 
 <Menu
@@ -174,9 +181,10 @@ onContextMenu={handleRightClick}
         <MenuItem onClick={handleClose}>Copy - {value.id}</MenuItem>
         <MenuItem onClick={handleClose}>Print</MenuItem>
         <MenuItem onClick={handleClose}>Highlight</MenuItem>
-        <MenuItem onClick={handleClose}>Email</MenuItem>
+        <MenuItem onClick={handleClose}>Cancel</MenuItem>
       </Menu>
 </ItemWrapper>
+ 
 )}
 
 )
@@ -190,11 +198,14 @@ onContextMenu={handleRightClick}
 
 const SortableList = SortableContainer(({ items }) => {
   return (
+
     <ul>
       {items.map((value, index) => (
+         <Fragment>
         <SortableItem key={`item-${index}`} index={index} value={value} 
        
         />
+        </Fragment>
       ))}
     </ul>
   );
@@ -211,11 +222,11 @@ const ATry = (props) => {
 
   const [items, setItems] = useState([
     {id: "Item 1", title: "Item 1", Time: '0889977'},
-    {id: "Item 1", title: "Item 2", Time: '0889977'},
-    {id: "Item 1", title: "Item 3", Time: '0889977'},
-    {id: "Item 1", title: "Item 4", Time: '0889977'},
-    {id: "Item 1", title: "Item 5", Time: '0889977'},
-    {id: "Item 1", title: "Item 6", Time: '0889977'}
+    {id: "Item 2", title: "Item 2", Time: '0889977'},
+    {id: "Item 3", title: "Item 3", Time: '0889977'},
+    {id: "Item 4", title: "Item 4", Time: '0889977'},
+    {id: "Item 5", title: "Item 5", Time: '0889977'},
+    {id: "Item 6", title: "Item 6", Time: '0889977'}
   ]);
 
 
