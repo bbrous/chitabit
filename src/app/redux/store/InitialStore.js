@@ -130,6 +130,7 @@ const InitialStore = {
     // },
 
   },// end topics
+  
 
   'spotlights': {
 
@@ -158,7 +159,9 @@ const InitialStore = {
           completed: false,
           timeStamp: 1597103940000, 
           endEst: 1597103940000, // Aug 10 11:59 PM
-          elapsedTime: 1596963609999 //calculate
+          elapsedTime: 1596963609999, //calculate
+
+          parent: '' // a spot Id or blank
         },
       ]
         

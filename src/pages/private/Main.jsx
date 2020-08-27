@@ -10,20 +10,17 @@ import Modal from '../../components/modal/Modal.jsx'
 import JournalNav from './navElements/JournalNav'
  
 import SpotlightNav from './navElements/SpotlightNav'
-
-// import SpotLightPage from './spotLight/SpotLightPage'
-
+import SpotlightMain from './SpotlightMain'
 import Journal from './Journal'
-import Spotlight from './Spotlight'
+
 // import HeaderMain from './mainElements/Header_main'
 
 
-// import { NavLink, withRouter, useLocation} from 'react-router-dom'
 import {connect} from 'react-redux'
-import{openCloseSidePanel, showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
+import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
 
 // import Modal from '../../components/modal/Modal.jsx'
-import JournalButtons from '../../components/JournalButtons'
+
 
 import Paper from '@material-ui/core/Paper'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
@@ -222,21 +219,6 @@ const Main = (props) => {
 
   let viewSidePanel = props.view.private.displaySidePanel
 
- 
-  /*  Show Spotlight modal ------------------------------------------
-      - modal on a timer 
-      - gets / sets status -- redux store
-
-      - if the spotlight was "unseen" ... spotlight will be shown
-         for "displayTime milliseconds"... then status will be set to "seen"
-
-  */
-
-
-  
-
-
-  
 
   const handleSidePanelChange = (evt)=>{
     evt.persist()
@@ -267,12 +249,12 @@ const Main = (props) => {
 
 // ##################################################
 
-    let displaySpotLightPage = props.view.private.displaySpotLightPage
+    
 
     const view = props.view.private.display
     // const view = 'journal'
 
-    console.log('[Main] view :  ', view)
+    // console.log('[Main] view :  ', view)
 // ##################################################
 
 
@@ -328,23 +310,9 @@ const Main = (props) => {
 
 
           <ContentArea>
-            {/* {view === 'twoParty' &&  <TwoParty chits = {chits} people = {people}/>  }
-            {view === 'personal' &&  <Personal chits = {chits} categories = {categories}/>  }
-            {view === 'work' &&  <Work 
-            chits = {chits} 
-            people = {people}
-            categories = {categories}
-            />  }
-            
-            {view === 'reports' &&  <Reports/>  }
-            {view === 'notices' &&  <Notices chits = {chits} />  } */}
 
-
-
-
-
-{view === 'journal' &&  <Journal/>  }
-{view === 'spotlight' &&  <Spotlight/>  }
+            {view === 'journal' &&  <Journal/>  }
+            {view === 'spotlight' &&  <SpotlightMain/>  }
       
           </ContentArea>
 

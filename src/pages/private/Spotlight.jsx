@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {Fragment} from 'react'
+
+import SpotLightTasks from './SpotLightTasks'
 
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
 import Paper from '@material-ui/core/Paper'
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
+
+
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import InfoIcon from '@material-ui/icons/Info'
 import NotesIcon from '@material-ui/icons/Notes';
@@ -452,9 +452,12 @@ const Task= styled('div')({
 
 // ====================================
 
-export const Spotlight = () => {
+export const Spotlight = (props) => {
+
+  console.log('[SPOTLIGHT ] ------------------' , props.id)
+
   return (
-    <Wrapper>
+    <Fragment>
       <Info/>
 
 
@@ -479,7 +482,7 @@ export const Spotlight = () => {
       <div><CheckCircle>&nbsp; </CheckCircle></div>
       
       <Title>
-        This is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a title
+        Bubba his is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a title
 
       </Title>
     </TitleWrapper>
@@ -524,124 +527,8 @@ export const Spotlight = () => {
       </FormRow>
 
     </FormContainer>
-     <TaskContainer>
 
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task21</Task>
-        </TaskRow>
-
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task28</Task>
-        </TaskRow>
-
-
-
-
-
-
-
-
-
-     </TaskContainer>
-
+    <SpotLightTasks/>
 
 
 
@@ -655,7 +542,7 @@ export const Spotlight = () => {
 
 
 
-    </Wrapper>
+    </Fragment>
   )
 }
 

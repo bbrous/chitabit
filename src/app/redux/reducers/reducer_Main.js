@@ -34,12 +34,11 @@ import {
     
 
     spotLightViews: {
-      displaySpotLight: 'unseen',
-      defaultSpotLight: 'spot1',
-      displayedSpotLightId: 'all',
-      spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
+      displaySpotLight: 'show',  // or 'none'  or 'show ' 
+      displayedSpotLightId: 'spot',
+      // spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
       
-      displaySpotLightPage: false,
+      // displaySpotLightPage: false,
     },
 
     journalDisplay: {

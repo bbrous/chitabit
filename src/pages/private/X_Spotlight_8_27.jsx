@@ -1,11 +1,12 @@
 import React from 'react'
 
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow} from '../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
 import Paper from '@material-ui/core/Paper'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
-
+// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import InfoIcon from '@material-ui/icons/Info'
 import NotesIcon from '@material-ui/icons/Notes';
@@ -52,12 +53,13 @@ const BreadCrumbs= styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-   
-  marginTop: '2vh',
+  height: '3.5%',
+  
+  margin: '1.5rem 0',
   color: chitBlueDull,
 
 
-  backgroundColor: 'red',
+// backgroundColor: 'aqua',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -74,7 +76,7 @@ const Crumb= styled('a')({
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
-    // backgroundColor: 'red'
+ 
   },
 })
 
@@ -87,45 +89,51 @@ const CrumbLast= styled('span')({
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
-    // backgroundColor: 'red'
+ 
   },
 })
 
 const Container= styled(Paper)({
-   
-   
-  margin: '4rem auto',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  
+
   color: chitOrange,
   width: '80%',
 
-  minHeight: '10rem',
-
+  // minHeight: '10rem',
+  height: '90%',
+  marginBottom: '5%',
+  
+  overflowY: 'auto',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
-    // backgroundColor: 'red'
+
   },
 
-backgroundColor: 'blue',
+backgroundColor: 'white',
 
 
 })
 
-const TitleWrapper= styled('div')({
+const TitleWrapper= styled(Paper)({
   display: 'flex',
    
   justifyContent: 'flex-start',
-  alignItems: 'flex-start',
+  alignItems: 'center',
    
-  margin: '4px 0',
+  margin: '.25rem 0',
   color: 'red',
  
   width: '98%',
-  padding: '.5% 1%',
+  padding: '.25rem .5rem',
 
   fontSize: '1rem',
   
-backgroundColor: 'purple',
+backgroundColor: 'white',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -155,17 +163,15 @@ const Title= styled('div')({
 })
 
 const CheckCircle= styled('div')({
-  display: 'flex',
-  width: '5rem',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-   
-  margin: '4px 0',
-  color: 'red',
- 
-  flexWrap: 'wrap',
+  
+  width: '1.1rem',
+  height: '1.1rem',
+  border: '1px solid grey',
+  borderRadius: '200px',
+  marginRight: '1rem',
+  // color: mediumGrey,
 
-  fontSize: '1rem',
+
   
 
 
@@ -177,20 +183,22 @@ const CheckCircle= styled('div')({
 
 // -----------------------------------
 
-const DetailContainer= styled('div')({
+const DetailContainer= styled(Paper)({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
-   
+  
   width: '98%',
-  margin: '.5% 1%',
-  height: '4rem',
+  margin: '.25rem 0',
+  padding: '.25rem .25rem .1rem .25rem', 
+    
   
   color: 'black',
   fontSize: '.8rem',
 
-  backgroundColor: 'yellow',
+
+// backgroundColor: 'yellow',
 
 
   [theme.breakpoints.down('sm')] : {
@@ -341,41 +349,42 @@ const ClockIcon= styled(QueryBuilderIcon)({
 
 
 
-// ----------------------
-const TaskContainer= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-   
-  width: '98%',
-  padding: '0 1% 8px 1% ',
- 
-  backgroundColor: 'pink',  
-// backgroundColor: lightGrey,
+          // ----------------------
+          const TaskContainer= styled('div')({
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            
+            width: '98%',
+             
+            padding: '.25rem .5rem',
+            margin: '.25rem 0',
 
-  fontSize: '.8rem',
+          // backgroundColor: lightGrey,
+
+            fontSize: '.8rem',
 
 
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
+            [theme.breakpoints.down('sm')] : {
+              // height: '1.25rem',
+              // backgroundColor: 'red'
+            },
+          })
 
-// ----------------------
-const FormContainer= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-   
-  width: '98%',
-  margin: '1rem 1%',
-  height: '4rem',
-  
-backgroundColor: 'orange',
-  fontSize: '.8rem',
+          // ----------------------
+          const FormContainer= styled('div')({
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            
+            width: '98%',
+            margin: '.25rem 0',
+            
+            
+          backgroundColor: lightGrey,
+            fontSize: '.8rem',
 
 
   [theme.breakpoints.down('sm')] : {
@@ -392,7 +401,7 @@ const FormRow= styled('div')({
   
   width: '90%',
   
-  backgroundColor: 'red',
+  // backgroundColor: lightGrey,
 
 
   [theme.breakpoints.down('sm')] : {
@@ -405,10 +414,11 @@ const TaskRow= styled(Paper)({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   
-  width: '100%',
+  width: '98%',
   margin: '2px 0',
+  padding: '.25rem .5rem',
   // backgroundColor: 'red',
 
 
@@ -424,7 +434,7 @@ const Task= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
    
-  margin: '6px 0',
+  // margin: '6px 0',
   
 
   flexWrap: 'wrap',
@@ -447,16 +457,16 @@ export const Spotlight = () => {
     <Wrapper>
       <Info/>
 
+
       <BreadCrumbs>
 
-        <Crumb>  Parent  </Crumb>
-        <span> {'>'}  </span>
-        <Crumb>  Child  </Crumb>
-        <span> {'>'}  </span>
-        <CrumbLast>  Child's Child  </CrumbLast>
-         
-      </BreadCrumbs>
+<Crumb>  Parent  </Crumb>
+<span> {'>'}  </span>
+<Crumb>  Child  </Crumb>
+<span> {'>'}  </span>
+<CrumbLast>  Child's Child  </CrumbLast>
 
+</BreadCrumbs>
 
 
 
@@ -466,9 +476,10 @@ export const Spotlight = () => {
 
 
     <TitleWrapper>
-      <CheckCircle>() </CheckCircle>
+      <div><CheckCircle>&nbsp; </CheckCircle></div>
+      
       <Title>
-        This is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a title
+        This is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a title
 
       </Title>
     </TitleWrapper>
@@ -503,9 +514,7 @@ export const Spotlight = () => {
     </DetailContainer>
 
 
-
-     <TaskContainer>
-     <FormContainer>
+    <FormContainer>
       <FormRow>
         <div> Form input here</div>
       </FormRow>
@@ -515,81 +524,115 @@ export const Spotlight = () => {
       </FormRow>
 
     </FormContainer>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
+     <TaskContainer>
 
 
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
 
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
 
 
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
 
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
 
 
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
 
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle>() </CheckCircle>
+          <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
+
+
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task21</Task>
+        </TaskRow>
+
+
+
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+
+
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircle> </CheckCircle>
+          <Task>This is Task28</Task>
+        </TaskRow>
+
+
 
 
 
