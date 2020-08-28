@@ -173,15 +173,18 @@ export const SpotlightTasks = () => {
           <CheckCircle> </CheckCircle>
           <Task>Dabba Yabba dabba doo Task 1</Task>
         </TaskRow>
+
         <TaskRow elevation ={1}>
           <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
+          <Task>This is Spotlight 2</Task>
         </TaskRow>
 
         <TaskRow elevation ={1}>
           <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>
         </TaskRow>
+
+        
         <TaskRow elevation ={1}>
           <CheckCircle> </CheckCircle>
           <Task>This is Task 1</Task>

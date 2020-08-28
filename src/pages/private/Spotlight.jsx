@@ -1,10 +1,19 @@
 import React, {Fragment} from 'react'
 
 import SpotLightTasks from './SpotLightTasks'
-
+import {UTCtoDate, DatetoUTC, convertMS} from '../../app/helpers/dateHelper'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
-import Paper from '@material-ui/core/Paper'
+
+// &&&&   TEMP Initial Store Import -- Get from Database
+import InitialStore from '../../app/redux/store/InitialStore'
+
+
+
+
+//  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
 
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -12,7 +21,14 @@ import InfoIcon from '@material-ui/icons/Info'
 import NotesIcon from '@material-ui/icons/Notes';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
+import Paper from '@material-ui/core/Paper'
 const theme = createMuiTheme(); // allows use of mui theme in styled component
+
+
+//  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+
 
 // ---------------------------------
 
@@ -454,7 +470,25 @@ const Task= styled('div')({
 
 export const Spotlight = (props) => {
 
-  console.log('[SPOTLIGHT ] ------------------' , props.id)
+  console.log('[SPOTLIGHT ] props id' , props.id)
+
+  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = InitialStore.spotlightData.spotlights.spot1
+
+
+  let targetDate  =  UTCtoDate(endEst)
+  let currentDate = new Date()
+  let currentUTCDate = DatetoUTC(currentDate)
+  let UTCTimeRemaining = endEst - currentUTCDate
+
+  let timeRemainingObject =  convertMS(UTCTimeRemaining)
+  let days = Math.abs(timeRemainingObject.day)
+  let hours = Math.abs(timeRemainingObject.hour)
+  let mins = Math.abs(timeRemainingObject.minute)
+  // let secs = Math.abs(timeRemainingObject.seconds)
+
+  console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins
+  )
+
 
   return (
     <Fragment>
@@ -482,7 +516,7 @@ export const Spotlight = (props) => {
       <div><CheckCircle>&nbsp; </CheckCircle></div>
       
       <Title>
-        Bubba his is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a titleThis is a title
+        {title}
 
       </Title>
     </TitleWrapper>
@@ -494,17 +528,21 @@ export const Spotlight = (props) => {
 
         <DetailRow>
           <DetailRowLeft>Target: </DetailRowLeft>
-          <DetailRowRight>Wed Aug 19 2020</DetailRowRight>
+          <DetailRowRight> {targetDate} </DetailRowRight>
         </DetailRow>
 
         <DetailRowOrange>
           <DetailRowLeft>Remaining: </DetailRowLeft>
-          <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
+          <DetailRowRight>{days} days {hours} hrs {mins} min</DetailRowRight>
         </DetailRowOrange>
 
         <DetailRow>
           <DetailRowLeft>Elapsed: </DetailRowLeft>
           <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
+        </DetailRow>
+        <DetailRow>
+          <DetailRowLeft>[ - ] </DetailRowLeft>
+          <DetailRowRight>make default popup</DetailRowRight>
         </DetailRow>
 
       </DetailWrapper>

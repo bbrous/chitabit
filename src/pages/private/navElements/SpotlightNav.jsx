@@ -379,9 +379,9 @@ const SpotlightNav = (props) => {
   // ##################TEMP ####################
 
 
-  console.log('[SpotlightNav] - props.display' , props.display.private.spotLightViews.displayedSpotLightId)
+  console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
 
-  let stateSpotlightId =  props.display.private.spotLightViews.displayedSpotLightId
+  let stateSpotlightId =  props.display.private.spotLightDisplay.displayedSpotLightId
   // let stateSpotlightId = props.view.displayId
   // let stateSpotlightId = 'all'
   // let stateSpotlightId = 'spot2'
@@ -448,6 +448,7 @@ const SpotlightNav = (props) => {
   ---------------------------------------------------*/
 
   const chooseDisplayType =()=>{
+    
     if(stateSpotlightId !== spot.id){
 
     return(

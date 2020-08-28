@@ -73,8 +73,8 @@ export const SpotlightMain = (props) => {
 
   // console.log('[SPOTLIGHT MAIN] view------------------' , props.view)
 
-  let spotlightDisplayed = props.view.private.spotLightViews.displaySpotLight
-  let spotlightId = props.view.private.spotLightViews.displayedSpotLightId
+  let spotlightDisplayed = props.view.private.spotLightDisplay.displaySpotLight
+  let spotlightId = props.view.private.spotLightDisplay.displayedSpotLightId
 
   return (
     <Wrapper>

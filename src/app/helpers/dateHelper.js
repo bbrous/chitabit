@@ -59,7 +59,7 @@ export function UTCtoDate(milSeconds){
   let day = new Date(milSeconds).getDate()
 
 
-  let dateReconstituted = day + ' ' + month + ' - ' + year
+  let dateReconstituted = day + ' ' + month + ', ' + year
 
  
 

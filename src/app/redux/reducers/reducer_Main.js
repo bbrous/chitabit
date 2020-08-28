@@ -33,13 +33,15 @@ import {
     display: 'spotlight',
     
 
-    spotLightViews: {
+    spotLightDisplay: {
       displaySpotLight: 'show',  // or 'none'  or 'show ' 
-      displayedSpotLightId: 'spot',
+      displayedSpotLightId: 'spot1',
       // spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
       
       // displaySpotLightPage: false,
     },
+
+    spotlights: {},
 
     journalDisplay: {
       currentDaY: '',

@@ -131,86 +131,133 @@ const InitialStore = {
 
   },// end topics
   
+  'spotlightData' : {
 
-  'spotlights': {
+    'popup' : {
+      'popupStatus' : 'show',
+      'popupId' : 'spot1'
 
-    'spot1': {
-      id: 'spot1',
-      title: 'Finish Spotlight',
-
-      timeStamp:  1596963600000, // Aug 9 2020 9AM
-      endEst: 1597708740000, // Aug 9 2020 11:59PM
-
-      startClock:  1596963600000, // Aug 9 2020 9AM
-      pauseClock: 1596963609999, // Aug 9 2020 9AM
-      endClock: 1596963609999, // Aug 9 2020 9AM
-      elapsedTime: 1596963609999, //calculate
-      
-      subTasks: [
-        {
-          id: 'task1',
-          type: 'task',  //or spotlight
-          completed: false,
-        },
-
-        {
-          id: 'spot2',
-          type: 'spotlight',  //or spotlight
-          completed: false,
-          timeStamp: 1597103940000, 
-          endEst: 1597103940000, // Aug 10 11:59 PM
-          elapsedTime: 1596963609999, //calculate
-
-          parent: '' // a spot Id or blank
-        },
-      ]
-        
 
     },
 
-    'spot2': {
-      id: 'spot2',
+    'spotlights': {
 
- 
-     
-      startDay:  1597103940000, // Aug 10 11:59 PM
-      
+      'spot1': {
+        id: 'spot1',
+        type: 'spotlight',
+        parent: '',
+        completed: false,
+
+        title: 'This is spotlight 1 in initial store',
+
+        timeStamp:  1598617933, // Aug 20 2020 8:32AM
+        endEst: 1599537599000, // Sep 7 2020 midnight
+
+        startClock:  1596963600000, // Aug 9 2020 9AM
+        pausedClock: 1596963609999, // Aug 9 2020 9AM
+        endClock: 1596963609999, // Aug 9 2020 9AM
+        clockStatus: 'stopped',  // or going
+        noteId: 'note1',
+   
         
+        taskArray: [
+          'task1',
+          'task2'
+         
+        ]
+          
 
-    },
+      },
 
-    'spot3': {
-      id: 'spot3',
- 
- 
-      startDay:  1597227180000, // Aug 12 2020 10:13AM 
+      'spot2': {
+        id: 'spot2',
+
+  
       
+        startDay:  1597103940000, // Aug 10 11:59 PM
         
+          
 
-    },
+      },
 
-    'spot5': {
-      id: 'spot5',
- 
-      startDay:  1597227180001, // Aug 12 2020 10:14AM 
+      'spot3': {
+        id: 'spot3',
+  
+  
+        startDay:  1597227180000, // Aug 12 2020 10:13AM 
+        
+          
+
+      },
+
+      'spot5': {
+        id: 'spot5',
+  
+        startDay:  1597227180001, // Aug 12 2020 10:14AM 
+        
+          
+
+      },
+
+      'spot4': {
+        id: 'spot4',
+  
+        
+        startDay:  1597486158000, // Aug 15 2020 11:59PM
+        endEst: 1598954958000, // 1 Aug 31 2020 11:13PM
+        endEstModified: 1598954958000 , // ?
+          
+
+      },
       
+
+    },// end spotlights 
+
+    'tasks': {
+
+      'task1' : {
+        id: 'task1',
+        type: 'task',  //or spotlight
+        parent: 'spot1',
+        completed: false,
+
+        title: 'This is spot 1 in initialStore',
+        noteId: ''
         
+      },
 
-    },
+      'task2' :{
+        id: 'task2',
+        type: 'task',  //or spotlight
+        parent: 'spot1',
+        completed: false,
 
-    'spot4': {
-      id: 'spot4',
- 
-      
-      startDay:  1597486158000, // Aug 15 2020 11:59PM
-      endEst: 1598954958000, // 1 Aug 31 2020 11:13PM
-      endEstModified: 1598954958000 , // ?
+        title: 'This is spot 2 in initialStore',
+        noteId: 'note2'
         
+      },
+    }, // end tasks
 
-    },
-    
+    'notes': {
 
-  }// end topics
+      'note1' : {
+        id: 'note1',
+        type: 'spotlight',  //or spotlight
+        parent: 'spot1',
+        note: 'I be a note for SPOTLIGHT 1',
+        timeStamp: 1597103940000, 
+      },
+
+      'note2' :{
+        id: 'note2',
+        type: 'task',  //or spotlight
+        parent: 'task2',
+        note: 'I be a note for Task 1',
+        timeStamp: 1597103940000, 
+      },
+    }, // end notes
+
+}// end spotlightData
  // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // ==================================================
