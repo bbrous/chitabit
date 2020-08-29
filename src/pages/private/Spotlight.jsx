@@ -1,9 +1,10 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 
 import SpotLightTasks from './SpotLightTasks'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../app/helpers/dateHelper'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
+import {SpotlightCheckbox} from '../../forms/formElements/CheckBox'
 
 // &&&&   TEMP Initial Store Import -- Get from Database
 import InitialStore from '../../app/redux/store/InitialStore'
@@ -178,13 +179,32 @@ const Title= styled('div')({
   },
 })
 
-const CheckCircle= styled('div')({
+const CheckCircleWrapper= styled('div')({
   
   width: '1.1rem',
-  height: '1.1rem',
+   
+  // border: '1px solid grey',
+ 
+  marginRight: '1rem',
+  // color: mediumGrey,
+
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const CheckCircle= styled('div')({
+  
+  width: '1.05rem',
+  height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
-  marginRight: '1rem',
+   
   // color: mediumGrey,
 
 
@@ -310,6 +330,20 @@ const DetailRowRight= styled('div')({
   },
 })
 
+const CheckBoxWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  marginTop: '8px',
+  color: 'grey',
+ 
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
 
 const IconsWrapper= styled('div')({
   display: 'flex',
@@ -476,7 +510,12 @@ export const Spotlight = (props) => {
 
 
   let targetDate  =  UTCtoDate(endEst)
+
+  
   let currentDate = new Date()
+
+
+
   let currentUTCDate = DatetoUTC(currentDate)
   let UTCTimeRemaining = endEst - currentUTCDate
 
@@ -484,9 +523,9 @@ export const Spotlight = (props) => {
   let days = Math.abs(timeRemainingObject.day)
   let hours = Math.abs(timeRemainingObject.hour)
   let mins = Math.abs(timeRemainingObject.minute)
-  // let secs = Math.abs(timeRemainingObject.seconds)
+  let secs = Math.abs(timeRemainingObject.seconds)
 
-  console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins
+  console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs
   )
 
 
@@ -513,7 +552,7 @@ export const Spotlight = (props) => {
 
 
     <TitleWrapper>
-      <div><CheckCircle>&nbsp; </CheckCircle></div>
+      <div><CheckCircleWrapper> <CheckCircle/></CheckCircleWrapper></div>
       
       <Title>
         {title}
@@ -533,7 +572,7 @@ export const Spotlight = (props) => {
 
         <DetailRowOrange>
           <DetailRowLeft>Remaining: </DetailRowLeft>
-          <DetailRowRight>{days} days {hours} hrs {mins} min</DetailRowRight>
+          <DetailRowRight>{days} days {hours} hrs {mins} min {secs} secs</DetailRowRight>
         </DetailRowOrange>
 
         <DetailRow>
@@ -541,8 +580,16 @@ export const Spotlight = (props) => {
           <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
         </DetailRow>
         <DetailRow>
-          <DetailRowLeft>[ - ] </DetailRowLeft>
-          <DetailRowRight>make default popup</DetailRowRight>
+          
+          <CheckBoxWrapper>   
+            <SpotlightCheckbox   
+            checked = {true}  
+            // onClick = {(evt)=> handleDefault(evt)}
+          /> 
+          <div>   make default popup  </div>
+          </CheckBoxWrapper>
+           
+         
         </DetailRow>
 
       </DetailWrapper>

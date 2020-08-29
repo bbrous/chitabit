@@ -84,13 +84,32 @@ const Task= styled('div')({
   },
 })
 // -----------------------------
-const CheckCircle= styled('div')({
+const CheckCircleWrapper= styled('div')({
   
   width: '1.1rem',
-  height: '1.1rem',
+   
+  // border: '1px solid grey',
+  
+  marginRight: '1rem',
+  // color: mediumGrey,
+
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const CheckCircle= styled('div')({
+  
+  width: '1.05rem',
+  height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
-  marginRight: '1rem',
+   
   // color: mediumGrey,
 
 
@@ -113,7 +132,7 @@ const IconsWrapper= styled('div')({
   alignItems: 'center',
   height: '100%',
   // backgroundColor: 'yellow',
-   
+   marginLeft: '1rem',
 
   
 
@@ -129,6 +148,7 @@ const NoteIcon= styled(NotesIcon)({
   borderRadius: '5px',
   fontSize: '1.3rem',
   color: 'white',
+  margin: '2px 0',
   // backgroundColor: 'yellow',
    
 
@@ -145,6 +165,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
   
   color:chitOrange,
   fontSize: '1.6rem',
+  margin: '2px 0',
   // backgroundColor: 'yellow',
    
 
@@ -158,7 +179,56 @@ const ClockIcon= styled(QueryBuilderIcon)({
 })
 
 
+// const IconsWrapper= styled('div')({
+//   display: 'flex',
+//   flexDirection: 'row',
+//   justifyContent: 'space-between',
+//   alignItems: 'center',
+//   height: '8rem',
+//   backgroundColor: 'yellow',
+   
 
+  
+
+
+//   [theme.breakpoints.down('sm')] : {
+//     // height: '1.25rem',
+//     // backgroundColor: 'red'
+//   },
+// })
+
+// const NoteIcon= styled(NotesIcon)({
+//   backgroundColor: chitOrange,
+//   borderRadius: '5px',
+//   fontSize: '1.3rem',
+//   color: 'white',
+//   // backgroundColor: 'yellow',
+   
+
+  
+
+
+//   [theme.breakpoints.down('sm')] : {
+//     // height: '1.25rem',
+//     // backgroundColor: 'red'
+//   },
+// })
+
+// const ClockIcon= styled(QueryBuilderIcon)({
+  
+//   color:chitOrange,
+//   fontSize: '1.6rem',
+//   // backgroundColor: 'yellow',
+   
+
+  
+
+
+//   [theme.breakpoints.down('sm')] : {
+//     // height: '1.25rem',
+//     // backgroundColor: 'red'
+//   },
+// })
 
 
 // ====================================
@@ -170,110 +240,131 @@ export const SpotlightTasks = () => {
 
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>Dabba Yabba dabba doo Task 1</Task>
         </TaskRow>
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Spotlight 2</Task>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
+          <Task>
+
+            This is Spotlight 2
+            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2            
+            This is Spotlight 2
+
+          </Task>
+            <IconsWrapper>
+            <ClockIcon/>
+          <NoteIcon/>
+          
+          </IconsWrapper>
+
         </TaskRow>
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
 
         
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
 
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
 
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+
+
+        <TaskRow elevation ={1}>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+
+        <TaskRow elevation ={1}>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task21</Task>
         </TaskRow>
 
 
 
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
 
+
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
         </TaskRow>
         <TaskRow elevation ={1}>
-          <CheckCircle> </CheckCircle>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+
+        <TaskRow elevation ={1}>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
+          <Task>This is Task 1</Task>
+        </TaskRow>
+        <TaskRow elevation ={1}>
+          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task28</Task>
         </TaskRow>
 
