@@ -41,7 +41,75 @@ import {
       // displaySpotLightPage: false,
     },
 
-    spotlights: {},
+    spotlights: {
+
+      'spot1': {
+        id: 'spot1',
+        type: 'spotlight',
+        parent: '',
+        completed: false,
+
+        title: 'This is spotlight 1 in initial store',
+
+        timeStamp:  1598617933, // Aug 20 2020 8:32AM
+        endEst: 1599537599000, // Sep 7 2020 midnight
+
+        startClock:  1596963600000, // Aug 9 2020 9AM
+        pausedClock: 1596963609999, // Aug 9 2020 9AM
+        endClock: 1596963609999, // Aug 9 2020 9AM
+        clockStatus: 'stopped',  // or going
+        noteId: 'note1',
+   
+        
+        taskArray: [
+          'task1',
+          'task2', 
+          'spot2',
+          'task3'
+         
+        ],
+
+        'tasks': {
+
+          'task1' : {
+            id: 'task1',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'This is spot 1 in initialStore',
+            noteId: ''
+            
+          },
+    
+          'task2' :{
+            id: 'task2',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'This is spot 2 in initialStore',
+            noteId: 'note2'
+            
+          },
+
+              
+          'task3' :{
+            id: 'task3',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'This is spot 2 in initialStore',
+            noteId: 'note2'
+            
+          },
+
+        }, // end tasks
+          
+
+      },
+
+
+
+    },
 
     journalDisplay: {
       currentDaY: '',

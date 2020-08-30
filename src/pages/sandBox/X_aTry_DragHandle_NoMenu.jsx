@@ -20,9 +20,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 // React Sortable HOC ----------------------------------------------
 
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
+import { SortableContainer, SortableElement, sortableHandle } from "react-sortable-hoc";
 import arrayMove from "array-move";
-
+ 
 // React Sortable HOC ----------------------------------------------
 
 
@@ -95,7 +95,7 @@ const DivArea = styled('div')({
 
   '& ul': {
     width: '98%',
-    backgroundColor: 'purple',
+    // backgroundColor: 'purple',
     listStyleType: 'none',
     margin: '0',
     padding: '0',
@@ -128,6 +128,18 @@ const MenuHeader = styled('div')({
   
 })
 
+const DragDiv = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'orange',
+  textAlign: 'center',
+  height: '100%',
+  width: '2rem'
+
+  
+})
+
 
 
 
@@ -137,6 +149,8 @@ const initialState = {
   mouseX: null,
   mouseY: null,
 };
+
+const DragHandle = sortableHandle(() => <DragDiv>::</DragDiv>);
 // =================================================
 const SortableItem = SortableElement(({ handleClick,value }) => {
 
@@ -176,8 +190,11 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
         onContextMenu={handleRightClick} 
         onClick = {handleClose}
         id = {value.id}
-      ><div>Title: {value.title}</div> <div>Time: {value.Time}</div>
-
+      >
+       <DragHandle />
+        <div>Title: {value.title}</div> 
+        <div>Time: {value.Time}</div>
+ 
       <Menu
               keepMounted
               open={state.mouseY !== null}
@@ -232,7 +249,34 @@ const SortableList = SortableContainer(({ items }) => {
 const ATry = (props) => {
 
  
+
+/* #######################################################
+
+
+1.  get array from redux props
+    structure array[{id: 1, type: task}, {id: 5, type: 'spotlight'}]
+
+2.  create new "complex" array to use in sortable -- (items in useState)
+    use props.task#.id to get title, etc
+         or
+        props.
+3.  in useEffect - 
+     a. get new "complex" array after sort
+     b. create new array - convert back to simplified form
+     c. execute action to update Redux Store
+
+
+
+
+
+####################################################### */
+
+
   // set local state for items -----------------
+
+
+
+// ##### REPLACE   REPLACE   REPLACE   ############################
 
   const [items, setItems] = useState([
     {id: "Item 1", title: "TITLE _ Item 1", Time: '0889977'},
@@ -242,6 +286,8 @@ const ATry = (props) => {
     {id: "Item 5", title: "TITLE _ Item 5", Time: '0889977'},
     {id: "Item 6", title: "TITLE _ Item 6", Time: '0889977'}
   ]);
+// ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
+
 
 
   useEffect(() => {
@@ -274,7 +320,7 @@ const ATry = (props) => {
          
           {/* ----  Move Items  Executable - --  */}
 
-          <SortableList items={items} onSortEnd={onSortEnd} />
+          <SortableList items={items} onSortEnd={onSortEnd} useDragHandle/>
 
 
 

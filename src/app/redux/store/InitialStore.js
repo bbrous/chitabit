@@ -162,9 +162,46 @@ const InitialStore = {
         
         taskArray: [
           'task1',
-          'task2'
+          'task2', 
+          'spot2',
+          'task3'
          
-        ]
+        ],
+
+        'tasks': {
+
+          'task1' : {
+            id: 'task1',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'This is spot 1 in initialStore',
+            noteId: ''
+            
+          },
+    
+          'task2' :{
+            id: 'task2',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'This is spot 2 in initialStore',
+            noteId: 'note2'
+            
+          },
+
+              
+          'task3' :{
+            id: 'task3',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'This is spot 2 in initialStore',
+            noteId: 'note2'
+            
+          },
+
+        }, // end tasks
           
 
       },
@@ -213,30 +250,7 @@ const InitialStore = {
 
     },// end spotlights 
 
-    'tasks': {
 
-      'task1' : {
-        id: 'task1',
-        type: 'task',  //or spotlight
-        parent: 'spot1',
-        completed: false,
-
-        title: 'This is spot 1 in initialStore',
-        noteId: ''
-        
-      },
-
-      'task2' :{
-        id: 'task2',
-        type: 'task',  //or spotlight
-        parent: 'spot1',
-        completed: false,
-
-        title: 'This is spot 2 in initialStore',
-        noteId: 'note2'
-        
-      },
-    }, // end tasks
 
     'notes': {
 

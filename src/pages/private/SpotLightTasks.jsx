@@ -262,7 +262,8 @@ export const SpotlightTasks = () => {
             This is Spotlight 2
 
           </Task>
-            <IconsWrapper>
+
+          <IconsWrapper>
             <ClockIcon/>
           <NoteIcon/>
           
@@ -284,7 +285,16 @@ export const SpotlightTasks = () => {
 
         <TaskRow elevation ={1}>
           <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
+          <Task>This is Task 1 bbb  T
+          This is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  T
+
+
+          </Task>
+          <IconsWrapper>
+             
+          <NoteIcon/>
+          
+          </IconsWrapper>
         </TaskRow>
         <TaskRow elevation ={1}>
           <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
