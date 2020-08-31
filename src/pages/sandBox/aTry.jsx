@@ -2,7 +2,7 @@ import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
 import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
-
+import Tasks from './aTryTasks'
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled} from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -81,222 +81,29 @@ const PageHeader= styled('div')({
 })
 
 const ContentArea = styled('div')({
-  display: 'block',
+  display: 'flex',
+  justifyContent: 'center',
   width: '90%',
   height: '90%',
   border: '1px solid black'
 })
 
-const DivArea = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-
-  width: '300px',
-  height: '90%',
-  backgroundColor: 'yellow',
-
-  '& ul': {
-    width: '98%',
-    // backgroundColor: 'purple',
-    listStyleType: 'none',
-    margin: '0',
-    padding: '0',
-  },
-
-  '& li': {
-    width: '98%',
-    backgroundColor: 'white'
-    
-  }
-
-
-})
-
-const ItemWrapper = styled(Paper)({
-  display: 'flex',
-  justifyContent: 'space-between',
- alignItems: 'center',
-
-  width: '99%',
-  height: '3rem',
-  margin: '2px 0',
-  
-})
-const MenuHeader = styled('div')({
-  display: 'block',
-  backgroundColor: 'lightyellow',
-  textAlign: 'center'
-
-  
-})
-
-const DragDiv = styled('div')({
+const ContentAreaSmall = styled('div')({
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: 'orange',
-  textAlign: 'center',
-  height: '100%',
-  width: '2rem'
-
+  width: '40%',
   
-})
-
-const MenuItemStyled = styled(MenuItem)({
-  color: 'red'
-
-  
+  border: '1px solid black'
 })
 
 
+
+
+
+
+
  
 
-const initialState = {
-  mouseX: null,
-  mouseY: null,
-};
-
-const DragHandle = sortableHandle(() => <DragDiv>::</DragDiv>);
-// =================================================
-const SortableItem = SortableElement(({ handleClick,value }) => {
-
-
-
-  // ----- Popup Menu actions  -------------------------
- 
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
-
-
-
-
-
-
-
-  //--------------------------------------------------- []
-
-  return(
-
-
-      <ItemWrapper
-       
-        id = {value.id}
-      >
-       <DragHandle />
-        <div>Title: {value.title}</div> 
-        <div>Time: {value.Time}</div>
-
-
-{/* ############################################################### */}
-
-       
-
- {/* ############################################################### */}
- {/* <Paper >
-        <MenuList>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
-          <MenuItem>Logout</MenuItem>
-        </MenuList>
-      </Paper> */}
-
-      <MenuIcon
-       ref={anchorRef}
-       aria-controls={open ? 'menu-list-grow' : undefined}
-       aria-haspopup="true"
-       onClick={handleToggle}
-      
-      
-      
-      />
-
-
-<Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                  <MenuItem onClick={handleClose}> Cancel </MenuItem>
-              <MenuItemStyled onClick={handleClose}>Convert / Open to Spotlight: {value.id}</MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}>Add a Note</MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-
-      
-
-{/* ############################################################### */}
-
-
-
-
-      </ItemWrapper>
- 
-  )// end RETURN Sortable Item
-
-})// end SortableItem
-    
-
-
-
-
-// ------- Map of Items   --------------------[]
-
-
-const SortableList = SortableContainer(({ items }) => {
-  return (
-
-    <ul>
-      {items.map((value, index) => (
-         <Fragment>
-        <SortableItem key={`item-${index}`} index={index} value={value} 
-       
-        />
-        </Fragment>
-      ))}
-    </ul>
-  );
-});
 
 
 
@@ -305,58 +112,6 @@ const SortableList = SortableContainer(({ items }) => {
 const ATry = (props) => {
 
  
-
-/* #######################################################
-
-
-1.  get array from redux props
-    structure array[{id: 1, type: task}, {id: 5, type: 'spotlight'}]
-
-2.  create new "complex" array to use in sortable -- (items in useState)
-    use props.task#.id to get title, etc
-         or
-        props.
-3.  in useEffect - 
-     a. get new "complex" array after sort
-     b. create new array - convert back to simplified form
-     c. execute action to update Redux Store
-
-
-
-
-
-####################################################### */
-
-
-  // set local state for items -----------------
-
-
-
-// ##### REPLACE   REPLACE   REPLACE   ############################
-
-  const [items, setItems] = useState([
-    {id: "Item 1", title: "TITLE _ Item 1", Time: '0889977'},
-    {id: "Item 2", title: "TITLE _ Item 2", Time: '0889977'},
-    {id: "Item 3", title: "TITLE _ Item 3", Time: '0889977'},
-    {id: "Item 4", title: "TITLE _ Item 4", Time: '0889977'},
-    {id: "Item 5", title: "TITLE _ Item 5", Time: '0889977'},
-    {id: "Item 6", title: "TITLE _ Item 6", Time: '0889977'}
-  ]);
-// ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
-
-
-
-  useEffect(() => {
-    console.log('[ATry] - new items array'  , items)
-    
-  }, [items]);
-
-
-  // onSortEnd - creates the new array index after move
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    setItems(arrayMove(items, oldIndex, newIndex));
-  };
 
 
  
@@ -370,20 +125,20 @@ const ATry = (props) => {
         <PageHeader> aTry Javascript and Redux  </PageHeader>
         
         <ContentArea>
-        <div> Put Content Here </div>
-        <DivArea>
-         
-         
-          {/* ----  Move Items  Executable - --  */}
-
-          <SortableList items={items} onSortEnd={onSortEnd} useDragHandle/>
 
 
+<ContentAreaSmall>
+<Tasks/>
 
-        </DivArea>
-        <div>
+</ContentAreaSmall>
+        
        
-        </div>
+
+
+
+
+
+
 
         </ContentArea>
       </Wrapper>

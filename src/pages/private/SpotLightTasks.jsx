@@ -8,6 +8,7 @@ import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 import NotesIcon from '@material-ui/icons/Notes';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
@@ -178,6 +179,23 @@ const ClockIcon= styled(QueryBuilderIcon)({
   },
 })
 
+const Options= styled(MenuIcon)({
+  
+  color:chitOrange,
+  fontSize: '1.6rem',
+  margin: '2px 0',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
 
 // const IconsWrapper= styled('div')({
 //   display: 'flex',
@@ -274,6 +292,11 @@ export const SpotlightTasks = () => {
         <TaskRow elevation ={1}>
           <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
           <Task>This is Task 1</Task>
+          
+            <Options/>
+        
+          
+          
         </TaskRow>
 
         
