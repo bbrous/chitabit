@@ -69,7 +69,7 @@ const ListWrapper = styled('div')({
 
   width: '100%',
   height: '90%',
-  backgroundColor: 'yellow',
+  // backgroundColor: 'yellow',
 
   '& ul': {
     width: '98%',
@@ -94,7 +94,7 @@ const ItemWrapper = styled(Paper)({
  alignItems: 'center',
 
   width: '99%',
-  height: '3rem',
+  
   margin: '2px 0',
   
 })
@@ -106,7 +106,20 @@ const TaskWrapper = styled('div')({
   height: '100%',
   flexGrow: '1',
  
-  textAlign: 'center'
+  textAlign: 'center',
+  // backgroundColor: 'blue',
+  
+})
+
+const TaskBlockWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column' , 
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  width: '100%',
+ 
+//  backgroundColor: 'red',
+ 
 
   
 })
@@ -114,24 +127,45 @@ const TaskWrapper = styled('div')({
 const TaskBlock = styled('div')({
   display: 'flex',
 
-  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  // width: '100%',
  
- 
+//  backgroundColor: 'red',
  
 
   
 })
 
- 
-
 const DragDiv = styled('div')({
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'orange',
+  // backgroundColor: 'orange',
+ 
+  height: '100%',
+  width: '1.2rem',
+  marginRight: '8px',
+  cursor: 'pointer',
+
+  '&:hover' : {
+    backgroundColor:chitOrangeLight
+  }
+
+  
+})
+
+const HamburgerDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  // backgroundColor: 'orange',
   textAlign: 'center',
   height: '100%',
-  width: '2rem'
+  width: '2rem',
+  cursor: 'pointer'
 
   
 })
@@ -178,10 +212,11 @@ const CheckCircle= styled('div')({
 const NoteIcon= styled(NotesIcon)({
   backgroundColor: chitOrange,
   borderRadius: '5px',
-  fontSize: '1.3rem',
+  fontSize: '.8rem',
   color: 'white',
-  // backgroundColor: 'yellow',
-   
+  margin: '.25rem .5rem ',
+  cursor: 'pointer',
+  
 
   
 
@@ -195,7 +230,45 @@ const NoteIcon= styled(NotesIcon)({
 const ClockIcon= styled(QueryBuilderIcon)({
   
   color:chitOrange,
-  fontSize: '1.6rem',
+  fontSize: '1rem',
+  margin: '.25rem .5rem',
+ cursor: 'pointer',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const Hamburger= styled(MenuIcon)({
+  
+  color:chitOrange,
+  fontSize: '1.2rem',
+  margin: '0 .5rem',
+ cursor: 'pointer',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+const IconWrapper= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  padding: '0 0 4px 0',
+  width: '100%',
+  // height: '1rem',
   // backgroundColor: 'yellow',
    
 
@@ -207,6 +280,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
     // backgroundColor: 'red'
   },
 })
+
 // =======================================
 
 const MenuItemStyled = styled(MenuItem)({
@@ -223,7 +297,7 @@ const initialState = {
   mouseY: null,
 };
 
-const DragHandle = sortableHandle(() => <DragDiv>::</DragDiv>);
+const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 // =================================================
 const SortableItem = SortableElement(({ handleClick,value }) => {
 
@@ -280,12 +354,19 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
       >
        <DragHandle />
        <TaskWrapper>
-        <TaskBlock>
+        <TaskBlockWrapper>
 
-        <div>Title: {value.title}</div> 
-        <div>Time: {value.Time}</div>
+          <IconWrapper><ClockIcon/><NoteIcon/></IconWrapper>
 
-        </TaskBlock>
+          <TaskBlock>  
+            <div>Title: {value.title}</div> 
+            <div>Time: {value.Time}</div>
+
+          </TaskBlock>
+          
+          <IconWrapper> &nbsp; </IconWrapper>
+
+        </TaskBlockWrapper>
 
        </TaskWrapper>
         
@@ -304,7 +385,7 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
         </MenuList>
       </Paper> */}
 
-      <MenuIcon
+      <Hamburger
        ref={anchorRef}
        aria-controls={open ? 'menu-list-grow' : undefined}
        aria-haspopup="true"
@@ -329,8 +410,8 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
               <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
               
               <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}> <NoteIcon/> </MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}> <ClockIcon/> </MenuItemStyled>
+              {/* <MenuItemStyled onClick={handleClose}> <NoteIcon/> </MenuItemStyled>
+              <MenuItemStyled onClick={handleClose}> <ClockIcon/> </MenuItemStyled> */}
 
 
                   </MenuList>

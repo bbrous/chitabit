@@ -2,6 +2,8 @@ import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
 import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 
+import InitialStore from '../../app/redux/store/InitialStore'
+
 import Tasks from './aTryTasks'
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled} from '@material-ui/core/styles'
