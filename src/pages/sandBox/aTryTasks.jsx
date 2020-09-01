@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import{updateTaskArray} from '../../app/redux/actions/mainActions'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
+
+import MenuPopup from './MenuPopup'
+
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
@@ -12,16 +15,12 @@ import Paper from '@material-ui/core/Paper'
 
 // Material UI Context Menu  -------------------------------------
 
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
- 
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
+
+
 
 import NotesIcon from '@material-ui/icons/Notes';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-import MenuIcon from '@material-ui/icons/Menu';
+
 
 
 
@@ -232,22 +231,6 @@ const ClockIcon= styled(QueryBuilderIcon)({
   },
 })
 
-const Hamburger= styled(MenuIcon)({
-  
-  color:chitOrange,
-  fontSize: '1.2rem',
-  margin: '0 .5rem',
- cursor: 'pointer',
-   
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
 
 
 const IconWrapper= styled('div')({
@@ -271,12 +254,6 @@ const IconWrapper= styled('div')({
 
 // =======================================
 
-const MenuItemStyled = styled(MenuItem)({
-  color: chitBlueDull,
-  fontSize: '.8rem'
-
-  
-})
 
 
  
@@ -292,39 +269,9 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
 
 
 
-  // ----- Popup Menu actions  -------------------------
- 
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
 
-    setOpen(false);
-  };
-
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
 
 
 
@@ -357,63 +304,11 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
           
           <IconWrapper><ClockIcon/><NoteIcon/></IconWrapper>
         </TaskBlockWrapper>
-
+        
        </TaskWrapper>
         
 
-
-{/* ############################################################### */}
-
-       
-
- {/* ############################################################### */}
- {/* <Paper >
-        <MenuList>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
-          <MenuItem>Logout</MenuItem>
-        </MenuList>
-      </Paper> */}
-
-      <Hamburger
-       ref={anchorRef}
-       aria-controls={open ? 'menu-list-grow' : undefined}
-       aria-haspopup="true"
-       onClick={handleToggle}
-      
-      
-      
-      />
-
-
-<Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                  <MenuItem onClick={handleClose}> Cancel </MenuItem>
-              <MenuItemStyled onClick={handleClose}>Convert / Open to Spotlight: {value.id}</MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
-              
-              <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
-              {/* <MenuItemStyled onClick={handleClose}> <NoteIcon/> </MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}> <ClockIcon/> </MenuItemStyled> */}
-
-
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-
-      
-
-{/* ############################################################### */}
+       <MenuPopup id = {value.id}/>
 
 
 

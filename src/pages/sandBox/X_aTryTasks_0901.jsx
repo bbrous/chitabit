@@ -1,11 +1,14 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
-import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
-
+import{updateTaskArray} from '../../app/redux/actions/mainActions'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
-import { styled} from '@material-ui/core/styles'
+import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
+
+
+
 
 // Material UI Context Menu  -------------------------------------
 
@@ -15,7 +18,14 @@ import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+
+import NotesIcon from '@material-ui/icons/Notes';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import MenuIcon from '@material-ui/icons/Menu';
+
+
+
+
 // Material UI Context Menu  -------------------------------------
 
 
@@ -29,21 +39,12 @@ import arrayMove from "array-move";
  
 // React Sortable HOC ----------------------------------------------
 
+const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 
 
 
-
-const BodyWrapper= styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  
-  backgroundColor: 'white',
-  width: '100vw',
-  height: '100vh',
-
-})
+ 
 
 const Wrapper= styled('div')({
   display: 'flex',
@@ -52,50 +53,23 @@ const Wrapper= styled('div')({
   alignItems: 'center',
   
   backgroundColor: 'white',
-  width: '99vw',
-  height: '99vh',
+  width: '100%',
+   
   border: '1px solid orange'
 })
 
-const TryIt= styled(NavLink)({
-  display: 'block',
-  position: 'absolute',
-  top: '1rem',
-  right: '1rem',
+ 
+ 
 
-  height: '2rem',
-  width: '2rem',
-  backgroundImage: 'radial-gradient(#FF6347, #DC143C)',
-  borderRadius: '50px',
-
-  '&:hover': {
-    backgroundImage: 'radial-gradient(#FF6347, orange)',
-  }
-
-})
-
-const PageHeader= styled('div')({
-  fontSize: '1.2rem',
-  color: 'orange',
-  marginBottom: '2rem',
-})
-
-const ContentArea = styled('div')({
-  display: 'block',
-  width: '90%',
-  height: '90%',
-  border: '1px solid black'
-})
-
-const DivArea = styled('div')({
+const ListWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
 
-  width: '300px',
+  width: '100%',
   height: '90%',
-  backgroundColor: 'yellow',
+  // backgroundColor: 'yellow',
 
   '& ul': {
     width: '98%',
@@ -120,32 +94,186 @@ const ItemWrapper = styled(Paper)({
  alignItems: 'center',
 
   width: '99%',
-  height: '3rem',
+  
   margin: '2px 0',
   
 })
-const MenuHeader = styled('div')({
-  display: 'block',
-  backgroundColor: 'lightyellow',
-  textAlign: 'center'
+const TaskWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexGrow: '1',
+ 
+  textAlign: 'center',
+  // backgroundColor: 'blue',
+  
+})
+
+const TaskBlockWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column' , 
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  width: '100%',
+ 
+//  backgroundColor: 'red',
+ 
+
+  
+})
+
+const TaskBlock = styled('div')({
+  display: 'flex',
+
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  // width: '100%',
+ 
+ 
+ 
 
   
 })
 
 const DragDiv = styled('div')({
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'orange',
-  textAlign: 'center',
+  // backgroundColor: 'orange',
+ 
   height: '100%',
-  width: '2rem'
+  width: '1.2rem',
+  marginRight: '8px',
+  marginBottom: '4px',
+  cursor: 'pointer',
+
+  '&:hover' : {
+    backgroundColor:chitOrangeLight
+  }
 
   
 })
 
+
+const CheckCircleWrapper= styled('div')({
+  
+  width: '1.1rem',
+   
+  // border: '1px solid grey',
+ 
+  marginRight: '1rem',
+  // color: mediumGrey,
+
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const CheckCircle= styled('div')({
+  
+  width: '1.05rem',
+  height: '1.05rem',
+  border: '1px solid grey',
+  borderRadius: '200px',
+   
+  // color: mediumGrey,
+
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+const NoteIcon= styled(NotesIcon)({
+  backgroundColor: chitOrange,
+  borderRadius: '5px',
+  fontSize: '.8rem',
+  color: 'white',
+  margin: '.25rem .5rem ',
+  cursor: 'pointer',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const ClockIcon= styled(QueryBuilderIcon)({
+  
+  color:chitOrange,
+  fontSize: '1rem',
+  margin: '.25rem .5rem',
+ cursor: 'pointer',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const Hamburger= styled(MenuIcon)({
+  
+  color:chitOrange,
+  fontSize: '1.2rem',
+  margin: '0 .5rem',
+ cursor: 'pointer',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+const IconWrapper= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  padding: '0 0 4px 0',
+  width: '100%',
+  // height: '1rem',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+// =======================================
+
 const MenuItemStyled = styled(MenuItem)({
-  color: 'red'
+  color: chitBlueDull,
+  fontSize: '.8rem'
 
   
 })
@@ -158,7 +286,7 @@ const initialState = {
   mouseY: null,
 };
 
-const DragHandle = sortableHandle(() => <DragDiv>::</DragDiv>);
+const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 // =================================================
 const SortableItem = SortableElement(({ handleClick,value }) => {
 
@@ -214,8 +342,24 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
         id = {value.id}
       >
        <DragHandle />
-        <div>Title: {value.title}</div> 
-        <div>Time: {value.Time}</div>
+       <TaskWrapper>
+        <TaskBlockWrapper>
+        <IconWrapper> &nbsp; </IconWrapper>
+          
+
+          <TaskBlock>  
+            <CheckCircleWrapper><CheckCircle/></CheckCircleWrapper>
+          
+            <div>Title: {value.title}</div> 
+
+          </TaskBlock>
+          
+          
+          <IconWrapper><ClockIcon/><NoteIcon/></IconWrapper>
+        </TaskBlockWrapper>
+
+       </TaskWrapper>
+        
 
 
 {/* ############################################################### */}
@@ -231,7 +375,7 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
         </MenuList>
       </Paper> */}
 
-      <MenuIcon
+      <Hamburger
        ref={anchorRef}
        aria-controls={open ? 'menu-list-grow' : undefined}
        aria-haspopup="true"
@@ -254,8 +398,12 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
                   <MenuItem onClick={handleClose}> Cancel </MenuItem>
               <MenuItemStyled onClick={handleClose}>Convert / Open to Spotlight: {value.id}</MenuItemStyled>
               <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}>Add a Note</MenuItemStyled>
+              
               <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
+              {/* <MenuItemStyled onClick={handleClose}> <NoteIcon/> </MenuItemStyled>
+              <MenuItemStyled onClick={handleClose}> <ClockIcon/> </MenuItemStyled> */}
+
+
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -288,11 +436,12 @@ const SortableList = SortableContainer(({ items }) => {
 
     <ul>
       {items.map((value, index) => (
-         <Fragment>
+        
+            
         <SortableItem key={`item-${index}`} index={index} value={value} 
        
         />
-        </Fragment>
+         
       ))}
     </ul>
   );
@@ -302,7 +451,7 @@ const SortableList = SortableContainer(({ items }) => {
 
 
 
-const ATry = (props) => {
+const Tasks = (props) => {
 
  
 
@@ -348,6 +497,7 @@ const ATry = (props) => {
 
   useEffect(() => {
     console.log('[ATry] - new items array'  , items)
+ 
     
   }, [items]);
 
@@ -364,14 +514,10 @@ const ATry = (props) => {
 
 
   return (
-    <BodyWrapper>
+
       <Wrapper>
-        <TryIt to="/">  </TryIt>
-        <PageHeader> aTry Javascript and Redux  </PageHeader>
-        
-        <ContentArea>
-        <div> Put Content Here </div>
-        <DivArea>
+
+        <ListWrapper>
          
          
           {/* ----  Move Items  Executable - --  */}
@@ -380,14 +526,10 @@ const ATry = (props) => {
 
 
 
-        </DivArea>
-        <div>
-       
-        </div>
+        </ListWrapper>
 
-        </ContentArea>
       </Wrapper>
-    </BodyWrapper>
+
 
   )
 }
@@ -395,13 +537,14 @@ const ATry = (props) => {
 const actions = {
   // showSpotLight,
   // closeSpotLight
+  updateTaskArray
 }
 
 const mapState = state => ({
   view: state
 });
 
-export default connect(mapState, actions)(ATry)
+export default connect(mapState, actions)(Tasks)
 
 
 
