@@ -5,6 +5,8 @@ import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chit
 
 
 import MenuPopup from './MenuPopup'
+import ClockPopup from './ClockPopup'
+import NotePopup from './NotePopup'
 
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -13,13 +15,6 @@ import Paper from '@material-ui/core/Paper'
 
 
 
-// Material UI Context Menu  -------------------------------------
-
-
-
-
-import NotesIcon from '@material-ui/icons/Notes';
-import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
 
 
@@ -184,6 +179,7 @@ const CheckCircle= styled('div')({
   borderRadius: '200px',
    
   // color: mediumGrey,
+  // backgroundColor: lightGrey,
 
 
   
@@ -196,41 +192,9 @@ const CheckCircle= styled('div')({
 })
 
 
-const NoteIcon= styled(NotesIcon)({
-  backgroundColor: chitOrange,
-  borderRadius: '5px',
-  fontSize: '.8rem',
-  color: 'white',
-  margin: '.25rem .5rem ',
-  cursor: 'pointer',
-  
-
-  
 
 
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const ClockIcon= styled(QueryBuilderIcon)({
-  
-  color:chitOrange,
-  fontSize: '1rem',
-  margin: '.25rem .5rem',
- cursor: 'pointer',
-   
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
+ 
 
 
 const IconWrapper= styled('div')({
@@ -302,7 +266,10 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
           </TaskBlock>
           
           
-          <IconWrapper><ClockIcon/><NoteIcon/></IconWrapper>
+          <IconWrapper>
+              <ClockPopup id = {value.id}/>
+              <NotePopup id = {value.id}/>
+            </IconWrapper>
         </TaskBlockWrapper>
         
        </TaskWrapper>
