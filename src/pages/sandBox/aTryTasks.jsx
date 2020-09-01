@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
-import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
+import{updateTaskArray} from '../../app/redux/actions/mainActions'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
@@ -131,7 +131,7 @@ const TaskBlock = styled('div')({
   justifyContent: 'flex-start',
   // width: '100%',
  
-//  backgroundColor: 'red',
+ 
  
 
   
@@ -147,6 +147,7 @@ const DragDiv = styled('div')({
   height: '100%',
   width: '1.2rem',
   marginRight: '8px',
+  marginBottom: '4px',
   cursor: 'pointer',
 
   '&:hover' : {
@@ -156,19 +157,6 @@ const DragDiv = styled('div')({
   
 })
 
-const HamburgerDiv = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  // backgroundColor: 'orange',
-  textAlign: 'center',
-  height: '100%',
-  width: '2rem',
-  cursor: 'pointer'
-
-  
-})
 
 const CheckCircleWrapper= styled('div')({
   
@@ -284,7 +272,8 @@ const IconWrapper= styled('div')({
 // =======================================
 
 const MenuItemStyled = styled(MenuItem)({
-  color: 'red'
+  color: chitBlueDull,
+  fontSize: '.8rem'
 
   
 })
@@ -355,17 +344,18 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
        <DragHandle />
        <TaskWrapper>
         <TaskBlockWrapper>
-
-          <IconWrapper><ClockIcon/><NoteIcon/></IconWrapper>
+        <IconWrapper> &nbsp; </IconWrapper>
+          
 
           <TaskBlock>  
+            <CheckCircleWrapper><CheckCircle/></CheckCircleWrapper>
+          
             <div>Title: {value.title}</div> 
-            <div>Time: {value.Time}</div>
 
           </TaskBlock>
           
-          <IconWrapper> &nbsp; </IconWrapper>
-
+          
+          <IconWrapper><ClockIcon/><NoteIcon/></IconWrapper>
         </TaskBlockWrapper>
 
        </TaskWrapper>
@@ -446,11 +436,12 @@ const SortableList = SortableContainer(({ items }) => {
 
     <ul>
       {items.map((value, index) => (
-         <Fragment>
+        
+            
         <SortableItem key={`item-${index}`} index={index} value={value} 
        
         />
-        </Fragment>
+         
       ))}
     </ul>
   );
@@ -506,6 +497,7 @@ const Tasks = (props) => {
 
   useEffect(() => {
     console.log('[ATry] - new items array'  , items)
+ 
     
   }, [items]);
 
@@ -545,6 +537,7 @@ const Tasks = (props) => {
 const actions = {
   // showSpotLight,
   // closeSpotLight
+  updateTaskArray
 }
 
 const mapState = state => ({

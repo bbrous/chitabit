@@ -13,7 +13,8 @@
           CHANGE_DISPLAY_SPOTLIGHT,
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
-          CHANGE_DISPLAY
+          CHANGE_DISPLAY,
+          UPDATE_TASK_ARRAY
           
           
         } from '../store/storeConstants';
@@ -155,6 +156,16 @@
             payload: {
               display: newDisplay
             }
+          }
+        }
+
+        
+        export const  updateTaskArray = ( TaskArray) => {
+          return {
+            
+            type: UPDATE_TASK_ARRAY,
+            payload: TaskArray
+            
           }
         }
         

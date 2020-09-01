@@ -15,6 +15,7 @@ import {
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
           CHANGE_DISPLAY, 
+          UPDATE_TASK_ARRAY
         
         } from '../store/storeConstants';
 
@@ -195,6 +196,12 @@ export const changeDisplay = (state, payload) => {
  return  Object.assign({...state}, payload)
 
 }
+
+export const updateTaskArray = (state, payload) => {
+  // console.log("hey change display clicked")
+ return  Object.assign({...state}, payload)
+
+}
 // =================================================
 
   export default createReducer(initialState, {
@@ -209,7 +216,8 @@ export const changeDisplay = (state, payload) => {
     [CHANGE_DISPLAY_SPOTLIGHT] : changeDisplaySpotlight,
     [OPEN_SPOTLIGHT_PAGE] : openSpotLightPage,
     [CLOSE_SPOTLIGHT_PAGE] : closeSpotLightPage,
-    [CHANGE_DISPLAY] : changeDisplay
+    [CHANGE_DISPLAY] : changeDisplay,
+    [UPDATE_TASK_ARRAY]: updateTaskArray
 
     
   })
