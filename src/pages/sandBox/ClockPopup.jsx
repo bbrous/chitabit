@@ -30,6 +30,25 @@ const ClockIcon= styled(QueryBuilderIcon)({
   },
 })
 
+const StyledPopover= styled('div')({
+  backgroundColor: mediumGrey,
+  borderRadius: '5px',
+  border: '1px solid lightgrey',
+  
+  fontSize: '.8rem',
+  color: 'white',
+ 
+  cursor: 'pointer',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
 
 // ===========================================
 const ClockPopup = (props) => {
@@ -48,7 +67,7 @@ const ClockPopup = (props) => {
   const id = open ? 'simple-popover' : undefined;
 
   return (
-    <div>
+    <Fragment>
       <ClockIcon aria-describedby={id} variant="contained" color="primary" onClick={handleClick}/>
         
       <Popover
@@ -61,15 +80,21 @@ const ClockPopup = (props) => {
           horizontal: 'center',
         }}
         transformOrigin={{
-          vertical: 'top',
+          vertical: 'center',
           horizontal: 'center',
         }}
       >
+        <StyledPopover 
+        // onClick = {()=> handleClose()}
+
+        >
+
+        
         <div>Clock icon popup here - id - {props.id} </div>
         <div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div>
-
+        </StyledPopover>
       </Popover>
-    </div>
+    </Fragment>
   );
 
       }

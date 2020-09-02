@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
 import{updateTaskArray} from '../../app/redux/actions/mainActions'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
+import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../styles/colors'
 
 
 import MenuPopup from './MenuPopup'
@@ -11,7 +11,7 @@ import NotePopup from './NotePopup'
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
-
+import CheckIcon from '@material-ui/icons/Check';
 
 
 
@@ -46,10 +46,10 @@ const Wrapper= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
   
-  backgroundColor: 'white',
-  width: '100%',
-   
-  border: '1px solid orange'
+  backgroundColor: veryLightGrey,
+  width: '96%',
+  padding: '2%', 
+  // border: '1px solid orange'
 })
 
  
@@ -89,7 +89,7 @@ const ItemWrapper = styled(Paper)({
 
   width: '99%',
   
-  margin: '2px 0',
+  margin: '4px 0',
   
 })
 const TaskWrapper = styled('div')({
@@ -101,9 +101,23 @@ const TaskWrapper = styled('div')({
   flexGrow: '1',
  
   textAlign: 'center',
-  // backgroundColor: 'blue',
+  backgroundColor: 'white',
   
 })
+
+const SpotlightWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexGrow: '1',
+ 
+  textAlign: 'center',
+  backgroundColor: chitOrangeLight,
+  
+})
+
 
 const TaskBlockWrapper = styled('div')({
   display: 'flex',
@@ -124,11 +138,7 @@ const TaskBlock = styled('div')({
   alignItems: 'center',
   justifyContent: 'flex-start',
   // width: '100%',
- 
- 
- 
 
-  
 })
 
 const DragDiv = styled('div')({
@@ -151,6 +161,25 @@ const DragDiv = styled('div')({
   
 })
 
+const TitleWrapper= styled('div')({
+  
+  color: 'black',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const TitleWrapperCompleted = styled('div')({
+  
+  color: mediumLightGrey,
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
 
 const CheckCircleWrapper= styled('div')({
   
@@ -159,11 +188,7 @@ const CheckCircleWrapper= styled('div')({
   // border: '1px solid grey',
  
   marginRight: '1rem',
-  // color: mediumGrey,
-
-
-  
-
+  // color: mediumLightGrey,
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -172,13 +197,16 @@ const CheckCircleWrapper= styled('div')({
 })
 
 const CheckCircle= styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   
   width: '1.05rem',
   height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
    
-  // color: mediumGrey,
+  // color: mediumLightGrey,
   // backgroundColor: lightGrey,
 
 
@@ -192,6 +220,28 @@ const CheckCircle= styled('div')({
 })
 
 
+const CheckCircleCompleted = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+  width: '1.05rem',
+  height: '1.05rem',
+  border: '1px solid #727376',
+  borderRadius: '200px',
+   
+  color: 'white',
+  backgroundColor: mediumGrey,
+
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
 
 
  
@@ -216,30 +266,30 @@ const IconWrapper= styled('div')({
   },
 })
 
+const SpotlightTag= styled('div')({
+  color: chitBlueDull,
+  fontSize: '.8rem',
+  // height: '1rem',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
 // =======================================
 
 
 
- 
-
-const initialState = {
-  mouseX: null,
-  mouseY: null,
-};
-
 const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 // =================================================
 const SortableItem = SortableElement(({ handleClick,value }) => {
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -253,20 +303,51 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
         id = {value.id}
       >
        <DragHandle />
+
+       
        <TaskWrapper>
         <TaskBlockWrapper>
-        <IconWrapper> &nbsp; </IconWrapper>
+        <IconWrapper>
+          &nbsp; 
+          
+          {value.type === 'spotlight' && 
+            <SpotlightTag>Spotlight</SpotlightTag>
+          } 
+          
+          </IconWrapper>
           
 
           <TaskBlock>  
-            <CheckCircleWrapper><CheckCircle/></CheckCircleWrapper>
-          
-            <div>Title: {value.title}</div> 
+            <CheckCircleWrapper>
+
+            {! value.completed && 
+              <CheckCircle/>
+              }
+              { value.completed && 
+              <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
+              }
+
+
+              
+              
+              </CheckCircleWrapper>
+
+
+
+
+              {! value.completed && 
+              <TitleWrapper>Title: {value.title}</TitleWrapper> 
+              }
+              { value.completed && 
+              <TitleWrapperCompleted>Title: {value.title}</TitleWrapperCompleted> 
+              }
+
 
           </TaskBlock>
           
           
           <IconWrapper>
+          &nbsp;
               <ClockPopup id = {value.id}/>
               <NotePopup id = {value.id}/>
             </IconWrapper>
@@ -346,12 +427,12 @@ const Tasks = (props) => {
 // ##### REPLACE   REPLACE   REPLACE   ############################
 
   const [items, setItems] = useState([
-    {id: "Item 1", title: "TITLE _ Item 1", Time: '0889977'},
-    {id: "Item 2", title: "TITLE _ Item 2", Time: '0889977'},
-    {id: "Item 3", title: "TITLE _ Item 3", Time: '0889977'},
-    {id: "Item 4", title: "TITLE _ Item 4", Time: '0889977'},
-    {id: "Item 5", title: "TITLE _ Item 5", Time: '0889977'},
-    {id: "Item 6", title: "TITLE _ Item 6", Time: '0889977'}
+    {id: "Item 1", title: "TITLE _ Item 1", completed: false, type: 'task'},
+    {id: "Item 2", title: "TITLE _ Item 2", completed: true, type: 'task'},
+    {id: "Item 3", title: "TITLE _ Item 3", completed: true, type: 'spotlight'},
+    {id: "Item 4", title: "TITLE _ Item 4", completed: false, type: 'task'},
+    {id: "Item 5", title: "TITLE _ Item 5", completed: false, type: 'task'},
+    {id: "Item 6", title: "TITLE _ Item 6", completed: false, type: 'task'}
   ]);
 // ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
 

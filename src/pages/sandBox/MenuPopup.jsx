@@ -98,13 +98,13 @@ const MenuPopup = (props) => {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                  <MenuItem onClick={handleClose}> Cancel </MenuItem>
-              <MenuItemStyled onClick={handleClose}>Convert / Open to Spotlight: {props.id }</MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
-              
-              <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
-              {/* <MenuItemStyled onClick={handleClose}> <NoteIcon/> </MenuItemStyled>
-              <MenuItemStyled onClick={handleClose}> <ClockIcon/> </MenuItemStyled> */}
+                    
+                    <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}>Convert / Open to Spotlight: {props.id }</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
+                  
 
 
                   </MenuList>

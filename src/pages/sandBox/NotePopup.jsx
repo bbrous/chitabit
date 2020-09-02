@@ -31,6 +31,28 @@ const NoteIcon= styled(NotesIcon)({
   },
 })
 
+
+const StyledPopover= styled('div')({
+  backgroundColor: chitOrange,
+  borderRadius: '5px',
+  border: '1px solid lightgrey',
+  padding: '3px',
+  fontSize: '.8rem',
+  color: 'white',
+  margin: '.25rem .5rem ',
+  cursor: 'pointer',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
 // ===========================================
 const NotePopup = (props) => {
  
@@ -48,7 +70,7 @@ const NotePopup = (props) => {
   const id = open ? 'simple-popover' : undefined;
 
   return (
-    <div>
+    <Fragment>
       <NoteIcon aria-describedby={id} variant="contained" color="primary" onClick={handleClick}/>
         
       <Popover
@@ -61,15 +83,16 @@ const NotePopup = (props) => {
           horizontal: 'center',
         }}
         transformOrigin={{
-          vertical: 'top',
+          vertical: 'center',
           horizontal: 'center',
         }}
       >
+        <StyledPopover onClick = {()=> handleClose()}>
         <div>Note icon popup here - id - {props.id} </div>
         <div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div>
-
+        </StyledPopover>
       </Popover>
-    </div>
+    </Fragment>
   );
 
       }

@@ -194,7 +194,7 @@ const InitialStore = {
           'task3' :{
             id: 'task3',
             type: 'task',  //or spotlight
-            completed: false,
+            completed: true,
     
             title: 'Clocks and Note Popups create',
             note: 'note2'

@@ -28,6 +28,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { SortableContainer, SortableElement, sortableHandle } from "react-sortable-hoc";
 import arrayMove from "array-move";
+import { veryLightGrey } from '../../styles/colors'
  
 // React Sortable HOC ----------------------------------------------
 
@@ -93,31 +94,15 @@ const ContentArea = styled('div')({
 const ContentAreaSmall = styled('div')({
   display: 'flex',
   justifyContent: 'center',
-  width: '40%',
-  
-  border: '1px solid black'
+  width: '50%',
+  backgroundColor: veryLightGrey
 })
 
 
 
-
-
-
-
- 
-
-
-
-
-
+// =============================================
 
 const ATry = (props) => {
-
- 
-
-
- 
-
 
 
   return (
@@ -130,7 +115,8 @@ const ATry = (props) => {
 
 
 <ContentAreaSmall>
-<Tasks/>
+    
+  <Tasks/>
 
 </ContentAreaSmall>
         
