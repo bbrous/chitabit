@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react'
 
 import SpotLightTasks from './SpotLightTasks'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../../styles/colors'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 
@@ -21,7 +21,7 @@ import { styled, createMuiTheme } from "@material-ui/core/styles"
 import InfoIcon from '@material-ui/icons/Info'
 import NotesIcon from '@material-ui/icons/Notes';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-
+import CheckIcon from '@material-ui/icons/Check';
 import Paper from '@material-ui/core/Paper'
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
@@ -188,7 +188,6 @@ const CheckCircleWrapper= styled('div')({
   marginRight: '1rem',
   // color: mediumGrey,
 
-
   
 
 
@@ -206,6 +205,31 @@ const CheckCircle= styled('div')({
   borderRadius: '200px',
    
   // color: mediumGrey,
+
+
+  
+  '&:hover' : {
+    backgroundColor: lightGrey,
+  },
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+const CheckCircleCompleted = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+  width: '1.05rem',
+  height: '1.05rem',
+  border: '1px solid #CFD0D1',
+  borderRadius: '200px',
+   
+  color: 'white' ,
+  backgroundColor: mediumLightGrey,
 
 
   
@@ -552,7 +576,14 @@ export const Spotlight = (props) => {
 
 
     <TitleWrapper>
-      <div><CheckCircleWrapper> <CheckCircle/></CheckCircleWrapper></div>
+      <div><CheckCircleWrapper> 
+      {!completed && 
+              <CheckCircle/>
+              }
+              {completed && 
+              <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
+              }
+        </CheckCircleWrapper></div>
       
       <Title>
         {title}

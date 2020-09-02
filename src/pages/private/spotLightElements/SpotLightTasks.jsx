@@ -48,8 +48,8 @@ const Wrapper= styled('div')({
   
   width: '98%',
     
-  padding: '.25rem .5rem',
-  margin: '.25rem 0',
+  padding: '0 .5rem',
+  margin: ' 0',
 
 // backgroundColor: lightGrey,
 
@@ -100,6 +100,7 @@ const ItemWrapper = styled(Paper)({
   width: '99%',
   
   margin: '4px 0',
+  
   
 })
 const TaskWrapper = styled('div')({
@@ -217,9 +218,11 @@ const CheckCircle= styled('div')({
   borderRadius: '200px',
    
   // color: mediumLightGrey,
-  // backgroundColor: lightGrey,
+  
 
-
+  '&:hover' : {
+    backgroundColor: lightGrey,
+  },
   
 
 
@@ -237,11 +240,11 @@ const CheckCircleCompleted = styled('div')({
   
   width: '1.05rem',
   height: '1.05rem',
-  border: '1px solid #727376',
+  border: '1px solid #CFD0D1',
   borderRadius: '200px',
    
-  color: 'white',
-  backgroundColor: mediumGrey,
+  color: 'white' ,
+  backgroundColor: mediumLightGrey,
 
 
   
@@ -261,9 +264,9 @@ const IconWrapper= styled('div')({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  padding: '0 0 4px 0',
+  // padding: '0 0 4px 0',
   width: '100%',
-  // height: '1rem',
+  height: '1.1rem',
   // backgroundColor: 'yellow',
    
 

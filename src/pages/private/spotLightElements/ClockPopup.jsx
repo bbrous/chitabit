@@ -17,7 +17,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
   
   color:chitOrange,
   fontSize: '1rem',
-  margin: '.25rem .5rem',
+  margin: '0 .5rem .3rem 0',
  cursor: 'pointer',
    
 

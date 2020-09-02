@@ -18,7 +18,7 @@ const NoteIcon= styled(NotesIcon)({
   borderRadius: '5px',
   fontSize: '.8rem',
   color: 'white',
-  margin: '.25rem .5rem ',
+  margin: '0 .5rem .3rem 0',
   cursor: 'pointer',
   
 
