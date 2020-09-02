@@ -3,7 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 // import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
 
-import Spotlight from './Spotlight'
+import SpotLight from './spotLightElements/Spotlight'
 
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
@@ -117,7 +117,7 @@ export const SpotlightMain = (props) => {
            }
     
             {spotlightDisplayed === 'show' && 
-             <Spotlight 
+             <SpotLight 
                 id = {spotlightId}
              />  }
 

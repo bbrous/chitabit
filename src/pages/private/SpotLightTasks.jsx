@@ -1,26 +1,46 @@
-import React from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
+import {connect} from 'react-redux'
+import{updateTaskArray} from '../../app/redux/actions/mainActions'
+import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../styles/colors'
 
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
 
-import Paper from '@material-ui/core/Paper'
+import MenuPopup from './MenuPopup'
+import ClockPopup from './ClockPopup'
+import NotePopup from './NotePopup'
 
+import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
+import Paper from '@material-ui/core/Paper'
+import CheckIcon from '@material-ui/icons/Check';
 
-import NotesIcon from '@material-ui/icons/Notes';
-import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-import MenuIcon from '@material-ui/icons/Menu';
+
+
+
+
+
+
+
+// Material UI Context Menu  -------------------------------------
+
+
+
+
+
+// React Sortable HOC ----------------------------------------------
+
+import { SortableContainer, SortableElement, sortableHandle } from "react-sortable-hoc";
+import arrayMove from "array-move";
+ 
+// React Sortable HOC ----------------------------------------------
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
-// ---------------------------------
 
 
 
+ 
 
-
-
-// ----------------------
-const TaskContainer= styled('div')({
+const Wrapper= styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -43,20 +63,117 @@ const TaskContainer= styled('div')({
 })
 
  
-
  
 
-const TaskRow= styled(Paper)({
+const ListWrapper = styled('div')({
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  
-  width: '98%',
-  margin: '2px 0',
-  padding: '.25rem .5rem',
-  // backgroundColor: 'red',
 
+  width: '100%',
+  height: '90%',
+  // backgroundColor: 'yellow',
+
+  '& ul': {
+    width: '98%',
+    // backgroundColor: 'purple',
+    listStyleType: 'none',
+    margin: '0',
+    padding: '0',
+  },
+
+  '& li': {
+    width: '98%',
+    backgroundColor: 'white'
+    
+  }
+
+
+})
+
+const ItemWrapper = styled(Paper)({
+  display: 'flex',
+  justifyContent: 'space-between',
+ alignItems: 'center',
+
+  width: '99%',
+  
+  margin: '4px 0',
+  
+})
+const TaskWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexGrow: '1',
+ 
+  textAlign: 'center',
+  backgroundColor: 'white',
+  
+})
+
+const SpotlightWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexGrow: '1',
+ 
+  textAlign: 'center',
+  backgroundColor: chitOrangeLight,
+  
+})
+
+
+const TaskBlockWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column' , 
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  width: '100%',
+ 
+//  backgroundColor: 'red',
+ 
+
+  
+})
+
+const TaskBlock = styled('div')({
+  display: 'flex',
+
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  // width: '100%',
+
+})
+
+const DragDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  // backgroundColor: 'orange',
+ 
+  height: '100%',
+  width: '1.2rem',
+  marginRight: '8px',
+  marginBottom: '4px',
+  cursor: 'pointer',
+
+  '&:hover' : {
+    backgroundColor:chitOrangeLight
+  }
+
+  
+})
+
+const TitleWrapper= styled('div')({
+  
+  color: 'black',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -64,39 +181,24 @@ const TaskRow= styled(Paper)({
   },
 })
 
-const Task= styled('div')({
-  display: 'flex',
-  flexGrow: 1,
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-   
-  // margin: '6px 0',
+const TitleWrapperCompleted = styled('div')({
   
-
-  flexWrap: 'wrap',
-
-  fontSize: '.9rem',
-  
-
+  color: mediumLightGrey,
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
   },
 })
-// -----------------------------
+
 const CheckCircleWrapper= styled('div')({
   
   width: '1.1rem',
    
   // border: '1px solid grey',
-  
+ 
   marginRight: '1rem',
-  // color: mediumGrey,
-
-
-  
-
+  // color: mediumLightGrey,
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -105,13 +207,17 @@ const CheckCircleWrapper= styled('div')({
 })
 
 const CheckCircle= styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   
   width: '1.05rem',
   height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
    
-  // color: mediumGrey,
+  // color: mediumLightGrey,
+  // backgroundColor: lightGrey,
 
 
   
@@ -124,34 +230,19 @@ const CheckCircle= styled('div')({
 })
 
 
-
-
-const IconsWrapper= styled('div')({
+const CheckCircleCompleted = styled('div')({
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   alignItems: 'center',
-  height: '100%',
-  // backgroundColor: 'yellow',
-   marginLeft: '1rem',
-
   
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const NoteIcon= styled(NotesIcon)({
-  backgroundColor: chitOrange,
-  borderRadius: '5px',
-  fontSize: '1.3rem',
+  width: '1.05rem',
+  height: '1.05rem',
+  border: '1px solid #727376',
+  borderRadius: '200px',
+   
   color: 'white',
-  margin: '2px 0',
-  // backgroundColor: 'yellow',
-   
+  backgroundColor: mediumGrey,
+
 
   
 
@@ -162,258 +253,251 @@ const NoteIcon= styled(NotesIcon)({
   },
 })
 
-const ClockIcon= styled(QueryBuilderIcon)({
-  
-  color:chitOrange,
-  fontSize: '1.6rem',
-  margin: '2px 0',
-  // backgroundColor: 'yellow',
-   
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const Options= styled(MenuIcon)({
-  
-  color:chitOrange,
-  fontSize: '1.6rem',
-  margin: '2px 0',
-  // backgroundColor: 'yellow',
-   
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-
-// const IconsWrapper= styled('div')({
-//   display: 'flex',
-//   flexDirection: 'row',
-//   justifyContent: 'space-between',
-//   alignItems: 'center',
-//   height: '8rem',
-//   backgroundColor: 'yellow',
-   
-
-  
-
-
-//   [theme.breakpoints.down('sm')] : {
-//     // height: '1.25rem',
-//     // backgroundColor: 'red'
-//   },
-// })
-
-// const NoteIcon= styled(NotesIcon)({
-//   backgroundColor: chitOrange,
-//   borderRadius: '5px',
-//   fontSize: '1.3rem',
-//   color: 'white',
-//   // backgroundColor: 'yellow',
-   
-
-  
-
-
-//   [theme.breakpoints.down('sm')] : {
-//     // height: '1.25rem',
-//     // backgroundColor: 'red'
-//   },
-// })
-
-// const ClockIcon= styled(QueryBuilderIcon)({
-  
-//   color:chitOrange,
-//   fontSize: '1.6rem',
-//   // backgroundColor: 'yellow',
-   
-
-  
-
-
-//   [theme.breakpoints.down('sm')] : {
-//     // height: '1.25rem',
-//     // backgroundColor: 'red'
-//   },
-// })
-
-
-// ====================================
-
-export const SpotlightTasks = () => {
-  return (
-
-     <TaskContainer>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>Dabba Yabba dabba doo Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>
-
-            This is Spotlight 2
-            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2            
-            This is Spotlight 2
-
-          </Task>
-
-          <IconsWrapper>
-            <ClockIcon/>
-          <NoteIcon/>
-          
-          </IconsWrapper>
-
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-          
-            <Options/>
-        
-          
-          
-        </TaskRow>
-
-        
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1 bbb  T
-          This is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  TThis is Task 1 bbb  T
-
-
-          </Task>
-          <IconsWrapper>
-             
-          <NoteIcon/>
-          
-          </IconsWrapper>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task21</Task>
-        </TaskRow>
-
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task 1</Task>
-        </TaskRow>
-        <TaskRow elevation ={1}>
-          <CheckCircleWrapper>  <CheckCircle/>  </CheckCircleWrapper>
-          <Task>This is Task28</Task>
-        </TaskRow>
-
-
-
-
-
-
-
-
-
-     </TaskContainer>
 
  
+
+
+const IconWrapper= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  padding: '0 0 4px 0',
+  width: '100%',
+  // height: '1rem',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const SpotlightTag= styled('div')({
+  color: chitBlueDull,
+  fontSize: '.8rem',
+  // height: '1rem',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+// =======================================
+
+
+
+const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
+// =================================================
+const SortableItem = SortableElement(({ handleClick,value }) => {
+
+
+
+  //--------------------------------------------------- []
+
+  return(
+
+
+      <ItemWrapper
+       
+        id = {value.id}
+      >
+       <DragHandle />
+
+       
+       <TaskWrapper>
+        <TaskBlockWrapper>
+        <IconWrapper>
+          &nbsp; 
+          
+          {value.type === 'spotlight' && 
+            <SpotlightTag>Spotlight</SpotlightTag>
+          } 
+          
+          </IconWrapper>
+          
+
+          <TaskBlock>  
+            <CheckCircleWrapper>
+
+            {! value.completed && 
+              <CheckCircle/>
+              }
+              { value.completed && 
+              <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
+              }
+
+
+              
+              
+              </CheckCircleWrapper>
+
+
+
+
+              {! value.completed && 
+              <TitleWrapper>Title: {value.title}</TitleWrapper> 
+              }
+              { value.completed && 
+              <TitleWrapperCompleted>Title: {value.title}</TitleWrapperCompleted> 
+              }
+
+
+          </TaskBlock>
+          
+          
+          <IconWrapper>
+          &nbsp;
+              <ClockPopup id = {value.id}/>
+              <NotePopup id = {value.id}/>
+            </IconWrapper>
+        </TaskBlockWrapper>
+        
+       </TaskWrapper>
+        
+
+       <MenuPopup id = {value.id}/>
+
+
+
+
+      </ItemWrapper>
+ 
+  )// end RETURN Sortable Item
+
+})// end SortableItem
+    
+
+
+
+
+// ------- Map of Items   --------------------[]
+
+
+const SortableList = SortableContainer(({ items }) => {
+  return (
+
+    <ul>
+      {items.map((value, index) => (
+        
+            
+        <SortableItem key={`item-${index}`} index={index} value={value} 
+       
+        />
+         
+      ))}
+    </ul>
+  );
+});
+
+
+
+
+
+const SpotLightTasks = (props) => {
+
+ 
+
+/* #######################################################
+
+
+1.  get array from redux props
+    structure array[{id: 1, type: task}, {id: 5, type: 'spotlight'}]
+
+2.  create new "complex" array to use in sortable -- (items in useState)
+    use props.task#.id to get title, etc
+         or
+        props.
+3.  in useEffect - 
+     a. get new "complex" array after sort
+     b. create new array - convert back to simplified form
+     c. execute action to update Redux Store
+
+
+
+
+
+####################################################### */
+
+
+  // set local state for items -----------------
+
+
+
+// ##### REPLACE   REPLACE   REPLACE   ############################
+
+  const [items, setItems] = useState([
+    {id: "Item 1", title: "TITLE _ Item 1", completed: false, type: 'task'},
+    {id: "Item 2", title: "TITLE _ Item 2", completed: true, type: 'task'},
+    {id: "Item 3", title: "TITLE _ Item 3", completed: true, type: 'spotlight'},
+    {id: "Item 4", title: "TITLE _ Item 4", completed: false, type: 'task'},
+    {id: "Item 5", title: "TITLE _ Item 5", completed: false, type: 'task'},
+    {id: "Item 6", title: "TITLE _ Item 6", completed: false, type: 'task'}
+  ]);
+// ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
+
+
+
+  useEffect(() => {
+    console.log('[ATry] - new items array'  , items)
+ 
+    
+  }, [items]);
+
+
+  // onSortEnd - creates the new array index after move
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setItems(arrayMove(items, oldIndex, newIndex));
+  };
+
+
+ 
+
+
+
+  return (
+
+      <Wrapper>
+
+        <ListWrapper>
+         
+         
+          {/* ----  Move Items  Executable - --  */}
+
+          <SortableList items={items} onSortEnd={onSortEnd} useDragHandle/>
+
+
+
+        </ListWrapper>
+
+      </Wrapper>
+
+
   )
 }
 
+const actions = {
+  // showSpotLight,
+  // closeSpotLight
+  updateTaskArray
+}
 
-export default SpotlightTasks
+const mapState = state => ({
+  view: state
+});
+
+export default connect(mapState, actions)(SpotLightTasks)
+
+
+

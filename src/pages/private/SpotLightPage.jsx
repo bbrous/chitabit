@@ -1,16 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { chitOrangeLight, chitOrange, chitBlueDull} from '../../../styles/colors';
+import { chitOrangeLight, chitOrange, chitBlueDull} from '../../styles/colors';
 
-import{closeSpotLightPage} from '../../../app/redux/actions/mainActions'
+import{closeSpotLightPage} from '../../app/redux/actions/mainActions'
 
-import SpotLight from './SpotLight'
+import SpotLight from './spotLightElements/X_SpotLight'
 /* Read me
 
 SpotLight page contains all spotlights
 
 */
-import {InfoPopperLeftBottom} from '../../../components/InfoPoppers'
+import {InfoPopperLeftBottom} from '../../components/InfoPoppers'
 
 
 import { styled, makeStyles, createMuiTheme } from "@material-ui/core/styles"

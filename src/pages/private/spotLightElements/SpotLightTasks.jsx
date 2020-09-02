@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray} from '../../app/redux/actions/mainActions'
-import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../styles/colors'
+import{updateTaskArray} from '../../../app/redux/actions/mainActions'
+import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../../styles/colors'
 
 
 import MenuPopup from './MenuPopup'
@@ -404,7 +404,7 @@ const SortableList = SortableContainer(({ items }) => {
 
 
 
-const Tasks = (props) => {
+const SpotLightTasks = (props) => {
 
  
 
@@ -497,7 +497,7 @@ const mapState = state => ({
   view: state
 });
 
-export default connect(mapState, actions)(Tasks)
+export default connect(mapState, actions)(SpotLightTasks)
 
 
 
