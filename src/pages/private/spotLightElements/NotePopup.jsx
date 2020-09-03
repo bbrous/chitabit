@@ -55,11 +55,12 @@ const StyledPopover= styled('div')({
 
 // ===========================================
 const NotePopup = (props) => {
- 
+  let taskId = props.id
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log('[NotePopup] id is : ', event.currentTarget.id)
   };
 
   const handleClose = () => {
@@ -71,7 +72,12 @@ const NotePopup = (props) => {
 
   return (
     <Fragment>
-      <NoteIcon aria-describedby={id} variant="contained" color="primary" onClick={handleClick}/>
+      <NoteIcon 
+        id = {taskId}
+        aria-describedby={id} 
+        variant="contained" 
+        color="primary" 
+        onClick={handleClick}/>
         
       <Popover
         id={id}

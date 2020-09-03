@@ -14,7 +14,7 @@ import Grow from '@material-ui/core/Grow';
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 const MenuItemStyled = styled(MenuItem)({
-  color: chitBlueDull,
+  color: 'black',
   fontSize: '.8rem'
 
   

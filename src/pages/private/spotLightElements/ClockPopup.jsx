@@ -13,6 +13,125 @@ import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
+
+// ------------------------
+
+const Wrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const TimeWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const TimeRow= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const TimeComponent= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const Time= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const TimeLabel= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const ControlsWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+
+// ------------------------
+
 const ClockIcon= styled(QueryBuilderIcon)({
   
   color:chitOrange,
@@ -52,11 +171,13 @@ const StyledPopover= styled('div')({
 
 // ===========================================
 const ClockPopup = (props) => {
- 
+  let taskId = props.id
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = (event, taskId) => {
     setAnchorEl(event.currentTarget);
+    console.log('[ClockPopup] id is : ', event.currentTarget.id)
   };
 
   const handleClose = () => {
@@ -68,7 +189,12 @@ const ClockPopup = (props) => {
 
   return (
     <Fragment>
-      <ClockIcon aria-describedby={id} variant="contained" color="primary" onClick={handleClick}/>
+      <ClockIcon 
+        id = {taskId}
+        aria-describedby={id} 
+        variant="contained" 
+        color="primary" 
+        onClick={(evt)=>handleClick(evt)}/>
         
       <Popover
         id={id}
@@ -90,8 +216,48 @@ const ClockPopup = (props) => {
         >
 
         
-        <div>Clock icon popup here - id - {props.id} </div>
-        <div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div>
+        <Wrapper>
+          <TimeWrapper>
+<TimeRow>
+
+<TimeComponent>
+              <Time>1</Time>
+              <TimeLabel>days</TimeLabel>
+
+            </TimeComponent>
+
+            <TimeComponent>
+              <Time>1</Time>
+              <TimeLabel>hrs</TimeLabel>
+
+            </TimeComponent>
+
+            <TimeComponent>
+              <Time>1</Time>
+              <TimeLabel>min</TimeLabel>
+
+            </TimeComponent>
+
+            <TimeComponent>
+              <Time>1</Time>
+              <TimeLabel>secs</TimeLabel>
+
+            </TimeComponent>
+</TimeRow>
+
+
+
+
+          </TimeWrapper>
+
+          <ControlsWrapper>
+            <button> Stop </button>
+            <button> Reset </button>
+          </ControlsWrapper>
+
+
+
+        </Wrapper>
         </StyledPopover>
       </Popover>
     </Fragment>

@@ -173,7 +173,7 @@ const InitialStore = {
           'task1' : {
             id: 'task1',
             type: 'task',  //or spotlight
-            completed: false,
+            completed: true,
     
             title: 'Transfer A-try into Spotlight',
             note: 'This is a note for task 1'

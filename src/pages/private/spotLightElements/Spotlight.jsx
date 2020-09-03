@@ -2,9 +2,12 @@ import React, {Fragment, useState, useEffect} from 'react'
 
 import SpotLightTasks from './SpotLightTasks'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey, chitBlueVeryLight, chitVeryLightYellow, mediumGrey, veryLightGrey} from '../../../styles/colors'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
+import MenuPopup from './MenuPopup'
+import ClockPopup from './ClockPopup'
+import NotePopup from './NotePopup'
 
 // &&&&   TEMP Initial Store Import -- Get from Database
 import InitialStore from '../../../app/redux/store/InitialStore'
@@ -136,7 +139,7 @@ backgroundColor: 'white',
 
 })
 
-const TitleWrapper= styled(Paper)({
+const TitleWrapper= styled('div')({
   display: 'flex',
    
   justifyContent: 'flex-start',
@@ -146,7 +149,7 @@ const TitleWrapper= styled(Paper)({
   color: 'red',
  
   width: '98%',
-  padding: '.25rem .5rem',
+  padding: '0 .5rem',
 
   fontSize: '1rem',
   
@@ -207,11 +210,7 @@ const CheckCircle= styled('div')({
   // color: mediumGrey,
 
 
-  
-  '&:hover' : {
-    backgroundColor: lightGrey,
-  },
-
+  cursor: 'pointer',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -243,7 +242,7 @@ const CheckCircleCompleted = styled('div')({
 
 // -----------------------------------
 
-const DetailContainer= styled(Paper)({
+const DetailContainer= styled('div')({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -258,7 +257,7 @@ const DetailContainer= styled(Paper)({
   fontSize: '.8rem',
 
 
-// backgroundColor: 'yellow',
+backgroundColor: veryLightGrey,
 
 
   [theme.breakpoints.down('sm')] : {
@@ -273,7 +272,7 @@ const DetailWrapper= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
   
-  width: '90%',
+  width: '95%',
   height: '100%',
   
   // backgroundColor: 'red',
@@ -283,6 +282,8 @@ const DetailWrapper= styled('div')({
     // backgroundColor: 'red'
   },
 })
+
+
 
 
 const DetailRow= styled('div')({
@@ -354,14 +355,17 @@ const DetailRowRight= styled('div')({
   },
 })
 
-const CheckBoxWrapper= styled('div')({
+const BottomWrapper= styled('div')({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'flex-start',
+  justifyContent: 'space-between',
   alignItems: 'center',
   marginTop: '8px',
   color: 'grey',
- 
+ width: '100%',
+// backgroundColor: 'pink',
+
+
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -369,14 +373,48 @@ const CheckBoxWrapper= styled('div')({
   },
 })
 
-const IconsWrapper= styled('div')({
+const CheckBoxWrapper= styled('div')({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '100%',
   // backgroundColor: 'yellow',
    
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+const IconsWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '100%',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+const MenuWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  // backgroundColor: 'yellow',
+   marginRight: '5px',
 
   
 
@@ -570,7 +608,7 @@ export const Spotlight = (props) => {
 
 
 
-    <Container>
+    <Container elevation = {3}>
 
 
 
@@ -610,8 +648,8 @@ export const Spotlight = (props) => {
           <DetailRowLeft>Elapsed: </DetailRowLeft>
           <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
         </DetailRow>
-        <DetailRow>
-          
+        
+         <BottomWrapper> 
           <CheckBoxWrapper>   
             <SpotlightCheckbox   
             checked = {true}  
@@ -619,17 +657,20 @@ export const Spotlight = (props) => {
           /> 
           <div>   make default popup  </div>
           </CheckBoxWrapper>
-           
-         
-        </DetailRow>
+          <IconsWrapper> 
+              <NotePopup id = {id}/>
+              <ClockPopup id = {id}/>
+          </IconsWrapper> 
+          </BottomWrapper>
+          
+      
 
       </DetailWrapper>
 
 
-      <IconsWrapper>
-       <NoteIcon/>
-       <ClockIcon/>
-      </IconsWrapper>
+      <MenuWrapper>
+       <MenuPopup  id = {id}/>
+      </MenuWrapper>
     </DetailContainer>
 
 

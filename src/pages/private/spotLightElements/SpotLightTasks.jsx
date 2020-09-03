@@ -161,10 +161,10 @@ const DragDiv = styled('div')({
  
   height: '100%',
   width: '1.2rem',
-  marginRight: '8px',
-  marginBottom: '4px',
+  margin: '0 8px 4px 2px',
+  // marginBottom: '4px',
   cursor: 'pointer',
-
+  
   '&:hover' : {
     backgroundColor:chitOrangeLight
   }
@@ -219,11 +219,8 @@ const CheckCircle= styled('div')({
    
   // color: mediumLightGrey,
   
+  cursor: 'pointer',
 
-  '&:hover' : {
-    backgroundColor: lightGrey,
-  },
-  
 
 
   [theme.breakpoints.down('sm')] : {
