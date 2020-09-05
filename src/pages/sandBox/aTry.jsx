@@ -1,37 +1,26 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
-import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
-
-import InitialStore from '../../app/redux/store/InitialStore'
 
 import Tasks from './aTryTasks'
+import MUIForm from './MUIForm'
+
+
+import { veryLightGrey } from '../../styles/colors'
+// import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
+// import InitialStore from '../../app/redux/store/InitialStore'
+
+
 import {NavLink, withRouter, useLocation} from 'react-router-dom'
-import { styled} from '@material-ui/core/styles'
+import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
 
-// Material UI Context Menu  -------------------------------------
-
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
  
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import MenuIcon from '@material-ui/icons/Menu';
-// Material UI Context Menu  -------------------------------------
 
 
 
+// ----------------------------------------
 
-
-// React Sortable HOC ----------------------------------------------
-
-import { SortableContainer, SortableElement, sortableHandle } from "react-sortable-hoc";
-import arrayMove from "array-move";
-import { veryLightGrey } from '../../styles/colors'
- 
-// React Sortable HOC ----------------------------------------------
-
+const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 
 
@@ -116,7 +105,8 @@ const ATry = (props) => {
 
 <ContentAreaSmall>
     
-  <Tasks/>
+  {/* <Tasks/> */}
+  <MUIForm/>
 
 </ContentAreaSmall>
         

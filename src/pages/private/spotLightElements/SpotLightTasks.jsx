@@ -166,7 +166,8 @@ const DragDiv = styled('div')({
   cursor: 'pointer',
   
   '&:hover' : {
-    backgroundColor:chitOrangeLight
+    // backgroundColor:chitOrangeLight
+    border: '1px solid #FADAC1'
   }
 
   
@@ -277,10 +278,16 @@ const IconWrapper= styled('div')({
 })
 
 const SpotlightTag= styled('div')({
-  color: chitBlueDull,
+  color: 'red',
   fontSize: '.8rem',
+  textDecoration: 'underline',
   // height: '1rem',
   // backgroundColor: 'yellow',
+  cursor: 'pointer',
+
+  '&:hover': {
+    color: chitOrange
+  },
    
 
   

@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey} from '../../../styles/colors'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Popover from '@material-ui/core/Popover';
@@ -22,7 +22,9 @@ const NoteIcon= styled(NotesIcon)({
   cursor: 'pointer',
   
 
-  
+  '&:hover': {
+    backgroundColor: mediumLightGrey
+  },
 
 
   [theme.breakpoints.down('sm')] : {

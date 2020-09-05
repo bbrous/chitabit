@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey, mediumLightGrey} from '../../../styles/colors'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Popover from '@material-ui/core/Popover';
@@ -136,11 +136,14 @@ const ClockIcon= styled(QueryBuilderIcon)({
   
   color:chitOrange,
   fontSize: '1rem',
-  margin: '0 .5rem .3rem 0',
+  margin: '0 .75rem .3rem 0',
  cursor: 'pointer',
    
 
-  
+ '&:hover': {
+  color: mediumLightGrey
+},
+
 
 
   [theme.breakpoints.down('sm')] : {

@@ -344,6 +344,21 @@ const AllSpotLightsWrapperSelected= styled(Paper)({
 
 })
 
+const TimerWrapper= styled('div')({
+
+
+
+
+
+
+
+
+  [theme.breakpoints.down('xs')] : {
+    // display: 'none', 
+  }
+
+})
+
 // ----------------------
 
 
@@ -463,6 +478,8 @@ const SpotlightNav = (props) => {
           <TitleWrapper>{spotTitle}</TitleWrapper>
           <TimeRemainingWrapper
           > est complete: {dateEst}</TimeRemainingWrapper>
+          <div>Timer: not set</div>
+          <div>Tasks: 6</div>
         </SpotlightWrapper>
       
 
@@ -483,7 +500,8 @@ const SpotlightNav = (props) => {
           <TimeRemainingWrapperOrange
           > est complete: {dateEst}</TimeRemainingWrapperOrange>
 
-
+<TimerWrapper>Timer: running </TimerWrapper>
+          <div>Tasks: 6</div>
 
         </SpotlightWrapperSelected>
         
@@ -576,6 +594,6 @@ const actions = {
 
 const mapState = state => ({
   display: state
-});
+})
 
 export default connect(mapState, actions)(SpotlightNav)

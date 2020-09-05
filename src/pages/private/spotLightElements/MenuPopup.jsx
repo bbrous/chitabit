@@ -29,6 +29,9 @@ const Hamburger= styled(MenuIcon)({
  cursor: 'pointer',
    
 
+ '&:hover': {
+  color: mediumGrey
+},
   
 
 
