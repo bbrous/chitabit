@@ -40,7 +40,7 @@ export default function BradDatePicker({...props}) {
 
       return (
         <Field
-        name="bradDate"
+        name= {props.name}
         placeholder = {props.placeholder}
         component={StyledField}
         type = 'date'

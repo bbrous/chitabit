@@ -29,7 +29,7 @@ export default function MyTextInput({...props}) {
     // const [field, meta] = useField(props);
     return (
       <Field
-      name="firstName"
+      name={props.name}
       placeholder = {props.placeholder}
       component={StyledField}
       variant="outlined"

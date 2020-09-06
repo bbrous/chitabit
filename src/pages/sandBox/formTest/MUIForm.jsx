@@ -89,17 +89,22 @@ const validationSchema = Yup.object({
   firstName: Yup.string().required('First name is required')
      .min(2, 'Too Short!')
      .max(20, 'Too Long!'),
+
   lastName: Yup.string().required('Last name is also required').min(4, 'Too Short!'),
+
   email: Yup.string()
      .email('Invalid email')
      .required('Required'),
 
      password: Yup.string().required('Password is required')
-     .min(6, 'password Too Short!'),
-  passwordMatches: Yup.string()
-     .oneOf([Yup.ref('password'), null], 'Passwords must match')
+     .min(4, 'password Too Short!'),
 
+   passwordMatches: Yup.string()
+     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 
+    //  joinedAt:Yup.string()
+    //  .required('Required').nullable
+ 
 
 }) 
 
@@ -220,7 +225,15 @@ const MUIForm = () => (
 
 
 
-        <BradDatePicker name="joinedAt"/>  
+  <BradDatePicker
+  name='date'
+  placeholderText='Event date'
+  timeFormat='HH:mm'
+  showTimeSelect
+  timeCaption='time'
+  // dateFormat='MMMM d, yyyy h:mm a'
+  autoComplete='off'
+  />  
 
         {/* <FormControl fullWidth error={!!errors.joinedAt}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
