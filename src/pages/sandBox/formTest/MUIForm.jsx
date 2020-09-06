@@ -9,6 +9,8 @@ Original CODE  https://codesandbox.io/s/j3l07vp2nw?from-embed=&file=/src/index.t
 
 */
 
+import BradTextInput from './BradTextInput'
+import BradDatePicker from './BradDatePicker'
 
 import * as Yup from 'yup'
 
@@ -31,7 +33,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import {Effect} from 'formik-effect';
 
 
-import { veryLightGrey } from '../../styles/colors'
+import { veryLightGrey } from '../../../styles/colors'
 // import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
 // import InitialStore from '../../app/redux/store/InitialStore'
 
@@ -45,8 +47,12 @@ const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 const StyledField= styled(TextField)({
  
-  backgroundColor: 'white',
- '& input' : {color: 'red'}
+  width: '90%',
+ 
+ '& input' : 
+ {color: 'red',
+ backgroundColor: 'yellow'
+}
 
 })
 
@@ -54,9 +60,6 @@ const StyledField= styled(TextField)({
 // ------------------
 
 
-interface Values {
-  email: string;
-}
 
 const ranges = [
   {
@@ -91,7 +94,8 @@ const validationSchema = Yup.object({
      .email('Invalid email')
      .required('Required'),
 
-     password: Yup.string().required('Password is required'),
+     password: Yup.string().required('Password is required')
+     .min(6, 'password Too Short!'),
   passwordMatches: Yup.string()
      .oneOf([Yup.ref('password'), null], 'Passwords must match')
 
@@ -166,12 +170,15 @@ const MUIForm = () => (
     }) => (
       <Form>
         
-        <Field
+        {/* <Field
           name="firstName"
           label="First name *"
           component={StyledField}
           fullWidth
-        />
+        /> */}
+
+<BradTextInput name='firstName' placeholder='Event title' />
+
         <Field
           name="lastName"
           label="Last name *"
@@ -179,18 +186,18 @@ const MUIForm = () => (
           fullWidth
           
         />
-        <Field name="email" label="Email *" component={TextField} fullWidth />
+        <Field name="email" label="Email *" component={StyledField} fullWidth />
         <Field
           name="password"
           label="Password *"
-          component={TextField}
+          component={StyledField}
           fullWidth
           type="password"
         />
         <Field
           name="passwordMatches"
           label="Re-type password *"
-          component={TextField}
+          component={StyledField}
           fullWidth
           type="password"
         />
@@ -201,7 +208,7 @@ const MUIForm = () => (
           select
           helperText="Please choose 21-50"
           margin="normal"
-          component={TextField}
+          component={StyledField}
           fullWidth
         >
           {ranges.map(option => (
@@ -210,7 +217,12 @@ const MUIForm = () => (
             </MenuItem>
           ))}
         </Field>
-        <FormControl fullWidth error={!!errors.joinedAt}>
+
+
+
+        <BradDatePicker name="joinedAt"/>  
+
+        {/* <FormControl fullWidth error={!!errors.joinedAt}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <DatePicker
               name="joinedAt"
@@ -225,7 +237,13 @@ const MUIForm = () => (
           <FormHelperText component="div">
             {!!errors.joinedAt && <div>{errors.joinedAt}</div>}
           </FormHelperText>
-        </FormControl>
+        </FormControl> */}
+
+
+
+
+
+
         {/* <Field
           type="text"
           name="multiSelect"
