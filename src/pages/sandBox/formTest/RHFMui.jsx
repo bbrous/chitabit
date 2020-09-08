@@ -16,7 +16,7 @@ import "react-datepicker/dist/react-datepicker.css";
 // Material UI -----------------------------
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
-
+import { TextField, Checkbox } from "@material-ui/core";
 
 // ----------------------------------------
 
@@ -67,6 +67,15 @@ const ErrorWrapper= styled('div')({
 
 })
 
+const MuiTextFieldStyled= styled(TextField)({
+  width: '80%', 
+  '& input' : 
+  {color: 'purple',
+  height: '3rem',
+
+}
+})
+
 
 
 // =====================================
@@ -78,7 +87,7 @@ const RHFMui = () => {
 
   } = useForm({
     defaultValues: {
-      firstName: "bill",
+      // firstName: "bill",
       yearOfRegistration: today,
       email: "bluebill1049@hotmail.com",
       isDeveloper: true
@@ -103,7 +112,15 @@ const RHFMui = () => {
     <form onSubmit = {handleSubmit(onSubmit)}>
 
       <InputWrapper>
-        <input type="text" name ='firstName' defaultValue = 'test' ref ={register}/>
+        {/* <input type="text" name ='firstName' defaultValue = 'test' ref ={register}/> */}
+
+        <Controller as={MuiTextFieldStyled} name="firstName" 
+                  control={control} 
+                  defaultValue="" 
+                  rules={{ required: true }}
+                  />
+{errors.firstName && errors.firstName.type === "required" && 
+<ErrorWrapper>First name is required</ErrorWrapper>}
       </InputWrapper>
 
       <InputWrapper>
@@ -174,7 +191,7 @@ onChange={handleDateChange}
       placeholder="Year of registration"
     />
   </MuiPickersUtilsProvider>
-  );
+  
       </MaterialUIWrapper>
 
 
