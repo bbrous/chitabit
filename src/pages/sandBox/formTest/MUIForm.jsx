@@ -115,7 +115,7 @@ const MUIForm = () => (
       lastName: '',
       select: '',
       multiSelect: [],
-      joinedAt: null,
+      date: new Date(),
     }}
 
     validationSchema = {validationSchema}

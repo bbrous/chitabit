@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import Tasks from './aTryTasks'
 import MUIForm from './formTest/MUIForm'
-
+import RHFMui from './formTest/RHFMui'
 
 import { veryLightGrey } from '../../styles/colors'
 // import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
@@ -106,7 +106,8 @@ const ATry = (props) => {
 <ContentAreaSmall>
     
   {/* <Tasks/> */}
-  <MUIForm/>
+  {/* <MUIForm/> */}
+  <RHFMui/>
 
 </ContentAreaSmall>
         

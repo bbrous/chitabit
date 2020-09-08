@@ -1,56 +1,51 @@
-// Junk = React react-datepicker sample
+// junk 1 
 
-
+import 'date-fns';
 import React from 'react';
-import { useField, useFormikContext } from 'formik';
-// import { FormField, Label } from 'semantic-ui-react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+
+import { useForm, Controller } from "react-hook-form";
 
 
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
+function RHFMui() {
 
-import { styled, createMuiTheme } from "@material-ui/core/styles"
+  const { handleSubmit, control, errors } = useForm();
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-const theme = createMuiTheme(); // allows use of mui theme in styled component
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
-
-const StyledDatePicker= styled('div')({
- 
-  width: '90%',
-  border: 'none',
-  height :30,
-  backgroundColor: 'green',
- '& input' : 
- {
- color: 'blue', 
- margin: '0',
- padding: '4px',
- border: '1px solid orange',
- width: '25rem',
- height: '35px'
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <Controller
+      as={
+        <KeyboardDatePicker
+          fullWidth
+          autoOk
+          // error={!!error}
+          inputVariant="outlined"
+          variant="inline"
+          format="dd-MM-yyyy"
+          label="Year of registration"
+          // helperText={error}
+          value={selectedDate}
+onChange={handleDateChange}
+        />
+      }
+      control={control}
+      name="yearOfRegistration"
+      placeholder="Year of registration"
+    />
+  </MuiPickersUtilsProvider>
+  );
 }
 
-})
-
-
-
-export default function BradDatePicker({label, ...props}) {
-    const {setFieldValue} = useFormikContext();
-    const [field, meta] = useField(props);
-    return (
-        <StyledDatePicker error={meta.touched && !!meta.error}>
-            <label>{label}</label>
-            <DatePicker 
-                {...field}
-                {...props}
-                // selected={(field.value && new Date(field.value)) || null}
-                selected = {new Date()}
-                onChange={value => setFieldValue(field.name, value)}
-            />
-            {meta.touched && meta.error ? (
-                <div basic color='red'>{meta.error}</div>
-            ) : null}
-        </StyledDatePicker>
-    )
-}
+export default RHFMui
