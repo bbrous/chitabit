@@ -32,7 +32,8 @@ import {
     view: '',
     displaySidePanel: 'hide',
     display: 'spotlight',
-    
+    modalDisplayed: true,
+    modalType: 'spotLightForm',
 
     spotLightDisplay: {
       displaySpotLight: 'show',  // or 'none'  or 'show ' 
@@ -118,8 +119,7 @@ import {
       lastSection: ''
     },
 
-    modalDisplayed: false,
-    modalType: '',
+
 
     data: InitialStore
 

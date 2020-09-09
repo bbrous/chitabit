@@ -216,8 +216,11 @@ const BottomNavSpacer = styled('div')({
 const Main = (props) => {
 
    
-
+// get state of side panel and modal being shown
   let viewSidePanel = props.view.private.displaySidePanel
+  let modalShow = props.view.private.modalDisplayed
+
+console.log('[Main] modal view  :  ', modalShow)
 
 
   const handleSidePanelChange = (evt)=>{
@@ -242,7 +245,7 @@ const Main = (props) => {
 
 
 
-    let modalShow = props.view.private.modalDisplayed
+    
 
 
 
