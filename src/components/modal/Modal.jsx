@@ -98,9 +98,9 @@ let {modalType} = props.display.private
   return(
 <Fragment>
   <ModalWrapper></ModalWrapper>
-       <ModalDisplay onClick = {props.closeModal}> 
+       <ModalDisplay > 
        
-         <Close>Close</Close>
+         <Close onClick = {props.closeModal}>Close</Close>
          
  
           {/* {modalType === 'personalDetail' && 

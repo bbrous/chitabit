@@ -81,24 +81,25 @@ const MuiTextFieldStyled= styled(TextField)({
 // =====================================
 
 const RHFMui = () => {
+
   const today = new Date()
-  const {register, handleSubmit, watch, errors, control,
-    
+  const {register, handleSubmit, watch, errors, control} = useForm({
+              defaultValues: {
+                // firstName: "bill",
+                datePickerDate: today,
+                email: "bluebill1049@hotmail.com",
+                isDeveloper: true
+              }
+         })
 
-  } = useForm({
-    defaultValues: {
-      // firstName: "bill",
-      yearOfRegistration: today,
-      email: "bluebill1049@hotmail.com",
-      isDeveloper: true
-    }
-  })
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+    const handleDateChange = (date) => {
+      setSelectedDate(date);
+    };
+             
+
   const onSubmit = data => alert(JSON.stringify(data))
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -119,8 +120,9 @@ const RHFMui = () => {
                   defaultValue="" 
                   rules={{ required: true }}
                   />
-{errors.firstName && errors.firstName.type === "required" && 
-<ErrorWrapper>First name is required</ErrorWrapper>}
+        {errors.firstName && errors.firstName.type === "required" && 
+        <ErrorWrapper>First name is required</ErrorWrapper>}
+        
       </InputWrapper>
 
       <InputWrapper>
@@ -170,26 +172,26 @@ const RHFMui = () => {
 
       <MaterialUIWrapper>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-    <Controller
-      as={
-        <KeyboardDatePicker
-          fullWidth
-          autoOk
-          // error={!!error}
-          inputVariant="outlined"
-          variant="inline"
-          format="dd-MM-yyyy"
-          label="Year of registration"
-          // helperText={error}
-          value={selectedDate}
-       
-onChange={handleDateChange}
+        <Controller
+          as={
+            <KeyboardDatePicker
+              fullWidth
+              autoOk
+              // error={!!error}
+              inputVariant="outlined"
+              variant="inline"
+              format="dd-MM-yyyy"
+              label="Year of registration"
+              // helperText={error}
+              value={selectedDate}
+          
+              onChange={handleDateChange}
+            />
+          }
+          control={control}
+          name="datePickerDate"
+          placeholder="Year of registration"
         />
-      }
-      control={control}
-      name="yearOfRegistration"
-      placeholder="Year of registration"
-    />
   </MuiPickersUtilsProvider>
   
       </MaterialUIWrapper>
