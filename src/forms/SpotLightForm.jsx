@@ -31,7 +31,7 @@ const Wrapper= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
   
-  backgroundColor: 'pink',
+  // backgroundColor: 'pink',
   width: '100%',
   height: '100%',
  
@@ -44,7 +44,7 @@ const Wrapper= styled('div')({
 
 })
 
-const FormContainer= styled(Paper)({
+const FormContainer= styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
@@ -155,6 +155,23 @@ const StyledTextField= styled(TextField)({
 
 })
 
+const StyledMultiline= styled(TextField)({
+  border: '1px solid orange',
+  borderRadius: '5px',
+  // width: '80%', 
+  margin: '0 0 0 8px',
+  padding: '0',
+  width: '26rem',
+ 
+  
+  '& textarea' : {
+     
+     fontSize: '.85rem'
+  }
+
+
+})
+
 const TargetDateWrapper= styled('div')({
   border: '1px solid orange',
   borderRadius: '5px',
@@ -213,17 +230,34 @@ const TimeForm= styled(TextField)({
   
 })
 
+const PopupCheckBox= styled(Checkbox)({
+ 
+  '& input':
+{  
+  
+
+
+  // backgroundColor: 'blue'
+}
+})
+
 // ===========================================
 const SpotLightForm = () => {
 
   const today = new Date() // for datepicker initial value
 
-  const {register, handleSubmit, watch, errors, control} = useForm({
+  const {register, handleSubmit, watch, errors, control, setValue} = useForm({
               defaultValues: {
-                // goal: "bill",
+                 
                 datePickerDate:  null,
-                email: "bluebill1049@hotmail.com",
-                isDeveloper: true
+                mos: null,
+                wks: null,
+                days: null,
+                hrs: null,
+                mins: null,
+              
+                 
+                popup: false
               }
          })
   // datepicker functions 
@@ -241,7 +275,7 @@ const SpotLightForm = () => {
 
   return (
     <Wrapper>
-      <div>       SpotLight Form - reducer main currently = true    </div>
+      {/* <div>       SpotLight Form - reducer main currently = true    </div> */}
       <FormContainer elevation = {2}>
 
         <FormHeader> New Spotlight</FormHeader>
@@ -331,7 +365,7 @@ const SpotLightForm = () => {
                     <Controller as={TimeForm} name="mos" 
                       InputProps={{ disableUnderline: true }}
                       control={control} 
-                      defaultValue="" 
+                       
                     />
                    </TimeSection>
                 
@@ -341,7 +375,7 @@ const SpotLightForm = () => {
                   <Controller as={TimeForm} name="wks" 
                     InputProps={{ disableUnderline: true }}
                     control={control} 
-                    defaultValue="" 
+                     
                   />
                    </TimeSection>
                 
@@ -351,7 +385,7 @@ const SpotLightForm = () => {
                     <Controller as={TimeForm} name="days" 
                       InputProps={{ disableUnderline: true }}
                       control={control} 
-                      defaultValue="" 
+                     
                     />
                    </TimeSection>
                 </TimeWrapper>
@@ -363,7 +397,7 @@ const SpotLightForm = () => {
                   <Controller as={TimeForm} name="hrs" 
                     InputProps={{ disableUnderline: true }}
                     control={control} 
-                    defaultValue="" 
+                     
                   />
                    </TimeSection>
            
@@ -373,7 +407,7 @@ const SpotLightForm = () => {
                     <Controller as={TimeForm} name="mins" 
                       InputProps={{ disableUnderline: true }}
                       control={control} 
-                      defaultValue="" 
+                       
                     />
                    </TimeSection>
               
@@ -391,7 +425,16 @@ const SpotLightForm = () => {
               </SegmentHeader>
 
               <FormInput>
-                <input/>  
+                
+              <Controller as={StyledMultiline} name="note" 
+                  InputProps={{ disableUnderline: true }}
+                  control={control} 
+                  defaultValue="" 
+                  multiline
+                  variant="outlined"
+                  />
+
+
               </FormInput>            
             </FormSegmentWrapper>
 
@@ -399,11 +442,25 @@ const SpotLightForm = () => {
 
             <FormSegmentWrapper>
               <SegmentHeader>
-                Make default popup
+                Make default Popup
               </SegmentHeader>
-
               <FormInput>
-                <input type = 'checkbox' />  
+              <input
+          name="popup"
+          type="checkbox"
+          ref={register }
+          />
+              {/* 
+                        
+              <Controller
+              as={PopupCheckBox}
+              name="popup"
+              type="checkbox"
+              control={control}
+               
+            /> */}
+                    <span>Show Spotlight as Popup</span>
+
               </FormInput>            
             </FormSegmentWrapper>
 
