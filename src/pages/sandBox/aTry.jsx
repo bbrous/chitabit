@@ -2,8 +2,11 @@ import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
 
 import Tasks from './aTryTasks'
-import MUIForm from './formTest/MUIForm'
+ 
 import RHFMui from './formTest/RHFMui'
+
+import RHFMuiPasswordMatch from './formTest/RHFMuiPasswordMatch'
+
 
 import { veryLightGrey } from '../../styles/colors'
 // import{showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
@@ -107,7 +110,7 @@ const ATry = (props) => {
     
   {/* <Tasks/> */}
   {/* <MUIForm/> */}
-  <RHFMui/>
+  <RHFMuiPasswordMatch/>
 
 </ContentAreaSmall>
         
