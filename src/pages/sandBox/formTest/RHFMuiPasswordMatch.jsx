@@ -172,18 +172,18 @@ const RHFMuiPasswordMatch = () => {
         {errors.password && errors.password.type === "minLength" && 
           <ErrorWrapper>Minimum characters 5</ErrorWrapper>} */}
       <FormInput> 
-      <input
-          name="password"
-          type="password"
-          ref={register({
-            required: "You must specify a password",
-            minLength: {
-              value: 5,
-              message: "Password must have at least 8 characters"
-            }
-          })}
-        />
-        {errors.password && <ErrorWrapper>{errors.password.message}</ErrorWrapper>}
+        <input
+            name="password"
+            type="password"
+            ref={register({
+              required: "You must specify a password",
+              minLength: {
+                value: 5,
+                message: "Password must have at least 8 characters"
+              }
+            })}
+          />
+          {errors.password && <ErrorWrapper>{errors.password.message}</ErrorWrapper>}
 
         </FormInput>   
     </FormSegmentWrapper>

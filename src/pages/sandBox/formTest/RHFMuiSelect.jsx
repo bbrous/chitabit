@@ -124,7 +124,9 @@ const StyledTextField= styled(TextField)({
 
 // =====================================
 
-const RHFMuiTextBox = () => {
+
+
+const RHFMuiSelect = () => {
  
   const {handleSubmit, errors, control, register} = useForm({
               defaultValues: {
@@ -141,7 +143,7 @@ const RHFMuiTextBox = () => {
   return (
     <Wrapper>
      
-      <div>  RHF Text Boxes  </div>
+      <div>  RHF Select  </div>
 
 
     <form onSubmit = {handleSubmit(onSubmit)}>
@@ -151,53 +153,25 @@ const RHFMuiTextBox = () => {
     <FormSegmentWrapper>
 
     <SegmentHeader>
-      Straight Input Box
+      Straight Select Box
     </SegmentHeader>
 
     <FormInput> 
+ 
 
-      <input name ='StraightInputBox' 
-                  type="text" 
-                  ref ={register({
-                    required: true,
-                    minLength: 5
-            
-            })}
-          />
+      <select ref={register} name="ageGroup">
+        <option value="child">0 - 19</option>
+        <option value="young adult">20 - 29</option>
+        <option value="worker bee">30 - 59</option>
+        <option value="happy">60 - 120</option>
+      </select>
   
-          {errors.StraightInputBox && errors.StraightInputBox.type === "required" && <ErrorWrapper>This is required</ErrorWrapper>}
-          {errors.StraightInputBox && errors.StraightInputBox.type === "minLength" && <ErrorWrapper>TMust be greater than 5</ErrorWrapper>}
+
           
     </FormInput> 
           
 
-
- {/*  RHF  Material UI   --------------------------------- */}
-
- 
-
-      <SegmentHeader>
-        Material UI Text Box
-      </SegmentHeader>
-
-      <FormInput>
-        <Controller as={StyledTextField} 
-            name="MUITextBox" 
-            InputProps={{ disableUnderline: true }}
-            control={control} 
-            defaultValue="" 
-            rules={{ 
-              required: true ,
-              minLength: 5
-            
-            }}
-            />
-
-            {errors.MUITextBox && errors.MUITextBox.type === "required" && 
-              <ErrorWrapper>First name is required</ErrorWrapper>}
-            {errors.MUITextBox && errors.MUITextBox.type === "minLength" && 
-              <ErrorWrapper>Maximum characters 5</ErrorWrapper>}
-    </FormInput>       
+     
 </FormSegmentWrapper>
 
 
@@ -212,4 +186,4 @@ const RHFMuiTextBox = () => {
 }
 
 
-  export default RHFMuiTextBox
+  export default RHFMuiSelect

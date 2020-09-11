@@ -5,7 +5,7 @@ import Tasks from './aTryTasks'
  
 import RHFMui from './formTest/RHFMui'
 
-import RHFMuiPasswordMatch from './formTest/RHFMuiPasswordMatch'
+import RHFMuiRadio from './formTest/RHFMuiRadio'
 
 
 import { veryLightGrey } from '../../styles/colors'
@@ -110,7 +110,7 @@ const ATry = (props) => {
     
   {/* <Tasks/> */}
   {/* <MUIForm/> */}
-  <RHFMuiPasswordMatch/>
+  <RHFMuiRadio/>
 
 </ContentAreaSmall>
         
