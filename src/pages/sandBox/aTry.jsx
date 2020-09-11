@@ -5,7 +5,7 @@ import Tasks from './aTryTasks'
  
 import RHFMui from './formTest/RHFMui'
 
-import RHFMuiCheckBoxRound from './formTest/RHFMuiCheckBoxRound'
+import RHFMuiCheckBox from './formTest/RHFMuiCheckBox'
 
 
 import { veryLightGrey } from '../../styles/colors'
@@ -110,7 +110,7 @@ const ATry = (props) => {
     
   {/* <Tasks/> */}
   {/* <MUIForm/> */}
-  <RHFMuiCheckBoxRound/>
+  <RHFMuiCheckBox/>
 
 </ContentAreaSmall>
         
