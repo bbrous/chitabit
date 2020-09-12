@@ -17,7 +17,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-
+import Icon from "@material-ui/core/Icon";
 // ----------------------------------------
 
 const Wrapper= styled('div')({
@@ -107,6 +107,10 @@ const TargetDateWrapper= styled('div')({
   }
 })
 
+const IconContainer= styled(Icon)({
+  color: 'orange'
+
+})
 
 
 // =====================================
@@ -171,7 +175,7 @@ const RHFMuiDatePicker = () => {
                             // label="Year of registration"
                             // helperText={error}
                             value={selectedDate}
-                        
+                            keyboardIcon={<IconContainer>today_icon</IconContainer>}
                             onChange={handleDateChange}
                           />
                         }
@@ -201,7 +205,7 @@ const RHFMuiDatePicker = () => {
                             // label="Year of registration"
                             // helperText={error}
                             value={selectedDate}
-                        
+                            keyboardIcon={<IconContainer>today_icon</IconContainer>}
                             onChange={handleDateChange}
                           />
                         }

@@ -2,7 +2,6 @@ import React from 'react'
 import { useForm, Controller } from "react-hook-form";
 
 
-
 // Material UI =============================
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -20,7 +19,8 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-import { red } from '@material-ui/core/colors';
+
+import Icon from "@material-ui/core/Icon";
 
 
 const theme = createMuiTheme(); // mui theme for styled component
@@ -43,6 +43,11 @@ const Wrapper= styled('div')({
     width: '100%',
  
   }
+
+})
+
+const IconContainer= styled(Icon)({
+  color: 'orange'
 
 })
 
@@ -420,7 +425,7 @@ const SpotLightForm = () => {
                             // label="Year of registration"
                             // helperText={error}
                             value={selectedDate}
-                        
+                            keyboardIcon={<IconContainer>today_icon</IconContainer>}
                             onChange={handleDateChange}
                           />
                         }
@@ -511,11 +516,13 @@ const SpotLightForm = () => {
               <FormInput>
                 
               <Controller as={StyledMultiline} name="note" 
-                  InputProps={{ disableUnderline: true }}
+                  InputProps={{ outline: 'none' }}
+                  
                   control={control} 
                   defaultValue="" 
                   multiline
                   variant="outlined"
+                   
                   />
 
 
