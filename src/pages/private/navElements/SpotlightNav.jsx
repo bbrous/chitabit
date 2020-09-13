@@ -438,6 +438,8 @@ const SpotlightNav = (props) => {
    // let spotlightsArray = Object.values(props.spotlights)
       let spotlightsArray = Object.values(spotlights)
 
+      console.log('[SpotlightNav]  Initial Store SPotlights : ' , spotlightsArray)
+      console.log('[SpotlightNav]  Spotlights are : ' , spotlightsArray)
 
   // ######################TEMPORARY#############################
 
@@ -561,7 +563,7 @@ const SpotlightNav = (props) => {
                 handleChangeSpotlight(evt)
               }}
               >
-              All Chits
+              All Spotlights
               </AllSpotLightsWrapper>
             
             }
