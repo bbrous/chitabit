@@ -5,12 +5,12 @@ import{changeDisplaySpotlight,   openCloseSidePanel} from '../../../app/redux/ac
 
 
 import AddCircleIcon from '@material-ui/icons/AddCircle'
-import {  makeStyles, styled, createMuiTheme } from "@material-ui/core/styles"
+import {  styled, createMuiTheme } from "@material-ui/core/styles"
 
-import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange } from '../../../styles/colors';
+import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange,   } from '../../../styles/colors';
 import Paper from '@material-ui/core/Paper'; 
 
-
+import { unformattedUTCtoDate} from '../../../app/helpers/dateHelper'
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 //--------------------------------------
 
@@ -224,8 +224,9 @@ const TitleWrapper= styled('div')({
   alignItems: 'flex-start',
   flexWrap: 'wrap' ,
   width: '100%',
- 
-  fontSize: '.9rem',
+ backgroundColor: lightGrey,
+ color: chitRedDark,
+  fontSize: '.85rem',
   margin: '.2rem .1rem',
   
   fontWeight: 'bold',
@@ -359,30 +360,8 @@ const TimerWrapper= styled('div')({
 
 })
 
-// ----------------------
 
 
-const spotlights = {
-  spot1 : {
-    id : 'spot1',
-    timeStamp: 1556990799000,   //May 4, 2019  not right
-    title: 'This is spot 1',
-    est: 'May 4, 2019  '
-  },
-  spot2 : {
-    id : 'spot2',
-    timeStamp: 1556990799222,   //May 4, 2019 not right
-    title: 'This is spot 2',
-    est: 'May 5, 2019 '
-  },
-
-  spot3 : {
-    id : 'spot3',
-    timeStamp: 1556990799777,   //May 4, 2019 not right
-    title: 'This is spot 3',
-    est: 'May 8, 2019  '
-  },
-}
 
 // =========================================
 
@@ -394,7 +373,7 @@ const SpotlightNav = (props) => {
   // ##################TEMP ####################
 
 
-  console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
+  // console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
 
   let stateSpotlightId =  props.display.private.spotLightDisplay.displayedSpotLightId
   // let stateSpotlightId = props.view.displayId
@@ -424,7 +403,7 @@ const SpotlightNav = (props) => {
   ---------------------------------------------------*/
   
   const handleChangeSpotlight= (evt)=>{
-   console.log('[SpotlightNav] - evt.target is' , evt.currentTarget.id)
+  //  console.log('[SpotlightNav] - evt.target is' , evt.currentTarget.id)
     props.changeDisplaySpotlight(evt.currentTarget.id)
     props.openCloseSidePanel('hide')
     }
@@ -436,10 +415,11 @@ const SpotlightNav = (props) => {
 
 
    // let spotlightsArray = Object.values(props.spotlights)
+      const spotlights = props.display.private.data.spotlightData.spotlights
       let spotlightsArray = Object.values(spotlights)
 
-      console.log('[SpotlightNav]  Initial Store SPotlights : ' , spotlightsArray)
-      console.log('[SpotlightNav]  Spotlights are : ' , spotlightsArray)
+      // console.log('[SpotlightNav]  Initial Store SPotlights : ' , props.display.private.data.spotlightData.spotlights)
+      // console.log('[SpotlightNav]  Spotlights are : ' , spotlightsArray)
 
   // ######################TEMPORARY#############################
 
@@ -458,7 +438,8 @@ const SpotlightNav = (props) => {
 
 
     let spotTitle =spot.title
-    let dateEst = spot.est
+    let dateEst = unformattedUTCtoDate(spot.endEst)
+    let numberOfTasks = spot.taskArray.length
 
   /* func chooseDisplayType ---------------------------------
      desc: css changes highlight of person selected
@@ -481,7 +462,7 @@ const SpotlightNav = (props) => {
           <TimeRemainingWrapper
           > est complete: {dateEst}</TimeRemainingWrapper>
           <div>Timer: not set</div>
-          <div>Tasks: 6</div>
+          <div>Tasks: {numberOfTasks} </div>
         </SpotlightWrapper>
       
 

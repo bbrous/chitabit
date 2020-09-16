@@ -1,413 +1,555 @@
-import React, {Fragment} from 'react'
- 
+import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
-import{chitOrange, chitLightYellow, chitOrangeLight, chitBlueDull, chitRedDark, mediumGrey, chitBlueVeryVeryLight, mediumLightGrey} from '../../../styles/colors'
-
-import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
-import {RemainingTimeSmall} from './RemainingTime'
- 
-import {convertMS} from '../../../app/helpers/dateHelper'
-
-// import Checkbox from '@material-ui/core/Checkbox';
-// import clsx from 'clsx'// for checkbox
-
-// ##############################################
-
-  import InitialStore from '../../../app/redux/store/InitialStore'
-
-//###############################################
-
- 
+import{updateTaskArray} from '../../../app/redux/actions/mainActions'
+import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../../styles/colors'
 
 
-import { NavLink, withRouter, useLocation} from 'react-router-dom'
+import MenuPopup from './MenuPopup'
+import ClockPopup from './ClockPopup'
+import NotePopup from './NotePopup'
 
-// import{openCloseSidePanel, showSpotLight, closeSpotLight} from '../../app/redux/actions/mainActions'
-
-import { makeStyles,styled, createMuiTheme } from "@material-ui/core/styles"
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
-import EditIcon from '@material-ui/icons/Edit'
+import {NavLink, withRouter, useLocation} from 'react-router-dom'
+import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
+import CheckIcon from '@material-ui/icons/Check';
 
 
 
+
+
+
+
+
+// Material UI Context Menu  -------------------------------------
+
+
+
+
+
+// React Sortable HOC ----------------------------------------------
+
+import { SortableContainer, SortableElement, sortableHandle } from "react-sortable-hoc";
+import arrayMove from "array-move";
+ 
+// React Sortable HOC ----------------------------------------------
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
-//--------------------------------------
 
 
-const BlueWrapper= styled(Paper)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  position: 'relative',
-  alignItems: 'center',
-  width: '12rem',
-  height: '12rem',
-  paddingTop: '3rem',
-  margin: '4px',
 
-
-  backgroundColor: chitBlueVeryVeryLight,
-
-
-})
-
-const YellowWrapper= styled(Paper)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  position: 'relative',
-  alignItems: 'center',
-  width: '12rem',
-  height: '12rem',
-  paddingTop: '2rem',
-  margin: '4px',
-  lineHeight: '1',
-
-  backgroundColor: chitLightYellow,
-
-
-})
-
-
-const Goal= styled('div')({
-  display: 'block',
-  textAlign: 'center',
-   
-  
-  // height: '100%',
-  width: '100%',
-  fontSize: '1.1rem',
-  color: 'red',
-  fontWeight: 'bold'
-  // marginBottom: '.5rem'
 
  
-})
 
-const Author= styled('div')({
-  display: 'block',
-  textAlign: 'center',
-   
+const Wrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
   
-  // height: '100%',
-  width: '100%',
-  fontSize: '.7rem',
-  color: chitBlueDull,
-  // marginBottom: '.5rem'
+  width: '98%',
+    
+  padding: '0 .5rem',
+  margin: ' 0',
+
+// backgroundColor: lightGrey,
+
+  fontSize: '.8rem',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
 
  
-})
+ 
 
-const TimeLeft= styled('div')({
+const ListWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-   
-   
-  
-  // height: '100%',
-  width: '100%',
-  fontSize: '1.2rem',
-  color: chitRedDark,
 
- 
+  width: '100%',
+  height: '90%',
+  // backgroundColor: 'yellow',
+
+  '& ul': {
+    width: '98%',
+    // backgroundColor: 'purple',
+    listStyleType: 'none',
+    margin: '0',
+    padding: '0',
+  },
+
+  '& li': {
+    width: '98%',
+    backgroundColor: 'white'
+    
+  }
+
+
 })
 
-const ElapsedTime = styled('div')({
-  display: 'block',
+const ItemWrapper = styled(Paper)({
+  display: 'flex',
+  justifyContent: 'space-between',
+ alignItems: 'center',
+
+  width: '99%',
+  
+  margin: '4px 0',
+  
+  
+})
+const TaskWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexGrow: '1',
+ 
   textAlign: 'center',
-   
+  backgroundColor: 'white',
   
-  // height: '100%',
-  width: '100%',
-  color: mediumGrey,
-  fontSize: '.7rem',
-  lineHeight: '1rem',
-  marginBottom: '.75rem'
+})
 
+const SpotlightWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexGrow: '1',
  
+  textAlign: 'center',
+  backgroundColor: chitOrangeLight,
+  
 })
 
 
-const RemainingTimeWrapper = styled('div')({
+const TaskBlockWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column' , 
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  width: '100%',
+ 
+//  backgroundColor: 'red',
+ 
+
+  
+})
+
+const TaskBlock = styled('div')({
+  display: 'flex',
+
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  // width: '100%',
+
+})
+
+const DragDiv = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  // backgroundColor: 'orange',
+ 
+  height: '100%',
+  width: '1.2rem',
+  margin: '0 8px 4px 2px',
+  // marginBottom: '4px',
+  cursor: 'pointer',
+  
+  '&:hover' : {
+    // backgroundColor:chitOrangeLight
+    border: '1px solid #FADAC1'
+  }
+
+  
+})
+
+const TitleWrapper= styled('div')({
+  
+  color: 'black',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const TitleWrapperCompleted = styled('div')({
+  
+  color: mediumLightGrey,
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const CheckCircleWrapper= styled('div')({
+  
+  width: '1.1rem',
+   
+  // border: '1px solid grey',
+ 
+  marginRight: '1rem',
+  // color: mediumLightGrey,
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const CheckCircle= styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  
+  width: '1.05rem',
+  height: '1.05rem',
+  border: '1px solid grey',
+  borderRadius: '200px',
    
-    
-    height: '3rem',
-    width: '90%',
+  // color: mediumLightGrey,
+  
+  cursor: 'pointer',
 
-    padding: '0 auto .75rem auto',
 
- 
 
- 
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
 })
 
 
-// ------------------------------------
-
-const LinksWrapper= styled('div')({
+const CheckCircleCompleted = styled('div')({
   display: 'flex',
-  width: '90%',
-  justifyContent: 'space-between',
-  position: 'absolute',
-  bottom: '8px',
-  '& div' : {
-    color: chitBlueDull,
-    textDecoration: 'underline',
-    cursor: 'pointer'
-  }
-
-})
-
-const DefaultWrapper= styled('div')({
-  display: 'flex',
-  width: '90%',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
   alignItems: 'center',
-  position: 'absolute',
-  top: '3px',
-  left: '3px',
-  '& div' : {
-    color: mediumGrey,
-    fontSize: '.7rem',
-    lineHeight: '1rem',
-     
-  }
+  
+  width: '1.05rem',
+  height: '1.05rem',
+  border: '1px solid #CFD0D1',
+  borderRadius: '200px',
+   
+  color: 'white' ,
+  backgroundColor: mediumLightGrey,
 
-})
-
-const Delete= styled('div')({
-  display: 'block', 
-  // position: 'absolute',
-  bottom: '5px',
-  right: '5px',
-  height: '1rem',
-  width: '1rem',
-  color: chitOrange,
-
-'&:hover' : {
-  color: chitOrangeLight,
-  cursor: 'pointer',
-
- 
-},
 
   
+
+
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
   },
-
 })
 
 
-const DeleteIcon= styled(DeleteForeverIcon)({
-fontSize: '1.3rem',
-color: chitOrange,
-
-'&:hover' : {
-  color: chitOrangeLight,
-  cursor: 'pointer',
-
  
-},
-})
 
 
-const Edit= styled('div')({
-  display: 'block', 
-  // position: 'absolute',
-  bottom: '5px',
-  right: '5px',
-  height: '1rem',
-  width: '1rem',
-  color: chitOrange,
-
-'&:hover' : {
-  color: chitOrangeLight,
-  cursor: 'pointer',
-
- 
-},
+const IconWrapper= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  // padding: '0 0 4px 0',
+  width: '100%',
+  height: '1.1rem',
+  // backgroundColor: 'yellow',
+   
 
   
+
+
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
   },
-
 })
 
-
-const IconEdit= styled(EditIcon)({
-fontSize: '1.3rem',
-color: chitOrange,
-
-'&:hover' : {
-  color: chitOrangeLight,
+const SpotlightTag= styled('div')({
+  color: 'red',
+  fontSize: '.8rem',
+  textDecoration: 'underline',
+  // height: '1rem',
+  // backgroundColor: 'yellow',
   cursor: 'pointer',
 
- 
-},
+  '&:hover': {
+    color: chitOrange
+  },
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
 })
 
 
+// =======================================
 
-const Header = styled('div')({
 
-  color: mediumGrey,
-  fontSize: '.8rem'
 
-})
-//===============================================================
+const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
+// =================================================
+const SortableItem = SortableElement(({ handleClick,value }) => {
 
-const SpotLight = (props) => {
-  const [checked, setChecked] = React.useState(true);
-  const {id, type, popupShow, goal, startDay, endEst, endEstModified, author} = props
+
+
+  //--------------------------------------------------- []
+
+  return(
+
+
+      <ItemWrapper
+       
+        id = {value.id}
+      >
+       <DragHandle />
+
+       
+       <TaskWrapper>
+        <TaskBlockWrapper>
+        <IconWrapper>
+          &nbsp; 
+          
+          {value.type === 'spotlight' && 
+            <SpotlightTag>Spotlight</SpotlightTag>
+          } 
+          
+          </IconWrapper>
+          
+
+          <TaskBlock>  
+            <CheckCircleWrapper>
+
+            {! value.completed && 
+              <CheckCircle/>
+              }
+              { value.completed && 
+              <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
+              }
+
+
+              
+              
+              </CheckCircleWrapper>
+
+
+
+
+              {! value.completed && 
+              <TitleWrapper>Title: {value.title}</TitleWrapper> 
+              }
+              { value.completed && 
+              <TitleWrapperCompleted>Title: {value.title}</TitleWrapperCompleted> 
+              }
+
+
+          </TaskBlock>
+          
+          
+          <IconWrapper>
+          &nbsp;
+              <ClockPopup id = {value.id}/>
+              <NotePopup id = {value.id}/>
+            </IconWrapper>
+        </TaskBlockWrapper>
+        
+       </TaskWrapper>
+        
+
+       <MenuPopup id = {value.id}/>
+
+
+
+
+      </ItemWrapper>
  
-  // console.log('SpotLight] id: ', id)
+  )// end RETURN Sortable Item
+
+})// end SortableItem
+    
 
 
-// --------------------------------
-  let startDate = startDay //Aug 7, 2020 5:46 - Friday
-  let endDate = endEst   // Aug 15, 2020 10:31 AM ? - Saturday
 
-  let msElapsed =   startDate - endDate
 
-  let timeElapsedObject =  convertMS(msElapsed)
-  let days = Math.abs(timeElapsedObject.day)
-  let hours = Math.abs(timeElapsedObject.hour)
-  let mins = Math.abs(timeElapsedObject.minute)
-  let secs = Math.abs(timeElapsedObject.seconds)
+// ------- Map of Items   --------------------[]
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
+
+const SortableList = SortableContainer(({ items }) => {
+  return (
+
+    <ul>
+      {items.map((value, index) => (
+        
+            
+        <SortableItem key={`item-${index}`} index={index} value={value} 
+       
+        />
+         
+      ))}
+    </ul>
+  );
+});
+
+
+const [items, setItems] = useState([
+  {id: "Item 1", title: "TITLE _ Item 1", completed: false, type: 'task'},
+  {id: "Item 2", title: "TITLE _ Item 2", completed: true, type: 'task'},
+  {id: "Item 3", title: "TITLE _ Item 3", completed: true, type: 'spotlight'},
+  {id: "Item 4", title: "TITLE _ Item 4", completed: false, type: 'task'},
+  {id: "Item 5", title: "TITLE _ Item 5", completed: false, type: 'task'},
+  {id: "Item 7", title: "TITLE _ Item 6", completed: false, type: 'task'}
+]);
+
+
+const SpotLightTasks = (props) => {
+
+  // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
+
+  // console.log('[SPOTLIGHT TASKS ] @@@@@@@  spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id])
+  // console.log('[SPOTLIGHT TASKS ] @@@@@@@  props id' , props.id)
+
+
+
+
+/* #######################################################
+
+
+1.  get array from redux props
+    structure array[{id: 1, type: task}, {id: 5, type: 'spotlight'}]
+
+2.  create new "complex" array to use in sortable -- (items in useState)
+    use props.task#.id to get title, etc
+         or
+        props.
+3.  in useEffect - 
+     a. get new "complex" array after sort
+     b. create new array - convert back to simplified form
+     c. execute action to update Redux Store
+
+
+
+
+
+####################################################### */
+
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+// ##### REPLACE   REPLACE   REPLACE   ############################
+
+
+// ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
+
+ 
+  // console.log('[SPOTLIGHT TASKS ] @@@@@@@  spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id].taskArray )
+ 
+ // get spotlight tasks array-----------------
+  let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
+
+  // map through taskArray - if type = task, search task list, else search spotlight list
+  const displayedTasks = taskArray.map((task, index) => {
+
+    if(task.type === 'task'){
+
+      // get task from TASK LIST = task.taskItem
+      return (
+
+        <div> Stiff here</div>
+  
+      ) //end return
+    }
+    
+    if(task.type === 'spotlight'){
+      // get task from SPOTLIGHT LIST = task.taskItem
+      return (
+
+        <div> Stiff here</div>
+      ) //end return
+    }
+
+    
+  })// end displayedTasks map
+  
+
+
+
+
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+
+
+  useEffect(() => {
+    console.log('[ATry] - new items array'  , items)
+ 
+    
+  }, [items]);
+
+
+  // onSortEnd - creates the new array index after move
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setItems(arrayMove(items, oldIndex, newIndex));
   };
 
-  const handleDefault = (evt) => {
-    let spotlightId = evt.currentTarget.parentElement.parentElement.id
 
-    console.log('[SPOTLIGHt] - evt parent : ', spotlightId)
+ 
 
-  };
+
 
   return (
 
-    <Fragment>
-      {type === 'goal' && 
-        <YellowWrapper  id = {id}>
+      <Wrapper>
 
-          <DefaultWrapper  >
+        <ListWrapper>
+         
+         
+          {/* ----  Move Items  Executable - --  */}
 
-
-          <SpotlightCheckbox   
-            checked = {true}  
-            onClick = {(evt)=> handleDefault(evt)}
-          />
-            <div> default Popup  </div>
-          </DefaultWrapper>
-
-            <Goal> {goal} </Goal>
-            <ElapsedTime>Elapsed: {days} days {hours} hrs {mins} min</ElapsedTime>
-            <TimeLeft>
-              <Header> Time Remaining: </Header> 
-
-              <RemainingTimeWrapper>
-
-                <RemainingTimeSmall 
-                  startDate = {startDate} 
-                  endDate = {endDate}
-                />
-    
-              </RemainingTimeWrapper>
-
-            </TimeLeft>
-
-            
-            
-          <LinksWrapper>
-            <Edit
-                    // onClick = {handleEdit}
-              > 
-                <IconEdit/>
-            </Edit>
-
-            <Delete
-                    // onClick = {handleDelete}
-              > 
-                <DeleteIcon/>
-            </Delete>
-
-          </LinksWrapper>
-          
-      </YellowWrapper>
+          <SortableList items={items} onSortEnd={onSortEnd} useDragHandle/>
 
 
-      }
 
-      {type === 'inspiration' && 
-        <BlueWrapper  id = {id}>
+        </ListWrapper>
 
-          <DefaultWrapper>
+      </Wrapper>
 
-
-          <SpotlightCheckbox  
-            checked = {true}  
-            onClick = {(evt)=> handleDefault(evt)}
-          />
-            <div> default Popup  </div>
-          </DefaultWrapper>
-
-            <Goal> {goal} </Goal>
-            <Author> {author} </Author>
-
-
-          <LinksWrapper>
-            <Edit
-                    // onClick = {handleEdit}
-              > 
-                <IconEdit/>
-            </Edit>
-
-            <Delete
-                    // onClick = {handleDelete}
-              > 
-                <DeleteIcon/>
-            </Delete>
-
-          </LinksWrapper>
-          
-      </BlueWrapper>
-
-
-      }
-
-    </Fragment>
 
   )
 }
 
-
-
-
-
-
-// const actions = {
-//   showSpotLight,
-//   closeSpotLight
-// }
+const actions = {
+  // showSpotLight,
+  // closeSpotLight
+  updateTaskArray
+}
 
 const mapState = state => ({
-  view: state,
-  data: state.private.data.spotlights
+  display: state
 });
 
-export default connect(mapState)(SpotLight)
+export default connect(mapState, actions)(SpotLightTasks)
 
-// export default connect(mapState, actions)(SpotLight)
+
+

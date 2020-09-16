@@ -1,7 +1,10 @@
 import React from 'react'
-import{ chitOrangeLight, chitOrange, chitRedDark, lightGrey, mediumGrey, veryLightGrey } from '../../../styles/colors'
+import{ chitOrangeLight, chitOrange, chitRedDark,  mediumGrey,   } from '../../../styles/colors'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import {nameDisplay, choosePersonalCoin} from '../../../app/helpers/commonHelpers'
+import {
+  // nameDisplay,
+  choosePersonalCoin
+} from '../../../app/helpers/commonHelpers'
 
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Paper from '@material-ui/core/Paper'
@@ -77,12 +80,11 @@ const DateWrapper= styled('div')({
 
 const ChitContent= styled('div')({
   display: 'flex',
-  justifyContent: 'flex-start',
+  justifyContent: 'space-between',
   alignItems: 'flex-start',
   position: 'relative',
   flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
+  
   // margin: '1.75rem 0',
 
   padding: '1.5rem .7rem .7rem .7rem',
@@ -215,9 +217,9 @@ const Content = styled('div')({
 const ContentTitle = styled('div')({
   display: 'block' ,
   width: '100%',
-  color: 'black',
+  color: chitRedDark,
   margin: '.35rem 0',
-  color: chitRedDark
+  
 
 })
 

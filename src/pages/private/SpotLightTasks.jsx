@@ -1,14 +1,14 @@
-import React, {useState, useEffect,} from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
 import{updateTaskArray} from '../../app/redux/actions/mainActions'
-import{chitOrangeLight, chitBlueDull, mediumLightGrey, mediumGrey} from '../../styles/colors'
+import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../styles/colors'
 
 
 import MenuPopup from './MenuPopup'
 import ClockPopup from './ClockPopup'
 import NotePopup from './NotePopup'
 
-// import {NavLink, withRouter, useLocation} from 'react-router-dom'
+import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
 import CheckIcon from '@material-ui/icons/Check';
@@ -404,7 +404,7 @@ const SortableList = SortableContainer(({ items }) => {
 
 
 
-const Tasks = (props) => {
+const SpotLightTasks = (props) => {
 
  
 
@@ -497,7 +497,7 @@ const mapState = state => ({
   view: state
 });
 
-export default connect(mapState, actions)(Tasks)
+export default connect(mapState, actions)(SpotLightTasks)
 
 
 

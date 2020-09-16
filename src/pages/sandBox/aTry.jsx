@@ -1,9 +1,9 @@
-import React, {useState, useEffect, Fragment} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 
 import Tasks from './aTryTasks'
  
-import DateFormatEx from './dateLibrary/DateFormatEx'
+// import DateFormatEx from './dateLibrary/DateFormatEx'
 // import RHFMui from './formLibrary/RHFMui'
 // import RHFMuiConditionalSubMenu from './formLibrary/RHFMuiConditionalSubMenu'
 
@@ -13,9 +13,9 @@ import { veryLightGrey } from '../../styles/colors'
 // import InitialStore from '../../app/redux/store/InitialStore'
 
 
-import {NavLink, withRouter, useLocation} from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import Paper from '@material-ui/core/Paper'
+ 
 
  
 
@@ -108,8 +108,8 @@ const ATry = (props) => {
 
 <ContentAreaSmall>
     
-  {/* <Tasks/> */}
-  <DateFormatEx/>
+  <Tasks/>
+  {/* <DateFormatEx/> */}
 
   {/* <RHFMuiConditionalSubMenu/> */}
 

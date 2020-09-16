@@ -1,8 +1,9 @@
-import React, {Fragment, useState, useEffect} from 'react'
+import React, {Fragment } from 'react'
+import {connect} from 'react-redux'
 
 import SpotLightTasks from './SpotLightTasks'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey, chitBlueVeryLight, chitVeryLightYellow, mediumGrey, veryLightGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey,   veryLightGrey} from '../../../styles/colors'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 import MenuPopup from './MenuPopup'
@@ -10,7 +11,7 @@ import ClockPopup from './ClockPopup'
 import NotePopup from './NotePopup'
 
 // &&&&   TEMP Initial Store Import -- Get from Database
-import InitialStore from '../../../app/redux/store/InitialStore'
+// import InitialStore from '../../../app/redux/store/InitialStore'
 
 
 
@@ -36,23 +37,23 @@ const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 // ---------------------------------
 
-const Wrapper= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  position: 'relative',
-  backgroundColor: chitOrangeLight,
-  height: '100%',
+// const Wrapper= styled('div')({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'flex-start',
+//   alignItems: 'center',
+//   position: 'relative',
+//   backgroundColor: chitOrangeLight,
+//   height: '100%',
 
 
 
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
+//   [theme.breakpoints.down('sm')] : {
+//     // height: '1.25rem',
    
-  },
+//   },
   
-})
+// })
 
 const Info= styled(InfoIcon)({
   display: 'block',
@@ -565,21 +566,26 @@ const Task= styled('div')({
 // ====================================
 
 export const Spotlight = (props) => {
+  // console.log('[SPOTLIGHT ] &&&& spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id])
+  // console.log('[SPOTLIGHT ] props id' , props.id)
 
-  console.log('[SPOTLIGHT ] props id' , props.id)
+  let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
 
-  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = InitialStore.spotlightData.spotlights.spot1
-
-
-  let targetDate  =  UTCtoDate(endEst)
-
+  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
+  
+  // convert target Date in ISO to UTC for addition/subtraction etc
+  let targetDateInMilliseconds = DatetoUTC(endEst)
+  
+  // format target Date in milliseconds for display
+  let targetDate  =  UTCtoDate(targetDateInMilliseconds)
+   
   
   let currentDate = new Date()
 
 
 
   let currentUTCDate = DatetoUTC(currentDate)
-  let UTCTimeRemaining = endEst - currentUTCDate
+  let UTCTimeRemaining = targetDateInMilliseconds - currentUTCDate
 
   let timeRemainingObject =  convertMS(UTCTimeRemaining)
   let days = Math.abs(timeRemainingObject.day)
@@ -685,7 +691,7 @@ export const Spotlight = (props) => {
 
     </FormContainer>
 
-    <SpotLightTasks/>
+    <SpotLightTasks id = {id}/>
 
 
 
@@ -704,4 +710,13 @@ export const Spotlight = (props) => {
 }
 
 
-export default Spotlight
+const actions = {
+  // changeDisplaySpotlight,
+  // openCloseSidePanel
+}
+
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState, actions)(Spotlight)

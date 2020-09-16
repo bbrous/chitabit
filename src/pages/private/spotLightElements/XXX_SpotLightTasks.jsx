@@ -1,7 +1,7 @@
-import React, {useState, useEffect,} from 'react'
+import React, {useState, useEffect } from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray} from '../../app/redux/actions/mainActions'
-import{chitOrangeLight, chitBlueDull, mediumLightGrey, mediumGrey} from '../../styles/colors'
+import{updateTaskArray} from '../../../app/redux/actions/mainActions'
+import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
 
 
 import MenuPopup from './MenuPopup'
@@ -48,8 +48,8 @@ const Wrapper= styled('div')({
   
   width: '98%',
     
-  padding: '.25rem .5rem',
-  margin: '.25rem 0',
+  padding: '0 .5rem',
+  margin: ' 0',
 
 // backgroundColor: lightGrey,
 
@@ -101,6 +101,7 @@ const ItemWrapper = styled(Paper)({
   
   margin: '4px 0',
   
+  
 })
 const TaskWrapper = styled('div')({
   display: 'flex',
@@ -115,18 +116,18 @@ const TaskWrapper = styled('div')({
   
 })
 
-const SpotlightWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-  flexGrow: '1',
+// const SpotlightWrapper = styled('div')({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   height: '100%',
+//   flexGrow: '1',
  
-  textAlign: 'center',
-  backgroundColor: chitOrangeLight,
+//   textAlign: 'center',
+//   backgroundColor: chitOrangeLight,
   
-})
+// })
 
 
 const TaskBlockWrapper = styled('div')({
@@ -160,12 +161,13 @@ const DragDiv = styled('div')({
  
   height: '100%',
   width: '1.2rem',
-  marginRight: '8px',
-  marginBottom: '4px',
+  margin: '0 8px 4px 2px',
+  // marginBottom: '4px',
   cursor: 'pointer',
-
+  
   '&:hover' : {
-    backgroundColor:chitOrangeLight
+    // backgroundColor:chitOrangeLight
+    border: '1px solid #FADAC1'
   }
 
   
@@ -217,10 +219,9 @@ const CheckCircle= styled('div')({
   borderRadius: '200px',
    
   // color: mediumLightGrey,
-  // backgroundColor: lightGrey,
-
-
   
+  cursor: 'pointer',
+
 
 
   [theme.breakpoints.down('sm')] : {
@@ -237,11 +238,11 @@ const CheckCircleCompleted = styled('div')({
   
   width: '1.05rem',
   height: '1.05rem',
-  border: '1px solid #727376',
+  border: '1px solid #CFD0D1',
   borderRadius: '200px',
    
-  color: 'white',
-  backgroundColor: mediumGrey,
+  color: 'white' ,
+  backgroundColor: mediumLightGrey,
 
 
   
@@ -261,9 +262,9 @@ const IconWrapper= styled('div')({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  padding: '0 0 4px 0',
+  // padding: '0 0 4px 0',
   width: '100%',
-  // height: '1rem',
+  height: '1.1rem',
   // backgroundColor: 'yellow',
    
 
@@ -277,10 +278,16 @@ const IconWrapper= styled('div')({
 })
 
 const SpotlightTag= styled('div')({
-  color: chitBlueDull,
+  color: 'red',
   fontSize: '.8rem',
+  textDecoration: 'underline',
   // height: '1rem',
   // backgroundColor: 'yellow',
+  cursor: 'pointer',
+
+  '&:hover': {
+    color: chitOrange
+  },
    
 
   
@@ -298,11 +305,30 @@ const SpotlightTag= styled('div')({
 
 
 const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
+
 // =================================================
+
 const SortableItem = SortableElement(({ handleClick,value }) => {
 
+  let id, completed, title, note, clock
+
+  if(value.type === 'task'){
 
 
+    // console.log('SPOTLIGHT value ::::::::::  its a task', )
+    // get task from TASK LIST = task.taskItem
+
+  }
+  
+  if(value.type === 'spotlight'){
+
+    // console.log('SPOTLIGHT TASKS ::::::::::  its a SPOTLIGHT')
+    // get task from SPOTLIGHT LIST = task.taskItem
+    // return (
+
+    //   <div> Stiff here</div>
+    // ) //end return
+  }
   //--------------------------------------------------- []
 
   return(
@@ -385,6 +411,11 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
 
 
 const SortableList = SortableContainer(({ items }) => {
+
+
+  console.log(' [SPOTLIGHT TASKS] - OOOOOOOO - items', items)
+
+
   return (
 
     <ul>
@@ -401,58 +432,29 @@ const SortableList = SortableContainer(({ items }) => {
 });
 
 
-
-
-
-const Tasks = (props) => {
-
  
 
-/* #######################################################
+const SpotLightTasks = (props) => {
+  // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
 
+  // console.log('[SPOT LIGHT TASKS] - props are : ' , props.display.private.data.spotlightData)
 
-1.  get array from redux props
-    structure array[{id: 1, type: task}, {id: 5, type: 'spotlight'}]
+ // get spotlight tasks array-----------------
+ let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
 
-2.  create new "complex" array to use in sortable -- (items in useState)
-    use props.task#.id to get title, etc
-         or
-        props.
-3.  in useEffect - 
-     a. get new "complex" array after sort
-     b. create new array - convert back to simplified form
-     c. execute action to update Redux Store
+  const [items, setItems] = useState([]);
 
-
-
-
-
-####################################################### */
-
-
-  // set local state for items -----------------
-
-
-
-// ##### REPLACE   REPLACE   REPLACE   ############################
-
-  const [items, setItems] = useState([
-    {id: "Item 1", title: "TITLE _ Item 1", completed: false, type: 'task'},
-    {id: "Item 2", title: "TITLE _ Item 2", completed: true, type: 'task'},
-    {id: "Item 3", title: "TITLE _ Item 3", completed: true, type: 'spotlight'},
-    {id: "Item 4", title: "TITLE _ Item 4", completed: false, type: 'task'},
-    {id: "Item 5", title: "TITLE _ Item 5", completed: false, type: 'task'},
-    {id: "Item 6", title: "TITLE _ Item 6", completed: false, type: 'task'}
-  ]);
-// ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
-
-
-
+  
   useEffect(() => {
+    
+    setItems(taskArray)
+    
     console.log('[ATry] - new items array'  , items)
  
     
-  }, [items]);
+  }, [taskArray, items]);
+
+
 
 
   // onSortEnd - creates the new array index after move
@@ -494,10 +496,10 @@ const actions = {
 }
 
 const mapState = state => ({
-  view: state
+  display: state
 });
 
-export default connect(mapState, actions)(Tasks)
+export default connect(mapState, actions)(SpotLightTasks)
 
 
 

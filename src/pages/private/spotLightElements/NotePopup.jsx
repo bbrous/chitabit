@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey} from '../../../styles/colors'
+import{chitOrange, mediumLightGrey} from '../../../styles/colors'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Popover from '@material-ui/core/Popover';
@@ -8,7 +8,7 @@ import NotesIcon from '@material-ui/icons/Notes';
 
 
  
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 // -----------------------
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -62,7 +62,7 @@ const NotePopup = (props) => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log('[NotePopup] id is : ', event.currentTarget.id)
+    // console.log('[NotePopup] id is : ', event.currentTarget.id)
   };
 
   const handleClose = () => {

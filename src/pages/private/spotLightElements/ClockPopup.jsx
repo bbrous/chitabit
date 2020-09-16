@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey, mediumLightGrey} from '../../../styles/colors'
+import{chitOrange,  mediumGrey, mediumLightGrey} from '../../../styles/colors'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Popover from '@material-ui/core/Popover';
@@ -8,7 +8,7 @@ import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
 
  
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 // -----------------------
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -180,7 +180,7 @@ const ClockPopup = (props) => {
 
   const handleClick = (event, taskId) => {
     setAnchorEl(event.currentTarget);
-    console.log('[ClockPopup] id is : ', event.currentTarget.id)
+    // console.log('[ClockPopup] id is : ', event.currentTarget.id)
   };
 
   const handleClose = () => {

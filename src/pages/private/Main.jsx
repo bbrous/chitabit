@@ -1,13 +1,13 @@
-import React , {useState, useEffect} from 'react'
+import React   from 'react'
 import HeaderMain from './mainElements/Header_main'
 
-import{chitOrange, veryLightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow} from '../../styles/colors'
+import{chitOrange, veryLightGrey} from '../../styles/colors'
 
 import Modal from '../../components/modal/Modal.jsx'
 // import InitialMessage from './journalElements/InitialMessage'
 // import Day from './journalElements/Day'
 
-import JournalNav from './navElements/JournalNav'
+// import JournalNav from './navElements/JournalNav'
  
 import SpotlightNav from './navElements/SpotlightNav'
 import SpotlightMain from './SpotlightMain'
@@ -22,7 +22,7 @@ import{openCloseSidePanel} from '../../app/redux/actions/mainActions'
 // import Modal from '../../components/modal/Modal.jsx'
 
 
-import Paper from '@material-ui/core/Paper'
+ 
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 
@@ -220,7 +220,7 @@ const Main = (props) => {
   let viewSidePanel = props.view.private.displaySidePanel
   let modalShow = props.view.private.modalDisplayed
 
-console.log('[Main] modal view  :  ', modalShow)
+// console.log('[Main] modal view  :  ', modalShow)
 
 
   const handleSidePanelChange = (evt)=>{

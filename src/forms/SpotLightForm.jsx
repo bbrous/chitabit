@@ -337,14 +337,14 @@ const SpotLightForm = () => {
 
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
               defaultValues: {
-                 
-                datePickerDate:  null,
-                mos: null,
-                wks: null,
-                days: null,
-                hrs: null,
-                mins: null,
-              
+                goal: '',
+                targetDate:  null,
+                mos: '',
+                wks: '',
+                days: '',
+                hrs: '',
+                mins: '',
+                
                  
                 popup: false
               }
@@ -382,7 +382,8 @@ const SpotLightForm = () => {
                 Goal or Objective
               </SegmentHeader>
 
-              <Controller as={StyledTextField} name="goal" 
+              <Controller as={StyledTextField} 
+                  name="goal" 
                   InputProps={{ disableUnderline: true }}
                   control={control} 
                   defaultValue="" 
@@ -430,7 +431,7 @@ const SpotLightForm = () => {
                           />
                         }
                         control={control}
-                        name="datePickerDate"
+                        name="targetDate"
                         placeholder="Choose Date"
                       />
                     </MuiPickersUtilsProvider>

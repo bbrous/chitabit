@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumGrey} from '../../styles/colors'
+import{chitOrange,  chitBlueDull,} from '../../styles/colors'
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 

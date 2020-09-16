@@ -150,58 +150,25 @@ const InitialStore = {
 
         title: 'Complete Journal and Spotlight',
 
-        timeStamp:  1598894114000, // Monday, August 31, 2020 5:15:14 PM
-        endEst: 1601524799000, // Thursday, October 1, 2020 3:59:59 AM
+        timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        endEst: "2020-10-15T04:46:20.619Z",  //October 15  
 
         startClock:  null, // Aug 9 2020 9AM
         pausedClock: null, // Aug 9 2020 9AM
         endClock: null, // Aug 9 2020 9AM
         clockStatus: 'stopped',  // or going
-        note: 'This is a note for Spot 1',
+        note: 'note1',
    
         
         taskArray: [
-          'spot1',
-          'task1', 
-          'task2',
-          'task3'
+          {taskItem: 'spot1',completed: false, type: 'spotlight'},
+          {taskItem: 'task1',completed: false, type: 'task'}, 
+          {taskItem: 'task2',completed: false, type: 'task'},
+          {taskItem: 'task3',completed: false, type: 'task'}
          
         ],
 
-        'tasks': {
-
-          'task1' : {
-            id: 'task1',
-            type: 'task',  //or spotlight
-            completed: true,
-    
-            title: 'Transfer A-try into Spotlight',
-            note: 'This is a note for task 1'
-            
-          },
-    
-          'task2' :{
-            id: 'task2',
-            type: 'task',  //or spotlight
-            completed: false,
-    
-            title: 'In Spotlight - complete layout with params from Initial Store',
-            note: 'Tiy need to convert timestamps'
-            
-          },
-
-              
-          'task3' :{
-            id: 'task3',
-            type: 'task',  //or spotlight
-            completed: true,
-    
-            title: 'Clocks and Note Popups create',
-            note: 'note2'
-            
-          },
-
-        }, // end tasks
+        
           
 
       },
@@ -212,60 +179,26 @@ const InitialStore = {
         parent: '',
         completed: false,
 
-        title: 'Complete Spotlight Tasks in A-try',
+        title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
 
-        timeStamp:  1598894114000, // Monday, August 31, 2020 5:15:14 PM
-        endEst: 1599019199000, // Wednesday, September 2, 2020 3:59:59 AM
+        timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
+        endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
         startClock:  null, // Aug 9 2020 9AM
         pausedClock: null, // Aug 9 2020 9AM
         endClock: null, // Aug 9 2020 9AM
         clockStatus: 'stopped',  // or going
-        note: 'Format tasks like final form',
+        note: 'note2',
    
         
         taskArray: [
-          'task21', 
-          'task22',
-          'task23',
-          'spot3'
+          {taskItem: 'task21',completed: false, type: 'task'}, 
+          {taskItem: 'task22',completed: false, type: 'task'},
+          {taskItem: 'task23',completed: false, type: 'task'},
+          {taskItem: 'spot3',completed: false, type: 'spotlight'}
          
         ],
-
-        'tasks': {
-
-          'task21' : {
-            id: 'task21',
-            type: 'task',  //or spotlight
-            completed: true,
-    
-            title: 'Initial Store',
-            note: 'This is a note for task 1'
-            
-          },
-    
-          'task22' :{
-            id: 'task22',
-            type: 'task',  //or spotlight
-            completed: false,
-    
-            title: 'Redux',
-            note: 'convert task array to complex task array... then later reverse it'
-            
-          },
-
-              
-          'task23' :{
-            id: 'task23',
-            type: 'task',  //or spotlight
-            completed: false,
-    
-            title: 'Clocks and Note Popups create',
-            note: 'note2'
-            
-          },
-
-        }, // end tasks
+ 
           
 
       }, //end spot2
@@ -278,48 +211,23 @@ const InitialStore = {
 
         title: 'Popups for note and clock',
 
-        timeStamp:  1598894114000, // Monday, August 31, 2020 5:15:14 PM
-        endEst: 'null', // Wednesday, September 2, 2020 3:59:59 AM
+        timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         startClock:  null, // Aug 9 2020 9AM
         pausedClock: null, // Aug 9 2020 9AM
         endClock: null, // Aug 9 2020 9AM
         clockStatus: 'stopped',  // or going
-        note: 'Material ui menu',
+        note: 'note3',
    
         
         taskArray: [
-          'task31', 
-          'task32',
+          {taskItem: 'task33',completed: false, type: 'task'},
 
          
         ],
 
-        'tasks': {
-
-          'task31' : {
-            id: 'task31',
-            type: 'task',  //or spotlight
-            completed: false,
-    
-            title: 'Note Popup',
-            note: ''
-            
-          },
-    
-          'task32' :{
-            id: 'task32',
-            type: 'task',  //or spotlight
-            completed: false,
-    
-            title: 'Clock Popup',
-            note: ''
-            
-          },
-
-              
-
-        }, // end tasks
+   
           
 
       }, //end spot3
@@ -332,19 +240,18 @@ const InitialStore = {
 
         title: 'Dummy Spotlight 5',
 
-        timeStamp:  1598894114000, // Monday, August 31, 2020 5:15:14 PM
-        endEst: 'null', // Wednesday, September 2, 2020 3:59:59 AM
+        timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         startClock:  null, // Aug 9 2020 9AM
         pausedClock: null, // Aug 9 2020 9AM
         endClock: null, // Aug 9 2020 9AM
         clockStatus: 'stopped',  // or going
-        note: 'Material ui menu',
+        note: 'note4',
    
         
         taskArray: [],
-
-        'tasks': { }, // end tasks
+ 
           
 
       }, //end spot5
@@ -357,25 +264,163 @@ const InitialStore = {
 
         title: 'Dummy Spotlight 4',
 
-        timeStamp:  1498894114000, // Monday, August 31, 2020 4:14:14 PM
-        endEst: 'null', // Wednesday, September 2, 2020 3:49:49 AM
+        timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
+        endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 
         startClock:  null, // Aug 9 2020 9AM
         pausedClock: null, // Aug 9 2020 9AM
         endClock: null, // Aug 9 2020 9AM
         clockStatus: 'stopped',  // or going
-        note: 'Material ui menu',
+        note: null,
    
         
         taskArray: [],
-
-        'tasks': { }, // end tasks
+ 
           
 
       }, //end spot4
       
 
     },// end spotlights 
+
+    'tasks': {
+
+      'task1' : {
+        id: 'task1',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        title: 'Transfer A-try into Spotlight',
+        note: 'note5',
+        
+      },
+
+      'task2' :{
+        id: 'task2',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        title: 'In Spotlight - complete layout with params from Initial Store',
+        note: 'note6',
+        
+      },
+
+          
+      'task3' :{
+        id: 'task3',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        title: 'Clocks and Note Popups create',
+        note: null
+        
+      },
+
+      'task21' : {
+        id: 'task21',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        title: 'Initial Store',
+        note: 'note7'
+        
+      },
+
+      'task22' :{
+        id: 'task22',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        title: 'Redux',
+        note: null
+        
+      },
+
+          
+      'task23' :{
+        id: 'task23',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        title: 'Clocks and Note Popups create',
+        note: 'note8'
+        
+      },
+
+      'task31' : {
+        id: 'task31',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        title: 'Note Popup',
+        note: 'note9'
+        
+      },
+
+      'task32' :{
+        id: 'task32',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        title: 'Clock Popup',
+        note: ''
+        
+      },
+
+
+    }, // end tasks
+
+    'notes': {
+      
+      'note1' :  {
+          'noteHolder': 'spot1',
+          'note': 'This is a note for Spot 1'
+        },
+
+      'note2' : {
+        'noteHolder': 'spot1',
+        'note': 'Format tasks like final form'
+      },
+      
+      'note3' : {
+        'noteHolder': 'spot1',
+        'note': 'Material ui menu'
+      },
+
+      'note4' :  {
+        'noteHolder': 'spot1',
+        'note': 'Material ui menu',
+      },
+
+      'note5' : {
+        'noteHolder': 'spot1',
+        'note': 'This is a note for task 1',
+      },
+      
+
+      'note6':  {
+        'noteHolder': 'spot1',
+        'note': 'Tiy need to convert timestamps',
+      },
+
+      'note7' :  {
+        'noteHolder': 'spot1',
+        'note': 'This is a note for task 21',
+      },
+
+      'note8' :  {
+        'noteHolder': 'spot1',
+        'note': 'Donald Trump is an asshole',
+      },
+
+      'note9' : {
+        'noteHolder': 'spot1',
+        'note': ' last note of this group'
+      },
+      
+   
+      
+    }, // end notes
 
 
 }// end spotlightData

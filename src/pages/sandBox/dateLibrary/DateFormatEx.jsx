@@ -5,12 +5,12 @@ import { useForm, Controller } from "react-hook-form";
 
 // Material UI -----------------------------
 import { styled } from "@material-ui/core/styles"
-import { TextField, Checkbox } from "@material-ui/core";
+import { TextField} from "@material-ui/core";
 // MUI date picker -------------------
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
+
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import Icon from "@material-ui/core/Icon";
@@ -82,10 +82,10 @@ const SegmentHeader= styled('div')({
 
 })
 
-const ErrorWrapper= styled('div')({
-  color: 'red'
+// const ErrorWrapper= styled('div')({
+//   color: 'red'
 
-})
+// })
 
  
 const TargetDateWrapper= styled('div')({
@@ -196,7 +196,6 @@ const OutputWrapper = styled('div')({
 
 function DatetoUTC(aDate){
 
-
   let inputDate = new Date(aDate)
   let outputUTC = inputDate.getTime();
 
@@ -211,11 +210,13 @@ const RHFMuiDatePicker = () => {
   const [stateDateValue, setStateDateValue] = useState('')
 
   const today = new Date()
-  const {handleSubmit, errors, control} = useForm({
+  const {handleSubmit, 
+    // errors, 
+    control} = useForm({
     defaultValues: {
                  
       endDate:  today,
-      // datePickerNull:  null,
+      startMins : 5
       
     }
          })
@@ -223,7 +224,7 @@ const RHFMuiDatePicker = () => {
 
   const onSubmit = data => {
     alert(JSON.stringify(data))
-    console.log( '[DateFormatEx] ... data',  data)
+    // console.log( '[DateFormatEx] ... data',  data)
     setStateDateValue({dateValue: data.endDate})
 
   }
@@ -427,10 +428,13 @@ const RHFMuiDatePicker = () => {
     <SegmentHeader>
       Outputs
     </SegmentHeader>
+<div> ====================</div>
+<div> - What is the calendar output (ISO) in UTC … and is it Greenwich or Florida.</div>
+<div> ====================</div>
 
     {/* --- Plain Date -------*/}
     <OutputWrapper> 
-      <label>UTC is  :   </label>
+      <label>UTC after submit is  :   </label>
        {DatetoUTC(stateDateValue.dateValue)}  
     </OutputWrapper>
 

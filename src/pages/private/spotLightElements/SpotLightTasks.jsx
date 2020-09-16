@@ -1,14 +1,14 @@
-import React, {useState, useEffect, Fragment} from 'react'
+import React, {useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 import{updateTaskArray} from '../../../app/redux/actions/mainActions'
-import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../../styles/colors'
+import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
 
 
 import MenuPopup from './MenuPopup'
 import ClockPopup from './ClockPopup'
 import NotePopup from './NotePopup'
 
-import {NavLink, withRouter, useLocation} from 'react-router-dom'
+// import {NavLink, withRouter, useLocation} from 'react-router-dom'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
 import CheckIcon from '@material-ui/icons/Check';
@@ -116,18 +116,18 @@ const TaskWrapper = styled('div')({
   
 })
 
-const SpotlightWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-  flexGrow: '1',
+// const SpotlightWrapper = styled('div')({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   height: '100%',
+//   flexGrow: '1',
  
-  textAlign: 'center',
-  backgroundColor: chitOrangeLight,
+//   textAlign: 'center',
+//   backgroundColor: chitOrangeLight,
   
-})
+// })
 
 
 const TaskBlockWrapper = styled('div')({
@@ -305,11 +305,30 @@ const SpotlightTag= styled('div')({
 
 
 const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
+
 // =================================================
-const SortableItem = SortableElement(({ handleClick,value }) => {
+
+const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => {
 
 
 
+  if(value.type === 'task'){
+
+    let itemLocation = spotlightData.tasks
+
+    // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
+     // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
+      // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
+       // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
+
+
+  }
+  
+  if(value.type === 'spotlight'){
+
+    let itemLocation = spotlightData.spotlights
+
+  }
   //--------------------------------------------------- []
 
   return(
@@ -391,14 +410,24 @@ const SortableItem = SortableElement(({ handleClick,value }) => {
 // ------- Map of Items   --------------------[]
 
 
-const SortableList = SortableContainer(({ items }) => {
+const SortableList = SortableContainer(({ items, spotlightData  } ) => {
+ 
+
+  // console.log(' [SPOTLIGHT TASKS] - OOOOOOOO - items', items)
+  // console.log(' [SPOTLIGHT TASKS SORT ] MARKEE - OOOOOOOO - props', spotlightData)
+
+
   return (
 
     <ul>
       {items.map((value, index) => (
         
             
-        <SortableItem key={`item-${index}`} index={index} value={value} 
+        <SortableItem 
+          key={`item-${index}`} 
+          index={index} 
+          value={value} 
+          spotlightData = {spotlightData}
        
         />
          
@@ -408,58 +437,33 @@ const SortableList = SortableContainer(({ items }) => {
 });
 
 
-
-
-
-const SpotLightTasks = (props) => {
-
  
 
-/* #######################################################
-
-
-1.  get array from redux props
-    structure array[{id: 1, type: task}, {id: 5, type: 'spotlight'}]
-
-2.  create new "complex" array to use in sortable -- (items in useState)
-    use props.task#.id to get title, etc
-         or
-        props.
-3.  in useEffect - 
-     a. get new "complex" array after sort
-     b. create new array - convert back to simplified form
-     c. execute action to update Redux Store
+const SpotLightTasks = (props) => {
+  // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
 
 
 
+  let spotlightData = props.display.private.data.spotlightData
+  // console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightData.tasks )
 
+ // get spotlight tasks array-----------------
+ let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
 
-####################################################### */
+  const [items, setItems] = useState(taskArray);
 
-
-  // set local state for items -----------------
-
-
-
-// ##### REPLACE   REPLACE   REPLACE   ############################
-
-  const [items, setItems] = useState([
-    {id: "Item 1", title: "TITLE _ Item 1", completed: false, type: 'task'},
-    {id: "Item 2", title: "TITLE _ Item 2", completed: true, type: 'task'},
-    {id: "Item 3", title: "TITLE _ Item 3", completed: true, type: 'spotlight'},
-    {id: "Item 4", title: "TITLE _ Item 4", completed: false, type: 'task'},
-    {id: "Item 5", title: "TITLE _ Item 5", completed: false, type: 'task'},
-    {id: "Item 6", title: "TITLE _ Item 6", completed: false, type: 'task'}
-  ]);
-// ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
-
-
-
+  
   useEffect(() => {
+    
+    // Put ITEMS INTO REDUX HERE ************************
+    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
     console.log('[ATry] - new items array'  , items)
  
     
-  }, [items]);
+  }, [taskArray, items]);
+
+
 
 
   // onSortEnd - creates the new array index after move
@@ -482,7 +486,12 @@ const SpotLightTasks = (props) => {
          
           {/* ----  Move Items  Executable - --  */}
 
-          <SortableList items={items} onSortEnd={onSortEnd} useDragHandle/>
+          <SortableList 
+            items={items} 
+            onSortEnd={onSortEnd}
+            useDragHandle
+            spotlightData = {spotlightData}
+            />
 
 
 
@@ -501,7 +510,7 @@ const actions = {
 }
 
 const mapState = state => ({
-  view: state
+  display: state
 });
 
 export default connect(mapState, actions)(SpotLightTasks)

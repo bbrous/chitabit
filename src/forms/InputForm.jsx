@@ -1,5 +1,5 @@
 import React from 'react'
-import{ chitOrangeLight, chitOrange, darkGrey, lightGrey, mediumLightGrey, veryLightGrey, chitRedDark } from '../styles/colors'
+import{ chitOrangeLight, chitOrange, darkGrey,   chitRedDark } from '../styles/colors'
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 
@@ -89,19 +89,19 @@ const FilterWrapper= styled('div')({
 })
 
 
-const IconWrapper= styled('span')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'flex-start',
-  // margin: 'center',
-  margin: '0 .7rem',
-  color: 'white'
+// const IconWrapper= styled('span')({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   alignItems: 'flex-start',
+//   // margin: 'center',
+//   margin: '0 .7rem',
+//   color: 'white'
 
  
 
    
-})
+// })
 
 const ChevronWrapper = styled('div')({
   width: '5%',
@@ -130,21 +130,21 @@ const ChevronClosed= styled(ExpandMoreIcon)({
 
 })
 
-const ChevronOpen =  styled(ExpandMoreIcon)({
+// const ChevronOpen =  styled(ExpandMoreIcon)({
  
-  fontSize: '1.2rem',
-  cursor:'pointer',
-  transform: 'rotate(180deg)',
-  color: chitOrange,
+//   fontSize: '1.2rem',
+//   cursor:'pointer',
+//   transform: 'rotate(180deg)',
+//   color: chitOrange,
 
 
 
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
+//   [theme.breakpoints.down('sm')] : {
+//     // height: '1.25rem',
+//     // backgroundColor: 'red'
+//   },
 
-})
+// })
 
 
 
