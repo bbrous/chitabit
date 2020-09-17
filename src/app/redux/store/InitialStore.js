@@ -152,7 +152,7 @@ const InitialStore = {
 
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-10-15T04:46:20.619Z",  //October 15  
-
+        note: 'note1',
         clock: 'clock1',
         
         taskArray: [

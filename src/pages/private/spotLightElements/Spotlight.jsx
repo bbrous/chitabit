@@ -135,7 +135,7 @@ const Container= styled(Paper)({
 
   },
 
-backgroundColor: 'white',
+backgroundColor: veryLightGrey,
 
 
 })
@@ -146,7 +146,7 @@ const TitleWrapper= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
    
-  margin: '.25rem 0',
+  margin: '.5rem 0 0 0',
   color: 'red',
  
   width: '98%',
@@ -168,12 +168,12 @@ const Title= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
    
-  margin: '4px 0',
+  margin: '8px 0',
   color: 'red',
 
   flexWrap: 'wrap',
 
-  fontSize: '1rem',
+  fontSize: '1.2rem',
   
 
 
@@ -250,15 +250,16 @@ const DetailContainer= styled('div')({
   alignItems: 'flex-start',
   
   width: '98%',
-  margin: '.25rem 0',
-  padding: '.25rem .25rem .1rem .25rem', 
+  margin: '0 0 .25rem 0',
+  padding: '.5rem .25rem .1rem .25rem', 
     
   
   color: 'black',
   fontSize: '.8rem',
 
 
-backgroundColor: veryLightGrey,
+  backgroundColor: 'white',
+borderTop: '1px solid lightgrey',
 
 
   [theme.breakpoints.down('sm')] : {
@@ -292,7 +293,7 @@ const DetailRow= styled('div')({
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
-   
+  marginLeft: '2.5rem',
 
   
 
@@ -309,7 +310,7 @@ const DetailRowOrange= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
   color: chitOrange,
-   
+  marginLeft: '2.5rem',
 
   
 
@@ -496,7 +497,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
             margin: '.25rem 0',
             
             
-          backgroundColor: lightGrey,
+          backgroundColor: mediumLightGrey,
             fontSize: '.8rem',
 
 
@@ -567,11 +568,14 @@ const Task= styled('div')({
 
 export const Spotlight = (props) => {
   // console.log('[SPOTLIGHT ] &&&& spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id])
-  // console.log('[SPOTLIGHT ] props id' , props.id)
+
+  let spotlightData = props.display.private.data.spotlightData
+
+  console.log('[SPOTLIGHT $$$$$ ] spotlights object' , spotlightData)
 
   let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
 
-  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
+  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
   
   // convert target Date in ISO to UTC for addition/subtraction etc
   let targetDateInMilliseconds = DatetoUTC(endEst)
@@ -664,7 +668,13 @@ export const Spotlight = (props) => {
           <div>   make default popup  </div>
           </CheckBoxWrapper>
           <IconsWrapper> 
-              <NotePopup id = {id}/>
+          {note && 
+              <NotePopup 
+              noteId = {note} 
+              spotlightData = {spotlightData}
+              
+              />
+          }
               <ClockPopup id = {id}/>
           </IconsWrapper> 
           </BottomWrapper>

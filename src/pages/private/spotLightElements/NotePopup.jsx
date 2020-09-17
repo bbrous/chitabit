@@ -58,6 +58,15 @@ const StyledPopover= styled('div')({
 // ===========================================
 const NotePopup = (props) => {
   let taskId = props.id
+  let noteId = props.noteId
+  let noteObject = props.spotlightData
+  let note = noteId ? noteObject.notes[noteId].note:  ''
+
+
+  // let note = props.spotlightData.notes 
+
+  console.log('[NOTE POPUP ] -- inoteObjectd is ', note)
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -95,9 +104,9 @@ const NotePopup = (props) => {
           horizontal: 'center',
         }}
       >
-        <StyledPopover onClick = {()=> handleClose()}>
-        <div>Note icon popup here - id - {props.id} </div>
-        <div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div><div>The content of the Popover.</div>
+        <StyledPopover onMouseOut = {()=> handleClose()}>
+        {note}
+        
         </StyledPopover>
       </Popover>
     </Fragment>

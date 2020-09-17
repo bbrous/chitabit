@@ -317,7 +317,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) =>
     itemAddress = spotlightData.tasks
     taskId = value.taskItem 
      itemObject = itemAddress[taskId]
-    const {id, type,  title, completed, clock, note,  } = itemObject
+ 
 
     // console.log('[SPOTLIGHT TASKS] --- task id -' , itemObject)
     
@@ -334,12 +334,11 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) =>
     itemAddress = spotlightData.spotlights
     taskId = value.taskItem 
      itemObject = itemAddress[taskId]
-    const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
-
+ 
     
   }
   const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
-  console.log('[SPOTLIGHT TASKS] BULLLAHH--- spotlight id -' , itemObject)
+  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , note)
   //--------------------------------------------------- []
 
   return(
@@ -383,10 +382,10 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) =>
 
 
               {! completed && 
-              <TitleWrapper>Title: {title}</TitleWrapper> 
+              <TitleWrapper> {title}</TitleWrapper> 
               }
               { completed && 
-              <TitleWrapperCompleted>Title: {title}</TitleWrapperCompleted> 
+              <TitleWrapperCompleted>  {title}</TitleWrapperCompleted> 
               }
 
 
@@ -394,9 +393,21 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) =>
           
           
           <IconWrapper>
-          &nbsp;
-              <ClockPopup id = {clock}/>
-              <NotePopup id = {note}/>
+          
+              <ClockPopup 
+                clockId = {clock} 
+                spotlightData = {spotlightData}
+              />
+
+              {note && 
+              <NotePopup 
+                noteId = {note} 
+                spotlightData = {spotlightData}
+              />
+            }
+
+         
+            
             </IconWrapper>
         </TaskBlockWrapper>
         
