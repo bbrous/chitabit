@@ -153,12 +153,7 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-10-15T04:46:20.619Z",  //October 15  
 
-        startClock:  null, // Aug 9 2020 9AM
-        pausedClock: null, // Aug 9 2020 9AM
-        endClock: null, // Aug 9 2020 9AM
-        clockStatus: 'stopped',  // or going
-        note: 'note1',
-   
+        clock: 'clock1',
         
         taskArray: [
           {taskItem: 'spot1',completed: false, type: 'spotlight'},
@@ -184,10 +179,7 @@ const InitialStore = {
         timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
-        startClock:  null, // Aug 9 2020 9AM
-        pausedClock: null, // Aug 9 2020 9AM
-        endClock: null, // Aug 9 2020 9AM
-        clockStatus: 'stopped',  // or going
+        clock: 'clock2',
         note: 'note2',
    
         
@@ -214,10 +206,7 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
-        startClock:  null, // Aug 9 2020 9AM
-        pausedClock: null, // Aug 9 2020 9AM
-        endClock: null, // Aug 9 2020 9AM
-        clockStatus: 'stopped',  // or going
+        clock: 'clock3',
         note: 'note3',
    
         
@@ -243,11 +232,8 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
-        startClock:  null, // Aug 9 2020 9AM
-        pausedClock: null, // Aug 9 2020 9AM
-        endClock: null, // Aug 9 2020 9AM
-        clockStatus: 'stopped',  // or going
-        note: 'note4',
+        clock: 'clock5',
+        note: 'note5',
    
         
         taskArray: [],
@@ -267,11 +253,8 @@ const InitialStore = {
         timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 
-        startClock:  null, // Aug 9 2020 9AM
-        pausedClock: null, // Aug 9 2020 9AM
-        endClock: null, // Aug 9 2020 9AM
-        clockStatus: 'stopped',  // or going
-        note: null,
+        clock: 'clock4',
+        note: 'note4',
    
         
         taskArray: [],
@@ -291,6 +274,7 @@ const InitialStore = {
         completed: true,
 
         title: 'Transfer A-try into Spotlight',
+        clock: 'clock6',
         note: 'note5',
         
       },
@@ -301,6 +285,7 @@ const InitialStore = {
         completed: false,
 
         title: 'In Spotlight - complete layout with params from Initial Store',
+        clock: 'clock7',
         note: 'note6',
         
       },
@@ -312,6 +297,7 @@ const InitialStore = {
         completed: true,
 
         title: 'Clocks and Note Popups create',
+        clock: 'clock8',
         note: null
         
       },
@@ -322,6 +308,7 @@ const InitialStore = {
         completed: true,
 
         title: 'Initial Store',
+        clock: 'clock9',
         note: 'note7'
         
       },
@@ -332,6 +319,7 @@ const InitialStore = {
         completed: false,
 
         title: 'Redux',
+        clock: 'clock10',
         note: null
         
       },
@@ -343,6 +331,7 @@ const InitialStore = {
         completed: false,
 
         title: 'Clocks and Note Popups create',
+        clock: 'clock11',
         note: 'note8'
         
       },
@@ -353,6 +342,7 @@ const InitialStore = {
         completed: false,
 
         title: 'Note Popup',
+        clock: 'clock12',
         note: 'note9'
         
       },
@@ -363,6 +353,7 @@ const InitialStore = {
         completed: false,
 
         title: 'Clock Popup',
+        clock: 'clock13',
         note: ''
         
       },
@@ -421,6 +412,153 @@ const InitialStore = {
    
       
     }, // end notes
+
+
+
+    'clocks': {
+      
+      'clock1' :  {
+          'clockHolder': 'spot1',
+          'type' : 'spotlight',
+          'clockStatus': 'running',
+          'startClock' : null,
+          'pausedClock' :null, 
+          'endClock' : null
+
+        },
+
+              
+      'clock2' :  {
+        'clockHolder': 'spot2',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+              
+      'clock3' :  {
+        'clockHolder': 'spot3',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+                    
+      'clock4' :  {
+        'clockHolder': 'spot4',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+                    
+      'clock5' :  {
+        'clockHolder': 'spot5',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      'clock6' :  {
+        'clockHolder': 'task1',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      'clock7' :  {
+        'clockHolder': 'task2',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+      
+      'clock8' :  {
+        'clockHolder': 'task3',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      
+      'clock9' :  {
+        'clockHolder': 'task21',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+            
+      'clock10' :  {
+        'clockHolder': 'task22',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+            
+      'clock11' :  {
+        'clockHolder': 'task23',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+            
+      'clock12' :  {
+        'clockHolder': 'task31',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      
+            
+      'clock13' :  {
+        'clockHolder': 'task32',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+
+    }, // end clocks
+
 
 
 }// end spotlightData

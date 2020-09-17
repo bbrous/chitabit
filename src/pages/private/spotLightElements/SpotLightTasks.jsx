@@ -308,14 +308,19 @@ const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 
 // =================================================
 
-const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => {
+const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) => {
 
-
+  let itemObject, itemAddress,  taskId
 
   if(value.type === 'task'){
 
-    let itemLocation = spotlightData.tasks
+    itemAddress = spotlightData.tasks
+    taskId = value.taskItem 
+     itemObject = itemAddress[taskId]
+    const {id, type,  title, completed, clock, note,  } = itemObject
 
+    // console.log('[SPOTLIGHT TASKS] --- task id -' , itemObject)
+    
     // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
      // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
       // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
@@ -326,9 +331,15 @@ const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => 
   
   if(value.type === 'spotlight'){
 
-    let itemLocation = spotlightData.spotlights
+    itemAddress = spotlightData.spotlights
+    taskId = value.taskItem 
+     itemObject = itemAddress[taskId]
+    const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
 
+    
   }
+  const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
+  console.log('[SPOTLIGHT TASKS] BULLLAHH--- spotlight id -' , itemObject)
   //--------------------------------------------------- []
 
   return(
@@ -336,7 +347,7 @@ const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => 
 
       <ItemWrapper
        
-        id = {value.id}
+        id = {id}
       >
        <DragHandle />
 
@@ -346,7 +357,7 @@ const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => 
         <IconWrapper>
           &nbsp; 
           
-          {value.type === 'spotlight' && 
+          {type === 'spotlight' && 
             <SpotlightTag>Spotlight</SpotlightTag>
           } 
           
@@ -356,10 +367,10 @@ const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => 
           <TaskBlock>  
             <CheckCircleWrapper>
 
-            {! value.completed && 
+            {! completed && 
               <CheckCircle/>
               }
-              { value.completed && 
+              { completed && 
               <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
               }
 
@@ -371,11 +382,11 @@ const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => 
 
 
 
-              {! value.completed && 
-              <TitleWrapper>Title: {value.title}</TitleWrapper> 
+              {! completed && 
+              <TitleWrapper>Title: {title}</TitleWrapper> 
               }
-              { value.completed && 
-              <TitleWrapperCompleted>Title: {value.title}</TitleWrapperCompleted> 
+              { completed && 
+              <TitleWrapperCompleted>Title: {title}</TitleWrapperCompleted> 
               }
 
 
@@ -384,15 +395,15 @@ const SortableItem = SortableElement(({ handleClick,value , spotlightData} ) => 
           
           <IconWrapper>
           &nbsp;
-              <ClockPopup id = {value.id}/>
-              <NotePopup id = {value.id}/>
+              <ClockPopup id = {clock}/>
+              <NotePopup id = {note}/>
             </IconWrapper>
         </TaskBlockWrapper>
         
        </TaskWrapper>
         
 
-       <MenuPopup id = {value.id}/>
+       <MenuPopup id = {id}/>
 
 
 
