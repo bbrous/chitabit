@@ -450,7 +450,7 @@ const SpotLightForm = () => {
                             // error={!!error}
                             inputVariant="outlined"
                             variant="inline"
-                            format="MMMM dd yyyy"
+                            format="MM dd yyyy"
                             // label="Year of registration"
                             // helperText={error}
                             value={selectedDate}
@@ -460,7 +460,7 @@ const SpotLightForm = () => {
                         }
                         control={control}
                         name="targetDate"
-                        placeholder="Choose Date"
+                        placeholder="MM DD YYYY"
                       />
                     </MuiPickersUtilsProvider>
     
