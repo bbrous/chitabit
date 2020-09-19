@@ -27,8 +27,8 @@ import {
           view: '',
           displaySidePanel: 'hide',
           display: 'spotlight',
-          modalDisplayed: true,
-          modalType: 'spotLightForm',
+          modalDisplayed: false,
+          modalType: '',
       
           spotLightDisplay: {
             displaySpotLight: 'show',  // or 'none'  or 'show ' 
@@ -78,7 +78,7 @@ export default function reducer_Main(state = initialState, {type, payload}) {
           ...state,
           modalType: payload.modalType,
           chitIdDisplayed: payload.chitIdDisplayed,
-          modalDisplayed: payload.modalDisplayedpayload
+          modalDisplayed: true
         })
 
     case CLOSE_MODAL : 
@@ -86,7 +86,7 @@ export default function reducer_Main(state = initialState, {type, payload}) {
           ...state,
           modalType: payload.modalType,
           chitIdDisplayed: payload.chitIdDisplayed,
-          modalDisplayed: payload.modalDisplayed
+          modalDisplayed: false
         })
 
 

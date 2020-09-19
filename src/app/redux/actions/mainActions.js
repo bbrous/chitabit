@@ -97,13 +97,13 @@
 
         export const  openModal = (modalType, newChit) => {
 
-          console.log('[mainActions I be clicked')
-
+          console.log('[mainActions I be clicked - type = ' , modalType)
+          let newChitZ = ''
           return {
             type: OPEN_MODAL,
             payload: {
               modalType: modalType, 
-              chitIdDisplayed: newChit,
+              chitIdDisplayed: newChitZ,
               modalDisplayed: true
               
             }

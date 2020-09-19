@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
-import{changeDisplaySpotlight,   openCloseSidePanel} from '../../../app/redux/actions/mainActions'
+import{changeDisplaySpotlight,   openCloseSidePanel, openModal} from '../../../app/redux/actions/mainActions'
 
 
 
@@ -498,6 +498,24 @@ const SpotlightNav = (props) => {
     }) // end function displaySpotlights
     
 
+// ----------   openSpotlightForm
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+const openSpotlightForm = (evt)=>{
+ 
+  
+   props.openModal('spotLightForm', 'chit1'  )
+
+    console.log('[SPOTLIGHT NAV ] -  evt is  - ', evt)
+
+}
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
   return (
     <Wrapper>
 
@@ -506,9 +524,9 @@ const SpotlightNav = (props) => {
           
         </HeaderWrapper>
         <NewWrapper elevation={1}>
-          <New> new spotlight </New>
+          <New >   new spotlight </New>
  
-          <AddCircleIconWrapper/>
+          <AddCircleIconWrapper onClick = {(evt)=> openSpotlightForm({evt})}/>
         </NewWrapper>
 
         <FilterWrapper elevation={1}>
@@ -572,7 +590,8 @@ const SpotlightNav = (props) => {
 
 const actions = {
   changeDisplaySpotlight,
-  openCloseSidePanel
+  openCloseSidePanel,
+  openModal
 }
 
 const mapState = state => ({

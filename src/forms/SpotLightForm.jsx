@@ -7,8 +7,8 @@ import { useForm, Controller } from "react-hook-form";
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
 
-import { TextField, Checkbox } from "@material-ui/core";
-import { chitBlueDull, lightGrey } from '../styles/colors';
+import { TextField, Checkbox, Button } from "@material-ui/core";
+import { chitBlueDull, chitOrangeLight, lightGrey } from '../styles/colors';
  
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -262,6 +262,34 @@ const PopupCheckBox= styled(Checkbox)({
 }
 })
 
+
+const SubmitWrapper= styled('div')({
+
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+ 
+
+
+})
+
+const SubmitButton= styled(Button)({
+
+  backgroundColor: chitBlueDull,
+  color: 'white',
+  border: 'none',
+  padding: '0',
+  width: '8rem',
+
+  '&:hover':
+    {  
+      backgroundColor: chitOrangeLight,
+      border: 'none'
+    },
+ 
+
+
+})
 
 // ================= Checkbox  ===============
 const useStyles = makeStyles({
@@ -551,9 +579,9 @@ const SpotLightForm = () => {
               </FormInput>            
             </FormSegmentWrapper>
 
-
-            <button>Submit</button>
-
+            <SubmitWrapper>
+            <SubmitButton type ="submit" >Submit</SubmitButton> 
+            </SubmitWrapper>
           </form>
         </FormWrapper>
 
