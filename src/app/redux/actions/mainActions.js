@@ -33,24 +33,24 @@
         }
 
 
-        export const  showSpotLight = () => {
+        // export const  showSpotLight = () => {
   
-          return {
-            type: SHOW_SPOTLIGHT,
-            payload: {
+        //   return {
+        //     type: SHOW_SPOTLIGHT,
+        //     payload: {
                
-              spotLightViews: {
+        //       spotLightViews: {
 
-              displaySpotLight: 'show',
+        //       displaySpotLight: 'show',
                
-              defaultSpotLight: 'spot1',
-              displayedSpotLightId: 'spot1',
-              spotLightsArray: ['spot1','spot2','spot3','spot4','spot5'],  
-              }
+        //       defaultSpotLight: 'spot1',
+        //       displayedSpotLightId: 'spot1',
+        //       spotLightsArray: ['spot1','spot2','spot3','spot4','spot5'],  
+        //       }
               
-            }
-          }
-        }
+        //     }
+        //   }
+        // }
         
         export const  closeSpotLight = () => {
           
