@@ -471,7 +471,9 @@ const SpotLightTasks = (props) => {
 
  // get spotlight tasks array-----------------
  let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
-
+ 
+ 
+console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , taskArray )
   const [items, setItems] = useState(taskArray);
 
   
@@ -479,7 +481,8 @@ const SpotLightTasks = (props) => {
     
     // Put ITEMS INTO REDUX HERE ************************
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
+    
+    
     console.log('[ATry] - new items array'  , items)
  
     

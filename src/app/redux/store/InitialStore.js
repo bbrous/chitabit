@@ -358,6 +358,18 @@ const InitialStore = {
         
       },
 
+      
+      'task33' :{
+        id: 'task33',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        title: 'Clock Popup',
+        clock: 'clock14',
+        note: ''
+        
+      },
+
 
     }, // end tasks
 
@@ -555,7 +567,16 @@ const InitialStore = {
         'endClock' : null
 
       },
+            
+      'clock14' :  {
+        'clockHolder': 'task33',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
 
+      },
 
     }, // end clocks
 

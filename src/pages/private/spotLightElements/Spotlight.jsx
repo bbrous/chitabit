@@ -701,7 +701,7 @@ export const Spotlight = (props) => {
 
     </FormContainer>
 
-    <SpotLightTasks id = {id}/>
+    <SpotLightTasks id = {id} key = {id}/>
 
 
 
