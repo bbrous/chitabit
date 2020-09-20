@@ -103,11 +103,14 @@ export default function reducer_Main(state = initialState, {type, payload}) {
     //       payload
     //     })
 
-    // case CHANGE_DISPLAY_SPOTLIGHT : 
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
+    case CHANGE_DISPLAY_SPOTLIGHT : 
+        return Object.assign({
+          ...state,
+          spotLightDisplay: Object.assign({
+            ...state.spotLightDisplay,
+            displayedSpotLightId: payload.displayedSpotLightId
+          })
+        })
 
     // case CHANGE_DISPLAY : 
     //     return Object.assign({

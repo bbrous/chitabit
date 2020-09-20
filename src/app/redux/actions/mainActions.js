@@ -88,9 +88,9 @@
           return {
             type: CHANGE_DISPLAY_SPOTLIGHT,
             payload: {
-              spotLightViews: {
+           
               displayedSpotLightId: newSpotlight
-            }}
+            }
           }
         }
         
@@ -158,6 +158,9 @@
             }
           }
         }
+
+
+
 
         
         export const  updateTaskArray = ( TaskArray) => {

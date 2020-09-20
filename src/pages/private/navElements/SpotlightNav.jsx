@@ -7,7 +7,7 @@ import{changeDisplaySpotlight,   openCloseSidePanel, openModal} from '../../../a
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import {  styled, createMuiTheme } from "@material-ui/core/styles"
 
-import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange,   } from '../../../styles/colors';
+import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange, chitOrangeVeryLight, veryLightGrey  } from '../../../styles/colors';
 import Paper from '@material-ui/core/Paper'; 
 
 import { unformattedUTCtoDate} from '../../../app/helpers/dateHelper'
@@ -178,10 +178,10 @@ const SpotlightWrapper= styled(Paper)({
   color: chitBlueDull,
   fontSize: '.85rem',
   marginTop: '.2rem',
-  padding: '0 .5rem',
+  padding: '0 .5rem .5rem .5rem',
   borderRadius: '0',
     '&:hover' : {
-      backgroundColor: chitOrangeLight,
+      backgroundColor: chitOrangeVeryLight,
       
     },
 
@@ -203,7 +203,7 @@ const SpotlightWrapperSelected= styled(Paper)({
  
   fontSize: '.85rem',
   marginTop: '.2rem',
-  padding: '0 .5rem',
+  padding: '0 .5rem .5rem .5rem',
   borderRadius: '0',
   color: 'white',
   backgroundColor: ' #606062 ',
@@ -224,7 +224,7 @@ const TitleWrapper= styled('div')({
   alignItems: 'flex-start',
   flexWrap: 'wrap' ,
   width: '100%',
- backgroundColor: lightGrey,
+//  backgroundColor: lightGrey,
  color: chitRedDark,
   fontSize: '.85rem',
   margin: '.2rem .1rem',
@@ -241,24 +241,64 @@ const TitleWrapper= styled('div')({
 
 })
 
-const TimeRemainingWrapper= styled('div')({
+const TitleWrapperSelected= styled('div')({
+
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  flexWrap: 'wrap' ,
+  width: '100%',
+//  backgroundColor: lightGrey,
+ color: 'white',
+  fontSize: '.85rem',
+  margin: '.2rem .1rem',
+
+  borderRadius: '0',
+ 
+ 
+
+
+  [theme.breakpoints.down('xs')] : {
+    // display: 'none', 
+  }
+
+})
+
+const DetailsWrapper= styled('div')({
 
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
   
-  width: '100%',
+  width: '95%',
+  marginLeft: '.8rem',
  
-  fontSize: '.85rem',
+  fontSize: '.75rem',
   color: darkGrey,
-  margin: '.2rem .1rem',
- 
-  borderRadius: '0',
- 
- 
 
+ 
+  [theme.breakpoints.down('xs')] : {
+    // display: 'none', 
+  }
 
+})
+
+const DetailsWrapperSelected= styled('div')({
+
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  
+  width: '95%',
+  marginLeft: '.8rem',
+ 
+  fontSize: '.75rem',
+  color: lightGrey,
+
+ 
   [theme.breakpoints.down('xs')] : {
     // display: 'none', 
   }
@@ -274,7 +314,7 @@ const TimeRemainingWrapperOrange= styled('div')({
   
   width: '100%',
  
-  fontSize: '.85rem',
+  fontSize: '.75rem',
   margin: '.2rem .1rem',
   color: chitOrange,
   borderRadius: '0',
@@ -302,13 +342,13 @@ const AllSpotLightsWrapper= styled(Paper)({
   
   width: '100%',
   height: '2rem' ,
-  fontSize: '.95rem',
+  fontSize: '.75rem',
   marginTop: '.2rem',
   padding: '0 .5rem',
   borderRadius: '0',
   border: '1px solid orange', 
     '&:hover' : {
-      backgroundColor: chitOrangeLight,
+      backgroundColor: chitOrangeVeryLight,
       
     },
 
@@ -332,7 +372,7 @@ const AllSpotLightsWrapperSelected= styled(Paper)({
 
   width: '100%',
   height: '2rem' ,
-  fontSize: '.95rem',
+  fontSize: '.75rem',
   marginTop: '.2rem',
   padding: '0 .5rem',
   borderRadius: '0',
@@ -347,12 +387,7 @@ const AllSpotLightsWrapperSelected= styled(Paper)({
 
 const TimerWrapper= styled('div')({
 
-
-
-
-
-
-
+  fontSize: '.75rem' ,
 
   [theme.breakpoints.down('xs')] : {
     // display: 'none', 
@@ -360,7 +395,15 @@ const TimerWrapper= styled('div')({
 
 })
 
+const TasksWrapper= styled('div')({
 
+  fontSize: '.75rem' ,
+
+  [theme.breakpoints.down('xs')] : {
+    // display: 'none', 
+  }
+
+})
 
 
 // =========================================
@@ -405,7 +448,7 @@ const SpotlightNav = (props) => {
   const handleChangeSpotlight= (evt)=>{
   //  console.log('[SpotlightNav] - evt.target is' , evt.currentTarget.id)
     props.changeDisplaySpotlight(evt.currentTarget.id)
-    props.openCloseSidePanel('hide')
+    // props.openCloseSidePanel('hide')
     }
 
     // 1_ convert spotlights object of objects into an array
@@ -459,10 +502,11 @@ const SpotlightNav = (props) => {
         }}
       >
           <TitleWrapper>{spotTitle}</TitleWrapper>
-          <TimeRemainingWrapper
-          > est complete: {dateEst}</TimeRemainingWrapper>
-          <div>Timer: not set</div>
-          <div>Tasks: {numberOfTasks} </div>
+
+            <DetailsWrapper> est complete: {dateEst}</DetailsWrapper>
+            <DetailsWrapper>Timer: running </DetailsWrapper>
+            <DetailsWrapper>Tasks: 6</DetailsWrapper>
+
         </SpotlightWrapper>
       
 
@@ -479,12 +523,12 @@ const SpotlightNav = (props) => {
             handleChangeSpotlight(evt)
           }}
         >
-          <TitleWrapper>{spotTitle}</TitleWrapper>
-          <TimeRemainingWrapperOrange
-          > est complete: {dateEst}</TimeRemainingWrapperOrange>
+          <TitleWrapperSelected>{spotTitle}</TitleWrapperSelected>
+          <DetailsWrapperSelected
+          > est complete: {dateEst}</DetailsWrapperSelected>
 
-<TimerWrapper>Timer: running </TimerWrapper>
-          <div>Tasks: 6</div>
+          <DetailsWrapperSelected>Timer: running </DetailsWrapperSelected>
+          <DetailsWrapperSelected>Tasks: 6</DetailsWrapperSelected>
 
         </SpotlightWrapperSelected>
         
@@ -555,28 +599,7 @@ const openSpotlightForm = (evt)=>{
 
       <SpotLightsContainer>
 
-      {stateSpotlightId !== 'all' &&
-              <AllSpotLightsWrapper elevation={1} 
-              id = 'all'
-              onClick = {(evt)=>{
-                handleChangeSpotlight(evt)
-              }}
-              >
-              All Spotlights
-              </AllSpotLightsWrapper>
-            
-            }
-            {stateSpotlightId === 'all' &&
-              <AllSpotLightsWrapperSelected elevation={1} 
-              id = 'all'
-              onClick = {(evt)=>{
-                handleChangeSpotlight(evt)
-              }}
-              >
-              All Spotlights
-              </AllSpotLightsWrapperSelected>
-            
-            }   
+
    
         {displaySpotlights}
 
