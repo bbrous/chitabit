@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray} from '../../../app/redux/actions/mainActions'
+import{updateTaskArray, openModal} from '../../../app/redux/actions/mainActions'
 import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
 
 
@@ -464,7 +464,7 @@ const SortableList = SortableContainer(({ items, spotlightData  } ) => {
 const SpotLightTasks = (props) => {
   // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
 
-
+let id = props.id
 
   let spotlightData = props.display.private.data.spotlightData
   // console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightData.tasks )
@@ -476,17 +476,19 @@ const SpotLightTasks = (props) => {
 console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , taskArray )
   const [items, setItems] = useState(taskArray);
 
-  
+ let reduxUpdateTaskArray = props.updateTaskArray 
   useEffect(() => {
     
     // Put ITEMS INTO REDUX HERE ************************
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     
     
-    console.log('[ATry] - new items array'  , items)
- 
+    console.log('[SPOTLIGHT TASKS] - new items array'  , items)
+
+
+    reduxUpdateTaskArray(id, items)
     
-  }, [taskArray, items]);
+  }, [taskArray, items, id, reduxUpdateTaskArray]);
 
 
 
@@ -531,7 +533,7 @@ console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , taskArray )
 const actions = {
   // showSpotLight,
   // closeSpotLight
-  updateTaskArray
+  updateTaskArray, openModal
 }
 
 const mapState = state => ({

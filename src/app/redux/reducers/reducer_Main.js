@@ -56,10 +56,10 @@ import {
 export default function reducer_Main(state = initialState, {type, payload}) {
   switch(type) {
     case OPEN_CLOSE_SIDE_PANEL: 
-        return Object.assign({
+        return  {
           ...state,
           displaySidePanel: payload.displaySidePanel
-        })
+        }
 
     // case SHOW_SPOTLIGHT : 
     //     return Object.assign({
@@ -74,20 +74,21 @@ export default function reducer_Main(state = initialState, {type, payload}) {
     //     })
 
     case OPEN_MODAL : 
-        return Object.assign({
+    console.log('REDUCER MAIN -- OPEN modal ACTION PASSED')
+        return {
           ...state,
           modalType: payload.modalType,
           chitIdDisplayed: payload.chitIdDisplayed,
           modalDisplayed: true
-        })
+        }
 
     case CLOSE_MODAL : 
-        return Object.assign({
+        return  {
           ...state,
           modalType: payload.modalType,
           chitIdDisplayed: payload.chitIdDisplayed,
           modalDisplayed: false
-        })
+        }
 
 
     // case OPEN_SPOTLIGHT_PAGE : 
@@ -104,13 +105,13 @@ export default function reducer_Main(state = initialState, {type, payload}) {
     //     })
 
     case CHANGE_DISPLAY_SPOTLIGHT : 
-        return Object.assign({
+        return {
           ...state,
-          spotLightDisplay: Object.assign({
+          spotLightDisplay: {
             ...state.spotLightDisplay,
             displayedSpotLightId: payload.displayedSpotLightId
-          })
-        })
+          }
+        }
 
     // case CHANGE_DISPLAY : 
     //     return Object.assign({
@@ -120,12 +121,31 @@ export default function reducer_Main(state = initialState, {type, payload}) {
 
  
         // case UPDATE_TASK_ARRAY : 
-        // return Object.assign({
+        // console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED' , payload)
+        // return {
         //   ...state,
         //   payload
-        // })
+        // }
 
- 
+        case UPDATE_TASK_ARRAY : 
+        let id = payload.id
+        let taskArray = payload.id
+        
+        console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED')
+        return {
+          ...state,
+          data: {...state.data, 
+                  spotlightData: {
+                                ...state.data.spotlightData, 
+                                  spotlights: {
+                                      ...state.data.spotlightData.spotlights,
+                                      [id]: {...state.data.spotlightData.spotlights[id], taskArray:payload.taskArray}
+                                      
+                                   }
+                                  
+               
+        
+        }}}
 
     default:
       return state

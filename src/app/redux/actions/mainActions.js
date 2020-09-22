@@ -97,8 +97,8 @@
 
         export const  openModal = (modalType, newChit) => {
 
-          console.log('[mainActions I be clicked - type = ' , modalType)
-          
+          // console.log('[mainActions I be clicked - type = ' , modalType)
+          console.log('[mainActions OPEN_MODALOPEN_MODALOPEN_MODAL = ' , modalType)
           return {
             type: OPEN_MODAL,
             payload: {
@@ -163,12 +163,19 @@
 
 
         
-        export const  updateTaskArray = ( TaskArray) => {
+        export const  updateTaskArray = (id, taskArray) => {
+
+          console.log('[mainActions I be clicked - type, update = ' , taskArray)
+          
           return {
-            
             type: UPDATE_TASK_ARRAY,
-            payload: TaskArray
-            
+            payload: {
+              id: id, 
+              taskArray: taskArray,
+               
+              
+            }
           }
         }
+        
         
