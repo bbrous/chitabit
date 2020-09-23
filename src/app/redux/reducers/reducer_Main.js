@@ -27,9 +27,12 @@ import {
           view: '',
           displaySidePanel: 'hide',
           display: 'spotlight',
-          modalDisplayed: false,
-          modalType: '',
-      
+
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+          modalDisplayed: true,
+          modalType: 'spotLightForm',
+
           spotLightDisplay: {
             displaySpotLight: 'show',  // or 'none'  or 'show ' 
             displayedSpotLightId: 'spot1',
@@ -37,6 +40,11 @@ import {
             
             // displaySpotLightPage: false,
           },
+
+
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+      
 
       
           journalDisplay: {
@@ -65,23 +73,23 @@ const reducer_Main = produce((draft = initialState, action) => {
         }// end OPEN_CLOSE_SIDE_PANEL
 
 
-    // case OPEN_MODAL : 
-    // console.log('REDUCER MAIN -- OPEN modal ACTION PASSED')
-    //     return {
-    //       ...state,
-    //       modalType: payload.modalType,
-    //       chitIdDisplayed: payload.chitIdDisplayed,
-    //       modalDisplayed: true
-    //     }// end OPEN_MODAL
+   
 
-    // case CLOSE_MODAL : 
-    //     return  {
-    //       ...state,
-    //       modalType: payload.modalType,
-    //       chitIdDisplayed: payload.chitIdDisplayed,
-    //       modalDisplayed: false
-    //     }//end CLOSE_MODAL
+    case OPEN_MODAL : 
+    {
+     draft.modalType = 'spotLightForm'
+     draft.modalDisplayed = true
+     return draft;
+     
+   }// end CHANGE_DISPLAY_SPOTLIGHT    
 
+    case CLOSE_MODAL : 
+    {
+     draft.modalType = ''
+     draft.modalDisplayed = false
+     return draft;
+     
+   }// end CHANGE_DISPLAY_SPOTLIGHT
 
     case CHANGE_DISPLAY_SPOTLIGHT : 
          {

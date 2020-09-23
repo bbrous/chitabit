@@ -2,6 +2,7 @@ import React, {Fragment } from 'react'
 import {connect} from 'react-redux'
 
 import SpotLightTasks from './SpotLightTasks'
+import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey,   veryLightGrey} from '../../../styles/colors'
 
@@ -489,7 +490,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
           // ----------------------
           const FormContainer= styled('div')({
             display: 'flex',
-            flexDirection: 'column',
+            
             justifyContent: 'center',
             alignItems: 'center',
             
@@ -691,13 +692,10 @@ export const Spotlight = (props) => {
 
 
     <FormContainer>
-      <FormRow>
-        <div> Form input here</div>
-      </FormRow>
-      <FormRow>
-        <div>New Tasks</div>
-        <div>New Child Spotlight</div>
-      </FormRow>
+       
+        <SpotLightTaskForm/>
+      
+    
 
     </FormContainer>
 
