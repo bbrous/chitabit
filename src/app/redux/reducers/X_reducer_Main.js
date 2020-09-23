@@ -1,5 +1,5 @@
 import { createReducer } from './reducerUtil'
-
+import produce from 'immer'
 
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
  
@@ -22,202 +22,150 @@ import {
 
 
 
-// adjustedCurrentMonth = currentMonth + 1
+        const initialState = {
 
-// firstDay = `${adjustedCurrentMonth} 1 ${currentYear}`
-// UTCFirstDay = parseInt(DatetoUTC(firstDay))
-
-  const initialState = {
-
-    view: '',
-    displaySidePanel: 'hide',
-    display: 'spotlight',
-    modalDisplayed: true,
-    modalType: 'spotLightForm',
-
-    spotLightDisplay: {
-      displaySpotLight: 'show',  // or 'none'  or 'show ' 
-      displayedSpotLightId: 'spot1',
-      // spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
+          view: '',
+          displaySidePanel: 'hide',
+          display: 'spotlight',
+          modalDisplayed: false,
+          modalType: '',
       
-      // displaySpotLightPage: false,
-    },
+          spotLightDisplay: {
+            displaySpotLight: 'show',  // or 'none'  or 'show ' 
+            displayedSpotLightId: 'spot1',
+            // spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
+            
+            // displaySpotLightPage: false,
+          },
 
-    // spotlights: {
+      
+          journalDisplay: {
+            currentDaY: '',
+            currentSection: '',
+            lastSection: ''
+          },
+      
+      
+      
+          data: InitialStore
+      
+        }
 
-    //   'spot1': {
-    //     id: 'spot1',
-    //     type: 'spotlight',
-    //     parent: '',
-    //     completed: false,
+ 
 
-    //     title: 'This is spotlight 1 in initial store',
+export default function reducer_Main(state = initialState, {type, payload}) {
 
-    //     timeStamp:  "2020-09-14T04:46:20.619Z",  
-    //     endEst: "2020-09-22T04:46:20.619Z",
+  switch(type) {
 
-    //     startClock:  "2020-09-14T04:46:20.619Z",
-    //     pausedClock: "2020-09-14T04:46:20.619Z",
-    //     endClock: "2020-09-14T04:46:20.619Z",
-    //     clockStatus: 'stopped',  // or going
-    //     noteId: 'note1',
-   
+    case OPEN_CLOSE_SIDE_PANEL: 
+        return  {
+          ...state,
+          displaySidePanel: payload.displaySidePanel
+        }// end OPEN_CLOSE_SIDE_PANEL
+
+
+    case OPEN_MODAL : 
+    console.log('REDUCER MAIN -- OPEN modal ACTION PASSED')
+        return {
+          ...state,
+          modalType: payload.modalType,
+          chitIdDisplayed: payload.chitIdDisplayed,
+          modalDisplayed: true
+        }// end OPEN_MODAL
+
+    case CLOSE_MODAL : 
+        return  {
+          ...state,
+          modalType: payload.modalType,
+          chitIdDisplayed: payload.chitIdDisplayed,
+          modalDisplayed: false
+        }//end CLOSE_MODAL
+
+
+    case CHANGE_DISPLAY_SPOTLIGHT : 
+        return {
+          ...state,
+          spotLightDisplay: {
+            ...state.spotLightDisplay,
+            displayedSpotLightId: payload.displayedSpotLightId
+          }
+        }// end CHANGE_DISPLAY_SPOTLIGHT
+
+
+    case UPDATE_TASK_ARRAY : 
+        let id = payload.id
+        let taskArray = payload.taskArray
         
-    //     taskArray: [
-    //       'task1',
-    //       'task2', 
-    //       'spot2',
-    //       'task3'
-         
-    //     ],
+        console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED')
+        return {
+          ...state,
+          data: {...state.data, 
+                  spotlightData: {
+                                ...state.data.spotlightData, 
+                                  spotlights: {
+                                      ...state.data.spotlightData.spotlights,
+                                      [id]: {...state.data.spotlightData.spotlights[id], taskArray:taskArray}
+                                      
+                                   }
+                                  
+               
+        
+        }}
+      }// end UPDATE_TASK_ARRAY
 
-    //     'tasks': {
 
-    //       'task1' : {
-    //         id: 'task1',
-    //         type: 'task',  //or spotlight
-    //         completed: false,
-    
-    //         title: 'This is spot 1 in initialStore',
-    //         noteId: ''
+  // --------------------------------------------
+
+    // case CHANGE_DISPLAY : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
+
+ 
+        // case UPDATE_TASK_ARRAY : 
+        // console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED' , payload)
+        // return {
+        //   ...state,
+        //   payload
+        // }
+
+  
+
+    // case OPEN_SPOTLIGHT_PAGE : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
+
+    // case CLOSE_SPOTLIGHT_PAGE : 
+    // alert('clicked')
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
+
             
-    //       },
-    
-    //       'task2' :{
-    //         id: 'task2',
-    //         type: 'task',  //or spotlight
-    //         completed: false,
-    
-    //         title: 'This is spot 2 in initialStore',
-    //         noteId: 'note2'
-            
-    //       },
 
-              
-    //       'task3' :{
-    //         id: 'task3',
-    //         type: 'task',  //or spotlight
-    //         completed: false,
-    
-    //         title: 'This is spot 2 in initialStore',
-    //         noteId: 'note2'
-            
-    //       },
+    // case SHOW_SPOTLIGHT : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
 
-    //     }, // end tasks
-          
-
-    //   },
+    // case CLOSE_SPOTLIGHT : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })      
 
 
 
-    // }, // end spotlight
-
-    journalDisplay: {
-      currentDaY: '',
-      currentSection: '',
-      lastSection: ''
-    },
+  // --------------------------------------------
+    default:
+      return state
+  } // end default
 
 
-
-    data: InitialStore
-
-  }
-
-  export const createInitialView = (state, payload) => {
-    let initialView
   
-    
-    if(payload.page ===  'twoParty') {initialView = 'chit'}
-    if(payload.page ===  'personal') {initialView = 'chit'}
-    if(payload.page ===  'work') {initialView = 'ledger'}
-  
-    return  Object.assign({...state}, {viewDisplayed: initialView, page: payload.page})
-  
-  }
-
-
-
-  export const openCloseSidePanel = (state, payload) => {
-    // console.log("hey change display clicked")
-   return  Object.assign({...state}, payload)
-  
-  }
-//  export const openCloseSidePanel = (state, payload) => {
-//   // console.log("hey change display clicked")
-//  return  Object.assign({...state}, payload)
-
-// }
-  
-
-export const showSpotLight = (state, payload) => {
-  // console.log("hey change display clicked")
- return  Object.assign({...state}, payload)
-
-}  
-
-export const closeSpotLight = (state, payload) => {
-  // console.log("hey change display clicked")
- return  Object.assign({...state}, payload)
-
-}  
-
-
-export const openModal = (state, payload) => {
-
-
-  return  Object.assign({...state}, payload)
-}
-
-export const closeModal = (state, payload) => {
-   
-  return  Object.assign({...state}, payload)
-}
-
-export const openSpotLightPage = (state, payload) => {
-
-
-  return  Object.assign({...state}, payload)
-}
-
-export const closeSpotLightPage = (state, payload) => {
-   
-  return  Object.assign({...state}, payload)
-}
-
-export const changeDisplaySpotlight = (state, payload) => {
-  return  Object.assign({...state}, payload)
-}
-
-
-export const changeDisplay = (state, payload) => {
-  // console.log("hey change display clicked")
- return  Object.assign({...state}, payload)
-
-}
-
-export const updateTaskArray = (state, payload) => {
-  // console.log("hey change display clicked")
- return  Object.assign({...state}, payload)
-
-}
-// =================================================
-
-  export default createReducer(initialState, {
-  
-    [OPEN_CLOSE_SIDE_PANEL] : openCloseSidePanel,
-    [SHOW_SPOTLIGHT] : showSpotLight,
-    [CLOSE_SPOTLIGHT] : closeSpotLight,
-
-    [OPEN_MODAL] : openModal,
-    [CLOSE_MODAL] : closeModal,
-
-    [CHANGE_DISPLAY_SPOTLIGHT] : changeDisplaySpotlight,
-    [OPEN_SPOTLIGHT_PAGE] : openSpotLightPage,
-    [CLOSE_SPOTLIGHT_PAGE] : closeSpotLightPage,
-    [CHANGE_DISPLAY] : changeDisplay,
-    [UPDATE_TASK_ARRAY]: updateTaskArray
-
-    
-  })
+}// end function reducer_Main

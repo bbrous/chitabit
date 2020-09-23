@@ -28,7 +28,7 @@ import {
           displaySidePanel: 'hide',
           display: 'spotlight',
           modalDisplayed: false,
-          modalType: 'spotLightForm',
+          modalType: '',
       
           spotLightDisplay: {
             displaySpotLight: 'show',  // or 'none'  or 'show ' 
@@ -54,76 +54,118 @@ import {
  
 
 export default function reducer_Main(state = initialState, {type, payload}) {
-  switch(type) {
-    case OPEN_CLOSE_SIDE_PANEL: 
-        return Object.assign({
-          ...state,
-          payload
-        })
-        
-    case SHOW_SPOTLIGHT : 
-        return Object.assign({
-          ...state,
-          payload
-        })
 
-    case CLOSE_SPOTLIGHT : 
-        return Object.assign({
+  switch(type) {
+
+    case OPEN_CLOSE_SIDE_PANEL: 
+        return  {
           ...state,
-          payload
-        })
+          displaySidePanel: payload.displaySidePanel
+        }// end OPEN_CLOSE_SIDE_PANEL
+
 
     case OPEN_MODAL : 
-        return Object.assign({
+    console.log('REDUCER MAIN -- OPEN modal ACTION PASSED')
+        return {
           ...state,
-          payload
-        })
+          modalType: payload.modalType,
+          chitIdDisplayed: payload.chitIdDisplayed,
+          modalDisplayed: true
+        }// end OPEN_MODAL
 
     case CLOSE_MODAL : 
-        return Object.assign({
+        return  {
           ...state,
-          payload
-        })
+          modalType: payload.modalType,
+          chitIdDisplayed: payload.chitIdDisplayed,
+          modalDisplayed: false
+        }//end CLOSE_MODAL
 
-
-    case OPEN_SPOTLIGHT_PAGE : 
-        return Object.assign({
-          ...state,
-          payload
-        })
-
-    case CLOSE_SPOTLIGHT_PAGE : 
-    alert('clicked')
-        return Object.assign({
-          ...state,
-          payload
-        })
 
     case CHANGE_DISPLAY_SPOTLIGHT : 
-        return Object.assign({
+        return {
           ...state,
-          payload
-        })
+          spotLightDisplay: {
+            ...state.spotLightDisplay,
+            displayedSpotLightId: payload.displayedSpotLightId
+          }
+        }// end CHANGE_DISPLAY_SPOTLIGHT
 
-    case CHANGE_DISPLAY : 
-        return Object.assign({
+
+    case UPDATE_TASK_ARRAY : 
+        let id = payload.id
+        let taskArray = payload.taskArray
+        
+        console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED')
+        return {
           ...state,
-          payload
-        })
+          data: {...state.data, 
+                  spotlightData: {
+                                ...state.data.spotlightData, 
+                                  spotlights: {
+                                      ...state.data.spotlightData.spotlights,
+                                      [id]: {...state.data.spotlightData.spotlights[id], taskArray:taskArray}
+                                      
+                                   }
+                                  
+               
+        
+        }}
+      }// end UPDATE_TASK_ARRAY
+
+
+  // --------------------------------------------
+
+    // case CHANGE_DISPLAY : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
 
  
-        case UPDATE_TASK_ARRAY : 
-        return Object.assign({
-          ...state,
-          payload
-        })
+        // case UPDATE_TASK_ARRAY : 
+        // console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED' , payload)
+        // return {
+        //   ...state,
+        //   payload
+        // }
 
- 
+  
 
+    // case OPEN_SPOTLIGHT_PAGE : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
+
+    // case CLOSE_SPOTLIGHT_PAGE : 
+    // alert('clicked')
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
+
+            
+
+    // case SHOW_SPOTLIGHT : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })
+
+    // case CLOSE_SPOTLIGHT : 
+    //     return Object.assign({
+    //       ...state,
+    //       payload
+    //     })      
+
+
+
+  // --------------------------------------------
     default:
       return state
-  }
+  } // end default
 
 
   
-}
+}// end function reducer_Main

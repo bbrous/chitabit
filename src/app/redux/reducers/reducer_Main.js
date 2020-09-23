@@ -1,5 +1,5 @@
 import { createReducer } from './reducerUtil'
-
+import produce from 'immer';
 
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
  
@@ -52,105 +52,67 @@ import {
         }
 
  
+const reducer_Main = produce((draft = initialState, action) => {
+    const { type, payload } = action;
 
-export default function reducer_Main(state = initialState, {type, payload}) {
-  switch(type) {
+    switch(type) {
+
     case OPEN_CLOSE_SIDE_PANEL: 
-        return  {
-          ...state,
-          displaySidePanel: payload.displaySidePanel
-        }
+          {
+         
+          draft.displaySidePanel = payload.displaySidePanel
+          return draft;
+        }// end OPEN_CLOSE_SIDE_PANEL
 
-    // case SHOW_SPOTLIGHT : 
-    //     return Object.assign({
+
+    // case OPEN_MODAL : 
+    // console.log('REDUCER MAIN -- OPEN modal ACTION PASSED')
+    //     return {
     //       ...state,
-    //       payload
-    //     })
+    //       modalType: payload.modalType,
+    //       chitIdDisplayed: payload.chitIdDisplayed,
+    //       modalDisplayed: true
+    //     }// end OPEN_MODAL
 
-    // case CLOSE_SPOTLIGHT : 
-    //     return Object.assign({
+    // case CLOSE_MODAL : 
+    //     return  {
     //       ...state,
-    //       payload
-    //     })
+    //       modalType: payload.modalType,
+    //       chitIdDisplayed: payload.chitIdDisplayed,
+    //       modalDisplayed: false
+    //     }//end CLOSE_MODAL
 
-    case OPEN_MODAL : 
-    console.log('REDUCER MAIN -- OPEN modal ACTION PASSED')
-        return {
-          ...state,
-          modalType: payload.modalType,
-          chitIdDisplayed: payload.chitIdDisplayed,
-          modalDisplayed: true
-        }
-
-    case CLOSE_MODAL : 
-        return  {
-          ...state,
-          modalType: payload.modalType,
-          chitIdDisplayed: payload.chitIdDisplayed,
-          modalDisplayed: false
-        }
-
-
-    // case OPEN_SPOTLIGHT_PAGE : 
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
-
-    // case CLOSE_SPOTLIGHT_PAGE : 
-    // alert('clicked')
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
 
     case CHANGE_DISPLAY_SPOTLIGHT : 
-        return {
-          ...state,
-          spotLightDisplay: {
-            ...state.spotLightDisplay,
-            displayedSpotLightId: payload.displayedSpotLightId
-          }
-        }
+         {
+          draft.spotLightDisplay.displayedSpotLightId = payload.displayedSpotLightId
+          return draft;
+          
+        }// end CHANGE_DISPLAY_SPOTLIGHT
 
-    // case CHANGE_DISPLAY : 
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
 
- 
-        // case UPDATE_TASK_ARRAY : 
-        // console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED' , payload)
-        // return {
-        //   ...state,
-        //   payload
-        // }
 
-        case UPDATE_TASK_ARRAY : 
-        let id = payload.id
-        let taskArray = payload.id
-        
-        console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED')
-        return {
-          ...state,
-          data: {...state.data, 
-                  spotlightData: {
-                                ...state.data.spotlightData, 
-                                  spotlights: {
-                                      ...state.data.spotlightData.spotlights,
-                                      [id]: {...state.data.spotlightData.spotlights[id], taskArray:payload.taskArray}
-                                      
-                                   }
-                                  
-               
-        
-        }}}
 
+    case UPDATE_TASK_ARRAY : 
+         {
+          let id = payload.id
+              let taskArray = payload.taskArray
+          draft.data.spotlightData.spotlights[id].taskArray = taskArray
+          return draft;
+          
+        }// end CHANGE_DISPLAY_SPOTLIGHT
+
+     
+
+
+
+  // --------------------------------------------
     default:
-      return state
-  }
+      return draft
+  } // end default
+          
+        });
+
+export default reducer_Main
 
 
-  
-}
