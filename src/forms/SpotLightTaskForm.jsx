@@ -6,11 +6,17 @@ import{addTask} from '../app/redux/actions/mainActions'
 
 // Material UI =============================
 
-import { styled, createMuiTheme, makeStyles } from "@material-ui/core/styles"
+import { styled, createMuiTheme, withStyles } from "@material-ui/core/styles"
 import Paper from '@material-ui/core/Paper'
 
-import { TextField, Checkbox, Button } from "@material-ui/core";
-import { chitBlueDull, chitOrangeLight, darkGrey, chitBlueLight } from '../styles/colors';
+import { TextField, 
+          Button,
+          RadioGroup,
+          FormControlLabel,
+          ThemeProvider,
+          Radio,
+   } from "@material-ui/core";
+import { chitRedDark, chitBlueDull, chitOrangeLight, darkGrey, chitBlueLight } from '../styles/colors';
  
  
 
@@ -27,7 +33,7 @@ const Wrapper= styled('div')({
   justifyContent: 'flex-end',
   alignItems: 'center',
  
-  // backgroundColor: 'pink',
+   
   width: '100%',
   
 
@@ -35,7 +41,7 @@ const Wrapper= styled('div')({
 
 const FormWrapper= styled('form')({
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   justifyContent: 'flex-end',
   alignItems: 'center',
   padding: '4px 1rem',
@@ -66,20 +72,35 @@ const StyledTextField= styled(TextField)({
 
 })
 
-const ButtonWrapper= styled('div')({
+const InputWrapper= styled('div')({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   alignItems: 'center',
 
   
-  // backgroundColor: 'pink',
+  // backgroundColor: 'blue',
   // width: '100%',
   
  
 
 })
+
+const RadioButtonWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  marginTop: '4px',
+
+  // backgroundColor: 'pink',
+  width: '100%',
+  
+
+})
+ 
 
 const SubmitButton= styled(Button)({
 
@@ -87,7 +108,7 @@ const SubmitButton= styled(Button)({
   color: 'white',
   border: 'none',
   padding: '0',
-  width: '8rem',
+  width: '4rem',
   fontSize: '.7rem',
   textTransform: 'none',
   margin: '2px',
@@ -101,14 +122,49 @@ const SubmitButton= styled(Button)({
 
 })
 
+
+const RadioLabel= styled(FormControlLabel)({
+  color: 'grey',
+  fontSize: '.5rem',
+  '& .MuiFormControlLabel-label ': {
+    fontSize: '.7rem'
+  }
+  
+
+})
+const ErrorWrapper= styled('div')({
+  color: 'red'
+
+})
+
+const OrangeRadio = withStyles({
+  root: {
+    color: 'orange',
+    
+    '&$checked': {
+      color: 'orange',
+    },
+    '&:hover': {
+      backgroundColor: 'white',
+    },
+  },
+  
+  checked: {},
+})((props) => <Radio color="default" {...props} />);
+
 // =============================================
 
 
-function SpotLightTaskForm() {
+function SpotLightTaskForm(props) {
+  const [selectedValue, setSelectedValue] = React.useState('task');
 
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
     defaultValues: {
       todo: '',
+      RadioGroup: 'task'
 
     }
 })
@@ -119,35 +175,27 @@ function SpotLightTaskForm() {
 
 
 
-
-
-
-
-const onSubmit = data => alert(JSON.stringify(data))
-
-
-
-
-
-
-
-
-
+    const onSubmit = data => alert(JSON.stringify(data))
 
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
 
+
+
+
   return (
     <Wrapper>
       <FormWrapper onSubmit = {handleSubmit(onSubmit)}>
-      <Controller as={StyledTextField} 
+      <InputWrapper> 
+          <Controller as={StyledTextField} 
                   name="todo" 
                   InputProps={{ disableUnderline: true }}
                   control={control} 
+                  placeholder = 'Add a new task'
                   defaultValue="" 
                   rules={{ 
                     required: true ,
-                    maxLength: 40
+                    maxLength: 40,
                   
                   }}
                   />
@@ -157,11 +205,53 @@ const onSubmit = data => alert(JSON.stringify(data))
                   {errors.goal && errors.goal.type === "maxLength" && 
                     <ErrorWrapper>Maximum characters 40</ErrorWrapper>} */}
 
-        <ButtonWrapper>
-          <SubmitButton type ="submit"> Add as Task </SubmitButton>
-          <SubmitButton type ="submit"> Add as Spotlight </SubmitButton>
-        </ButtonWrapper>
+          <SubmitButton type ="submit"> Submit </SubmitButton>
+    </InputWrapper>
+        
+          
+    <RadioButtonWrapper>
+    <Controller
+          as={
+            
+            <RadioGroup row aria-label="type"  defaultValue = 'task'> 
+              <RadioLabel   name = 'taskType'
+                value="task"
+                control={<OrangeRadio />}
+                label="Add as task"
+                size = 'small'
+              />
+              <RadioLabel 
+              value="spotlight" control={<OrangeRadio />} label="Add as spotlight" />
+            </RadioGroup>
+          }
+          name="RadioGroup"
+          control={control}
+        />
+            {/* <RadioBox>
+              <input type="radio" id="sort" name="sort" value="asecending"
+              defaultChecked = "checked"
+              // onChange = {changeSort}
+              />
+              <RadioBoxLabel >Add as task
 
+                  </RadioBoxLabel>
+            </RadioBox>        
+            <RadioBox>
+              <input type="radio" id="sort" name="sort" value="descending"
+              // onChange = {changeSort}
+              />
+              <RadioBoxLabel >Add as Spotlight
+
+                  </RadioBoxLabel>
+            </RadioBox> */}
+
+          </RadioButtonWrapper>
+          
+      {errors.todo && errors.todo.type === "required" && 
+                    <ErrorWrapper>First name is required</ErrorWrapper>}
+                  
+                  {errors.taskType && errors.taskType.type === "required" && 
+                    <ErrorWrapper>  name is required</ErrorWrapper>}
       </FormWrapper>
       
     </Wrapper>

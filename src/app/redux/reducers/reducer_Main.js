@@ -10,6 +10,7 @@ import {
           SHOW_SPOTLIGHT,
           CLOSE_SPOTLIGHT,
           CHANGE_DISPLAY_SPOTLIGHT,
+          ADD_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
           OPEN_SPOTLIGHT_PAGE,
@@ -121,7 +122,14 @@ const reducer_Main = produce((draft = initialState, action) => {
          
       //  }// end CHANGE_DISPLAY_SPOTLIGHT
 
-
+      //   case ADD_SPOTLIGHT : 
+      //   {
+      //    let id = payload.id
+      //        let taskArray = payload.taskArray
+      //    draft.data.spotlightData.spotlights[id].taskArray = taskArray
+      //    return draft;
+         
+      //  }// end CHANGE_DISPLAY_SPOTLIGHT
   // --------------------------------------------
     default:
       return draft

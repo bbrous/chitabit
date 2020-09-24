@@ -13,6 +13,7 @@
           CHANGE_DISPLAY_SPOTLIGHT,
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
+          ADD_SPOTLIGHT,
           CHANGE_DISPLAY,
           UPDATE_TASK_ARRAY,
           ADD_TASK
@@ -179,11 +180,22 @@
           }
         }
 
-        export const  addTask = (newDisplay) => {
+        export const  addTask = (task) => {
+          console.log('MAIN ACTIONS - add task clicked --- ', task)
           return {
             type: ADD_TASK,
             payload: {
-              display: newDisplay
+              display: task
+            }
+          }
+        }
+
+        export const  addSpotLight = (spotlight) => {
+          console.log('MAIN ACTIONS - add spotlight clicked')
+          return {
+            type: ADD_SPOTLIGHT,
+            payload: {
+              display: spotlight
             }
           }
         }

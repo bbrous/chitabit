@@ -1,173 +1,84 @@
-import { createReducer } from './reducerUtil'
-import produce from 'immer';
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
-// import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
- 
-import InitialStore from '../store/InitialStore'
+const useStyles = makeStyles({
+  root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+  icon: {
+    borderRadius: '50%',
+    width: 16,
+    height: 16,
+    boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+    backgroundColor: '#f5f8fa',
+    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+    '$root.Mui-focusVisible &': {
+      outline: '2px auto rgba(19,124,189,.6)',
+      outlineOffset: 2,
+    },
+    'input:hover ~ &': {
+      backgroundColor: '#ebf1f5',
+    },
+    'input:disabled ~ &': {
+      boxShadow: 'none',
+      background: 'rgba(206,217,224,.5)',
+    },
+  },
+  checkedIcon: {
+    backgroundColor: '#137cbd',
+    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+    '&:before': {
+      display: 'block',
+      width: 16,
+      height: 16,
+      backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
+      content: '""',
+    },
+    'input:hover ~ &': {
+      backgroundColor: '#106ba3',
+    },
+  },
+});
 
-import {  
-          OPEN_CLOSE_SIDE_PANEL,
-          SHOW_SPOTLIGHT,
-          CLOSE_SPOTLIGHT,
-          CHANGE_DISPLAY_SPOTLIGHT,
-          OPEN_MODAL,
-          CLOSE_MODAL,
-          OPEN_SPOTLIGHT_PAGE,
-          CLOSE_SPOTLIGHT_PAGE,
-          CHANGE_DISPLAY, 
-          UPDATE_TASK_ARRAY
-        
-        } from '../store/storeConstants';
+// Inspired by blueprintjs
+function StyledRadio(props) {
+  const classes = useStyles();
 
+  return (
+    <Radio
+      className={classes.root}
+      disableRipple
+      color="default"
+      checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+      icon={<span className={classes.icon} />}
+      {...props}
+    />
+  );
+}
 
-
-
-        const initialState = {
-
-          view: '',
-          displaySidePanel: 'hide',
-          display: 'spotlight',
-          modalDisplayed: false,
-          modalType: '',
-      
-          spotLightDisplay: {
-            displaySpotLight: 'show',  // or 'none'  or 'show ' 
-            displayedSpotLightId: 'spot1',
-            // spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
-            
-            // displaySpotLightPage: false,
-          },
-
-      
-          journalDisplay: {
-            currentDaY: '',
-            currentSection: '',
-            lastSection: ''
-          },
-      
-      
-      
-          data: InitialStore
-      
-        }
-
- 
-const reducer_Main = produce((draft = initialState, action) => {
-    const { type, payload } = action;
-
-    switch(type) {
-
-    case OPEN_CLOSE_SIDE_PANEL: 
-        return  {
-          ...state,
-          displaySidePanel: payload.displaySidePanel
-        }// end OPEN_CLOSE_SIDE_PANEL
-
-
-    case OPEN_MODAL : 
-    console.log('REDUCER MAIN -- OPEN modal ACTION PASSED')
-        return {
-          ...state,
-          modalType: payload.modalType,
-          chitIdDisplayed: payload.chitIdDisplayed,
-          modalDisplayed: true
-        }// end OPEN_MODAL
-
-    case CLOSE_MODAL : 
-        return  {
-          ...state,
-          modalType: payload.modalType,
-          chitIdDisplayed: payload.chitIdDisplayed,
-          modalDisplayed: false
-        }//end CLOSE_MODAL
-
-
-    case CHANGE_DISPLAY_SPOTLIGHT : 
-        return {
-          ...state,
-          spotLightDisplay: {
-            ...state.spotLightDisplay,
-            displayedSpotLightId: payload.displayedSpotLightId
-          }
-        }// end CHANGE_DISPLAY_SPOTLIGHT
-
-
-    case UPDATE_TASK_ARRAY : 
-        let id = payload.id
-        let taskArray = payload.taskArray
-        
-        console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED')
-        return {
-          ...state,
-          data: {...state.data, 
-                  spotlightData: {
-                                ...state.data.spotlightData, 
-                                  spotlights: {
-                                      ...state.data.spotlightData.spotlights,
-                                      [id]: {...state.data.spotlightData.spotlights[id], taskArray:taskArray}
-                                      
-                                   }
-                                  
-               
-        
-        }}
-      }// end UPDATE_TASK_ARRAY
-
-
-  // --------------------------------------------
-
-    // case CHANGE_DISPLAY : 
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
-
- 
-        // case UPDATE_TASK_ARRAY : 
-        // console.log('REDUCER MAIN -- UpdateTaskArray ACTION PASSED' , payload)
-        // return {
-        //   ...state,
-        //   payload
-        // }
-
-  
-
-    // case OPEN_SPOTLIGHT_PAGE : 
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
-
-    // case CLOSE_SPOTLIGHT_PAGE : 
-    // alert('clicked')
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
-
-            
-
-    // case SHOW_SPOTLIGHT : 
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })
-
-    // case CLOSE_SPOTLIGHT : 
-    //     return Object.assign({
-    //       ...state,
-    //       payload
-    //     })      
-
-
-
-  // --------------------------------------------
-    default:
-      return draft
-  } // end default
-          
-        });
-
-export default reducer_Main
-
-
+export default function CustomizedRadios() {
+  return (
+    <FormControl component="fieldset">
+      <FormLabel component="legend">Gender</FormLabel>
+      <RadioGroup defaultValue="female" aria-label="gender" name="customized-radios">
+        <FormControlLabel value="female" control={<StyledRadio />} label="Female" />
+        <FormControlLabel value="male" control={<StyledRadio />} label="Male" />
+        <FormControlLabel value="other" control={<StyledRadio />} label="Other" />
+        <FormControlLabel
+          value="disabled"
+          disabled
+          control={<StyledRadio />}
+          label="(Disabled option)"
+        />
+      </RadioGroup>
+    </FormControl>
+  );
+}

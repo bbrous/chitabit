@@ -168,7 +168,9 @@ const OrangeRadio = withStyles({
     '&$checked': {
       color: 'orange',
     },
-    
+    '&:hover': {
+      backgroundColor: 'white',
+    },
   },
   checked: {},
 })((props) => <Radio color="default" {...props} />);
