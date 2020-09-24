@@ -1,6 +1,8 @@
 import React from 'react'
 import { useForm, Controller } from "react-hook-form";
+import {connect} from 'react-redux'
 
+import{addTask} from '../app/redux/actions/mainActions'
 
 // Material UI =============================
 
@@ -103,14 +105,61 @@ const SubmitButton= styled(Button)({
 
 
 function SpotLightTaskForm() {
+
+  const {register, handleSubmit, watch, errors, control, setValue} = useForm({
+    defaultValues: {
+      todo: '',
+
+    }
+})
+
+// &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
+
+
+
+
+
+
+
+
+
+const onSubmit = data => alert(JSON.stringify(data))
+
+
+
+
+
+
+
+
+
+
+
+// &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
+
   return (
     <Wrapper>
-      <FormWrapper>
-        <StyledTextField/>
+      <FormWrapper onSubmit = {handleSubmit(onSubmit)}>
+      <Controller as={StyledTextField} 
+                  name="todo" 
+                  InputProps={{ disableUnderline: true }}
+                  control={control} 
+                  defaultValue="" 
+                  rules={{ 
+                    required: true ,
+                    maxLength: 40
+                  
+                  }}
+                  />
+
+                  {/* {errors.goal && errors.goal.type === "required" && 
+                    <ErrorWrapper>First name is required</ErrorWrapper>}
+                  {errors.goal && errors.goal.type === "maxLength" && 
+                    <ErrorWrapper>Maximum characters 40</ErrorWrapper>} */}
 
         <ButtonWrapper>
-          <SubmitButton> Add as Task </SubmitButton>
-          <SubmitButton> Add as Spotlight </SubmitButton>
+          <SubmitButton type ="submit"> Add as Task </SubmitButton>
+          <SubmitButton type ="submit"> Add as Spotlight </SubmitButton>
         </ButtonWrapper>
 
       </FormWrapper>
@@ -119,4 +168,14 @@ function SpotLightTaskForm() {
   )
 }
 
-export default SpotLightTaskForm
+ 
+
+const actions = {
+  addTask
+}
+
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState, actions)(SpotLightTaskForm)
