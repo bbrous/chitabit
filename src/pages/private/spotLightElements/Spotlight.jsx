@@ -498,7 +498,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
             margin: '.25rem 0',
             
             
-          backgroundColor: mediumLightGrey,
+          backgroundColor: veryLightGrey,
             fontSize: '.8rem',
 
 

@@ -15,7 +15,8 @@ import {
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
           CHANGE_DISPLAY, 
-          UPDATE_TASK_ARRAY
+          UPDATE_TASK_ARRAY,
+          ADD_TASK
         
         } from '../store/storeConstants';
 
@@ -30,7 +31,7 @@ import {
 
 // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
-          modalDisplayed: true,
+          modalDisplayed: false,
           modalType: 'spotLightForm',
 
           spotLightDisplay: {
@@ -111,7 +112,14 @@ const reducer_Main = produce((draft = initialState, action) => {
         }// end CHANGE_DISPLAY_SPOTLIGHT
 
      
-
+      //   case ADD_TASK : 
+      //   {
+      //    let id = payload.id
+      //        let taskArray = payload.taskArray
+      //    draft.data.spotlightData.spotlights[id].taskArray = taskArray
+      //    return draft;
+         
+      //  }// end CHANGE_DISPLAY_SPOTLIGHT
 
 
   // --------------------------------------------
