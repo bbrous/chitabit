@@ -97,7 +97,8 @@ const RadioButtonWrapper= styled('div')({
 
   // backgroundColor: 'pink',
   width: '100%',
-  padding: '0 10px',
+  padding: '0 10px'
+  
 
 })
  
@@ -127,7 +128,7 @@ const RadioLabel= styled(FormControlLabel)({
   color: 'grey',
   fontSize: '.5rem',
   '& .MuiFormControlLabel-label ': {
-    fontSize: '.8rem'
+    fontSize: '.7rem'
   }
   
 
@@ -146,9 +147,7 @@ const taskType= styled(RadioGroup)({
 const OrangeRadio = withStyles({
   root: {
     color: 'orange',
-    icon: {
-      color: 'blue'
-    },
+    
     '&$checked': {
       color: 'orange',
     },
@@ -174,7 +173,7 @@ function SpotLightTaskForm(props) {
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
     defaultValues: {
       todo: '',
-      taskType: 'task'
+      RadioGroup: 'task'
 
     }
 })
@@ -224,18 +223,18 @@ function SpotLightTaskForm(props) {
     <Controller
           as={
             
-            <RadioGroup row aria-label="type"  defaultValue = 'task' name = 'taskType' > 
+            <RadioGroup row aria-label="type"  defaultValue = 'task' name = 'taskType'> 
               <RadioLabel   
                 value="task"
                 control={<OrangeRadio />}
                 label="Add as task"
-               
+                size = 'small'
               />
               <RadioLabel 
               value="spotlight" control={<OrangeRadio />} label="Add as spotlight" />
             </RadioGroup>
           }
-          name="taskType"
+          name="RadioGroup"
           control={control}
         />
             {/* <RadioBox>
