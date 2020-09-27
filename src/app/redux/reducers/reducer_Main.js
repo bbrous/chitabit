@@ -1,6 +1,6 @@
 import { createReducer } from './reducerUtil'
 import produce from 'immer';
-
+import cuid from 'cuid';
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
  
 import InitialStore from '../store/InitialStore'
@@ -121,15 +121,34 @@ const reducer_Main = produce((draft = initialState, action) => {
          let id = payload.id
           let taskType = payload.task.taskType
           let todo = payload.task.todo
+          let title = payload.task.title
+          let taskItem = cuid().toString()
           console.log('REDUCER MAIN - Add task Array props====== ')
           console.log('REDUCER MAIN - Add task Array id: ', id)
           console.log('REDUCER MAIN - Add task Array taskType: ', taskType)
           console.log('REDUCER MAIN - Add task Array todo: ', todo)
+          console.log('REDUCER MAIN - Add task Array title: ', title)
           console.log('REDUCER MAIN - Add task Array props====== ')
-            
+
+          // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+          // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+        let dummyTask = {taskItem: taskItem, completed: false, title: todo, type: 'task' }
+
          draft.data.spotlightData.spotlights[id].taskArray.push(
-           {taskItem: 'task55', completed: false, type: 'task' }
+          dummyTask
          )
+
+         draft.data.spotlightData.tasks[taskItem] = dummyTask
+
+          // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+          // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+
+
+
          return draft;
          
        }// end CHANGE_DISPLAY_SPOTLIGHT
