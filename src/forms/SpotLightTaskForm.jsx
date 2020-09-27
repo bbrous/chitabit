@@ -181,11 +181,12 @@ function SpotLightTaskForm(props) {
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
 
+  let displayedId = props.display.private.spotLightDisplay.displayedSpotLightId
 
+// console.log('SPOTLIGHT TASK FORM : id is - ',  displayedId)
 
-
-
-    const onSubmit = data => alert(JSON.stringify(data))
+    // const onSubmit = data => alert(JSON.stringify(data))
+    const onSubmit = data => props.addTask(displayedId, data)
 
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&

@@ -267,6 +267,16 @@ const InitialStore = {
     },// end spotlights 
 
     'tasks': {
+      'task55' : {
+        id: 'task5',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        title: 'TEST TEST TEST',
+        clock: 'clock5',
+        note: 'note5',
+        
+      },
 
       'task1' : {
         id: 'task1',

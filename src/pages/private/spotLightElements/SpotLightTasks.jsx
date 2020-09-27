@@ -477,18 +477,19 @@ console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , taskArray )
   const [items, setItems] = useState(taskArray);
 
  let reduxUpdateTaskArray = props.updateTaskArray 
+ 
   useEffect(() => {
     
     // Put ITEMS INTO REDUX HERE ************************
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     
-    
-    console.log('[SPOTLIGHT TASKS] - new items array'  , items)
+    setItems(taskArray)
+    console.log('^^ [SPOTLIGHT TASKS] - new items array ^^^^ '  , items)
 
 
     reduxUpdateTaskArray(id, items)
     
-  }, [taskArray, items, id, reduxUpdateTaskArray]);
+  }, [ items, id, reduxUpdateTaskArray,taskArray]);
 
 
 

@@ -105,6 +105,9 @@ const reducer_Main = produce((draft = initialState, action) => {
 
     case UPDATE_TASK_ARRAY : 
          {
+
+          
+
           let id = payload.id
               let taskArray = payload.taskArray
           draft.data.spotlightData.spotlights[id].taskArray = taskArray
@@ -113,14 +116,23 @@ const reducer_Main = produce((draft = initialState, action) => {
         }// end CHANGE_DISPLAY_SPOTLIGHT
 
      
-      //   case ADD_TASK : 
-      //   {
-      //    let id = payload.id
-      //        let taskArray = payload.taskArray
-      //    draft.data.spotlightData.spotlights[id].taskArray = taskArray
-      //    return draft;
+        case ADD_TASK : 
+        {
+         let id = payload.id
+          let taskType = payload.task.taskType
+          let todo = payload.task.todo
+          console.log('REDUCER MAIN - Add task Array props====== ')
+          console.log('REDUCER MAIN - Add task Array id: ', id)
+          console.log('REDUCER MAIN - Add task Array taskType: ', taskType)
+          console.log('REDUCER MAIN - Add task Array todo: ', todo)
+          console.log('REDUCER MAIN - Add task Array props====== ')
+            
+         draft.data.spotlightData.spotlights[id].taskArray.push(
+           {taskItem: 'task55', completed: false, type: 'task' }
+         )
+         return draft;
          
-      //  }// end CHANGE_DISPLAY_SPOTLIGHT
+       }// end CHANGE_DISPLAY_SPOTLIGHT
 
       //   case ADD_SPOTLIGHT : 
       //   {
