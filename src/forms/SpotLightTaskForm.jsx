@@ -171,7 +171,7 @@ function SpotLightTaskForm(props) {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  const {register, handleSubmit, watch, errors, control, setValue} = useForm({
+  const {register, handleSubmit, watch, errors, control, setValue, reset} = useForm({
     defaultValues: {
       todo: '',
       taskType: 'task'
@@ -186,7 +186,10 @@ function SpotLightTaskForm(props) {
 // console.log('SPOTLIGHT TASK FORM : id is - ',  displayedId)
 
     // const onSubmit = data => alert(JSON.stringify(data))
-    const onSubmit = data => props.addTask(displayedId, data)
+    const onSubmit = (data) => {
+      props.addTask(displayedId, data)
+      reset()
+    }
 
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
@@ -209,6 +212,7 @@ function SpotLightTaskForm(props) {
                     maxLength: 40,
                   
                   }}
+                  
                   />
 
                   {/* {errors.goal && errors.goal.type === "required" && 
@@ -216,7 +220,7 @@ function SpotLightTaskForm(props) {
                   {errors.goal && errors.goal.type === "maxLength" && 
                     <ErrorWrapper>Maximum characters 40</ErrorWrapper>} */}
 
-          <SubmitButton type ="submit"> Submit </SubmitButton>
+          <SubmitButton type ="submit" > Submit </SubmitButton>
     </InputWrapper>
     {errors.todo && errors.todo.type === "required" && 
                     <ErrorWrapper>A description is required</ErrorWrapper>}
