@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 import{changeDisplaySpotlight,   openCloseSidePanel, openModal} from '../../../app/redux/actions/mainActions'
 
@@ -416,12 +416,31 @@ const SpotlightNav = (props) => {
   // ##################TEMP ####################
 
 
-  // console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
+  console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
 
   let stateSpotlightId =  props.display.private.spotLightDisplay.displayedSpotLightId
   // let stateSpotlightId = props.view.displayId
   // let stateSpotlightId = 'all'
   // let stateSpotlightId = 'spot2'
+
+  let initialTaskArray = props.display.private.data.spotlightData.spotlights[stateSpotlightId].taskArray
+  const [spotLightTasks, setSpotLightTasks] = useState(initialTaskArray);
+
+  console.log('[SpotlightNav] @@ - props.spotLightTasks' ,  initialTaskArray)
+
+  useEffect(() => {
+    
+    // Put ITEMS INTO REDUX HERE ************************
+    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+    
+    setSpotLightTasks(spotLightTasks)
+   
+    
+  }, [spotLightTasks]);
+   
+ 
+
+  
 
 
     // ##################TEMP ####################
@@ -482,7 +501,7 @@ const SpotlightNav = (props) => {
 
     let spotTitle =spot.title
     let dateEst = unformattedUTCtoDate(spot.endEst)
-    let numberOfTasks = spot.taskArray.length
+    let numberOfTasks = spotLightTasks.length
 
   /* func chooseDisplayType ---------------------------------
      desc: css changes highlight of person selected

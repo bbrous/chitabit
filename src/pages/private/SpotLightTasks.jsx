@@ -156,7 +156,7 @@ const DragDiv = styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  // backgroundColor: 'orange',
+  backgroundColor: 'orange',
  
   height: '100%',
   width: '1.2rem',

@@ -212,7 +212,8 @@ const InitialStore = {
         
         taskArray: [
           {taskItem: 'task33',completed: false, type: 'task'},
-
+          {taskItem: 'task31',completed: false, type: 'task'},
+          {taskItem: 'task32',completed: false, type: 'task'}
          
         ],
 
@@ -274,6 +275,7 @@ const InitialStore = {
         type: 'task',  //or spotlight
         completed: true,
 
+        spotHolder: 'spot1',
         title: 'Transfer A-try into Spotlight',
         clock: 'clock6',
         note: 'note5',
@@ -284,6 +286,7 @@ const InitialStore = {
         id: 'task2',
         type: 'task',  //or spotlight
         completed: false,
+        spotHolder: 'spot1',
 
         title: 'In Spotlight - complete layout with params from Initial Store',
         clock: 'clock7',
@@ -297,6 +300,7 @@ const InitialStore = {
         type: 'task',  //or spotlight
         completed: true,
 
+        spotHolder: 'spot1',
         title: 'Clocks and Note Popups create',
         clock: 'clock8',
         note: null
@@ -308,6 +312,7 @@ const InitialStore = {
         type: 'task',  //or spotlight
         completed: true,
 
+        spotHolder: 'spot2',
         title: 'Initial Store',
         clock: 'clock9',
         note: 'note7'
@@ -318,6 +323,7 @@ const InitialStore = {
         id: 'task22',
         type: 'task',  //or spotlight
         completed: false,
+        spotHolder: 'spot2',
 
         title: 'Redux',
         clock: 'clock10',
@@ -330,6 +336,7 @@ const InitialStore = {
         id: 'task23',
         type: 'task',  //or spotlight
         completed: false,
+        spotHolder: 'spot2',
 
         title: 'Clocks and Note Popups create',
         clock: 'clock11',
@@ -341,6 +348,7 @@ const InitialStore = {
         id: 'task31',
         type: 'task',  //or spotlight
         completed: false,
+        spotHolder: 'spot3',
 
         title: 'Note Popup',
         clock: 'clock12',
@@ -352,6 +360,7 @@ const InitialStore = {
         id: 'task32',
         type: 'task',  //or spotlight
         completed: false,
+        spotHolder: 'spot3',
 
         title: 'Clock Popup',
         clock: 'clock13',
@@ -364,8 +373,9 @@ const InitialStore = {
         id: 'task33',
         type: 'task',  //or spotlight
         completed: false,
+        spotHolder: 'spot3',
 
-        title: 'Clock Popup',
+        title: 'Clock Popup Part deux',
         clock: 'clock14',
         note: ''
         

@@ -65,7 +65,7 @@ const NotePopup = (props) => {
 
   // let note = props.spotlightData.notes 
 
-  console.log('[NOTE POPUP ] -- inoteObjectd is ', note)
+  // console.log('[NOTE POPUP ] -- inoteObjectd is ', note)
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 

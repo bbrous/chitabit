@@ -123,24 +123,42 @@ const reducer_Main = produce((draft = initialState, action) => {
           let todo = payload.task.todo
           let title = payload.task.title
           let taskItem = cuid().toString()
-          console.log('REDUCER MAIN - Add task Array props====== ')
-          console.log('REDUCER MAIN - Add task Array id: ', id)
-          console.log('REDUCER MAIN - Add task Array taskType: ', taskType)
-          console.log('REDUCER MAIN - Add task Array todo: ', todo)
-          console.log('REDUCER MAIN - Add task Array title: ', title)
-          console.log('REDUCER MAIN - Add task Array props====== ')
+          // console.log('REDUCER MAIN - Add task Array props====== ')
+          // console.log('REDUCER MAIN - Add task Array id: ', id)
+          // console.log('REDUCER MAIN - Add task Array taskType: ', taskType)
+          // console.log('REDUCER MAIN - Add task Array todo: ', todo)
+          // console.log('REDUCER MAIN - Add task Array title: ', title)
+          // console.log('REDUCER MAIN - Add task Array props====== ')
 
           // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
           // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
+          if(taskType ==='spotlight'){
+            console.log('REDUCER MAIN - Im a spotlight task @@@@@@ ')
 
-        let dummyTask = {taskItem: taskItem, completed: false, title: todo, type: 'task' }
+
+        let spotlightTask  = {taskItem: taskItem, completed: false, title: todo, type: 'spotlight', spotHolder: id }
 
          draft.data.spotlightData.spotlights[id].taskArray.push(
-          dummyTask
+          spotlightTask
          )
 
-         draft.data.spotlightData.tasks[taskItem] = dummyTask
+         draft.data.spotlightData.spotlights[taskItem] = spotlightTask
+
+
+        }else{
+          console.log('REDUCER MAIN - Im a task task %%%%%%%%%%  ')
+
+          let taskTask = {taskItem: taskItem, completed: false, title: todo, type: 'task', spotHolder: id }
+
+          draft.data.spotlightData.spotlights[id].taskArray.push(
+           taskTask
+          )
+ 
+          draft.data.spotlightData.tasks[taskItem] = taskTask
+
+        }
+
 
           // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
           // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&

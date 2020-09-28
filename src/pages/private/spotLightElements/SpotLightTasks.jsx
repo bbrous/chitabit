@@ -473,7 +473,7 @@ let id = props.id
  let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
  
  
-console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , taskArray )
+// console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , taskArray )
   const [items, setItems] = useState(taskArray);
 
  let reduxUpdateTaskArray = props.updateTaskArray 
