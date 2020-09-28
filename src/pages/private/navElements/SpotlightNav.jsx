@@ -413,12 +413,33 @@ const SpotlightNav = (props) => {
   const [sortDirection, setSortDirection] = useState('latest')   
 
 
+
+   // Put ITEMS INTO REDUX HERE ************************
+  //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+  let stateSpotlightId =  props.display.private.spotLightDisplay.displayedSpotLightId
+
+
+  const [id, setId] = useState(stateSpotlightId);
+
+ useEffect(() => {
+    
+
+  setId(id)
+ 
+  
+}, [id]);
+
+
+
+
+
   // ##################TEMP ####################
 
 
   console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
 
-  let stateSpotlightId =  props.display.private.spotLightDisplay.displayedSpotLightId
+
   // let stateSpotlightId = props.view.displayId
   // let stateSpotlightId = 'all'
   // let stateSpotlightId = 'spot2'

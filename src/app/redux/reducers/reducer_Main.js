@@ -137,10 +137,23 @@ const reducer_Main = produce((draft = initialState, action) => {
             console.log('REDUCER MAIN - Im a spotlight task @@@@@@ ')
 
 
-        let spotlightTask  = {taskItem: taskItem, completed: false, title: todo, type: 'spotlight', spotHolder: id }
+        let spotlightTaskArray  = {taskItem: taskItem, completed: false, title: todo, type: 'spotlight', spotHolder: id, id: taskItem }
+
+        let spotlightTask  = {
+          id: taskItem, 
+          completed: false,
+          title: todo, 
+          type: 'spotlight', 
+          parent: id,
+          timeStamp:"2020-09-25T04:46:20.619Z",
+          clock: 'clock3',
+          endEst:"2020-10-15T04:46:20.619Z",
+          note: 'note1',
+          taskArray: []
+        }
 
          draft.data.spotlightData.spotlights[id].taskArray.push(
-          spotlightTask
+          spotlightTaskArray
          )
 
          draft.data.spotlightData.spotlights[taskItem] = spotlightTask
@@ -149,10 +162,12 @@ const reducer_Main = produce((draft = initialState, action) => {
         }else{
           console.log('REDUCER MAIN - Im a task task %%%%%%%%%%  ')
 
-          let taskTask = {taskItem: taskItem, completed: false, title: todo, type: 'task', spotHolder: id }
+          let taskTaskArray = {taskItem: taskItem, completed: false, title: todo, type: 'task', parent: id}
+
+          let taskTask = {id: taskItem, completed: false, title: todo, type: 'task', spotHolder: id }
 
           draft.data.spotlightData.spotlights[id].taskArray.push(
-           taskTask
+           taskTaskArray
           )
  
           draft.data.spotlightData.tasks[taskItem] = taskTask
