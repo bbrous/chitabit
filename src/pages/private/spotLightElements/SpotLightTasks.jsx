@@ -116,18 +116,7 @@ const TaskWrapper = styled('div')({
   
 })
 
-// const SpotlightWrapper = styled('div')({
-//   display: 'flex',
-//   flexDirection: 'column',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   height: '100%',
-//   flexGrow: '1',
- 
-//   textAlign: 'center',
-//   backgroundColor: chitOrangeLight,
-  
-// })
+
 
 
 const TaskBlockWrapper = styled('div')({
@@ -256,17 +245,73 @@ const CheckCircleCompleted = styled('div')({
 
 
  
-
-
-const IconWrapper= styled('div')({
+const NotificationWrapper= styled('div')({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between',
   alignItems: 'center',
   // padding: '0 0 4px 0',
   width: '100%',
   height: '1.1rem',
   // backgroundColor: 'yellow',
-   
+  marginTop: '4px',
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const SpotLightWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'row' , 
+  alignItems: 'flex-start',
+  justifyContent: 'flex-end',
+  width: '100%',
+  marginBottom: '4px',
+//  backgroundColor: 'red',
+ 
+
+  
+})
+
+const StatusWrapper= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  // padding: '0 0 4px 0',
+  // width: '100%',
+  height: '1.1rem',
+  // backgroundColor: 'red',
+  marginLeft: '2.2rem',
+  fontSize: '.6rem',
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const Status= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  color: 'green'
+ 
+})
+
+const IconWrapper= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  // padding: '0 0 4px 0',
+  // width: '100%',
+  height: '1.1rem',
+  // backgroundColor: 'green',
+  
 
   
 
@@ -338,7 +383,11 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) =>
     
   }
   const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
-  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , note)
+  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , type)
+
+
+  // @@@@@@@@@@@@@@@@@ TEMP  Get from Redux store @@@@@@@@@@@@@@@@@@@@@@
+  let currentStatus = 'begun'
   //--------------------------------------------------- []
 
   return(
@@ -353,15 +402,16 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) =>
        
        <TaskWrapper>
         <TaskBlockWrapper>
-        <IconWrapper>
-          &nbsp; 
+          <SpotLightWrapper>
+          <IconWrapper>
+            &nbsp; 
           
           {type === 'spotlight' && 
             <SpotlightTag>Spotlight</SpotlightTag>
           } 
           
           </IconWrapper>
-          
+        </SpotLightWrapper>
 
           <TaskBlock>  
             <CheckCircleWrapper>
@@ -391,24 +441,41 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) =>
 
           </TaskBlock>
           
-          
-          <IconWrapper>
-          
-              <ClockPopup 
-                clockId = {clock} 
-                spotlightData = {spotlightData}
-              />
+          <NotificationWrapper>
+
+            <StatusWrapper> 
+            {type === 'spotlight' && currentStatus === 'begun' && 
+              <Status>In progress</Status>
+            }
+
+            {type === 'task' && 
+              <div>  Clock Started here </div>
+         
+            }
+
+</StatusWrapper>
+            <IconWrapper>
+
 
               {note && 
               <NotePopup 
                 noteId = {note} 
                 spotlightData = {spotlightData}
               />
-            }
+              }
 
-         
+               
+              <ClockPopup 
+                clockId = {clock} 
+                spotlightData = {spotlightData}
+              />    
             
             </IconWrapper>
+
+
+        </NotificationWrapper>
+
+
         </TaskBlockWrapper>
         
        </TaskWrapper>

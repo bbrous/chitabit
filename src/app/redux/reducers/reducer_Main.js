@@ -123,18 +123,10 @@ const reducer_Main = produce((draft = initialState, action) => {
           let todo = payload.task.todo
           let title = payload.task.title
           let taskItem = cuid().toString()
-          // console.log('REDUCER MAIN - Add task Array props====== ')
-          // console.log('REDUCER MAIN - Add task Array id: ', id)
-          // console.log('REDUCER MAIN - Add task Array taskType: ', taskType)
-          // console.log('REDUCER MAIN - Add task Array todo: ', todo)
-          // console.log('REDUCER MAIN - Add task Array title: ', title)
-          // console.log('REDUCER MAIN - Add task Array props====== ')
-
-          // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-          // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+         
 
           if(taskType ==='spotlight'){
-            console.log('REDUCER MAIN - Im a spotlight task @@@@@@ ')
+            // console.log('REDUCER MAIN - Im a spotlight task @@@@@@ ')
 
 
         let spotlightTaskArray  = {taskItem: taskItem, completed: false, title: todo, type: 'spotlight', spotHolder: id, id: taskItem }
@@ -146,9 +138,9 @@ const reducer_Main = produce((draft = initialState, action) => {
           type: 'spotlight', 
           parent: id,
           timeStamp:"2020-09-25T04:46:20.619Z",
-          clock: 'clock3',
-          endEst:"2020-10-15T04:46:20.619Z",
-          note: 'note1',
+          // clock: 'clock3',
+          // endEst:"2020-10-15T04:46:20.619Z",
+          // note: 'note1',
           taskArray: []
         }
 
@@ -160,7 +152,7 @@ const reducer_Main = produce((draft = initialState, action) => {
 
 
         }else{
-          console.log('REDUCER MAIN - Im a task task %%%%%%%%%%  ')
+    
 
           let taskTaskArray = {taskItem: taskItem, completed: false, title: todo, type: 'task', parent: id}
 
@@ -175,9 +167,6 @@ const reducer_Main = produce((draft = initialState, action) => {
         }
 
 
-          // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-          // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
 
 
 
@@ -186,14 +175,68 @@ const reducer_Main = produce((draft = initialState, action) => {
          
        }// end CHANGE_DISPLAY_SPOTLIGHT
 
-      //   case ADD_SPOTLIGHT : 
-      //   {
-      //    let id = payload.id
-      //        let taskArray = payload.taskArray
-      //    draft.data.spotlightData.spotlights[id].taskArray = taskArray
-      //    return draft;
+        case ADD_SPOTLIGHT : 
+        {
+
+          //Add Spotlight 
+
+          console.log('REDUCER MAIN - ADD_SPOTLIGHT reducer clicked @@@@@@ ', payload)
+          
+          let timestamp = new Date()
+          let newSpotLightId = cuid().toString()
+          let newTaskOneId = cuid().toString()
+
+          let spotlight  = {
+            id: newSpotLightId,
+            type: 'spotlight', 
+            parent: '',
+            completed: false,
+            title: payload.title, 
+    
+            timeStamp: timestamp,
+            endEst:payload.endEst,
+            mos: payload.mos ,
+            wks: payload.wks ,
+            days: payload.days ,
+            hrs: payload.hrs ,
+            mins: payload.mins ,
+
+
+
+            clock: 'clock3',
+            note: payload.note,
+            taskArray: [
+              {
+                taskItem: newTaskOneId,
+                completed: false, 
+                type: 'task'
+              }
+
+            ]
+          }
+
+          let spotlightTask  = {
+            id: newTaskOneId,
+            type: 'task',  
+            completed: false,
+            spotHolder: newSpotLightId,
+            title: 'First task begin', 
+            clock: 'clock6',
+
+            timeStamp: timestamp,
+
+          }
+ 
+
+
+
+ 
+          draft.data.spotlightData.spotlights[newSpotLightId] = spotlight
+          draft.data.spotlightData.tasks[newTaskOneId] = spotlightTask
+
+         return draft;
          
-      //  }// end CHANGE_DISPLAY_SPOTLIGHT
+       }// end ADD_SPOTLIGHT
   // --------------------------------------------
     default:
       return draft

@@ -156,6 +156,11 @@ const InitialStore = {
         clock: 'clock1',
         
         taskArray: [
+          {
+            taskItem: 'task0',
+            completed: false, 
+            type: 'task'
+          },
           {taskItem: 'spot1',completed: false, type: 'spotlight'},
           {taskItem: 'task1',completed: false, type: 'task'}, 
           {taskItem: 'task2',completed: false, type: 'task'},
@@ -184,6 +189,11 @@ const InitialStore = {
    
         
         taskArray: [
+          {
+            taskItem: 'task20',
+            completed: false, 
+            type: 'task'
+          },
           {taskItem: 'task21',completed: false, type: 'task'}, 
           {taskItem: 'task22',completed: false, type: 'task'},
           {taskItem: 'task23',completed: false, type: 'task'},
@@ -211,6 +221,11 @@ const InitialStore = {
    
         
         taskArray: [
+          {
+            taskItem: 'task30',
+            completed: true, 
+            type: 'task'
+          },
           {taskItem: 'task33',completed: false, type: 'task'},
           {taskItem: 'task31',completed: false, type: 'task'},
           {taskItem: 'task32',completed: false, type: 'task'}
@@ -237,7 +252,14 @@ const InitialStore = {
         note: 'note5',
    
         
-        taskArray: [],
+        taskArray: [
+          {
+            taskItem: 'task50',
+            completed: false, 
+            type: 'task'
+          },
+
+        ],
  
           
 
@@ -258,7 +280,13 @@ const InitialStore = {
         note: 'note4',
    
         
-        taskArray: [],
+        taskArray: [
+          {
+            taskItem: 'task40',
+            completed: false, 
+            type: 'task'
+          },
+        ],
  
           
 
@@ -268,7 +296,17 @@ const InitialStore = {
     },// end spotlights 
 
     'tasks': {
+      'task0' : {
+        id: 'task0',
+        type: 'task',  //or spotlight
+        completed: true,
 
+        spotHolder: 'spot1',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
 
       'task1' : {
         id: 'task1',
@@ -304,6 +342,20 @@ const InitialStore = {
         title: 'Clocks and Note Popups create',
         clock: 'clock8',
         note: null
+        
+      },
+
+      // -----------------------------
+
+      'task20' : {
+        id: 'task20',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        spotHolder: 'spot2',
+        title: 'First task begin',
+        clock: 'clock6',
+         
         
       },
 
@@ -344,6 +396,20 @@ const InitialStore = {
         
       },
 
+      // ----------------------------
+
+      'task30' : {
+        id: 'task30',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        spotHolder: 'spot3',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
+
       'task31' : {
         id: 'task31',
         type: 'task',  //or spotlight
@@ -378,6 +444,34 @@ const InitialStore = {
         title: 'Clock Popup Part deux',
         clock: 'clock14',
         note: ''
+        
+      },
+
+      // -----------------------
+
+      'task40' : {
+        id: 'task40',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        spotHolder: 'spot4',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
+
+      // --------------------------
+      
+      'task50' : {
+        id: 'task50',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        spotHolder: 'spot5',
+        title: 'First task begin',
+        clock: 'clock6',
+         
         
       },
 

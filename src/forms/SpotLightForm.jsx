@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm, Controller } from "react-hook-form";
-
+import {connect} from 'react-redux'
+import{addSpotLight} from '../app/redux/actions/mainActions'
 
 // Material UI =============================
 
@@ -359,14 +360,14 @@ function StyledCheckbox(props) {
 
 
 // ===========================================
-const SpotLightForm = () => {
+const SpotLightForm = (props) => {
 
   const today = new Date() // for datepicker initial value
 
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
               defaultValues: {
-                goal: '',
-                targetDate:  null,
+                title: '',
+                endEst:  null,
                 mos: '',
                 wks: '',
                 days: '',
@@ -385,8 +386,8 @@ const SpotLightForm = () => {
     };
              
 
-  const onSubmit = data => alert(JSON.stringify(data))
-
+  const onSubmit = data => props.addSpotLight(data)
+  // const onSubmit = data => alert(JSON.stringify(data))
 
   // return ==================== return ================= return ==============
 
@@ -402,7 +403,7 @@ const SpotLightForm = () => {
           <form onSubmit = {handleSubmit(onSubmit)}>
 
 
-{/*  Goal  ----------- */}
+{/*  title  ----------- */}
 
             <FormSegmentWrapper>
 
@@ -411,7 +412,7 @@ const SpotLightForm = () => {
               </SegmentHeader>
 
               <Controller as={StyledTextField} 
-                  name="goal" 
+                  name="title" 
                   InputProps={{ disableUnderline: true }}
                   control={control} 
                   defaultValue="" 
@@ -422,9 +423,9 @@ const SpotLightForm = () => {
                   }}
                   />
 
-                  {errors.goal && errors.goal.type === "required" && 
+                  {errors.title && errors.title.type === "required" && 
                     <ErrorWrapper>First name is required</ErrorWrapper>}
-                  {errors.goal && errors.goal.type === "maxLength" && 
+                  {errors.title && errors.title.type === "maxLength" && 
                     <ErrorWrapper>Maximum characters 40</ErrorWrapper>}
                     
             </FormSegmentWrapper>
@@ -459,7 +460,7 @@ const SpotLightForm = () => {
                           />
                         }
                         control={control}
-                        name="targetDate"
+                        name="endEst"
                         placeholder="MM DD YYYY"
                       />
                     </MuiPickersUtilsProvider>
@@ -591,4 +592,15 @@ const SpotLightForm = () => {
   )
 }
 
-export default SpotLightForm
+ 
+
+const actions = {
+  addSpotLight
+}
+
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState, actions)(SpotLightForm)
+

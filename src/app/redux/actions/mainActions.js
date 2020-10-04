@@ -196,9 +196,8 @@
           console.log('MAIN ACTIONS - add spotlight clicked')
           return {
             type: ADD_SPOTLIGHT,
-            payload: {
-              display: spotlight
-            }
+            payload: spotlight
+            
           }
         }
         
