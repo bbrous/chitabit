@@ -124,6 +124,7 @@ const reducer_Main = produce((draft = initialState, action) => {
           let title = payload.task.title
           let taskItem = cuid().toString()
          
+console.log('REDUCER MAIN - Im a spotlight task ID @@@@@@ ', id)
 
           if(taskType ==='spotlight'){
             // console.log('REDUCER MAIN - Im a spotlight task @@@@@@ ')
@@ -162,7 +163,7 @@ const reducer_Main = produce((draft = initialState, action) => {
            taskTaskArray
           )
  
-          draft.data.spotlightData.tasks[taskItem] = taskTask
+          draft.data.spotlightData.spotlights[id].tasks[taskItem] = taskTask
 
         }
 
@@ -207,32 +208,35 @@ const reducer_Main = produce((draft = initialState, action) => {
             note: payload.note,
             taskArray: [
               {
-                taskItem: newTaskOneId,
+                taskItem: 'task0' ,
                 completed: false, 
                 type: 'task'
               }
 
-            ]
+            ],
+
+            tasks  : {
+              'task0' : {
+              id: 'task0',
+              type: 'task',  
+              completed: false,
+             
+              title: 'First task begin', 
+              clock: 'clock6',
+  
+              timeStamp: timestamp,
+  
+            }
           }
-
-          let spotlightTask  = {
-            id: newTaskOneId,
-            type: 'task',  
-            completed: false,
-            spotHolder: newSpotLightId,
-            title: 'First task begin', 
-            clock: 'clock6',
-
-            timeStamp: timestamp,
-
-          }
+        }
+          
  
 
 
 
  
           draft.data.spotlightData.spotlights[newSpotLightId] = spotlight
-          draft.data.spotlightData.tasks[newTaskOneId] = spotlightTask
+        
 
          return draft;
          

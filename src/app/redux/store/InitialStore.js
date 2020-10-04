@@ -168,10 +168,57 @@ const InitialStore = {
          
         ],
 
-        
-          
+    // spot 1 tasks  ------      
+        tasks: {
+          'task0' : {
+            id: 'task0',
+            type: 'task',  //or spotlight
+            completed: true,
+    
+            spotHolder: 'spot1',
+            title: 'First task begin',
+            clock: 'clock6',
+             
+            
+          },
+    
+          'task1' : {
+            id: 'task1',
+            type: 'task',  //or spotlight
+            completed: true,
 
-      },
+            title: 'Transfer A-try into Spotlight',
+            clock: 'clock6',
+            note: 'note5',
+            
+          },
+    
+          'task2' :{
+            id: 'task2',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'In Spotlight - complete layout with params from Initial Store',
+            clock: 'clock7',
+            note: 'note6',
+            
+          },
+    
+              
+          'task3' :{
+            id: 'task3',
+            type: 'task',  //or spotlight
+            completed: true,
+
+            title: 'Clocks and Note Popups create',
+            clock: 'clock8',
+            note: null
+            
+          },
+
+        }, 
+
+      },  // end spot1 -----------------------
 
       'spot2': {
         id: 'spot2',
@@ -201,9 +248,59 @@ const InitialStore = {
          
         ],
  
-          
+    // spot 2 tasks  ----       
+        tasks: {  
 
-      }, //end spot2
+          'task20' : {
+            id: 'task20',
+            type: 'task',  //or spotlight
+            completed: true,
+
+            title: 'First task begin',
+            clock: 'clock6',
+             
+            
+          },
+    
+          'task21' : {
+            id: 'task21',
+            type: 'task',  //or spotlight
+            completed: true,
+
+            title: 'Initial Store',
+            clock: 'clock9',
+            note: 'note7'
+            
+          },
+    
+          'task22' :{
+            id: 'task22',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'Redux',
+            clock: 'clock10',
+            note: null
+            
+          },
+    
+              
+          'task23' :{
+            id: 'task23',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'Clocks and Note Popups create',
+            clock: 'clock11',
+            note: 'note8'
+            
+          },
+
+
+        },
+
+      }, //end spot2 ---------------------------
+
 
       'spot3': {
         id: 'spot3',
@@ -232,10 +329,58 @@ const InitialStore = {
          
         ],
 
-   
+    // spot3 tasks
+        tasks: {
+
+          'task30' : {
+            id: 'task30',
+            type: 'task',  //or spotlight
+            completed: true,
+    
+            title: 'First task begin',
+            clock: 'clock6',
+             
+            
+          },
+    
+          'task31' : {
+            id: 'task31',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'Note Popup',
+            clock: 'clock12',
+            note: 'note9'
+            
+          },
+    
+          'task32' :{
+            id: 'task32',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'Clock Popup',
+            clock: 'clock13',
+            note: ''
+            
+          },
+    
+          
+          'task33' :{
+            id: 'task33',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            title: 'Clock Popup Part deux',
+            clock: 'clock14',
+            note: ''
+            
+          },
+
+        },
           
 
-      }, //end spot3
+      }, // end spot3 -----------------------
 
       'spot5': {
         id: 'spot5',
@@ -260,10 +405,25 @@ const InitialStore = {
           },
 
         ],
+
+    // spot5 tasks --------
+        tasks: {
+          'task50' : {
+            id: 'task50',
+            type: 'task',  //or spotlight
+            completed: false,
+
+            title: 'First task begin',
+            clock: 'clock6',
+             
+            
+          },
+
+        },
  
           
 
-      }, //end spot5
+      }, //end spot5 -------------------------
 
       'spot4': {
         id: 'spot4',
@@ -288,166 +448,31 @@ const InitialStore = {
           },
         ],
  
-          
-
-      }, //end spot4
-      
-
-    },// end spotlights 
-
-    'tasks': {
-      'task0' : {
-        id: 'task0',
+    // spot4 tasks --------
+    tasks: {
+      'task40' : {
+        id: 'task40',
         type: 'task',  //or spotlight
-        completed: true,
+        completed: false,
 
-        spotHolder: 'spot1',
         title: 'First task begin',
         clock: 'clock6',
          
         
       },
 
-      'task1' : {
-        id: 'task1',
-        type: 'task',  //or spotlight
-        completed: true,
+    },
 
-        spotHolder: 'spot1',
-        title: 'Transfer A-try into Spotlight',
-        clock: 'clock6',
-        note: 'note5',
-        
-      },
+      }, //end spot4 -------------------------
+      
 
-      'task2' :{
-        id: 'task2',
-        type: 'task',  //or spotlight
-        completed: false,
-        spotHolder: 'spot1',
+    },// end spotlights =============================================
 
-        title: 'In Spotlight - complete layout with params from Initial Store',
-        clock: 'clock7',
-        note: 'note6',
-        
-      },
+    'tasks': {
 
-          
-      'task3' :{
-        id: 'task3',
-        type: 'task',  //or spotlight
-        completed: true,
-
-        spotHolder: 'spot1',
-        title: 'Clocks and Note Popups create',
-        clock: 'clock8',
-        note: null
-        
-      },
 
       // -----------------------------
 
-      'task20' : {
-        id: 'task20',
-        type: 'task',  //or spotlight
-        completed: true,
-
-        spotHolder: 'spot2',
-        title: 'First task begin',
-        clock: 'clock6',
-         
-        
-      },
-
-      'task21' : {
-        id: 'task21',
-        type: 'task',  //or spotlight
-        completed: true,
-
-        spotHolder: 'spot2',
-        title: 'Initial Store',
-        clock: 'clock9',
-        note: 'note7'
-        
-      },
-
-      'task22' :{
-        id: 'task22',
-        type: 'task',  //or spotlight
-        completed: false,
-        spotHolder: 'spot2',
-
-        title: 'Redux',
-        clock: 'clock10',
-        note: null
-        
-      },
-
-          
-      'task23' :{
-        id: 'task23',
-        type: 'task',  //or spotlight
-        completed: false,
-        spotHolder: 'spot2',
-
-        title: 'Clocks and Note Popups create',
-        clock: 'clock11',
-        note: 'note8'
-        
-      },
-
-      // ----------------------------
-
-      'task30' : {
-        id: 'task30',
-        type: 'task',  //or spotlight
-        completed: true,
-
-        spotHolder: 'spot3',
-        title: 'First task begin',
-        clock: 'clock6',
-         
-        
-      },
-
-      'task31' : {
-        id: 'task31',
-        type: 'task',  //or spotlight
-        completed: false,
-        spotHolder: 'spot3',
-
-        title: 'Note Popup',
-        clock: 'clock12',
-        note: 'note9'
-        
-      },
-
-      'task32' :{
-        id: 'task32',
-        type: 'task',  //or spotlight
-        completed: false,
-        spotHolder: 'spot3',
-
-        title: 'Clock Popup',
-        clock: 'clock13',
-        note: ''
-        
-      },
-
-      
-      'task33' :{
-        id: 'task33',
-        type: 'task',  //or spotlight
-        completed: false,
-        spotHolder: 'spot3',
-
-        title: 'Clock Popup Part deux',
-        clock: 'clock14',
-        note: ''
-        
-      },
-
-      // -----------------------
 
       'task40' : {
         id: 'task40',
@@ -463,17 +488,7 @@ const InitialStore = {
 
       // --------------------------
       
-      'task50' : {
-        id: 'task50',
-        type: 'task',  //or spotlight
-        completed: false,
 
-        spotHolder: 'spot5',
-        title: 'First task begin',
-        clock: 'clock6',
-         
-        
-      },
 
 
     }, // end tasks

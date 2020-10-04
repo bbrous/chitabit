@@ -1,59 +1,68 @@
-import React, {useState, useEffect, Fragment} from 'react'
+import React, {Fragment } from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray} from '../../../app/redux/actions/mainActions'
-import{chitOrange, veryLightGrey, lightGrey, chitOrangeLight, chitBlueDull, chitBlueLight, chitBlueVeryLight, chitVeryLightYellow, mediumLightGrey, mediumGrey} from '../../../styles/colors'
 
+import SpotLightTasks from './SpotLightTasks'
+import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
+import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey,   veryLightGrey} from '../../../styles/colors'
 
+import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 import MenuPopup from './MenuPopup'
 import ClockPopup from './ClockPopup'
 import NotePopup from './NotePopup'
 
-import {NavLink, withRouter, useLocation} from 'react-router-dom'
+// &&&&   TEMP Initial Store Import -- Get from Database
+// import InitialStore from '../../../app/redux/store/InitialStore'
+
+
+
+
+//  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+
+
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import Paper from '@material-ui/core/Paper'
+import InfoIcon from '@material-ui/icons/Info'
+import NotesIcon from '@material-ui/icons/Notes';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import CheckIcon from '@material-ui/icons/Check';
-
-
-
-
-
-
-
-
-// Material UI Context Menu  -------------------------------------
-
-
-
-
-
-// React Sortable HOC ----------------------------------------------
-
-import { SortableContainer, SortableElement, sortableHandle } from "react-sortable-hoc";
-import arrayMove from "array-move";
- 
-// React Sortable HOC ----------------------------------------------
-
+import Paper from '@material-ui/core/Paper'
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 
+//  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 
- 
 
-const Wrapper= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
+
+// ---------------------------------
+
+// const Wrapper= styled('div')({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'flex-start',
+//   alignItems: 'center',
+//   position: 'relative',
+//   backgroundColor: chitOrangeLight,
+//   height: '100%',
+
+
+
+//   [theme.breakpoints.down('sm')] : {
+//     // height: '1.25rem',
+   
+//   },
   
-  width: '98%',
-    
-  padding: '0 .5rem',
-  margin: ' 0',
+// })
 
-// backgroundColor: lightGrey,
-
-  fontSize: '.8rem',
+const Info= styled(InfoIcon)({
+  display: 'block',
+   
+  position: 'absolute',
+  top: '6px',
+  right: '6px',
+  color: chitOrange,
 
 
   [theme.breakpoints.down('sm')] : {
@@ -62,120 +71,91 @@ const Wrapper= styled('div')({
   },
 })
 
- 
- 
+const BreadCrumbs= styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '3.5%',
+  
+  margin: '1.5rem 0',
+  color: chitBlueDull,
 
-const ListWrapper = styled('div')({
+
+// backgroundColor: 'aqua',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const Crumb= styled('a')({
+   
+   
+  margin: '0 8px',
+  color: chitBlueDull,
+  textDecoration: 'underline',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+ 
+  },
+})
+
+const CrumbLast= styled('span')({
+   
+   
+  margin: '0 8px',
+  color: chitOrange,
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+ 
+  },
+})
+
+const Container= styled(Paper)({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
+  
 
-  width: '100%',
+  color: chitOrange,
+  width: '80%',
+
+  // minHeight: '10rem',
   height: '90%',
-  // backgroundColor: 'yellow',
+  marginBottom: '5%',
+  
+  overflowY: 'auto',
 
-  '& ul': {
-    width: '98%',
-    // backgroundColor: 'purple',
-    listStyleType: 'none',
-    margin: '0',
-    padding: '0',
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+
   },
 
-  '& li': {
-    width: '98%',
-    backgroundColor: 'white'
-    
-  }
+backgroundColor: veryLightGrey,
 
 
-})
-
-const ItemWrapper = styled(Paper)({
-  display: 'flex',
-  justifyContent: 'space-between',
- alignItems: 'center',
-
-  width: '99%',
-  
-  margin: '4px 0',
-  
-  
-})
-const TaskWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-  flexGrow: '1',
- 
-  textAlign: 'center',
-  backgroundColor: 'white',
-  
-})
-
-const SpotlightWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100%',
-  flexGrow: '1',
- 
-  textAlign: 'center',
-  backgroundColor: chitOrangeLight,
-  
-})
-
-
-const TaskBlockWrapper = styled('div')({
-  display: 'flex',
-  flexDirection: 'column' , 
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
-  width: '100%',
- 
-//  backgroundColor: 'red',
- 
-
-  
-})
-
-const TaskBlock = styled('div')({
-  display: 'flex',
-
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  // width: '100%',
-
-})
-
-const DragDiv = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  // backgroundColor: 'orange',
- 
-  height: '100%',
-  width: '1.2rem',
-  margin: '0 8px 4px 2px',
-  // marginBottom: '4px',
-  cursor: 'pointer',
-  
-  '&:hover' : {
-    // backgroundColor:chitOrangeLight
-    border: '1px solid #FADAC1'
-  }
-
-  
 })
 
 const TitleWrapper= styled('div')({
+  display: 'flex',
+   
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  margin: '.5rem 0 0 0',
+  color: 'red',
+ 
+  width: '98%',
+  padding: '0 .5rem',
+
+  fontSize: '1rem',
   
-  color: 'black',
+backgroundColor: 'white',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -183,9 +163,20 @@ const TitleWrapper= styled('div')({
   },
 })
 
-const TitleWrapperCompleted = styled('div')({
+const Title= styled('div')({
+  display: 'flex',
+  flexGrow: 1,
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  margin: '8px 0',
+  color: 'red',
+
+  flexWrap: 'wrap',
+
+  fontSize: '1.2rem',
   
-  color: mediumLightGrey,
+
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -200,7 +191,10 @@ const CheckCircleWrapper= styled('div')({
   // border: '1px solid grey',
  
   marginRight: '1rem',
-  // color: mediumLightGrey,
+  // color: mediumGrey,
+
+  
+
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -209,28 +203,22 @@ const CheckCircleWrapper= styled('div')({
 })
 
 const CheckCircle= styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   
   width: '1.05rem',
   height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
    
-  // color: mediumLightGrey,
-  
+  // color: mediumGrey,
+
+
   cursor: 'pointer',
-
-
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
   },
 })
-
-
 const CheckCircleCompleted = styled('div')({
   display: 'flex',
   justifyContent: 'center',
@@ -254,40 +242,214 @@ const CheckCircleCompleted = styled('div')({
   },
 })
 
+// -----------------------------------
 
- 
-
-
-const IconWrapper= styled('div')({
+const DetailContainer= styled('div')({
   display: 'flex',
-  justifyContent: 'flex-end',
-  alignItems: 'center',
-  // padding: '0 0 4px 0',
-  width: '100%',
-  height: '1.1rem',
-  // backgroundColor: 'yellow',
-   
-
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
   
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const SpotlightTag= styled('div')({
-  color: 'red',
+  width: '98%',
+  margin: '0 0 .25rem 0',
+  padding: '.5rem .25rem .1rem .25rem', 
+    
+  
+  color: 'black',
   fontSize: '.8rem',
-  textDecoration: 'underline',
-  // height: '1rem',
-  // backgroundColor: 'yellow',
-  cursor: 'pointer',
 
-  '&:hover': {
-    color: chitOrange
+
+  backgroundColor: 'white',
+borderTop: '1px solid lightgrey',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
   },
+})
+
+const DetailWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  
+  width: '95%',
+  height: '100%',
+  
+  // backgroundColor: 'red',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+
+
+const DetailRow= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  marginLeft: '2.5rem',
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowOrange= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  color: chitOrange,
+  marginLeft: '2.5rem',
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowLeft= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  width: '6rem',
+
+  // backgroundColor: 'aqua',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowRight= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  flexGrow: '1',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  // backgroundColor: 'green',
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const BottomWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginTop: '8px',
+  color: 'grey',
+ width: '100%',
+// backgroundColor: 'pink',
+
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const CheckBoxWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '100%',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+const IconsWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '100%',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+const MenuWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  // backgroundColor: 'yellow',
+   marginRight: '5px',
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const NoteIcon= styled(NotesIcon)({
+  backgroundColor: chitOrange,
+  borderRadius: '5px',
+  fontSize: '1.3rem',
+  color: 'white',
+  // backgroundColor: 'yellow',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const ClockIcon= styled(QueryBuilderIcon)({
+  
+  color:chitOrange,
+  fontSize: '1.6rem',
+  // backgroundColor: 'yellow',
    
 
   
@@ -300,256 +462,271 @@ const SpotlightTag= styled('div')({
 })
 
 
-// =======================================
+
+
+          // ----------------------
+          const TaskContainer= styled('div')({
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            
+            width: '98%',
+             
+            padding: '.25rem .5rem',
+            margin: '.25rem 0',
+
+          // backgroundColor: lightGrey,
+
+            fontSize: '.8rem',
+
+
+            [theme.breakpoints.down('sm')] : {
+              // height: '1.25rem',
+              // backgroundColor: 'red'
+            },
+          })
+
+          // ----------------------
+          const FormContainer= styled('div')({
+            display: 'flex',
+            
+            justifyContent: 'center',
+            alignItems: 'center',
+            
+            width: '98%',
+            margin: '.25rem 0',
+            
+            
+          backgroundColor: veryLightGrey,
+            fontSize: '.8rem',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const FormRow= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  
+  width: '90%',
+  
+  // backgroundColor: lightGrey,
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const TaskRow= styled(Paper)({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  
+  width: '98%',
+  margin: '2px 0',
+  padding: '.25rem .5rem',
+  // backgroundColor: 'red',
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const Task= styled('div')({
+  display: 'flex',
+  flexGrow: 1,
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  // margin: '6px 0',
+  
+
+  flexWrap: 'wrap',
+
+  fontSize: '.9rem',
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+// ====================================
+
+export const Spotlight = (props) => {
+  // console.log('[SPOTLIGHT ] &&&& spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id]) 
+
+  console.log('[SPOTLIGHT] id is: , ', props)
+
+  let spotlightData = props.display.private.data.spotlightData
+
+  console.log('[SPOTLIGHT $$$$$ ] spotlights object' , spotlightData)
+
+  let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
+
+  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
+  
+  // convert target Date in ISO to UTC for addition/subtraction etc
+  let targetDateInMilliseconds = DatetoUTC(endEst)
+  
+  // format target Date in milliseconds for display
+  let targetDate  =  UTCtoDate(targetDateInMilliseconds)
+   
+  
+  let currentDate = new Date()
 
 
 
-const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
-// =================================================
-const SortableItem = SortableElement(({ handleClick,value }) => {
+  let currentUTCDate = DatetoUTC(currentDate)
+  let UTCTimeRemaining = targetDateInMilliseconds - currentUTCDate
+
+  let timeRemainingObject =  convertMS(UTCTimeRemaining)
+  let days = Math.abs(timeRemainingObject.day)
+  let hours = Math.abs(timeRemainingObject.hour)
+  let mins = Math.abs(timeRemainingObject.minute)
+  let secs = Math.abs(timeRemainingObject.seconds)
+
+  console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs
+  )
+
+
+  return (
+    <Fragment>
+      <Info/>
+
+
+      <BreadCrumbs>
+
+<Crumb>  Parent  </Crumb>
+<span> {'>'}  </span>
+<Crumb>  Child  </Crumb>
+<span> {'>'}  </span>
+<CrumbLast>  Child's Child  </CrumbLast>
+
+</BreadCrumbs>
 
 
 
-  //--------------------------------------------------- []
-
-  return(
+    <Container elevation = {3}>
 
 
-      <ItemWrapper
-       
-        id = {value.id}
-      >
-       <DragHandle />
 
-       
-       <TaskWrapper>
-        <TaskBlockWrapper>
-        <IconWrapper>
-          &nbsp; 
-          
-          {value.type === 'spotlight' && 
-            <SpotlightTag>Spotlight</SpotlightTag>
-          } 
-          
-          </IconWrapper>
-          
 
-          <TaskBlock>  
-            <CheckCircleWrapper>
-
-            {! value.completed && 
+    <TitleWrapper>
+      <div><CheckCircleWrapper> 
+      {!completed && 
               <CheckCircle/>
               }
-              { value.completed && 
+              {completed && 
               <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
               }
+        </CheckCircleWrapper></div>
+      
+      <Title>
+        {title}
+
+      </Title>
+    </TitleWrapper>
 
 
+    <DetailContainer>
+
+      <DetailWrapper>
+
+        <DetailRow>
+          <DetailRowLeft>Target: </DetailRowLeft>
+          <DetailRowRight> {targetDate} </DetailRowRight>
+        </DetailRow>
+
+        <DetailRowOrange>
+          <DetailRowLeft>Remaining: </DetailRowLeft>
+          <DetailRowRight>{days} days {hours} hrs {mins} min {secs} secs</DetailRowRight>
+        </DetailRowOrange>
+
+        <DetailRow>
+          <DetailRowLeft>Elapsed: </DetailRowLeft>
+          <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
+        </DetailRow>
+        
+         <BottomWrapper> 
+          <CheckBoxWrapper>   
+            <SpotlightCheckbox   
+            checked = {true}  
+            // onClick = {(evt)=> handleDefault(evt)}
+          /> 
+          <div>   make default popup  </div>
+          </CheckBoxWrapper>
+          <IconsWrapper> 
+          {note && 
+              <NotePopup 
+              noteId = {note} 
+              spotlightData = {spotlightData}
               
-              
-              </CheckCircleWrapper>
-
-
-
-
-              {! value.completed && 
-              <TitleWrapper>Title: {value.title}</TitleWrapper> 
-              }
-              { value.completed && 
-              <TitleWrapperCompleted>Title: {value.title}</TitleWrapperCompleted> 
-              }
-
-
-          </TaskBlock>
+              />
+          }
+              <ClockPopup id = {id}/>
+          </IconsWrapper> 
+          </BottomWrapper>
           
-          
-          <IconWrapper>
-          &nbsp;
-              <ClockPopup id = {value.id}/>
-              <NotePopup id = {value.id}/>
-            </IconWrapper>
-        </TaskBlockWrapper>
-        
-       </TaskWrapper>
-        
+      
 
-       <MenuPopup id = {value.id}/>
+      </DetailWrapper>
 
 
+      <MenuWrapper>
+       <MenuPopup  id = {id}/>
+      </MenuWrapper>
+    </DetailContainer>
 
 
-      </ItemWrapper>
- 
-  )// end RETURN Sortable Item
-
-})// end SortableItem
-    
-
-
-
-
-// ------- Map of Items   --------------------[]
-
-
-const SortableList = SortableContainer(({ items }) => {
-  return (
-
-    <ul>
-      {items.map((value, index) => (
-        
-            
-        <SortableItem key={`item-${index}`} index={index} value={value} 
+    <FormContainer>
        
-        />
-         
-      ))}
-    </ul>
-  );
-});
-
-
-const [items, setItems] = useState([
-  {id: "Item 1", title: "TITLE _ Item 1", completed: false, type: 'task'},
-  {id: "Item 2", title: "TITLE _ Item 2", completed: true, type: 'task'},
-  {id: "Item 3", title: "TITLE _ Item 3", completed: true, type: 'spotlight'},
-  {id: "Item 4", title: "TITLE _ Item 4", completed: false, type: 'task'},
-  {id: "Item 5", title: "TITLE _ Item 5", completed: false, type: 'task'},
-  {id: "Item 7", title: "TITLE _ Item 6", completed: false, type: 'task'}
-]);
-
-
-const SpotLightTasks = (props) => {
-
-  // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
-
-  // console.log('[SPOTLIGHT TASKS ] @@@@@@@  spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id])
-  // console.log('[SPOTLIGHT TASKS ] @@@@@@@  props id' , props.id)
-
-
-
-
-/* #######################################################
-
-
-1.  get array from redux props
-    structure array[{id: 1, type: task}, {id: 5, type: 'spotlight'}]
-
-2.  create new "complex" array to use in sortable -- (items in useState)
-    use props.task#.id to get title, etc
-         or
-        props.
-3.  in useEffect - 
-     a. get new "complex" array after sort
-     b. create new array - convert back to simplified form
-     c. execute action to update Redux Store
-
-
-
-
-
-####################################################### */
-
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-// ##### REPLACE   REPLACE   REPLACE   ############################
-
-
-// ^^^^^^^^^^^^^^^^^^^ REPLACE   REPLACE   REPLACE ^^^^^^^^^^^^^
-
- 
-  // console.log('[SPOTLIGHT TASKS ] @@@@@@@  spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id].taskArray )
- 
- // get spotlight tasks array-----------------
-  let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
-
-  // map through taskArray - if type = task, search task list, else search spotlight list
-  const displayedTasks = taskArray.map((task, index) => {
-
-    if(task.type === 'task'){
-
-      // get task from TASK LIST = task.taskItem
-      return (
-
-        <div> Stiff here</div>
-  
-      ) //end return
-    }
+        <SpotLightTaskForm/>
+      
     
-    if(task.type === 'spotlight'){
-      // get task from SPOTLIGHT LIST = task.taskItem
-      return (
 
-        <div> Stiff here</div>
-      ) //end return
-    }
+    </FormContainer>
 
-    
-  })// end displayedTasks map
-  
+    <SpotLightTasks id = {id} key = {id}/>
 
 
 
 
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+    </Container>
 
 
 
 
-  useEffect(() => {
-    console.log('[ATry] - new items array'  , items)
- 
-    
-  }, [items]);
-
-
-  // onSortEnd - creates the new array index after move
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    setItems(arrayMove(items, oldIndex, newIndex));
-  };
-
-
- 
 
 
 
-  return (
 
-      <Wrapper>
-
-        <ListWrapper>
-         
-         
-          {/* ----  Move Items  Executable - --  */}
-
-          <SortableList items={items} onSortEnd={onSortEnd} useDragHandle/>
-
-
-
-        </ListWrapper>
-
-      </Wrapper>
-
-
+    </Fragment>
   )
 }
 
+
 const actions = {
-  // showSpotLight,
-  // closeSpotLight
-  updateTaskArray
+  // changeDisplaySpotlight,
+  // openCloseSidePanel
 }
 
 const mapState = state => ({
   display: state
-});
+})
 
-export default connect(mapState, actions)(SpotLightTasks)
-
-
-
+export default connect(mapState, actions)(Spotlight)

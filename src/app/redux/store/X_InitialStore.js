@@ -1,32 +1,8 @@
-//InitialChitStore.js
+//InitialChitStore.js - Chit a Bit  *********
 
 /*
 
-  Local_ID is the ID assigned to the other party for a specific user
-  It does NOT require the other party to be a Chit Git member
-  User_ID is assigned by Chit Git to members when they sign up
 
-  persons: {
-
-      Name            Local_ID  Usuer_ID
-
-    1:  Unknown          0
-    2:  Kindness         1
-    3.  Brad             3       RT77
-    4.  Rhonda Farrar    4
-    5   David Anderson   5
-    6.  Richard Latin    6
-    7.  Sherry Miller    7
-    8.  Emily            8
-    9.  Dean             9
-    10. Fran            10        QS865
-    11. Greg            11
-    12. Darrell         12
-    13. Don             13
-    14. Lynn            14
-    15. Starbucks girl  15
-    16. Harold Green    16
-  }
 */
 
 
@@ -36,1584 +12,689 @@ const InitialStore = {
 
 
   'acctInfo' : {
-    id: "3",
-    fname: "Brad",
-    lname: "Brous",
-    email: "brad.brous@visitell.com"
+    id: 'nam0',
+    fname: 'Brad',
+    lname: 'Brous',
+    email: 'brad.brous@visitell.com'
 
 
   },
  
- // ==============================================================
+ // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-  'chits':  {
+  'journal':  {
 
-      twoParty: [
-    
-        {
+      sections: {
+
+        // 'tp11': {
           
-            chitId: '11t',
-            chitDate: 1556990799000, //May 4, 2019 (date of chit action)
-            timeStamp: 1556990799000, //May 4, 2019 (date chit posted)
-            
-            workRelated: false,           
-            type: 'standard',
-          
-            otherPartyId: '10',
-            otherPartyName: 'Fran Nicastro',
-            chitOriginator:'3',
-            
-            
-            liability:' 10',
-            asset: null,
+        //   chitId: 'tp11',
+        //   timeStamp: 1556990799000, //May 4, 2019 (date of chit action),
+        //   chitDate: 155890799000, //May 4, 2019 (date of chit action)
+                           
+        //   otherParty: {
+        //     otherPartyId: 'nam10',
+        //     name: {firstName: 'Fran' , 
+        //     lastName: 'Nicastro', 
+        //     nameSubstitute: null},
 
-            title: 'Pool use',
-            description: 'Let Fran use our pool',
+        //   },
 
-            shared: false,
-            sharedMessage: null,
-            
+        //   deedPerformedBy: 'nam0',
 
 
-          
-        } , //end TP chit
+        //   workRelated: false,
+        //   shared: false,
+        //   attachment: null,
 
-//.................................................................          //.................................................................
+        //   title: 'Pool use', 
+        //   description: null,  
 
-        {
-          
-          chitId: '12t',
-          chitDate: 1545931599000, //Dec 27, 2018,
-          timeStamp: 1551288399000, //Feb 27, 2019
-          workRelated: false,
-          type:  'standard'  ,
-          
-        
-          otherPartyId:'11',
-          otherPartyName: 'Greg - Scuba',
-          chitOriginator: ' 3',
-          liability:  null ,
-          asset:  15 ,
+        //   chitType: 'standard',
+        //   chitColor: 'gold',
 
-          title:  'Scuba business help'  ,
-          description:  'Helped Greg with his business strategy Spent hours and hours talking about diving and what to do .Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, voluptas aliquid blanditiis ducimus eius voluptatum neque quibusdam, aut dolorum est asperiores? Distinctio velit asperiores libero veritatis doloribus. Dolore, similique nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, voluptas aliquid blanditiis ducimus eius voluptatum neque quibusdam, aut dolorum est asperiores? Distinctio velit asperiores libero veritatis doloribus. Dolore, similique nostrum!',
-
-          shared:   true ,
-          sharedNote:  'Some day I may call on you to do a service for me.  But for now take this as a gift on my daughters wedding.'  ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '14t',
-          chitDate: 1551288399000, //Feb 27, 2019
-          timeStamp:  1551288399000, //Feb 27, 2019
-          workRelated: false,
-          type:  'standard'  ,
-          
-        
-          otherPartyId:'12',
-          otherPartyName: 'Darrell Carrington',
-          chitOriginator: ' 3',
-          liability:  null ,
-          asset: 40   ,
-
-          title: 'Gave Darrell bus advice',
-          description:  'Introduced Darrell to Chit-a-bit.  Told him I would not be able to to work with him'  ,
-          shared:   false ,
-          sharedNote:  null  ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '15t',
-          chitDate: 1552065999000, //Mar 8, 2019
-          timeStamp: 1552065999000, //Mar 8, 2019
-          workRelated: true,
-          type: 'standard'   ,
-          
-        
-          otherPartyId:  '13',
-          otherPartyName:'Don - neighbor',
-          chitOriginator: ' 3',
-          liability: null  ,
-          asset:  80  ,
-
-          title: 'Tree Service Market'   ,
-          description: 'Created market branding for his tree service including a logo and stragegy.',
-          shared:  false  ,
-          sharedNote:  null  ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '16t',
-          chitDate: 1556904399000, //May 3, 2019
-          timeStamp: 1552065999000, //Mar 8, 2019
-          workRelated: false,
-          type:  'standard'  ,
-          
-        
-          otherPartyId: '13',
-          otherPartyName:  'Don-neighbor',
-          chitOriginator: ' 3',
-          liability:  30 ,
-          asset:  null  ,
-
-          title:  'Neighbor video'  ,
-          description:   'Don made a video of my asshole neighbor',
-          shared:  false  ,
-          sharedNote: null   ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '17t',
-          chitDate: 1554312399000, //May 4, 2019
-          timeStamp:  1554312399000, //May 4, 2019
-          workRelated: false,
-          type: 'standard'   ,
-          
-        
-          otherPartyId: '10',
-          otherPartyName: 'Fran Nicastro',
-          chitOriginator: ' 3',
-          liability: 85  ,
-          asset:  null  ,
-
-          title: '$30 gift card'    ,
-          description:  'Fran gave me Starbucks gift card',
-          shared:  false  ,
-          sharedNote:  null ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '13t',
-          chitDate: 1551720399000, //Apr 3, 2019
-          timeStamp: 1551720399000, //Apr 3, 2019
-          workRelated: false,
-          type:  'standard'  ,
-          
-        
-          otherPartyId: '10',
-          otherPartyName:  'Fran Nicastro',
-          chitOriginator:' 3',
-          liability:  null ,
-          asset:  10  ,
-
-          title:   'Tablet gifted' ,
-          description:  'Gave Fran my S tablet',
-          shared:  false  ,
-          sharedNote:  null  ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '18t',
-          chitDate: 1305182964000, //May 12, 2011
-          timeStamp: 1305182964000, //May 12, 2011
-          workRelated: false,
-          type: 'standard'   ,
-          
-        
-          otherPartyId:  '10',
-          otherPartyName:  'Fran Nicastro',
-          chitOriginator:' 3',
-          liability: null  ,
-          asset: 10   ,
-
-          title:   'Oh blah dee ',
-          description:   'Oh blah dee oh blah dah - Life goes on now',
-          shared:  false  ,
-          sharedNote: null   ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '19t',
-          chitDate:  1545931599000, //Dec 27, 2018
-          timeStamp: 1545931599000, //Dec 27, 2018
-          workRelated: false,
-          type:  'kindness'  ,
-          
-        
-          otherPartyId:  '2',
-          otherPartyName: 'Salvation Army',
-          chitOriginator: '3',
-          liability: null  ,
-          asset:  15  ,
-
-          title:  'Donation'  ,
-          description: 'Gave $5 to Salvation Army',
-          shared: false   ,
-          sharedNote:  null  ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '20t',
-          chitDate:  1545931599000, //Dec 27, 2018
-          timeStamp:  1545931599000, //Dec 27, 2018
-          workRelated: false,
-          type:  'kindness'  ,
-          
-        
-          otherPartyId: '2',
-          otherPartyName: 'Salvation Army',
-          chitOriginator: ' 3',
-          liability:  null ,
-          asset: 15   ,
-
-          title: '2nd Donation'   ,
-          description:  'Gave $10 to Salvation Army',
-          shared:  false  ,
-          sharedNote:  null  ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '21t',
-          chitDate:   1545931599000, //Dec 27, 2018
-          timeStamp:   1545931599000, //Dec 27, 2018
-          workRelated: false,
-          type:  'kindness'  ,
-          
-        
-          otherPartyId: '2',
-          otherPartyName: 'St Josephs',
-          chitOriginator: ' 3',
-          liability: null  ,
-          asset: 25   ,
-
-          title:  'Volunteer'  ,
-          description:  'Served in a soup kitchen'  ,
-          shared:  false  ,
-          sharedNote:  null  ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '22t',
-          chitDate: 1545931599000, //Dec 27, 2018
-          timeStamp: 1545931599000, //Dec 27, 2018
-          workRelated: false,
-          type:  'promise'  ,
-          
-        
-          otherPartyId: '8',
-          otherPartyName: 'Emily',
-          chitOriginator: '3',
-          liability: null  ,
-          asset:  5  ,
-
-          title:  'Random act of giving'  ,
-          description:  'Bought a stranger lunch'  ,
-          shared:  false  ,
-          sharedNote: null   ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '23t',
-          chitDate:  1577420565000, //Dec 27 2019
-          timeStamp:  1577420565000, //Dec 27 2019
-          workRelated: true,
-          type: 'awChit',
-          
-        
-          otherPartyId: '14',
-          otherPartyName: 'Lynn Terhorst',
-          chitOriginator: '3'  ,
-          liability:  60 ,
-          asset: null   ,
-
-          title:  'Asshole'  ,
-          description:  'asshole Lynn lied about me to Rich',
-          shared: false   ,
-          sharedNote: null   ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '24t',
-          chitDate: 1545931599000, //Dec 27, 2018
-          timeStamp: 1545931599000, //Dec 27, 2018
-          workRelated: false,
-          type:  'standard'  ,
-          
-        
-          otherPartyId: '15',
-          otherPartyName: 'Starbucks girl',
-          chitOriginator: '3',
-          liability: 5  ,
-          asset: null   ,
-
-          title:   'genroisty to a stranger' ,
-          description:  'bought girl coffee when she was forgot money',
-          shared:  false  ,
-          sharedNote: null   ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '25t',
-          chitDate: 1545931999000, //  ? 
-          timeStamp: 1545931599000, //Dec 27, 2018
-          workRelated: false,
-          type:  'standard'  ,
-          
-        
-          otherPartyId: '7',
-          otherPartyName: 'Sherry Miller',
-          chitOriginator: '3',
-          liability: 5  ,
-          asset: null   ,
-
-          title:   'Pool' ,
-          description:  'Bought Sherry a pool for her kids',
-          shared:  false  ,
-          sharedNote: null   ,
-
-
-        },  // end TP chit
-
-        {
-          
-          chitId: '26t',
-          chitDate: 1545931799000, //  ? 
-          timeStamp: 1545971599000, //Dec 27, 2018
-          workRelated: false,
-          type:  'standard'  ,
-          
-        
-          otherPartyId: '5',
-          otherPartyName: 'David Anderson',
-          chitOriginator: '3',
-          liability: 45  ,
-          asset: null   ,
-
-          title:   'New Orleans trip' ,
-          description:  'David bought me 3 dinners in New Orleans',
-          shared:  false  ,
-          sharedNote: null   ,
-
-
-        },  // end TP chit// end TP chit
-
-        {
-          
-          chitId: '27t',
-          chitDate: 1582569809000, //Feb 24, 2020 (date of chit action)
-          timeStamp: 1582569809000, //Feb 24, 2020 (date chit posted)
-          
-          workRelated: true,           
-          type: 'standard',
-        
-          otherPartyId: '10',
-          otherPartyName: 'Fran Nicastro',
-          chitOriginator:'3',
-          
-          
-          liability: 15,
-          asset: null ,
-
-          title: 'Article',
-          description: 'Gave Fran article on old seekers - Feb 24, 2020 ',
-
-          shared: false,
-          sharedMessage: null,
           
 
 
+          
+       
+          
+
+        // } , //end TP chit
+
+      }//end journal Summaries
+
+},
+
+  'daySummaries':  {
+
+      dayxxxxx: {
+
+        // 'tp11': {
+          
+        //   chitId: 'tp11',
+        //   timeStamp: 1556990799000, //May 4, 2019 (date of chit action),
+        //   chitDate: 155890799000, //May 4, 2019 (date of chit action)
+                           
+        //   otherParty: {
+        //     otherPartyId: 'nam10',
+        //     name: {firstName: 'Fran' , 
+        //     lastName: 'Nicastro', 
+        //     nameSubstitute: null},
+
+        //   },
+
+        //   deedPerformedBy: 'nam0',
+
+
+        //   workRelated: false,
+        //   shared: false,
+        //   attachment: null,
+
+        //   title: 'Pool use', 
+        //   description: null,  
+
+        //   chitType: 'standard',
+        //   chitColor: 'gold',
+
+          
+
+
+          
+       
+          
+
+        // } , //end TP chit
+
+      }//end journal Summaries
+
+},
+
+
+
+ 
+// ==========================================================
+
+
+
+  'topics': {
+
+    // 'cat1': {
+    //   id: 'cat1',
+    //   title: 'Work',
+    //   description: 'Work related accomplishments',
+    //   startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
+    //   endDay: ''
         
-      } , //end TP chit
+    // },
 
-      ] ,    // end twoParty array of chits
-
-
-
-    
-// ==========PERSONAL ====================================================
-
-    personal: [
-        
-      {
-      
-        chitId: '101p',
-        chitDate: 1577081943000, //23 Dec, 2019 (date of chit action)
-        timeStamp: 1577081943000, //23 Dec, 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '1', 
-        category: 'Work',
-        milestone: true,
-        chit: 'gold',
-        title: 'Work idea',
-        description: 'Created brilliant idea at work',
-        workRelated: true
-        
-
-
-      
-      } , //end PE chit
-        
-      {
-      
-        chitId: '102p',
-        chitDate: 1577168343000, //24 Dec 2019 (date of chit action)
-        timeStamp: 1577168343000, //24 Dec 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise - 24 Dec',
-        milestone: false,
-        chit: 'red',
-        title: '2 blocks',
-        description: 'Just did not feel like it',
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '103p',
-        chitDate: 1577254743000, //25 Dec 2019 (date of chit action)
-        timeStamp: 1577254743000, //25 Dec 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '2', 
-        category: 'Diet',
-        milestone: false,
-        chit: 'silver',
-        title: 'Fasted day - 25 Dec',
-        description: 'made it almost all the way on my Xmas fast',
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '104p',
-        chitDate: 1578291543000, //6 Jan 2020 (date of chit action)
-        timeStamp: 1578291543000, //6 Jan 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '1', 
-        category: 'Work',
-        milestone: true,
-        chit: 'copper',
-        title: 'Project complete - 6 Jan',
-        description: 'Finished major project',
-        workRelated: true
-        
-
-
-      
-      } , //end PE chit
-        
-      {
-      
-        chitId: '105p',
-        chitDate: 1578377943000, //7 Jan 2020  (date of chit action)
-        timeStamp: 1578377943000, //7 Jan 2020  (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'silver',
-        title: '3 miles - 7 Jan',
-        description: 'Ran 3 miles',
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '106p',
-        chitDate: 1578637143000, //10 Jan 2020 (date of chit action)
-        timeStamp: 1578637143000, //10 Jan 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '2', 
-        category: 'Diet',
-        milestone: true,
-        chit: 'gold',
-        title: 'Salad day - 10 Jan ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '107p',
-        chitDate: 1580624343000, //2 Feb 2020 (date of chit action)
-        timeStamp: 1580624343000, //2 Feb 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '1', 
-        category: 'Work',
-        milestone: false,
-        chit: 'copper',
-        title: 'Worked late - 2 Feb',
-        description: 'spent an hour on graphQl',
-        workRelated: true
-        
-
-
-      
-      } , //end PE chit
-        
-      {
-      
-        chitId: '108p',
-        chitDate: 1580710743000, //3 Feb 2020  (date of chit action)
-        timeStamp: 1580710743000, //3 Feb 2020  (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: '1 mile - 3 Feb',
-        description: 'Ran 3 miles',
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '109p',
-        chitDate: 1580883543000, //5 Feb 2020 (date of chit action)
-        timeStamp: 1580883543000, //5 Feb 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '2', 
-        category: 'Diet',
-        milestone: false,
-        chit: 'silver',
-        title: 'Salad day - 5 Feb ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-
-      {
-      
-        chitId: '110p',
-        chitDate: 1582637055000, // 25 Feb 2020 (date of chit action)
-        timeStamp: 1582637055000, //25 Feb 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'copper',
-        title: 'Basic ledger map done - 25 Feb ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '111p',
-        chitDate: 1580537943000, // 1 Feb 2020 (date of chit action)
-        timeStamp: 1580537943000, // 1 Feb 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '2', 
-        category: 'Diet',
-        milestone: false,
-        chit: 'silver',
-        title: 'Salad day - 1 Feb ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '112p',
-        chitDate: 1577859543000, // 1 Jan 2020 (date of chit action)
-        timeStamp: 1577859543000, // 1 Jan 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'gold',
-        title: 'Went to gym - 1 Jan ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '113p',
-        chitDate: 1606780800000, // 1 Dec 2019 (date of chit action)
-        timeStamp: 1606780800000, // 1 Dec 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 1 Dec ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-
-
-
-
-      {
-      
-        chitId: '114p',
-        chitDate: 1572566400000, // 1 Nov 2019 (date of chit action)
-        timeStamp: 1572566400000, // 1 Nov 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 1 Nov ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '115p',
-        chitDate: 1572652800000, // 2 Nov 2019 (date of chit action)
-        timeStamp: 1572652800000, // 2 Nov 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 2 Nov ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '116p',
-        chitDate: 1573603200000, // 13 Nov 2019 (date of chit action)
-        timeStamp: 1573603200000, // 13 Nov 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 13 Nov ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '117p',
-        chitDate: 1573689600000, // 14 Nov 2019 (date of chit action)
-        timeStamp: 1573689600000, // 14 Nov 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: true,
-        chit: 'gold',
-        title: 'Ran 5 miles- 14 Nov ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '118p',
-        chitDate: 1574985600000, // 29 Nov 2019 (date of chit action)
-        timeStamp: 1574985600000, // 29 Nov 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 29 Nov ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '119p',
-        chitDate: 1575072000000, // 30 Nov 2019 (date of chit action)
-        timeStamp: 1575072000000, // 30 Nov 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'silver',
-        title: 'Walked 3 miles - 30 Nov ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-
-      {
-      
-        chitId: '120p',
-        chitDate: 1569888000000, // 1 Oct 2019 (date of chit action)
-        timeStamp: 1569888000000, // 1 Oct 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 1 Oct ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '121p',
-        chitDate: 1569974400000, // 2 Oct 2019 (date of chit action)
-        timeStamp: 1569974400000, // 2 Oct 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 2 Oct ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '123p',
-        chitDate: 1570924800000, // 13 Oct 2019 (date of chit action)
-        timeStamp: 1570924800000, // 13 Oct 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 13 Oct ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '124p',
-        chitDate: 1571011200000, // 14 Oct 2019 (date of chit action)
-        timeStamp: 1571011200000, // 14 Oct 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 14 Oct ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '125p',
-        chitDate: 1572307200000, // 29 Oct 2019 (date of chit action)
-        timeStamp: 1572307200000, // 29 Oct 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 29 Oct ',
-        description: null,
-        workRelated: false
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '126p',
-        chitDate: 1572480000000, // 31 Oct 2019 (date of chit action)
-        timeStamp: 1572480000000, // 31 Oct 2019 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'copper',
-        title: 'Walked 1 mile - 31 Oct ',
-        description: null,
-        workRelated: false
-        
-
-      } ,  // end PE chit
-
-      {
-      
-        chitId: '127p',
-        chitDate:1581948520000, // 17 Februar 2020 (date of chit action)
-        timeStamp:1581948520000, // 17 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '3', 
-        category: 'Exercise',
-        milestone: false,
-        chit: 'silver',
-        title: 'Walked 2 miles - Feb 17 ',
-        description: null,
-        workRelated: false
-        
-
-      }  ,  // end PE chit
-
-      {
-      
-        chitId: '128p',
-        chitDate:1581948520033, // 17 Februar 2020 (date of chit action)
-        timeStamp:1581948520033, // 17 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '2', 
-        category: 'Diet',
-        milestone: false,
-        chit: 'silver',
-        title: 'Ate Salad - Feb 17 ',
-        description: null,
-        workRelated: false
-        
-
-      }  ,  // end PE chit
-
-      {
-      
-        chitId: '129p',
-        chitDate:1581948520046, // 17 Februar 2020 (date of chit action)
-        timeStamp:1581948520046, // 17 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '1', 
-        category: 'Work',
-        milestone: true,
-        chit: 'copper',
-        title: 'Detail Modal',
-        description: 'I got the personal detail chit modal working',
-        workRelated: true
-        
-
-      }  ,  // end PE chit
-
-      {
-      
-        chitId: '130p',
-        chitDate:1582034920000, // 18 Februar 2020 (date of chit action)
-        timeStamp:1582034920000, // 18 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '1', 
-        category: 'Work',
-        milestone: false,
-        chit: 'gold',
-        title: 'Finished calendar - Feb 18 ',
-        description: 'Good day for work',
-        workRelated: true
-        
-
-      } ,  // end PE chit
-
-      {
-      
-        chitId: '131p',
-        chitDate:1581862120000, // 16 Februar 2020 (date of chit action)
-        timeStamp:1581862120000, // 16 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '1', 
-        category: 'Work',
-        milestone: false,
-        chit: 'copper',
-        title: 'Sprint Begin ',
-        description: 'Good first effort - Feb 16',
-        workRelated: true
-        
-
-      } ,  
-
-  //************************** */    
-      {
-      
-        chitId: '132p',
-        chitDate:1581922733000, // 17 Februar 2020 (date of chit action)
-        timeStamp:1581922733000, // 17 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: 'Sprint Begin ',
-        description: 'Good first effort - Feb 17',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '133p',
-        chitDate:1582009133000, // 18 Februar 2020 (date of chit action)
-        timeStamp:1582009133000, // 18 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: '2nd day ',
-        description: 'Good first effort - Feb 18',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '134p',
-        chitDate:1582095533000, // 19 Februar 2020 (date of chit action)
-        timeStamp:1582095533000, // 19 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: '3rd day ',
-        description: 'Day 3 - Feb 19',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '135p',
-        chitDate:1582181933000, // 20 Februar 2020 (date of chit action)
-        timeStamp:1582181933000, // 20 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: '4th day ',
-        description: 'Day 4 - Feb 19',
-        workRelated: true
-        
-
-      } ,  // end PE chit
-
-      {
-      
-        chitId: '136p',
-        chitDate:1582268333000, // 21 Februar 120 (date of chit action)
-        timeStamp:1582268333000, // 21 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: '5th day ',
-        description: 'Day 5 - Feb 21',
-        workRelated: true
-        
-
-      }  ,  // end PE chit
-
-      {
-      
-        chitId: '137p',
-        chitDate: 1582354733000, // 22 Februar 120 (date of chit action)
-        timeStamp: 1582354733000, // 22 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'gold',
-        title: '6th day ',
-        description: 'Day 6 - Feb 22',
-        workRelated: true
-        
-
-      }  ,  // end PE chit
-
-      {
-      
-        chitId: '138p',
-        chitDate: 1582441133000, // 23 Februar 120 (date of chit action)
-        timeStamp: 1582441133000, // 23 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'gold',
-        title: '7th day ',
-        description: 'Day 7 - Feb 22',
-        workRelated: true
-        
-
-      },   // end PE chit
-
-      {
-      
-        chitId: '139p',
-        chitDate:1582530359000, // 24 Februar 2020 (date of chit action)
-        timeStamp:1582530359000, // 24 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work',
-        milestone: true,
-        chit: 'silver',
-        title: 'Started PE ledger',
-        description: 'Ledger started - Feb 24',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '140p',
-        chitDate:1582657493000, // 25 Februar 2020 (date of chit action)
-        timeStamp:1582657493000, // 25 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: 'More progress',
-        description: 'Ledger work - Feb 25',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '141p',
-        chitDate:1582743893000, // 26 Februar 2020 (date of chit action)
-        timeStamp:1582743893000, // 26 Februar 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: true,
-        chit: 'gold',
-        title: 'Finished Personal Chits',
-        description: 'Finished PE ledger... eliminated graph ....so finished this section',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '142p',
-        chitDate:1582793140000, // 27 February 2020 (date of chit action)
-        timeStamp:1582793140000, // 27 February 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: 'Work Chit begin',
-        description: 'Basic layout set up',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '144p',
-        chitDate:1582965940000, // 29 February 2020 (date of chit action)
-        timeStamp:1582965940000, // 29 February 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'copper',
-        title: 'Work Chit ',
-        description: 'More set up',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '143p',
-        chitDate:1582879540000, // 28 February 2020 (date of chit action)
-        timeStamp:1582879540000, // 28 February 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'copper',
-        title: 'Fixed little issues',
-        description: 'Ledger head, month navigation',
-        workRelated: true
-        
-
-      } ,  // end PE chit
-
-      {
-      
-        chitId: '145p',
-        chitDate:1583078329000, // 1 March 2020 (date of chit action)
-        timeStamp:1583078329000, // 1 March 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'red',
-        title: 'Burnt out',
-        description: '',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '146p',
-        chitDate:1583191938000, // 2 March 2020 (date of chit action)
-        timeStamp:1583191938000, //2 March 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: 'ok day 2 March',
-        description: '',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '147p',
-        chitDate:1583278338000, // 3 March 2020 (date of chit action)
-        timeStamp:1583278338000, // 3 March 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: 'better day',
-        description: '',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '148p',
-        chitDate:1583434128000, // 5 March 2020 (date of chit action)
-        timeStamp:1583434128000, // 5 March 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'gold',
-        title: 'good day',
-        description: ' Got most of the work chit display working',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '149p',
-        chitDate:1583434128002, // 5 March 2020 (date of chit action)
-        timeStamp:1583434128002, // 5 March 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '5', 
-        category: 'Wake - Work',
-        milestone: false,
-        chit: 'silver',
-        title: 'Slept 3 times',
-        description: 'Worked after all 3 naps... only silver because didnt think about it until after the first sleep session ',
-        workRelated: true
-        
-
-      },  // end PE chit
-
-      {
-      
-        chitId: '150p',
-        chitDate:1583347728000, // 4 March 2020 (date of chit action)
-        timeStamp:1583347728000, // 4 March 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: false,
-        chit: 'silver',
-        title: 'Slept 3 times',
-        description: ' ',
-        workRelated: true
-        
-
-      }  ,  // end PE chit
-
-      {
-      
-        chitId: '151p',
-        chitDate:1583477461000, // 4 March 2020 (date of chit action)
-        timeStamp:1583477461000, // 4 March 2020 (date chit posted)
-        type: 'personal',
-        categoryId: '4', 
-        category: 'Work Sprint',
-        milestone: true,
-        chit: 'gold',
-        title: 'Work Section Complete',
-        description: ' Completed Work Section... took  1 week',
-        workRelated: true
-        
-
-      }  // end PE chit
-
-
-      
-
-
-
-
-    ]  ,    // end personal array of chits  
-    
-  // ==============================================================  
+  },// end topics
   
-    work: [
-    
-      {
+  'spotlightData' : {
+
+    'popup' : {
+      'popupStatus' : 'show',
+      'popupId' : 'spot1'
+
+
+    },
+
+    'spotlights': {
+
+      'spot1': {
+        id: 'spot1',
+        type: 'spotlight',
+        parent: '',
+        completed: false,
+
+        title: 'Complete Journal and Spotlight',
+
+        timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        endEst: "2020-10-15T04:46:20.619Z",  //October 15  
+        note: 'note1',
+        clock: 'clock1',
+        
+        taskArray: [
+          {
+            taskItem: 'task0',
+            completed: false, 
+            type: 'task'
+          },
+          {taskItem: 'spot1',completed: false, type: 'spotlight'},
+          {taskItem: 'task1',completed: false, type: 'task'}, 
+          {taskItem: 'task2',completed: false, type: 'task'},
+          {taskItem: 'task3',completed: false, type: 'task'}
+         
+        ],
+
+        
           
-        chitId: '1001w',
-        chitDate: 1545931599000, //Dec 27, 2018
-        timeStamp: 1545931599000, //Dec 27, 2018
-        workRelated: true,  
-        type:  'standard'  ,
+
+      },
+
+      'spot2': {
+        id: 'spot2',
+        type: 'spotlight',
+        parent: '',
+        completed: false,
+
+        title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
+
+        timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
+        endEst: "2020-10-09T04:46:20.619Z",  //October 9 
+
+        clock: 'clock2',
+        note: 'note2',
+   
         
-      
-        otherPartyId: '14',
-        otherPartyName: 'Lynn Terhorst',
-        chitOriginator: '3',
-        liability: null  ,
-        asset: 15   ,
-
-        title:   'Gave Lynn my trip' ,
-        description:  'Recommended to Rich that he send Lynn to Europe for ECC meeting in Amesterdam.  He was going to send me.',
-        shared:  false  ,
-        sharedNote: null   ,
-
-
-      },  // end WO chit
-
-      {
+        taskArray: [
+          {
+            taskItem: 'task20',
+            completed: false, 
+            type: 'task'
+          },
+          {taskItem: 'task21',completed: false, type: 'task'}, 
+          {taskItem: 'task22',completed: false, type: 'task'},
+          {taskItem: 'task23',completed: false, type: 'task'},
+          {taskItem: 'spot3',completed: false, type: 'spotlight'}
+         
+        ],
+ 
           
-        chitId: '1002w',
-        chitDate: 1545931599000, //Dec 27, 2018
-        timeStamp: 1545931599000, //Dec 27, 2018
-        workRelated: true,  
-        type:  'standard'  ,
+
+      }, //end spot2
+
+      'spot3': {
+        id: 'spot3',
+        type: 'spotlight',
+        parent: '',
+        completed: false,
+
+        title: 'Popups for note and clock',
+
+        timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
+
+        clock: 'clock3',
+        note: 'note3',
+   
         
+        taskArray: [
+          {
+            taskItem: 'task30',
+            completed: true, 
+            type: 'task'
+          },
+          {taskItem: 'task33',completed: false, type: 'task'},
+          {taskItem: 'task31',completed: false, type: 'task'},
+          {taskItem: 'task32',completed: false, type: 'task'}
+         
+        ],
+
+   
+          
+
+      }, //end spot3
+
+      'spot5': {
+        id: 'spot5',
+        type: 'spotlight',
+        parent: '',
+        completed: false,
+
+        title: 'Dummy Spotlight 5',
+
+        timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
+
+        clock: 'clock5',
+        note: 'note5',
+   
+        
+        taskArray: [
+          {
+            taskItem: 'task50',
+            completed: false, 
+            type: 'task'
+          },
+
+        ],
+ 
+          
+
+      }, //end spot5
+
+      'spot4': {
+        id: 'spot4',
+        type: 'spotlight',
+        parent: '',
+        completed: false,
+
+        title: 'Dummy Spotlight 4',
+
+        timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
+        endEst: "2020-10-03T04:46:20.619Z",  //October 3 
+
+        clock: 'clock4',
+        note: 'note4',
+   
+        
+        taskArray: [
+          {
+            taskItem: 'task40',
+            completed: false, 
+            type: 'task'
+          },
+        ],
+ 
+          
+
+      }, //end spot4
       
-        otherPartyId: '16',
-        otherPartyName: 'Harold Green',
-        chitOriginator: '3',
-        liability: 20  ,
-        asset: null   ,
 
-        title:   'Software program' ,
-        description:  'Harold wrote a software program for me to colorize contrast.',
-        shared:  false  ,
-        sharedNote: null   
+    },// end spotlights 
 
-      }, // end WO chit
+    'tasks': {
+      'task0' : {
+        id: 'task0',
+        type: 'task',  //or spotlight
+        completed: true,
 
+        spotHolder: 'spot1',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
+
+      'task1' : {
+        id: 'task1',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        spotHolder: 'spot1',
+        title: 'Transfer A-try into Spotlight',
+        clock: 'clock6',
+        note: 'note5',
+        
+      },
+
+      'task2' :{
+        id: 'task2',
+        type: 'task',  //or spotlight
+        completed: false,
+        spotHolder: 'spot1',
+
+        title: 'In Spotlight - complete layout with params from Initial Store',
+        clock: 'clock7',
+        note: 'note6',
+        
+      },
+
+          
+      'task3' :{
+        id: 'task3',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        spotHolder: 'spot1',
+        title: 'Clocks and Note Popups create',
+        clock: 'clock8',
+        note: null
+        
+      },
+
+      // -----------------------------
+
+      'task20' : {
+        id: 'task20',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        spotHolder: 'spot2',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
+
+      'task21' : {
+        id: 'task21',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        spotHolder: 'spot2',
+        title: 'Initial Store',
+        clock: 'clock9',
+        note: 'note7'
+        
+      },
+
+      'task22' :{
+        id: 'task22',
+        type: 'task',  //or spotlight
+        completed: false,
+        spotHolder: 'spot2',
+
+        title: 'Redux',
+        clock: 'clock10',
+        note: null
+        
+      },
+
+          
+      'task23' :{
+        id: 'task23',
+        type: 'task',  //or spotlight
+        completed: false,
+        spotHolder: 'spot2',
+
+        title: 'Clocks and Note Popups create',
+        clock: 'clock11',
+        note: 'note8'
+        
+      },
+
+      // ----------------------------
+
+      'task30' : {
+        id: 'task30',
+        type: 'task',  //or spotlight
+        completed: true,
+
+        spotHolder: 'spot3',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
+
+      'task31' : {
+        id: 'task31',
+        type: 'task',  //or spotlight
+        completed: false,
+        spotHolder: 'spot3',
+
+        title: 'Note Popup',
+        clock: 'clock12',
+        note: 'note9'
+        
+      },
+
+      'task32' :{
+        id: 'task32',
+        type: 'task',  //or spotlight
+        completed: false,
+        spotHolder: 'spot3',
+
+        title: 'Clock Popup',
+        clock: 'clock13',
+        note: ''
+        
+      },
 
       
-/* --------------- SPECIAL NOTE -------
-      Chits 102p and 103p are on the same day in order  
-      to show multiple chit icon.
-      ---------------------------------
-*/
+      'task33' :{
+        id: 'task33',
+        type: 'task',  //or spotlight
+        completed: false,
+        spotHolder: 'spot3',
 
-      {
+        title: 'Clock Popup Part deux',
+        clock: 'clock14',
+        note: ''
         
-        chitId: '1003w',
-          chitDate: 1556990799000, //May 4, 2019 (date of chit action)
-          timeStamp: 1556990799000, //May 4, 2019 (date chit posted)
-          workRelated: true,
-          type: 'personal',
-          category: 'work',
-          chit: 'silver',
-          title: 'Brilliant idea',
-          description: 'Created brilliant idea at work'
+      },
+
+      // -----------------------
+
+      'task40' : {
+        id: 'task40',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        spotHolder: 'spot4',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
+
+      // --------------------------
+      
+      'task50' : {
+        id: 'task50',
+        type: 'task',  //or spotlight
+        completed: false,
+
+        spotHolder: 'spot5',
+        title: 'First task begin',
+        clock: 'clock6',
+         
+        
+      },
 
 
-    } // end WO chit
+    }, // end tasks
 
-  
-  ] // end work array of chits
- },
-// ==============================================================
+    'notes': {
+      
+      'note1' :  {
+          'noteHolder': 'spot1',
+          'note': 'This is a note for Spot 1'
+        },
 
-  'karma': {
-    assetTotal: 775,
-    liabilityTotal: 333
+      'note2' : {
+        'noteHolder': 'spot1',
+        'note': 'Format tasks like final form'
+      },
+      
+      'note3' : {
+        'noteHolder': 'spot1',
+        'note': 'Material ui menu'
+      },
 
-  },
+      'note4' :  {
+        'noteHolder': 'spot1',
+        'note': 'Material ui menu',
+      },
 
-  'goodWill': {
-    assetTotal: 40,
-    liabilityTotal: 0
+      'note5' : {
+        'noteHolder': 'spot1',
+        'note': 'This is a note for task 1',
+      },
+      
 
-  },
+      'note6':  {
+        'noteHolder': 'spot1',
+        'note': 'Tiy need to convert timestamps',
+      },
 
-  'people': [
+      'note7' :  {
+        'noteHolder': 'spot1',
+        'note': 'This is a note for task 21',
+      },
 
-    {
-      id: '4',
-      name: {firstName: 'Rhonda' , 
-            lastName: 'Farrar', 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 10000,
-      liabilityTotal: 0
-    },
+      'note8' :  {
+        'noteHolder': 'spot1',
+        'note': 'Donald Trump is an asshole',
+      },
 
-    {
-      id: '5',
-      name: {firstName: 'David' , 
-            lastName: 'Anderson', 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 55,
-      liabilityTotal: 90
-    },
-    
-    {
-      id: '6',
-      name: {firstName: 'Richard' , 
-            lastName: 'Latin', 
-            nameSubstitute: null},
-      chitGitUserID: 'QS865',
-      hasWorkChits: false,
-      assetTotal: 175,
-      liabilityTotal: 115
-    },
-        
-    {
-      id: '7',
-      name: {firstName: 'Sherry' , 
-            lastName: 'Miller', 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 155,
-      liabilityTotal: 20
-    },
-        
-    {
-      id: '8',
-      name: {firstName: 'Emily' , 
-            lastName: null, 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 20,
-      liabilityTotal: 0
-    },
-        
-    {
-      id: '9',
-      name: {firstName: 'Dean' , 
-            lastName: 'Layton', 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 0,
-      liabilityTotal: 35
-    },
-        
-    {
-      id: '10',
-      name: {firstName: 'Fran' , 
-            lastName: 'Nicastro', 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 55,
-      liabilityTotal: 15
-    },
-        
-    {
-      id: '11',
-      name: {firstName: 'Greg' , 
-            lastName: null, 
-            nameSubstitute: 'Scuba'},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 20,
-      liabilityTotal: 0
-    },
-        
-    {
-      id: '12',
-      name: {firstName: 'Darrell' , 
-            lastName: 'Carrington', 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 25,
-      liabilityTotal: 0
-    },
-        
-    {
-      id: '13',
-      name: {firstName: 'Don' , 
-            lastName: null, 
-            nameSubstitute: 'neighbor'},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 25,
-      liabilityTotal: 25
-    },
-        
-    {
-      id: '14',
-      name: {firstName: 'Lynn' , 
-            lastName: 'Terhorst', 
-            nameSubstitute: 'ass'},
-      chitGitUserID: null,
-      hasWorkChits: true,
-      assetTotal: 0,
-      liabilityTotal: 75
-    },
-        
-    {
-      id: '15',
-      name: {firstName: null,
-            lastName: null, 
-            nameSubstitute: 'Starbucks girl '},
-      chitGitUserID: null,
-      hasWorkChits: false,
-      assetTotal: 5,
-      liabilityTotal: 0
-    },
+      'note9' : {
+        'noteHolder': 'spot1',
+        'note': ' last note of this group'
+      },
+      
+   
+      
+    }, // end notes
 
-    {
-      id: '16',
-      name: {firstName: 'Harold' , 
-            lastName: 'Green', 
-            nameSubstitute: null},
-      chitGitUserID: null,
-      hasWorkChits: true,
-      assetTotal: 0,
-      liabilityTotal: 20
-    }
 
-  ], // end people array
 
-  'categories': [
+    'clocks': {
+      
+      'clock1' :  {
+          'clockHolder': 'spot1',
+          'type' : 'spotlight',
+          'clockStatus': 'running',
+          'startClock' : null,
+          'pausedClock' :null, 
+          'endClock' : null
 
-    {
-      id: '1',
-      title: 'Work',
-      description: 'Work related accomplishments',
-      startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
-      endDay: ''
-        
-    },
-    {
-      id: '2',
-      title: 'Diet',
-      description: 'cutting calories to 1500 per day',
-      startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
-      endDay: ''
-        
-    },
-    {
-      id: '3',
-      title: 'Exercise',
-      description: '1/2 hour in gym',
-      startDay:  1580537943000, // 1 Feb 2020 (date of chit action)
-      endDay: ''
-        
-    },
-    {
-      id: '4',
-      title: 'Work Sprint',
-      description: '1 month total work concentration',
-      startDay:  1581922733000, // 17 Feb 2020 (date of chit action)
-      endDay: ''
-        
-    },
-    {
-      id: '5',
-      title: 'Wake - Work',
-      description: 'Immediately work upon waking up',
-      startDay:  1583434128000, // 5 Mar 2020 (date of chit action)
-      endDay: ''
-        
-    }
-  ]
-}
+        },
+
+              
+      'clock2' :  {
+        'clockHolder': 'spot2',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+              
+      'clock3' :  {
+        'clockHolder': 'spot3',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+                    
+      'clock4' :  {
+        'clockHolder': 'spot4',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+                    
+      'clock5' :  {
+        'clockHolder': 'spot5',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      'clock6' :  {
+        'clockHolder': 'task1',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      'clock7' :  {
+        'clockHolder': 'task2',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+      
+      'clock8' :  {
+        'clockHolder': 'task3',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      
+      'clock9' :  {
+        'clockHolder': 'task21',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+            
+      'clock10' :  {
+        'clockHolder': 'task22',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+            
+      'clock11' :  {
+        'clockHolder': 'task23',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+            
+      'clock12' :  {
+        'clockHolder': 'task31',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+      
+            
+      'clock13' :  {
+        'clockHolder': 'task32',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+            
+      'clock14' :  {
+        'clockHolder': 'task33',
+        'type' : 'spotlight',
+        'clockStatus': 'stopped',
+        'startClock' : null,
+        'pausedClock' :null, 
+        'endClock' : null
+
+      },
+
+    }, // end clocks
+
+
+
+}// end spotlightData
+ // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// ==================================================
+
+
+
+}// end Initial Store
 
 
 export default InitialStore

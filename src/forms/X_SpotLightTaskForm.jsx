@@ -97,8 +97,7 @@ const RadioButtonWrapper= styled('div')({
 
   // backgroundColor: 'pink',
   width: '100%',
-  padding: '0 10px'
-  
+  padding: '0 10px',
 
 })
  
@@ -128,7 +127,7 @@ const RadioLabel= styled(FormControlLabel)({
   color: 'grey',
   fontSize: '.5rem',
   '& .MuiFormControlLabel-label ': {
-    fontSize: '.7rem'
+    fontSize: '.8rem'
   }
   
 
@@ -147,7 +146,9 @@ const taskType= styled(RadioGroup)({
 const OrangeRadio = withStyles({
   root: {
     color: 'orange',
-    
+    icon: {
+      color: 'blue'
+    },
     '&$checked': {
       color: 'orange',
     },
@@ -170,21 +171,25 @@ function SpotLightTaskForm(props) {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  const {register, handleSubmit, watch, errors, control, setValue} = useForm({
+  const {register, handleSubmit, watch, errors, control, setValue, reset} = useForm({
     defaultValues: {
       todo: '',
-      RadioGroup: 'task'
+      taskType: 'task'
 
     }
 })
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
 
+  let displayedId = props.display.private.spotLightDisplay.displayedSpotLightId
 
+// console.log('SPOTLIGHT TASK FORM : id is - ',  displayedId)
 
-
-
-    const onSubmit = data => alert(JSON.stringify(data))
+    // const onSubmit = data => alert(JSON.stringify(data))
+    const onSubmit = (data) => {
+      props.addTask(displayedId, data)
+      reset()
+    }
 
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
@@ -207,6 +212,7 @@ function SpotLightTaskForm(props) {
                     maxLength: 40,
                   
                   }}
+                  
                   />
 
                   {/* {errors.goal && errors.goal.type === "required" && 
@@ -214,7 +220,7 @@ function SpotLightTaskForm(props) {
                   {errors.goal && errors.goal.type === "maxLength" && 
                     <ErrorWrapper>Maximum characters 40</ErrorWrapper>} */}
 
-          <SubmitButton type ="submit"> Submit </SubmitButton>
+          <SubmitButton type ="submit" > Submit </SubmitButton>
     </InputWrapper>
     {errors.todo && errors.todo.type === "required" && 
                     <ErrorWrapper>A description is required</ErrorWrapper>}
@@ -223,18 +229,18 @@ function SpotLightTaskForm(props) {
     <Controller
           as={
             
-            <RadioGroup row aria-label="type"  defaultValue = 'task' name = 'taskType'> 
+            <RadioGroup row aria-label="type"  defaultValue = 'task' name = 'taskType' > 
               <RadioLabel   
                 value="task"
                 control={<OrangeRadio />}
                 label="Add as task"
-                size = 'small'
+               
               />
               <RadioLabel 
               value="spotlight" control={<OrangeRadio />} label="Add as spotlight" />
             </RadioGroup>
           }
-          name="RadioGroup"
+          name="taskType"
           control={control}
         />
             {/* <RadioBox>

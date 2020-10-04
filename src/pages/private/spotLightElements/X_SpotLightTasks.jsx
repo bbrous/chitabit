@@ -353,21 +353,13 @@ const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 
 // =================================================
 
-const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId} ) => {
-  console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightId )
-  
-  console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
-
-  
-
+const SortableItem = SortableElement(({ handleClick, value , spotlightData} ) => {
 
   let itemObject, itemAddress,  taskId
 
   if(value.type === 'task'){
 
-    // itemAddress = spotlightData.tasks
-    itemAddress = spotlightData.spotlights[spotlightId].tasks
-
+    itemAddress = spotlightData.tasks
     taskId = value.taskItem 
      itemObject = itemAddress[taskId]
  
@@ -507,9 +499,8 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 // ------- Map of Items   --------------------[]
 
 
-const SortableList = SortableContainer(({ items, spotlightData, spotlightId  } ) => {
+const SortableList = SortableContainer(({ items, spotlightData  } ) => {
  
-
 
   // console.log(' [SPOTLIGHT TASKS] - OOOOOOOO - items', items)
   // console.log(' [SPOTLIGHT TASKS SORT ] MARKEE - OOOOOOOO - props', spotlightData)
@@ -526,8 +517,6 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId  } )
           index={index} 
           value={value} 
           spotlightData = {spotlightData}
-          spotlightId = {spotlightId}
-
        
         />
          
@@ -542,15 +531,11 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId  } )
 const SpotLightTasks = (props) => {
   // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
 
-let spotlightId = props.id
+let id = props.id
 
   let spotlightData = props.display.private.data.spotlightData
+  // console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightData.tasks )
 
-
-
-
-
-  
  // get spotlight tasks array-----------------
  let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
  
@@ -576,12 +561,12 @@ let spotlightId = props.id
     //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     
      
-    // console.log('^^ [SPOTLIGHT TASKS] - new items array ^^^^ '  , items)
+    console.log('^^ [SPOTLIGHT TASKS] - new items array ^^^^ '  , items)
 
 
-    reduxUpdateTaskArray(spotlightId, items)
+    reduxUpdateTaskArray(id, items)
     
-  }, [ items, spotlightId, reduxUpdateTaskArray]);
+  }, [ items, id, reduxUpdateTaskArray]);
 
 
 
@@ -611,7 +596,6 @@ let spotlightId = props.id
             onSortEnd={onSortEnd}
             useDragHandle
             spotlightData = {spotlightData}
-            spotlightId = {spotlightId}
             />
 
 
