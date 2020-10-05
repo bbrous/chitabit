@@ -574,11 +574,13 @@ export const Spotlight = (props) => {
 
   let spotlightData = props.display.private.data.spotlightData
 
-  console.log('[SPOTLIGHT $$$$$ ] spotlights object' , spotlightData)
+ 
 
   let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
 
   const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
+
+  // console.log('[SPOTLIGHT $$$$$ NOte is ] --- ' , note)
   
   // convert target Date in ISO to UTC for addition/subtraction etc
   let targetDateInMilliseconds = DatetoUTC(endEst)
@@ -673,7 +675,7 @@ export const Spotlight = (props) => {
           <IconsWrapper> 
           {note && 
               <NotePopup 
-              noteId = {note} 
+              note = {note} 
               spotlightData = {spotlightData}
               
               />

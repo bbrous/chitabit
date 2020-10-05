@@ -152,7 +152,7 @@ const InitialStore = {
 
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-10-15T04:46:20.619Z",  //October 15  
-        note: 'note1',
+        note: 'This is a note for spot 1',
         clock: 'clock1',
         
         taskArray: [
@@ -161,7 +161,7 @@ const InitialStore = {
             completed: false, 
             type: 'task'
           },
-          {taskItem: 'spot1',completed: false, type: 'spotlight'},
+          {taskItem: 'spot2',completed: false, type: 'spotlight'},
           {taskItem: 'task1',completed: false, type: 'task'}, 
           {taskItem: 'task2',completed: false, type: 'task'},
           {taskItem: 'task3',completed: false, type: 'task'}
@@ -189,7 +189,7 @@ const InitialStore = {
 
             title: 'Transfer A-try into Spotlight',
             clock: 'clock6',
-            note: 'note5',
+            note: 'this is a note for task 1 /  spot 1',
             
           },
     
@@ -200,7 +200,7 @@ const InitialStore = {
     
             title: 'In Spotlight - complete layout with params from Initial Store',
             clock: 'clock7',
-            note: 'note6',
+             
             
           },
     
@@ -232,7 +232,7 @@ const InitialStore = {
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
         clock: 'clock2',
-        note: 'note2',
+        note: 'Spot 2 note here',
    
         
         taskArray: [
@@ -269,7 +269,7 @@ const InitialStore = {
 
             title: 'Initial Store',
             clock: 'clock9',
-            note: 'note7'
+            note: 'Task 1 Spot 2 note BBBB7'
             
           },
     
@@ -292,7 +292,7 @@ const InitialStore = {
     
             title: 'Clocks and Note Popups create',
             clock: 'clock11',
-            note: 'note8'
+            note: 'Task3 / Spot 2 note'
             
           },
 
@@ -314,7 +314,7 @@ const InitialStore = {
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         clock: 'clock3',
-        note: 'note3',
+        note: 'Spot 3 note - They are driving me crazy',
    
         
         taskArray: [
@@ -350,7 +350,7 @@ const InitialStore = {
     
             title: 'Note Popup',
             clock: 'clock12',
-            note: 'note9'
+            note: 'task 1 / Spot 3 note here'
             
           },
     
@@ -394,7 +394,7 @@ const InitialStore = {
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         clock: 'clock5',
-        note: 'note5',
+         
    
         
         taskArray: [
@@ -437,7 +437,7 @@ const InitialStore = {
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 
         clock: 'clock4',
-        note: 'note4',
+        note: 'Spot 4 note here',
    
         
         taskArray: [
@@ -468,82 +468,16 @@ const InitialStore = {
 
     },// end spotlights =============================================
 
-    'tasks': {
 
-
-      // -----------------------------
-
-
-      'task40' : {
-        id: 'task40',
-        type: 'task',  //or spotlight
-        completed: false,
-
-        spotHolder: 'spot4',
-        title: 'First task begin',
-        clock: 'clock6',
-         
-        
-      },
 
       // --------------------------
       
 
 
 
-    }, // end tasks
 
-    'notes': {
-      
-      'note1' :  {
-          'noteHolder': 'spot1',
-          'note': 'This is a note for Spot 1'
-        },
 
-      'note2' : {
-        'noteHolder': 'spot1',
-        'note': 'Format tasks like final form'
-      },
-      
-      'note3' : {
-        'noteHolder': 'spot1',
-        'note': 'Material ui menu'
-      },
 
-      'note4' :  {
-        'noteHolder': 'spot1',
-        'note': 'Material ui menu',
-      },
-
-      'note5' : {
-        'noteHolder': 'spot1',
-        'note': 'This is a note for task 1',
-      },
-      
-
-      'note6':  {
-        'noteHolder': 'spot1',
-        'note': 'Tiy need to convert timestamps',
-      },
-
-      'note7' :  {
-        'noteHolder': 'spot1',
-        'note': 'This is a note for task 21',
-      },
-
-      'note8' :  {
-        'noteHolder': 'spot1',
-        'note': 'Donald Trump is an asshole',
-      },
-
-      'note9' : {
-        'noteHolder': 'spot1',
-        'note': ' last note of this group'
-      },
-      
-   
-      
-    }, // end notes
 
 
 

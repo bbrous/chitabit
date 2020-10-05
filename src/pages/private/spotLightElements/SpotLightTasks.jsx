@@ -467,7 +467,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 
               {note && 
               <NotePopup 
-                noteId = {note} 
+                note = {note} 
                 spotlightData = {spotlightData}
               />
               }

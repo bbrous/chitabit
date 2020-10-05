@@ -58,9 +58,10 @@ const StyledPopover= styled('div')({
 // ===========================================
 const NotePopup = (props) => {
   let taskId = props.id
-  let noteId = props.noteId
-  let noteObject = props.spotlightData
-  let note = noteId ? noteObject.notes[noteId].note:  ''
+  // let noteId = props.noteId
+  // let noteObject = props.spotlightData
+  let note = props.note
+  // let note = noteId ? noteObject.notes[noteId].note:  ''
 
 
   // let note = props.spotlightData.notes 
