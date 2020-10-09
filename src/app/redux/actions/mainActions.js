@@ -180,14 +180,15 @@
           }
         }
 
-        export const  addTask = (id, newTask) => {
+        export const  addTask = (id, newTask, newTaskId) => {
           console.log('MAIN ACTIONS - add newTask clicked --- ', newTask)
           console.log('MAIN ACTIONS - add id clicked --- ', id)
           return {
             type: ADD_TASK,
             payload: {
               id: id,
-              task: newTask
+              task: newTask,
+              newTaskId: newTaskId
             }
           }
         }

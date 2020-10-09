@@ -202,14 +202,14 @@ function SpotLightTaskForm(props) {
 
     // const onSubmit = data => alert(JSON.stringify(data))
     const onSubmit = (data) => {
-      props.addTask(displayedId, data)
+      props.addTask(displayedId, data, newTaskId)
       reset()
     }
 
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
 
-taskIdGenerator(displayedId, currentTasks )
+let newTaskId = taskIdGenerator(displayedId, currentTasks )
 
 
   return (

@@ -124,8 +124,8 @@ const reducer_Main = produce((draft = initialState, action) => {
           let taskType = payload.task.taskType
           let todo = payload.task.todo
           let title = payload.task.title
-          let taskItem = cuid().toString()
-         
+          // let taskItem = cuid().toString()
+          let taskItem = payload.newTaskId
 
 
           if(taskType ==='spotlight'){
