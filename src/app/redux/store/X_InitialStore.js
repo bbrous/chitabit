@@ -153,7 +153,11 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-10-15T04:46:20.619Z",  //October 15  
         note: 'note1',
-        clock: 'clock1',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         
         taskArray: [
           {
@@ -184,7 +188,11 @@ const InitialStore = {
         timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
-        clock: 'clock2',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: 'note2',
    
         
@@ -216,7 +224,11 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
-        clock: 'clock3',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: 'note3',
    
         
@@ -248,7 +260,11 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
-        clock: 'clock5',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: 'note5',
    
         
@@ -276,7 +292,11 @@ const InitialStore = {
         timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 
-        clock: 'clock4',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: 'note4',
    
         
@@ -303,7 +323,11 @@ const InitialStore = {
 
         spotHolder: 'spot1',
         title: 'First task begin',
-        clock: 'clock6',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
          
         
       },
@@ -315,7 +339,11 @@ const InitialStore = {
 
         spotHolder: 'spot1',
         title: 'Transfer A-try into Spotlight',
-        clock: 'clock6',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: 'note5',
         
       },
@@ -327,7 +355,11 @@ const InitialStore = {
         spotHolder: 'spot1',
 
         title: 'In Spotlight - complete layout with params from Initial Store',
-        clock: 'clock7',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: 'note6',
         
       },
@@ -340,7 +372,11 @@ const InitialStore = {
 
         spotHolder: 'spot1',
         title: 'Clocks and Note Popups create',
-        clock: 'clock8',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: null
         
       },
@@ -354,7 +390,11 @@ const InitialStore = {
 
         spotHolder: 'spot2',
         title: 'First task begin',
-        clock: 'clock6',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
          
         
       },
@@ -366,7 +406,11 @@ const InitialStore = {
 
         spotHolder: 'spot2',
         title: 'Initial Store',
-        clock: 'clock9',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
         note: 'note7'
         
       },
@@ -378,7 +422,11 @@ const InitialStore = {
         spotHolder: 'spot2',
 
         title: 'Redux',
-        clock: 'clock10',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         }',
         note: null
         
       },
@@ -391,7 +439,11 @@ const InitialStore = {
         spotHolder: 'spot2',
 
         title: 'Clocks and Note Popups create',
-        clock: 'clock11',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         }',
         note: 'note8'
         
       },
@@ -405,7 +457,11 @@ const InitialStore = {
 
         spotHolder: 'spot3',
         title: 'First task begin',
-        clock: 'clock6',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
          
         
       },
@@ -417,7 +473,11 @@ const InitialStore = {
         spotHolder: 'spot3',
 
         title: 'Note Popup',
-        clock: 'clock12',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         }',
         note: 'note9'
         
       },
@@ -429,7 +489,11 @@ const InitialStore = {
         spotHolder: 'spot3',
 
         title: 'Clock Popup',
-        clock: 'clock13',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         }',
         note: ''
         
       },
@@ -442,7 +506,11 @@ const InitialStore = {
         spotHolder: 'spot3',
 
         title: 'Clock Popup Part deux',
-        clock: 'clock14',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         }',
         note: ''
         
       },
@@ -456,7 +524,11 @@ const InitialStore = {
 
         spotHolder: 'spot4',
         title: 'First task begin',
-        clock: 'clock6',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
          
         
       },
@@ -470,7 +542,11 @@ const InitialStore = {
 
         spotHolder: 'spot5',
         title: 'First task begin',
-        clock: 'clock6',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
          
         
       },

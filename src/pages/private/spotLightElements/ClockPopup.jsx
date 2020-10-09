@@ -1,18 +1,21 @@
-import React, {Fragment} from 'react'
-import{chitOrange,  mediumGrey, mediumLightGrey} from '../../../styles/colors'
-
-import { styled, createMuiTheme } from "@material-ui/core/styles"
-import Popover from '@material-ui/core/Popover';
-
-import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-
+import React, {Fragment, useState, useEffect, useRef} from 'react'
+import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../styles/colors'
 
  
-// import Button from '@material-ui/core/Button';
-// -----------------------
+// ----Material ui imports  -------
+import { styled, createMuiTheme  } from "@material-ui/core/styles"
+
+import Popover from '@material-ui/core/Popover';
+import Button from '@material-ui/core/Button';
+
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+import PauseIcon from '@material-ui/icons/Pause'
+import RefreshIcon from '@material-ui/icons/Refresh';
+
+// ---------------------------------
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
-
 
 // ------------------------
 
@@ -172,6 +175,34 @@ const StyledPopover= styled('div')({
   },
 })
 
+const StyledButton= styled(Button)({
+  display:'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: 'white',
+  height: '1rem',
+  fontSize: '.8rem',
+  verticalAlign: 'middle',
+  backgroundColor: 'orange',
+  textTransform: 'none',
+  cursor: 'pointer',
+  padding: '8px 5px 6px 5px',
+  margin: '3px',
+  '&:hover' : {
+    backgroundColor: chitOrangeLight,
+    color: mediumGrey
+  },
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+ 
+
 // ===========================================
 const ClockPopup = (props) => {
   let taskId = props.id
@@ -190,6 +221,36 @@ const ClockPopup = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
+  // --- timer controls-------------------------
+
+  const [timer, setTimer] = useState(0)
+  const [isActive, setIsActive] = useState(null)
+  const [isPaused, setIsPaused] = useState(null)
+  const countRef = useRef(null)
+
+  const handleStart = () => {
+    // start button logic here
+  }
+
+  const handlePause = () => {
+    // start button logic here
+  }
+
+  
+  const handleResume = () => {
+    // start button logic here
+  }
+  
+
+
+// %%%%%%%%%%%%  TEMP  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    const clockStatus = 'inactive'  // inactive, running, paused
+// %%%%%%%%%%%%  TEMP  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+
+
+// ---- main ClockPoPup return JSX  -----------------------------
   return (
     <Fragment>
       <ClockIcon 
@@ -254,8 +315,53 @@ const ClockPopup = (props) => {
           </TimeWrapper>
 
           <ControlsWrapper>
-            <button> Stop </button>
-            <button> Reset </button>
+
+            {clockStatus === 'inactive'  &&  
+            <StyledButton
+              variant="contained"
+               
+               
+              endIcon={<PlayArrowIcon />}
+            >
+                Start
+            </StyledButton>
+          }
+            {clockStatus === 'running'  &&  
+            <StyledButton
+            variant="contained"
+             
+             
+            endIcon={<PauseIcon />}
+          >
+              Pause
+          </StyledButton>
+            
+            
+            }
+            {clockStatus === 'paused'  &&  
+            <StyledButton
+            variant="contained"
+             
+             
+            endIcon={<PlayArrowIcon />}
+          >
+              Resume
+          </StyledButton> 
+            
+            }
+            <StyledButton
+            variant="contained"
+             
+            //  fontSize = 'large'
+            endIcon={<RefreshIcon />}
+          >
+              Reset
+          </StyledButton> 
+            
+            
+            
+            
+            
           </ControlsWrapper>
 
 

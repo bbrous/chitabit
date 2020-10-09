@@ -142,8 +142,8 @@ const InitialStore = {
 
     'spotlights': {
 
-      'spot1': {
-        id: 'spot1',
+      'spot_1': {
+        id: 'spot_1',
         type: 'spotlight',
         parent: '',
         completed: false,
@@ -153,65 +153,78 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-10-15T04:46:20.619Z",  //October 15  
         note: 'This is a note for spot 1',
-        clock: 'clock1',
-        
+ 
+
         taskArray: [
           {
-            taskItem: 'task0',
+            taskItem: 'spot_1_task_0',
             completed: false, 
             type: 'task'
           },
-          {taskItem: 'spot2',completed: false, type: 'spotlight'},
-          {taskItem: 'task1',completed: false, type: 'task'}, 
-          {taskItem: 'task2',completed: false, type: 'task'},
-          {taskItem: 'task3',completed: false, type: 'task'}
+          {taskItem: 'spot_2',completed: false, type: 'spotlight'},
+          {taskItem: 'spot_1_task_1',completed: false, type: 'task'}, 
+          {taskItem: 'spot_1_task_2',completed: false, type: 'task'},
+          {taskItem: 'spot_1_task_3',completed: false, type: 'task'}
          
         ],
 
     // spot 1 tasks  ------      
         tasks: {
-          'task0' : {
-            id: 'task0',
+          'spot_1_task_0' : {
+            id: 'spot_1_task_0',
             type: 'task',  //or spotlight
             completed: true,
     
-            spotHolder: 'spot1',
+            spotHolder: 'spot_1',
             title: 'First task begin',
-            clock: 'clock6',
-             
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },             
             
           },
     
-          'task1' : {
-            id: 'task1',
+          'spot_1_task_1' : {
+            id: 'spot_1_task_1',
             type: 'task',  //or spotlight
             completed: true,
 
             title: 'Transfer A-try into Spotlight',
-            clock: 'clock6',
-            note: 'this is a note for task 1 /  spot 1',
+                    clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },            note: 'this is a note for task 1 /  spot 1',
             
           },
     
-          'task2' :{
-            id: 'task2',
+          'spot_1_task_2' :{
+            id: 'spot_1_task_2',
             type: 'task',  //or spotlight
             completed: false,
     
             title: 'In Spotlight - complete layout with params from Initial Store',
-            clock: 'clock7',
-             
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },             
             
           },
     
               
-          'task3' :{
-            id: 'task3',
+          'spot_1_task_3' :{
+            id: 'spot_1_task_3',
             type: 'task',  //or spotlight
             completed: true,
 
             title: 'Clocks and Note Popups create',
-            clock: 'clock8',
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },            
             note: null
             
           },
@@ -220,8 +233,8 @@ const InitialStore = {
 
       },  // end spot1 -----------------------
 
-      'spot2': {
-        id: 'spot2',
+      'spot_2': {
+        id: 'spot_2',
         type: 'spotlight',
         parent: '',
         completed: false,
@@ -231,67 +244,88 @@ const InitialStore = {
         timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
-        clock: 'clock2',
-        note: 'Spot 2 note here',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+        },        
+         
+         note: 'Spot 2 note here',
    
         
+
         taskArray: [
           {
-            taskItem: 'task20',
+            taskItem: 'spot_2_task_0',
             completed: false, 
             type: 'task'
           },
-          {taskItem: 'task21',completed: false, type: 'task'}, 
-          {taskItem: 'task22',completed: false, type: 'task'},
-          {taskItem: 'task23',completed: false, type: 'task'},
-          {taskItem: 'spot3',completed: false, type: 'spotlight'}
+          {taskItem: 'spot_2_task_1',completed: false, type: 'task'}, 
+          {taskItem: 'spot_2_task_2',completed: false, type: 'task'},
+          {taskItem: 'spot_2_task_3',completed: false, type: 'task'},
+          {taskItem: 'spot_3',completed: false, type: 'spotlight'}
          
         ],
  
     // spot 2 tasks  ----       
         tasks: {  
 
-          'task20' : {
-            id: 'task20',
+          'spot_2_task_0' : {
+            id: 'spot_2_task_0',
             type: 'task',  //or spotlight
             completed: true,
 
             title: 'First task begin',
-            clock: 'clock6',
-             
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },             
             
           },
     
-          'task21' : {
-            id: 'task21',
+          'spot_2_task_1' : {
+            id: 'spot_2_task_1',
             type: 'task',  //or spotlight
             completed: true,
 
             title: 'Initial Store',
-            clock: 'clock9',
-            note: 'Task 1 Spot 2 note BBBB7'
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },            
+         note: 'Task 1 Spot 2 note BBBB7'
             
           },
     
-          'task22' :{
-            id: 'task22',
+          'spot_2_task_2' :{
+            id: 'spot_2_task_2',
             type: 'task',  //or spotlight
             completed: false,
     
             title: 'Redux',
-            clock: 'clock10',
+                    clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+         },
             note: null
             
           },
     
               
-          'task23' :{
-            id: 'task23',
+          'spot_2_task_3' :{
+            id: 'spot_2_task_3',
             type: 'task',  //or spotlight
             completed: false,
     
             title: 'Clocks and Note Popups create',
-            clock: 'clock11',
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },
             note: 'Task3 / Spot 2 note'
             
           },
@@ -302,8 +336,8 @@ const InitialStore = {
       }, //end spot2 ---------------------------
 
 
-      'spot3': {
-        id: 'spot3',
+      'spot_3': {
+        id: 'spot_3',
         type: 'spotlight',
         parent: '',
         completed: false,
@@ -313,66 +347,86 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
-        clock: 'clock3',
-        note: 'Spot 3 note - They are driving me crazy',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+        },        
+         note: 'Spot 3 note - They are driving me crazy',
    
         
+
         taskArray: [
           {
-            taskItem: 'task30',
+            taskItem: 'spot_3_task_0',
             completed: true, 
             type: 'task'
           },
-          {taskItem: 'task33',completed: false, type: 'task'},
-          {taskItem: 'task31',completed: false, type: 'task'},
-          {taskItem: 'task32',completed: false, type: 'task'}
+          {taskItem: 'spot_3_task_3',completed: false, type: 'task'},
+          {taskItem: 'spot_3_task_1',completed: false, type: 'task'},
+          {taskItem: 'spot_3_task_2',completed: false, type: 'task'}
          
         ],
 
     // spot3 tasks
         tasks: {
 
-          'task30' : {
-            id: 'task30',
+          'spot_3_task_0' : {
+            id: 'spot_3_task_0',
             type: 'task',  //or spotlight
             completed: true,
     
             title: 'First task begin',
-            clock: 'clock6',
-             
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },             
             
           },
     
-          'task31' : {
-            id: 'task31',
+          'spot_3_task_1' : {
+            id: 'spot_3_task_1',
             type: 'task',  //or spotlight
             completed: false,
     
             title: 'Note Popup',
-            clock: 'clock12',
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },
             note: 'task 1 / Spot 3 note here'
             
           },
     
-          'task32' :{
-            id: 'task32',
+          'spot_3_task_2' :{
+            id: 'spot_3_task_2',
             type: 'task',  //or spotlight
             completed: false,
     
             title: 'Clock Popup',
-            clock: 'clock13',
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },
             note: ''
             
           },
     
           
-          'task33' :{
-            id: 'task33',
+          'spot_3_task_3' :{
+            id: 'spot_3_task_3',
             type: 'task',  //or spotlight
             completed: false,
     
             title: 'Clock Popup Part deux',
-            clock: 'clock14',
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },
             note: ''
             
           },
@@ -382,8 +436,8 @@ const InitialStore = {
 
       }, // end spot3 -----------------------
 
-      'spot5': {
-        id: 'spot5',
+      'spot_5': {
+        id: 'spot_5',
         type: 'spotlight',
         parent: '',
         completed: false,
@@ -393,13 +447,17 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
-        clock: 'clock5',
-         
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+        },         
    
         
+
         taskArray: [
           {
-            taskItem: 'task50',
+            taskItem: 'spot_5_task_0',
             completed: false, 
             type: 'task'
           },
@@ -408,14 +466,17 @@ const InitialStore = {
 
     // spot5 tasks --------
         tasks: {
-          'task50' : {
-            id: 'task50',
+          'spot_5_task_0' : {
+            id: 'spot_5_task_0',
             type: 'task',  //or spotlight
             completed: false,
 
             title: 'First task begin',
-            clock: 'clock6',
-             
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },             
             
           },
 
@@ -425,8 +486,8 @@ const InitialStore = {
 
       }, //end spot5 -------------------------
 
-      'spot4': {
-        id: 'spot4',
+      'spot_4': {
+        id: 'spot_4',
         type: 'spotlight',
         parent: '',
         completed: false,
@@ -436,13 +497,19 @@ const InitialStore = {
         timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 
-        clock: 'clock4',
-        note: 'Spot 4 note here',
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+        },
+
+         note: 'Spot 4 note here',
    
         
+
         taskArray: [
           {
-            taskItem: 'task40',
+            taskItem: 'spot_4_task_0',
             completed: false, 
             type: 'task'
           },
@@ -450,14 +517,17 @@ const InitialStore = {
  
     // spot4 tasks --------
     tasks: {
-      'task40' : {
-        id: 'task40',
+      'spot_4_task_0' : {
+        id: 'spot_4_task_0',
         type: 'task',  //or spotlight
         completed: false,
 
         title: 'First task begin',
-        clock: 'clock6',
-         
+        clock: {
+          timerStatus: null, // inactive, running, paused, stopped
+          accumulatedTime: 0,
+          lastDate: null
+        },         
         
       },
 
@@ -473,166 +543,6 @@ const InitialStore = {
       // --------------------------
       
 
-
-
-
-
-
-
-
-
-    'clocks': {
-      
-      'clock1' :  {
-          'clockHolder': 'spot1',
-          'type' : 'spotlight',
-          'clockStatus': 'running',
-          'startClock' : null,
-          'pausedClock' :null, 
-          'endClock' : null
-
-        },
-
-              
-      'clock2' :  {
-        'clockHolder': 'spot2',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-              
-      'clock3' :  {
-        'clockHolder': 'spot3',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-                    
-      'clock4' :  {
-        'clockHolder': 'spot4',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-                    
-      'clock5' :  {
-        'clockHolder': 'spot5',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-      'clock6' :  {
-        'clockHolder': 'task1',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-      'clock7' :  {
-        'clockHolder': 'task2',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-      
-      'clock8' :  {
-        'clockHolder': 'task3',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-      
-      'clock9' :  {
-        'clockHolder': 'task21',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-            
-      'clock10' :  {
-        'clockHolder': 'task22',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-            
-      'clock11' :  {
-        'clockHolder': 'task23',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-            
-      'clock12' :  {
-        'clockHolder': 'task31',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-      
-            
-      'clock13' :  {
-        'clockHolder': 'task32',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-            
-      'clock14' :  {
-        'clockHolder': 'task33',
-        'type' : 'spotlight',
-        'clockStatus': 'stopped',
-        'startClock' : null,
-        'pausedClock' :null, 
-        'endClock' : null
-
-      },
-
-    }, // end clocks
 
 
 

@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
 
 import{addTask} from '../app/redux/actions/mainActions'
+import{taskIdGenerator} from '../app/helpers/idKeyGenerators'
 
 // Material UI =============================
 
@@ -182,8 +183,22 @@ function SpotLightTaskForm(props) {
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
 
   let displayedId = props.display.private.spotLightDisplay.displayedSpotLightId
+  let currentTasks = props.display.private.data.spotlightData.spotlights[displayedId].tasks
 
-// console.log('SPOTLIGHT TASK FORM : id is - ',  displayedId)
+
+
+
+
+  // console.log('SPOTLIGHT TASK FORM : tasks - ',  Object.keys(currentTasks))
+  // let lastCurrentTask = Math.max(Object(currentTasks))
+  // let highestValue
+  // let allTaskValues = currentTasks.map((taskValue, index) => {
+    
+
+  //   return taskValue
+
+  // })
+
 
     // const onSubmit = data => alert(JSON.stringify(data))
     const onSubmit = (data) => {
@@ -194,7 +209,7 @@ function SpotLightTaskForm(props) {
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
 
-
+taskIdGenerator(displayedId, currentTasks )
 
 
   return (

@@ -1,6 +1,8 @@
 import { createReducer } from './reducerUtil'
 import produce from 'immer';
 import cuid from 'cuid';
+
+
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
  
 import InitialStore from '../store/InitialStore'
@@ -37,7 +39,7 @@ import {
 
           spotLightDisplay: {
             displaySpotLight: 'show',  // or 'none'  or 'show ' 
-            displayedSpotLightId: 'spot1',
+            displayedSpotLightId: 'spot_1',
             // spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
             
             // displaySpotLightPage: false,
@@ -116,7 +118,7 @@ const reducer_Main = produce((draft = initialState, action) => {
         }// end CHANGE_DISPLAY_SPOTLIGHT
 
      
-        case ADD_TASK : 
+    case ADD_TASK : 
         {
          let id = payload.id
           let taskType = payload.task.taskType
@@ -124,7 +126,7 @@ const reducer_Main = produce((draft = initialState, action) => {
           let title = payload.task.title
           let taskItem = cuid().toString()
          
-console.log('REDUCER MAIN - Im a spotlight task ID @@@@@@ ', id)
+
 
           if(taskType ==='spotlight'){
             // console.log('REDUCER MAIN - Im a spotlight task @@@@@@ ')

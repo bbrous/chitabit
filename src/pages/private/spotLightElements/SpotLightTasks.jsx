@@ -354,9 +354,9 @@ const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 // =================================================
 
 const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId} ) => {
-  console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightId )
+  // console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightId )
   
-  console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
+  // console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
 
   
 
@@ -391,7 +391,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     
   }
   const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
-  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , type)
+  console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , type)
 
 
   // @@@@@@@@@@@@@@@@@ TEMP  Get from Redux store @@@@@@@@@@@@@@@@@@@@@@
