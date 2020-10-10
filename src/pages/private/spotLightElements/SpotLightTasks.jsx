@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 import{updateTaskArray, openModal} from '../../../app/redux/actions/mainActions'
 import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
-
+import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
 
 import MenuPopup from './MenuPopup'
 import ClockPopup from './ClockPopup'
@@ -323,6 +323,7 @@ const IconWrapper= styled('div')({
 })
 
 const SpotlightTag= styled('div')({
+  display:'block',
   color: 'red',
   fontSize: '.8rem',
   textDecoration: 'underline',
@@ -353,12 +354,13 @@ const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 
 // =================================================
 
-const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId} ) => {
+const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight} ) => {
   // console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightId )
   
   // console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
 
-  
+  const handleChangeSpotlight = (spotlightId)=>{console.log('SPotlight change clicked', spotlightId)}
+ 
 
 
   let itemObject, itemAddress,  taskId
@@ -390,8 +392,8 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
  
     
   }
-  const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
-  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , type)
+  const {id, type, title, completed, endEst,  note, timeStamp, parent } = itemObject
+  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- ID  -' , id)
 
 
   // @@@@@@@@@@@@@@@@@ TEMP  Get from Redux store @@@@@@@@@@@@@@@@@@@@@@
@@ -415,7 +417,19 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
             &nbsp; 
           
           {type === 'spotlight' && 
-            <SpotlightTag>Spotlight</SpotlightTag>
+            <SpotlightTag 
+
+            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
+            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
+
+              // Shows up in actions (console.log), but does not trigger Change
+
+            onClick={()=> changeDisplaySpotlight(id)}
+
+            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
+            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
+           
+            >Spotlight</SpotlightTag>
           } 
           
           </IconWrapper>
@@ -474,7 +488,8 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 
                
               <ClockPopup 
-                clockId = {clock} 
+                id = {id} 
+
                 spotlightData = {spotlightData}
               />    
             
@@ -507,7 +522,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 // ------- Map of Items   --------------------[]
 
 
-const SortableList = SortableContainer(({ items, spotlightData, spotlightId  } ) => {
+const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight  } ) => {
  
 
 
@@ -527,6 +542,7 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId  } )
           value={value} 
           spotlightData = {spotlightData}
           spotlightId = {spotlightId}
+          changeDisplaySpotlight= {changeDisplaySpotlight}
 
        
         />
@@ -612,6 +628,7 @@ let spotlightId = props.id
             useDragHandle
             spotlightData = {spotlightData}
             spotlightId = {spotlightId}
+            changeDisplaySpotlight = {props.changeDisplaySpotlight}
             />
 
 
@@ -627,7 +644,9 @@ let spotlightId = props.id
 const actions = {
   // showSpotLight,
   // closeSpotLight
-  updateTaskArray, openModal
+  updateTaskArray, 
+  openModal,
+  changeDisplaySpotlight
 }
 
 const mapState = state => ({

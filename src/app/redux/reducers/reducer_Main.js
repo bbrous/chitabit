@@ -93,10 +93,12 @@ const reducer_Main = produce((draft = initialState, action) => {
      draft.modalDisplayed = false
      return draft;
      
-   }// end CHANGE_DISPLAY_SPOTLIGHT
+   }// end OPEN_MODAL
 
     case CHANGE_DISPLAY_SPOTLIGHT : 
          {
+
+          console.log('REDUCER MAIN - CHANGE_DISPLAY_SPOTLIGHT clicked reduce ')
           draft.spotLightDisplay.displayedSpotLightId = payload.displayedSpotLightId
           return draft;
           

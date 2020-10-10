@@ -1,5 +1,9 @@
-import React from 'react'
 
+/*
+Id geenerartors for: 
+ - spotlight tasks:   taskIdGenerator       ... spot_#_task_#
+ - spotlights:        spotlightIdGenerator  ... spot_#
+*/
 
 // ==== Task Id Generator ========================================
 

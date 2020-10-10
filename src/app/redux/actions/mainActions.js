@@ -87,6 +87,8 @@
         }
 
         export const  changeDisplaySpotlight= (newSpotlight) => {
+
+          console.log('[mainActions I be clicked - newSpotlight = ' , newSpotlight)
           return {
             type: CHANGE_DISPLAY_SPOTLIGHT,
             payload: {

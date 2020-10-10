@@ -583,27 +583,33 @@ export const Spotlight = (props) => {
   // console.log('[SPOTLIGHT $$$$$ NOte is ] --- ' , note)
   
   // convert target Date in ISO to UTC for addition/subtraction etc
-  let targetDateInMilliseconds = DatetoUTC(endEst)
+  let targetDate, days, hours, mins, secs
+  if(endEst) {
+    let targetDateInMilliseconds = DatetoUTC(endEst)
+    
+    // format target Date in milliseconds for display
+    targetDate  =  UTCtoDate(targetDateInMilliseconds)
+    let currentDate = new Date()
+
+
+
+    let currentUTCDate = DatetoUTC(currentDate)
+    let UTCTimeRemaining = targetDateInMilliseconds - currentUTCDate
   
-  // format target Date in milliseconds for display
-  let targetDate  =  UTCtoDate(targetDateInMilliseconds)
-   
+    let  timeRemainingObject =  convertMS(UTCTimeRemaining)
+     days = Math.abs(timeRemainingObject.day)
+     hours = Math.abs(timeRemainingObject.hour)
+     mins = Math.abs(timeRemainingObject.minute)
+     secs = Math.abs(timeRemainingObject.seconds)
   
-  let currentDate = new Date()
+    console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs
+    )
+  }else{
+    targetDate  = 'No target date provided'
+    
+  }
+  
 
-
-
-  let currentUTCDate = DatetoUTC(currentDate)
-  let UTCTimeRemaining = targetDateInMilliseconds - currentUTCDate
-
-  let timeRemainingObject =  convertMS(UTCTimeRemaining)
-  let days = Math.abs(timeRemainingObject.day)
-  let hours = Math.abs(timeRemainingObject.hour)
-  let mins = Math.abs(timeRemainingObject.minute)
-  let secs = Math.abs(timeRemainingObject.seconds)
-
-  console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs
-  )
 
 
   return (
@@ -651,14 +657,22 @@ export const Spotlight = (props) => {
 
         <DetailRow>
           <DetailRowLeft>Target: </DetailRowLeft>
+ 
           <DetailRowRight> {targetDate} </DetailRowRight>
+          
+          
         </DetailRow>
-
-        <DetailRowOrange>
-          <DetailRowLeft>Remaining: </DetailRowLeft>
-          <DetailRowRight>{days} days {hours} hrs {mins} min {secs} secs</DetailRowRight>
-        </DetailRowOrange>
-
+        {/* If there is an estimated end date ... display  */}
+        
+        {endEst && 
+          <DetailRowOrange>
+            <DetailRowLeft>Remaining: </DetailRowLeft>
+            
+            <DetailRowRight>{days} days {hours} hrs {mins} min {secs} secs</DetailRowRight>
+            
+            
+          </DetailRowOrange>
+        }
         <DetailRow>
           <DetailRowLeft>Elapsed: </DetailRowLeft>
           <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
