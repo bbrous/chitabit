@@ -193,12 +193,14 @@
           }
         }
 
-        export const  addSpotLight = (spotlight) => {
+        export const  addSpotLight = (spotlight, newSpotlightId) => {
           console.log('MAIN ACTIONS - add spotlight clicked')
           return {
             type: ADD_SPOTLIGHT,
-            payload: spotlight
-            
+            payload: {
+              spotlight : spotlight,
+              newSpotlightId: newSpotlightId
+            }
           }
         }
         

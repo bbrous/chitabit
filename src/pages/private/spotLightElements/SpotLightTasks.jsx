@@ -391,7 +391,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     
   }
   const {id, type, title, completed, endEst, clock, note, timeStamp, parent } = itemObject
-  console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , type)
+  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- note id -' , type)
 
 
   // @@@@@@@@@@@@@@@@@ TEMP  Get from Redux store @@@@@@@@@@@@@@@@@@@@@@

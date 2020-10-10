@@ -126,7 +126,7 @@ const reducer_Main = produce((draft = initialState, action) => {
           let title = payload.task.title
           // let taskItem = cuid().toString()
           let taskItem = payload.newTaskId
-
+          let timestamp = new Date()
 
           if(taskType ==='spotlight'){
             // console.log('REDUCER MAIN - Im a spotlight task @@@@@@ ')
@@ -141,10 +141,38 @@ const reducer_Main = produce((draft = initialState, action) => {
           type: 'spotlight', 
           parent: id,
           timeStamp:"2020-09-25T04:46:20.619Z",
-          // clock: 'clock3',
+          clock: {
+            timerStatus: null, // inactive, running, paused, stopped
+            accumulatedTime: 0,
+            lastDate: null
+           }, 
           // endEst:"2020-10-15T04:46:20.619Z",
           // note: 'note1',
-          taskArray: []
+          taskArray: [
+            {
+              taskItem: 'task0' ,
+              completed: false, 
+              type: 'task'
+            }
+
+          ],
+
+          tasks  : {
+            'task0' : {
+            id: 'task0',
+            type: 'task',  
+            completed: false,
+           
+            title: 'First task begin', 
+            clock: 'clock6',
+
+            timeStamp: timestamp,
+
+          }
+        }
+
+          
+          
         }
 
          draft.data.spotlightData.spotlights[id].taskArray.push(
@@ -186,28 +214,33 @@ const reducer_Main = produce((draft = initialState, action) => {
           console.log('REDUCER MAIN - ADD_SPOTLIGHT reducer clicked @@@@@@ ', payload)
           
           let timestamp = new Date()
-          let newSpotLightId = cuid().toString()
-          let newTaskOneId = cuid().toString()
+          // let newSpotLightId = cuid().toString()
+          let newSpotlightId = payload.newSpotlightId
 
           let spotlight  = {
-            id: newSpotLightId,
+            id: newSpotlightId,
             type: 'spotlight', 
             parent: '',
             completed: false,
-            title: payload.title, 
+            title: payload.spotlight.title, 
     
             timeStamp: timestamp,
-            endEst:payload.endEst,
-            mos: payload.mos ,
-            wks: payload.wks ,
-            days: payload.days ,
-            hrs: payload.hrs ,
-            mins: payload.mins ,
+            endEst:payload.spotlight.endEst,
+            mos: payload.spotlight.mos ,
+            wks: payload.spotlight.wks ,
+            days: payload.spotlight.days ,
+            hrs: payload.spotlight.hrs ,
+            mins: payload.spotlight.mins ,
 
 
 
-            clock: 'clock3',
-            note: payload.note,
+            clock: {
+              timerStatus: null, // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+             }, 
+
+            note: payload.spotlight.note,
             taskArray: [
               {
                 taskItem: 'task0' ,
@@ -237,7 +270,7 @@ const reducer_Main = produce((draft = initialState, action) => {
 
 
  
-          draft.data.spotlightData.spotlights[newSpotLightId] = spotlight
+          draft.data.spotlightData.spotlights[newSpotlightId] = spotlight
         
 
          return draft;

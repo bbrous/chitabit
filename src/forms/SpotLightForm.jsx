@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
 import{addSpotLight} from '../app/redux/actions/mainActions'
-
+import{spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
 // Material UI =============================
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -362,6 +362,11 @@ function StyledCheckbox(props) {
 // ===========================================
 const SpotLightForm = (props) => {
 
+  // console.log('[SPOTLIGHT FORM ] : props.display - ', props.display.private.data.spotlightData.spotlights)
+
+  let allSpotlights = props.display.private.data.spotlightData.spotlights
+  let newSpotlightId = spotlightIdGenerator(allSpotlights)
+
   const today = new Date() // for datepicker initial value
 
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
@@ -386,7 +391,7 @@ const SpotLightForm = (props) => {
     };
              
 
-  const onSubmit = data => props.addSpotLight(data)
+  const onSubmit = data => props.addSpotLight(data, newSpotlightId)
   // const onSubmit = data => alert(JSON.stringify(data))
 
   // return ==================== return ================= return ==============
