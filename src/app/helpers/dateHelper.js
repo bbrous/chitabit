@@ -26,6 +26,49 @@ export function convertMS( milliseconds ) {
   };
 }
 
+export function convertElapsedTime(milliseconds){
+
+  const dayMS = 86400000 // ms in a day
+  const hourMS = 3600000
+  const minuteMS = 60000
+
+  let days, hours, minutes, seconds
+  let remainingTime = milliseconds
+      
+  days = Math.floor(remainingTime/dayMS)
+  remainingTime = remainingTime % dayMS
+
+  // console.log('DATE HELPER Remainingtime  - 1: ', remainingTime)
+  //     console.log('DATE HELPER convertElapsedTime - days: ', days)
+
+ 
+
+  hours = Math.floor(remainingTime / hourMS)
+  remainingTime = remainingTime % hourMS
+  // console.log('DATE HELPER Remainingtime  - 2: ', remainingTime)
+  // console.log('DATE HELPER convertElapsedTime - hours: ', hours)
+
+  minutes = Math.floor(remainingTime / minuteMS)
+  remainingTime = remainingTime % minuteMS
+
+  // console.log('DATE HELPER Remainingtime  - 3: ', remainingTime)
+  // console.log('DATE HELPER convertElapsedTime - minutes: ', minutes)
+
+  seconds = Math.floor(remainingTime / 1000)
+
+  // console.log('DATE HELPER convertElapsedTime - days: ', days)
+  // console.log('DATE HELPER convertElapsedTime - hours: ', hours)
+  // console.log('DATE HELPER convertElapsedTime - minutes: ', minutes)
+  // console.log('DATE HELPER convertElapsedTime - seconds: ', seconds)
+  // console.log(' -------------------------------- ')
+  return {
+      days: days,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds
+  };
+}
+
 
 
 

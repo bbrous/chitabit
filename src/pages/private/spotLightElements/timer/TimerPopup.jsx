@@ -1,6 +1,8 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react'
-import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../styles/colors'
+import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../../styles/colors'
 
+
+import TimerDisplay from './TimerDisplay'
  
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
@@ -24,7 +26,9 @@ const Wrapper= styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  
+ 
+  backgroundColor: mediumGrey,
+  padding: '4px',
 
   
 
@@ -35,95 +39,16 @@ const Wrapper= styled('div')({
   },
 })
 
-const TimeWrapper= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const TimeRow= styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-  
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const TimeComponent= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const Time= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const TimeLabel= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
 
 const ControlsWrapper= styled('div')({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  
-
-  
-
+  margin: '4px',
+  backgroundColor: 'white',
+  borderRadius: '3px',
+  width: '100%',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -225,7 +150,8 @@ const ClockPopup = (props) => {
 
   // --- timer controls-------------------------
 
-  const [timer, setTimer] = useState(0)
+
+
   const [isActive, setIsActive] = useState(null)
   const [isPaused, setIsPaused] = useState(null)
   const countRef = useRef(null)
@@ -283,41 +209,11 @@ const ClockPopup = (props) => {
 
         
         <Wrapper>
-          <TimeWrapper>
-<TimeRow>
 
-<TimeComponent>
-              <Time>1</Time>
-              <TimeLabel>days</TimeLabel>
-
-            </TimeComponent>
-
-            <TimeComponent>
-              <Time>1</Time>
-              <TimeLabel>hrs</TimeLabel>
-
-            </TimeComponent>
-
-            <TimeComponent>
-              <Time>1</Time>
-              <TimeLabel>min</TimeLabel>
-
-            </TimeComponent>
-
-            <TimeComponent>
-              <Time>1</Time>
-              <TimeLabel>secs</TimeLabel>
-
-            </TimeComponent>
-</TimeRow>
-
-
-
-
-          </TimeWrapper>
+        <TimerDisplay/>
+        
 
           <ControlsWrapper>
-
             {clockStatus === 'inactive'  &&  
             <StyledButton
               variant="contained"

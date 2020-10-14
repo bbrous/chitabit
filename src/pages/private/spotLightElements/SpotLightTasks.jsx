@@ -5,7 +5,7 @@ import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
 import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
 
 import MenuPopup from './MenuPopup'
-import ClockPopup from './ClockPopup'
+import ClockPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
 
 // import {NavLink, withRouter, useLocation} from 'react-router-dom'
@@ -359,8 +359,6 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
   
   // console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
 
-  const handleChangeSpotlight = (spotlightId)=>{console.log('SPotlight change clicked', spotlightId)}
- 
 
 
   let itemObject, itemAddress,  taskId
@@ -375,11 +373,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
  
 
     // console.log('[SPOTLIGHT TASKS] --- task id -' , itemObject)
-    
-    // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
-     // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
-      // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
-       // @@@@@@@@@@@  GET ITEM SPECIFIC data from VALUE.id
+
 
 
   }
@@ -571,34 +565,49 @@ let spotlightId = props.id
  let taskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
  
  
-// console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , taskArray )
+// moving tasks (items)
   const [items, setItems] = useState(taskArray);
 
- let reduxUpdateTaskArray = props.updateTaskArray 
-
- useEffect(() => {
-    
-  // Put ITEMS INTO REDUX HERE ************************
-  //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  useEffect(() => {
+      
+    setItems(taskArray)
   
-  setItems(taskArray)
+  }, [taskArray]);
  
-  
-}, [taskArray]);
- 
+// adding new tasks
+  let reduxUpdateTaskArray = props.updateTaskArray 
   useEffect(() => {
     
-    // Put ITEMS INTO REDUX HERE ************************
-    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-    
-     
-    // console.log('^^ [SPOTLIGHT TASKS] - new items array ^^^^ '  , items)
-
 
     reduxUpdateTaskArray(spotlightId, items)
     
   }, [ items, spotlightId, reduxUpdateTaskArray]);
 
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//clock functions
+
+  const [timer, setTimer] = useState(0);
+
+// updateDatabase runs on compenent unmount
+  const updateDatabase = ()=>{
+    console.log('[DUMMY FUNCTION RUN]... hopefully on close')
+  }
+
+
+
+  useEffect(() => {
+    
+
+    // clock stuff here
+
+    return updateDatabase
+
+    
+  }, []);
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 

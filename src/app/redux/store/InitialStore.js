@@ -192,10 +192,12 @@ const InitialStore = {
 
             title: 'Transfer A-try into Spotlight',
                     clock: {
-          timerStatus: null, // inactive, running, paused, stopped
+          timerStatus: 'inactive', // inactive, running, paused, stopped
           accumulatedTime: 0,
-          lastDate: null
-         },            note: 'this is a note for task 1 /  spot 1',
+          lastDate: ''
+         },            
+         
+         note: 'this is a note for task 1 /  spot 1',
             
           },
     

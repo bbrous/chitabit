@@ -8,7 +8,7 @@ import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey,   
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 import MenuPopup from './MenuPopup'
-import ClockPopup from './ClockPopup'
+import ClockPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
 
 // &&&&   TEMP Initial Store Import -- Get from Database
