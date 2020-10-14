@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect, useRef} from 'react'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../../styles/colors'
 
 
-import TimerDisplay from './TimerDisplay'
+import {PopupTimerDisplay} from './TimerDisplay'
  
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
@@ -210,7 +210,7 @@ const ClockPopup = (props) => {
         
         <Wrapper>
 
-        <TimerDisplay/>
+        <PopupTimerDisplay/>
         
 
           <ControlsWrapper>

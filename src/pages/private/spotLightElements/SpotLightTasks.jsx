@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import{updateTaskArray, openModal} from '../../../app/redux/actions/mainActions'
 import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
 import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
+import {TaskTimerDisplay} from './timer/TimerDisplay'
 
 import MenuPopup from './MenuPopup'
 import ClockPopup from './timer/TimerPopup'
@@ -465,7 +466,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
             }
 
             {type === 'task' && 
-              <div>  Clock Started here </div>
+              <TaskTimerDisplay/>
          
             }
 
