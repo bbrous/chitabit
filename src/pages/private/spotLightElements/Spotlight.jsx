@@ -694,7 +694,7 @@ export const Spotlight = (props) => {
               
               />
           }
-              <ClockPopup id = {id}/>
+          
           </IconsWrapper> 
           </BottomWrapper>
           

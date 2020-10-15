@@ -164,7 +164,8 @@ const InitialStore = {
           {taskItem: 'spot_2',completed: false, type: 'spotlight'},
           {taskItem: 'spot_1_task_1',completed: false, type: 'task'}, 
           {taskItem: 'spot_1_task_2',completed: false, type: 'task'},
-          {taskItem: 'spot_1_task_3',completed: false, type: 'task'}
+          {taskItem: 'spot_1_task_3',completed: false, type: 'task'},
+          {taskItem: 'spot_1_task_6',completed: false, type: 'task'}
          
         ],
 
@@ -178,13 +179,26 @@ const InitialStore = {
             spotHolder: 'spot_1',
             title: 'First task begin',
             clock: {
-              timerStatus: null, // inactive, running, paused, stopped
+              timerStatus: 'inactive', // inactive, running, paused, stopped
               accumulatedTime: 0,
               lastDate: null
             },             
             
           },
+          'spot_1_task_6' : {
+            id: 'spot_1_task_0',
+            type: 'task',  //or spotlight
+            completed: true,
     
+            spotHolder: 'spot_1',
+            title: 'We are almost done',
+            clock: {
+              timerStatus: 'inactive', // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },             
+            
+          }, 
           'spot_1_task_1' : {
             id: 'spot_1_task_1',
             type: 'task',  //or spotlight
@@ -192,7 +206,7 @@ const InitialStore = {
 
             title: 'Transfer A-try into Spotlight',
                     clock: {
-          timerStatus: 'inactive', // inactive, running, paused, stopped
+          timerStatus: 'running', // inactive, running, paused, stopped
           accumulatedTime: 0,
           lastDate: ''
          },            
@@ -208,7 +222,7 @@ const InitialStore = {
     
             title: 'In Spotlight - complete layout with params from Initial Store',
             clock: {
-              timerStatus: null, // inactive, running, paused, stopped
+              timerStatus: 'paused', // inactive, running, paused, stopped
               accumulatedTime: 0,
               lastDate: null
             },             
@@ -223,7 +237,7 @@ const InitialStore = {
 
             title: 'Clocks and Note Popups create',
             clock: {
-              timerStatus: null, // inactive, running, paused, stopped
+              timerStatus: 'stopped', // inactive, running, paused, stopped
               accumulatedTime: 0,
               lastDate: null
             },            
@@ -232,6 +246,22 @@ const InitialStore = {
           },
 
         }, 
+
+        'spot_1_task_6' :{
+          id: 'spot_1_task_6',
+          type: 'task',  //or spotlight
+          completed: false,
+  
+          title: 'In Spotlight - complete layout with params from Initial Store',
+          clock: {
+            timerStatus: 'paused', // inactive, running, paused, stopped
+            accumulatedTime: 0,
+            lastDate: null
+          },             
+          
+        },
+
+        
 
       },  // end spot1 -----------------------
 

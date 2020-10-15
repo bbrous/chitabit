@@ -5,107 +5,11 @@ import {UTCtoDate, DatetoUTC, convertMS, convertElapsedTime} from '../../../../a
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
 
-/* ###################################################
-############# WARNING SOLUTION _____ ##########################
 
-
-https://medium.com/@shanplourde/avoid-react-state-update-warnings-on-unmounted-components-bcecf054e953
-
-Move up the component tree
-
-#####################################################   */
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 
-
-// ------------------
-const TimeWrapper= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-  padding: '4px',
-  color: darkGrey,
-backgroundColor: 'white',
-  borderRadius: '3px',
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-
-const TimeRow= styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  width: '100%',
- 
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-
-const TimeComponent= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  width: '30%',
-
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-
-const Time= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
- 
-  fontSize: '.85rem',
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const TimeLabel= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: '.65rem',
-  
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
 
 //---------TASK Display STYLING ---------------------------------
 
@@ -214,13 +118,13 @@ const TaskTimeLabel= styled('div')({
 })
 
 
-// ==================================
- function TimerDisplay() {
+// ==========================
+function TaskTimerDisplay() {
 
-  const [timerDays, setTimerDays] = useState('00')
- const [timerHours, setTimerHours] = useState('00')
-  const [timerMinutes, setTimerMinutes] = useState('00')
-  const [timerSeconds, setTimerSeconds] = useState('00')
+  const [timerDays, setTimerDays] = useState('0')
+  const [timerHours, setTimerHours] = useState('0')
+  const [timerMinutes, setTimerMinutes] = useState('0')
+  const [timerSeconds, setTimerSeconds] = useState('0')
 
 
 
@@ -231,8 +135,8 @@ const TaskTimeLabel= styled('div')({
   }
   startTimer.current = () => {
 
-    const countdownDate = new Date( "2020-12-14T04:46:20.619Z").getTime()
-    const startTime = new Date().getTime() - 5566000
+
+    const startTime = new Date().getTime() - 566000
 
     interval = setInterval(() => {
       const now = new Date().getTime()
@@ -245,9 +149,9 @@ const TaskTimeLabel= styled('div')({
 
   
         setTimerDays(days)
-        setTimerHours(addZeroBefore(hours))
-        setTimerMinutes(addZeroBefore(minutes))
-        setTimerSeconds(addZeroBefore(seconds))
+        setTimerHours( hours)
+        setTimerMinutes(minutes)
+        setTimerSeconds(seconds)
  
 
     }, 1000)
@@ -257,50 +161,52 @@ const TaskTimeLabel= styled('div')({
   useEffect(()=>{
     startTimer.current()
     return  ()=> {clearInterval(interval)}
-  }, [startTimer]) 
+  }, [startTimer])
 
   // ------
   return (
-    <TimeWrapper>
+    <TaskTimeWrapper>
 
 
      
-    <TimeRow> 
-      <TimeComponent>
-        <Time>{timerDays}</Time>
-        <TimeLabel>days</TimeLabel>
-      </TimeComponent>
+    <TaskTimeRow> 
+
+      <TaskTimeStatus>
+        Running :
+      </TaskTimeStatus>
+      {timerDays > 0 && 
+      <TaskTimeComponent>
+        <TaskTime>{timerDays}</TaskTime>
+        <TaskTimeLabel>d :</TaskTimeLabel>
+      </TaskTimeComponent>
  
+      }
+    {timerHours > 0 && 
+      <TaskTimeComponent>
+        <TaskTime>{timerHours}</TaskTime>
+        <TaskTimeLabel>h :</TaskTimeLabel>
+     
+      </TaskTimeComponent>
+ }
+      <TaskTimeComponent>
+        <TaskTime>{timerMinutes}</TaskTime>
+        <TaskTimeLabel>m :</TaskTimeLabel>
 
-    
-      <TimeComponent>
-        <Time>{timerHours}</Time>
-        <TimeLabel>hrs</TimeLabel>
+      </TaskTimeComponent>
 
-      </TimeComponent>
-
-      <TimeComponent>
-        <Time>{timerMinutes}</Time>
-        <TimeLabel>min</TimeLabel>
-
-      </TimeComponent>
-
-      <TimeComponent>
-        <Time>{timerSeconds}</Time>
-        <TimeLabel>secs</TimeLabel>
+      <TaskTimeComponent>
+        <TaskTime>{timerSeconds}</TaskTime>
+        <TaskTimeLabel>s</TaskTimeLabel>
     
-      </TimeComponent>
-    </TimeRow>
+      </TaskTimeComponent>
+    </TaskTimeRow>
     
     
     
     
-              </TimeWrapper>
+              </TaskTimeWrapper>
   )
-}// end PopupTimerDisplay
+}// end TaskTimerDisplay
 
-
-
-export default TimerDisplay
-
+export default TaskTimerDisplay
 

@@ -3,10 +3,10 @@ import {connect} from 'react-redux'
 import{updateTaskArray, openModal} from '../../../app/redux/actions/mainActions'
 import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
 import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
-import {TaskTimerDisplay} from './timer/TimerDisplay'
+import TaskTimerDisplay from './timer/TaskTimerDisplay'
 
 import MenuPopup from './MenuPopup'
-import ClockPopup from './timer/TimerPopup'
+import TimerPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
 
 // import {NavLink, withRouter, useLocation} from 'react-router-dom'
@@ -358,7 +358,7 @@ const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight} ) => {
   // console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightId )
   
-  // console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
+  console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
 
 
 
@@ -482,9 +482,8 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
               }
 
                
-              <ClockPopup 
+              <TimerPopup 
                 id = {id} 
-
                 spotlightData = {spotlightData}
               />    
             

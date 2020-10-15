@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect, useRef} from 'react'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../../styles/colors'
 
 
-import {PopupTimerDisplay} from './TimerDisplay'
+import TimerDisplay from './TimerDisplay'
  
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
@@ -131,8 +131,9 @@ const StyledButton= styled(Button)({
 // ===========================================
 const ClockPopup = (props) => {
   let taskId = props.id
-  console.log('[ClockPopup] taskId is : ', taskId )
-
+  let taskData = props.spotlightData
+  console.log('[TimerPopup] taskId is : ', taskId )
+  console.log('[TimerPopup] taskId is : ', taskData )
   
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -210,7 +211,7 @@ const ClockPopup = (props) => {
         
         <Wrapper>
 
-        <PopupTimerDisplay/>
+        <TimerDisplay/>
         
 
           <ControlsWrapper>
