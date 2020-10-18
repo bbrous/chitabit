@@ -1,4 +1,6 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react'
+import {connect} from 'react-redux'
+import {calculateStartingElapsedTime} from '../../../../app/helpers/timerHelpers'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../../styles/colors'
 
 
@@ -126,20 +128,44 @@ const StyledButton= styled(Button)({
   },
 })
 
+const CompletedTask= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
  
+  color: chitOrange,
+  padding: '4px',
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
 
 // ===========================================
-const ClockPopup = (props) => {
-  let taskId = props.id
-  let taskData = props.spotlightData
-  console.log('[TimerPopup] taskId is : ', taskId )
-  console.log('[TimerPopup] taskId is : ', taskData )
+const TimerPopup = (props) => {
+  
+  let {spotlightId, taskId, clockData}  = props
+  const {timerStatus, accumulatedTime, lastDate} = clockData
+ 
+  // console.log('[TimerPopup] clock Data is is  is : ', props.clockData)
+
+
+  calculateStartingElapsedTime(timerStatus, accumulatedTime, lastDate)
+
+
+
+
   
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event, taskId) => {
     setAnchorEl(event.currentTarget);
-    // console.log('[ClockPopup] id is : ', event.currentTarget.id)
+    // console.log('[TimerPopup] id is : ', event.currentTarget.id)
   };
 
   const handleClose = () => {
@@ -153,9 +179,31 @@ const ClockPopup = (props) => {
 
 
 
-  const [isActive, setIsActive] = useState(null)
-  const [isPaused, setIsPaused] = useState(null)
-  const countRef = useRef(null)
+  const [clockStatus, setClockStatus] = useState(timerStatus)
+  const [timeStart, setTimeStart] = useState(accumulatedTime)
+  // const countRef = useRef(null)
+
+  console.log(' ||||||||||||||||||||||||||||||||||||||||||||||| '  )
+
+  //  console.log('[TimerPopup] timerStatus for : ', clockStatus )
+
+  //  console.log('[TimerPopup] accumulatedTime for : ', timeStart )
+
+  
+  //  console.log('[TimerPopup] lastDate for : ', lastDate )
+
+  // console.log('[TimerPopup] timerData is : ', timerData )
+
+
+  // console.log('[TimerPopup] SPOTLIGHT ID  is : ', spotlightId )
+  // console.log('[TimerPopup] taskId is : ', taskId )
+  // console.log('[TimerPopup] taskId is : ', taskData )
+
+  // console.log('[TimerPopup] task detail is : ', taskData.spotlights[spotlightId].tasks[taskId].clock )
+
+  // console.log(' ||||||||||||||||||||||||||||||||||||||||||||||| '  )
+
+
 
   const handleStart = () => {
     // start button logic here
@@ -173,13 +221,13 @@ const ClockPopup = (props) => {
 
 
 // %%%%%%%%%%%%  TEMP  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    const clockStatus = 'inactive'  // inactive, running, paused
+    // const clockStatus = timerStatus  // inactive, running, paused
 // %%%%%%%%%%%%  TEMP  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  
 
 
-// ---- main ClockPoPup return JSX  -----------------------------
+// ---- main TimerPopup return JSX  -----------------------------
   return (
     <Fragment>
       <ClockIcon 
@@ -211,7 +259,11 @@ const ClockPopup = (props) => {
         
         <Wrapper>
 
-        <TimerDisplay/>
+        <TimerDisplay
+          timerData = {props.clockData}
+          spotlightId  = {spotlightId}
+          taskId = {taskId} 
+        />
         
 
           <ControlsWrapper>
@@ -248,18 +300,26 @@ const ClockPopup = (props) => {
           </StyledButton> 
             
             }
+
+{clockStatus !== 'completed'  &&         
             <StyledButton
             variant="contained"
              
             //  fontSize = 'large'
             endIcon={<RefreshIcon />}
           >
+
+            
               Reset
           </StyledButton> 
             
+          }          
             
+            {clockStatus === 'completed'  &&         
+         
+             <CompletedTask>Task Completed</CompletedTask>
             
-            
+          }        
             
           </ControlsWrapper>
 
@@ -272,4 +332,15 @@ const ClockPopup = (props) => {
   );
 
       }
-export default ClockPopup
+ 
+
+const actions = {
+  // changeDisplaySpotlight,
+  // openCloseSidePanel
+}
+
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState, actions)(TimerPopup)

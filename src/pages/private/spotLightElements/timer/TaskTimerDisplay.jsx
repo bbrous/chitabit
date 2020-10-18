@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
+import {connect} from 'react-redux'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, darkGrey, } from '../../../../styles/colors'
 import {UTCtoDate, DatetoUTC, convertMS, convertElapsedTime} from '../../../../app/helpers/dateHelper'
 
@@ -130,9 +131,9 @@ function TaskTimerDisplay() {
 
   let interval = useRef()
   let startTimer = useRef()
-  function addZeroBefore(n) {
-    return (n < 10 ? '0' : '') + n;
-  }
+  // function addZeroBefore(n) {
+  //   return (n < 10 ? '0' : '') + n;
+  // }
   startTimer.current = () => {
 
 
@@ -208,5 +209,11 @@ function TaskTimerDisplay() {
   )
 }// end TaskTimerDisplay
 
-export default TaskTimerDisplay
+ 
+
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState)(TaskTimerDisplay)
 

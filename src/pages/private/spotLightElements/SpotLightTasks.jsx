@@ -4,6 +4,7 @@ import{updateTaskArray, openModal} from '../../../app/redux/actions/mainActions'
 import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
 import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
 import TaskTimerDisplay from './timer/TaskTimerDisplay'
+import {calculateStartingElapsedTime} from '../../../app/helpers/timerHelpers'
 
 import MenuPopup from './MenuPopup'
 import TimerPopup from './timer/TimerPopup'
@@ -358,11 +359,11 @@ const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight} ) => {
   // console.log('[SPOT LIGHT TASKS] - BULAH - props are : ' , spotlightId )
   
-  console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks )
 
 
 
-  let itemObject, itemAddress,  taskId
+
+  let itemObject, itemAddress,  taskId, clockData
 
   if(value.type === 'task'){
 
@@ -371,10 +372,10 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 
     taskId = value.taskItem 
      itemObject = itemAddress[taskId]
- 
+    clockData = spotlightData.spotlights[spotlightId].tasks[taskId].clock
 
     // console.log('[SPOTLIGHT TASKS] --- task id -' , itemObject)
-
+    console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks[taskId].clock )
 
 
   }
@@ -388,7 +389,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     
   }
   const {id, type, title, completed, endEst,  note, timeStamp, parent } = itemObject
-  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- ID  -' , id)
+
 
 
   // @@@@@@@@@@@@@@@@@ TEMP  Get from Redux store @@@@@@@@@@@@@@@@@@@@@@
@@ -481,14 +482,15 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
               />
               }
 
-               
+{type === 'task' && 
               <TimerPopup 
-                id = {id} 
-                spotlightData = {spotlightData}
+                taskId = {id} 
+                spotlightId = {spotlightId}
+                clockData = {clockData}
               />    
-            
+            }          
             </IconWrapper>
-
+ 
 
         </NotificationWrapper>
 
@@ -553,7 +555,7 @@ const SpotLightTasks = (props) => {
   // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
 
 let spotlightId = props.id
-
+  // console.log('[SPOTLIGHT TASKS] BULLLAHH--- ID  -' , spotlightId)
   let spotlightData = props.display.private.data.spotlightData
 
 
@@ -617,8 +619,6 @@ let spotlightId = props.id
     setItems(arrayMove(items, oldIndex, newIndex));
   };
 
-
- 
 
 
 

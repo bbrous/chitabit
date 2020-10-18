@@ -7,7 +7,7 @@ import{changeDisplaySpotlight,   openCloseSidePanel, openModal} from '../../../a
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import {  styled, createMuiTheme } from "@material-ui/core/styles"
 
-import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange, chitOrangeVeryLight, veryLightGrey  } from '../../../styles/colors';
+import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange, chitOrangeVeryLight  } from '../../../styles/colors';
 import Paper from '@material-ui/core/Paper'; 
 
 import { unformattedUTCtoDate} from '../../../app/helpers/dateHelper'

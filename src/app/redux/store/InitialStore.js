@@ -207,8 +207,8 @@ const InitialStore = {
             title: 'Transfer A-try into Spotlight',
                     clock: {
           timerStatus: 'running', // inactive, running, paused, stopped
-          accumulatedTime: 0,
-          lastDate: ''
+          accumulatedTime: 5566000,
+          lastDate: '2020-10-16T04:46:20.619Z'
          },            
          
          note: 'this is a note for task 1 /  spot 1',
@@ -237,7 +237,7 @@ const InitialStore = {
 
             title: 'Clocks and Note Popups create',
             clock: {
-              timerStatus: 'stopped', // inactive, running, paused, stopped
+              timerStatus: 'completed', // inactive, running, paused, stopped
               accumulatedTime: 0,
               lastDate: null
             },            

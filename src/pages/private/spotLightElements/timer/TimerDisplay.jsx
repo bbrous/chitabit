@@ -1,6 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react'
+import {connect} from 'react-redux'
+
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, darkGrey, } from '../../../../styles/colors'
 import {UTCtoDate, DatetoUTC, convertMS, convertElapsedTime} from '../../../../app/helpers/dateHelper'
+
 
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
@@ -215,7 +218,16 @@ const TaskTimeLabel= styled('div')({
 
 
 // ==================================
- function TimerDisplay() {
+ function TimerDisplay(props) {
+  let {spotlightId, taskId, }  = props
+
+  
+  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+  console.log('[TimerDisplay] SPOTLIGHT ID  is : ', spotlightId )
+  console.log('[TimerDisplay] taskId is : ', taskId )
+
+
+  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
 
   const [timerDays, setTimerDays] = useState('00')
  const [timerHours, setTimerHours] = useState('00')
@@ -232,7 +244,9 @@ const TaskTimeLabel= styled('div')({
   startTimer.current = () => {
 
     const countdownDate = new Date( "2020-12-14T04:46:20.619Z").getTime()
-    const startTime = new Date().getTime() - 5566000
+    // const startTime = new Date().getTime() - 5566000
+    
+    const startTime = 1602946470000
 
     interval = setInterval(() => {
       const now = new Date().getTime()
@@ -301,6 +315,10 @@ const TaskTimeLabel= styled('div')({
 
 
 
-export default TimerDisplay
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState)(TimerDisplay)
 
 

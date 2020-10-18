@@ -1,6 +1,6 @@
 import { createReducer } from './reducerUtil'
 import produce from 'immer';
-import cuid from 'cuid';
+// import cuid from 'cuid';
 
 
 // import {SET_INITIAL_VIEW , CHANGE_VIEW, CHANGE_DISPLAY_PERSON, CHANGE_DISPLAY_CATEGORY, CHANGE_DISPLAY_CHIT_TYPE, CHANGE_CHIT_DISPLAYED, OPEN_MODAL,SHOW_ACCORDION_DETAIL, CLOSE_ACCORDION_DETAIL, CLOSE_MODAL, CHANGE_MONTH} from '../store/storeConstants';
@@ -9,15 +9,15 @@ import InitialStore from '../store/InitialStore'
 
 import {  
           OPEN_CLOSE_SIDE_PANEL,
-          SHOW_SPOTLIGHT,
-          CLOSE_SPOTLIGHT,
+          // SHOW_SPOTLIGHT,
+          // CLOSE_SPOTLIGHT,
           CHANGE_DISPLAY_SPOTLIGHT,
           ADD_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
-          OPEN_SPOTLIGHT_PAGE,
-          CLOSE_SPOTLIGHT_PAGE,
-          CHANGE_DISPLAY, 
+          // OPEN_SPOTLIGHT_PAGE,
+          // CLOSE_SPOTLIGHT_PAGE,
+          // CHANGE_DISPLAY, 
           UPDATE_TASK_ARRAY,
           ADD_TASK
         
@@ -125,7 +125,7 @@ const reducer_Main = produce((draft = initialState, action) => {
          let id = payload.id
           let taskType = payload.task.taskType
           let todo = payload.task.todo
-          let title = payload.task.title
+          // let title = payload.task.title
           // let taskItem = cuid().toString()
           let taskItem = payload.newTaskId
           let timestamp = new Date()
