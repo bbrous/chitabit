@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
 import {startingElapsedTime} from '../../../../app/helpers/timerHelpers'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, darkGrey, } from '../../../../styles/colors'
-import {UTCtoDate, DatetoUTC, convertMS, convertElapsedTime} from '../../../../app/helpers/dateHelper'
+import {UTCtoDate, DatetoUTC, msToStringDisplay, convertElapsedTime} from '../../../../app/helpers/dateHelper'
 
 
 // ----Material ui imports  -------
@@ -230,15 +230,31 @@ const TaskTimeLabel= styled('div')({
  const [timerHours, setTimerHours] = useState('00')
   const [timerMinutes, setTimerMinutes] = useState('00')
   const [timerSeconds, setTimerSeconds] = useState('00')
-
+  const [status, setStatus] = useState(timerStatus)
 
 
   let interval = useRef()
-  let startTimer = useRef()
+  let startTimerRunning = useRef()
+  let startTimerStopped = useRef()
+
   function addZeroBefore(n) {
     return (n < 10 ? '0' : '') + n;
   }
-  startTimer.current = () => {
+
+
+  startTimerStopped.current = () => {
+    let displayTime = msToStringDisplay(accumulatedTime)
+    let {days, hours, minutes, seconds} = displayTime
+
+
+      setTimerDays(days)
+      setTimerHours(addZeroBefore(hours))
+      setTimerMinutes(addZeroBefore(minutes))
+      setTimerSeconds(addZeroBefore(seconds))
+    
+  }
+
+  startTimerRunning.current = () => {
 
     const countdownDate = new Date( "2020-12-14T04:46:20.619Z").getTime()
     // const startTime = new Date().getTime() - 5566000
@@ -254,16 +270,16 @@ const TaskTimeLabel= styled('div')({
   
   
     // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+
+    
     interval = setInterval(() => {
       const now = new Date().getTime()
       const  distance = now - startTime 
+      
+      let displayTime = msToStringDisplay(distance)
+      let {days, hours, minutes, seconds} = displayTime
 
-      const days = Math.floor(distance /  ( 1000 * 60 * 60 * 24) )
-      const hours = Math.floor((distance % ( 1000 * 60 * 60 * 24) / ( 1000 * 60 * 60) ) )
-      const minutes = Math.floor((distance % ( 1000 * 60 * 60 ) / ( 1000 * 60 ) ) )
-      const seconds = Math.floor((distance % ( 1000 * 60 ) / ( 1000) ) )
 
-  
         setTimerDays(days)
         setTimerHours(addZeroBefore(hours))
         setTimerMinutes(addZeroBefore(minutes))
@@ -275,9 +291,14 @@ const TaskTimeLabel= styled('div')({
   }
 
   useEffect(()=>{
-    startTimer.current()
+
+    if(status === 'running'){
+    startTimerRunning.current()
     return  ()=> {clearInterval(interval)}
-  }, [startTimer]) 
+    }else{
+      startTimerStopped.current()
+    }
+  }, [startTimerRunning, status]) 
 
   // ------
   return (
