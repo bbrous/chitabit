@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
-import {calculateStartingElapsedTime} from '../../../../app/helpers/timerHelpers'
+
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../../styles/colors'
 
 
@@ -148,14 +148,14 @@ const CompletedTask= styled('div')({
 
 // ===========================================
 const TimerPopup = (props) => {
-  
+
   let {spotlightId, taskId, clockData}  = props
   const {timerStatus, accumulatedTime, lastDate} = clockData
  
   // console.log('[TimerPopup] clock Data is is  is : ', props.clockData)
 
 
-  calculateStartingElapsedTime(timerStatus, accumulatedTime, lastDate)
+
 
 
 
@@ -260,7 +260,7 @@ const TimerPopup = (props) => {
         <Wrapper>
 
         <TimerDisplay
-          timerData = {props.clockData}
+          timerData = {clockData}
           spotlightId  = {spotlightId}
           taskId = {taskId} 
         />

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
-
+import {startingElapsedTime} from '../../../../app/helpers/timerHelpers'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, darkGrey, } from '../../../../styles/colors'
 import {UTCtoDate, DatetoUTC, convertMS, convertElapsedTime} from '../../../../app/helpers/dateHelper'
 
@@ -219,15 +219,12 @@ const TaskTimeLabel= styled('div')({
 
 // ==================================
  function TimerDisplay(props) {
-  let {spotlightId, taskId, }  = props
+  let {spotlightId, taskId, timerData }  = props
+  let {timerStatus, accumulatedTime, lastDate }  = timerData
 
   
-  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-  console.log('[TimerDisplay] SPOTLIGHT ID  is : ', spotlightId )
-  console.log('[TimerDisplay] taskId is : ', taskId )
 
 
-  console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
 
   const [timerDays, setTimerDays] = useState('00')
  const [timerHours, setTimerHours] = useState('00')
@@ -246,8 +243,17 @@ const TaskTimeLabel= styled('div')({
     const countdownDate = new Date( "2020-12-14T04:46:20.619Z").getTime()
     // const startTime = new Date().getTime() - 5566000
     
-    const startTime = 1602946470000
-
+    // const startTime = 1602946470000
+    const elapsedTime  = startingElapsedTime(timerStatus, accumulatedTime, lastDate)
+    const startTime = new Date().getTime() - elapsedTime
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+  
+    console.log('[000 000 TimerDisplay] SPOTLIGHT ID  is : ', startTime )
+    // console.log('[TimerDisplay] taskId is : ', taskId )
+    // console.log('[TimerDisplay] timerData is : ', timerData )
+  
+  
+    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
     interval = setInterval(() => {
       const now = new Date().getTime()
       const  distance = now - startTime 

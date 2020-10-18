@@ -238,7 +238,7 @@ const InitialStore = {
             title: 'Clocks and Note Popups create',
             clock: {
               timerStatus: 'completed', // inactive, running, paused, stopped
-              accumulatedTime: 0,
+              accumulatedTime: 55566000,
               lastDate: null
             },            
             note: null
@@ -255,7 +255,7 @@ const InitialStore = {
           title: 'In Spotlight - complete layout with params from Initial Store',
           clock: {
             timerStatus: 'paused', // inactive, running, paused, stopped
-            accumulatedTime: 0,
+            accumulatedTime: 55566000,
             lastDate: null
           },             
           
