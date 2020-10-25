@@ -4,7 +4,7 @@ import{changeTimerStatus} from '../../../../app/redux/actions/mainActions'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, } from '../../../../styles/colors'
 
 
-import PopupTimerDisplay from './PopupTimerDisplay'
+import TimerDisplay from './TimerDisplay'
  
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
@@ -116,8 +116,8 @@ const StyledButton= styled(Button)({
   padding: '8px 5px 6px 5px',
   margin: '3px',
   '&:hover' : {
-    backgroundColor: chitOrange,
-    color: 'white'
+    backgroundColor: chitOrangeLight,
+    color: mediumGrey
   },
   
 
@@ -149,12 +149,10 @@ const CompletedTask= styled('div')({
 // ===========================================
 const TimerPopup = (props) => {
 
-  let {spotlightId, taskId,  handleUpdateTimerStatus}  = props
-
-  let timerData = props.display.private.data.spotlightData.spotlights[spotlightId].tasks[taskId].clock
-  const {timerStatus, accumulatedTime, lastDate} = timerData
+  let {spotlightId, taskId, clockData}  = props
+  const {timerStatus, accumulatedTime, lastDate} = clockData
  
-  // console.log('[TimerPopup] clock Data is is  is : ', timerData )
+  // console.log('[TimerPopup] clock Data is is  is : ', props.clockData)
 
 
 
@@ -165,9 +163,9 @@ const TimerPopup = (props) => {
   
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const openTimerWindow = (event, taskId) => {
+  const handleClick = (event, taskId) => {
     setAnchorEl(event.currentTarget);
-    // console.log('[TimerPopup] id is : ', event.currentTarget.id)
+    console.log('[TimerPopup] id is : ', event.currentTarget.id)
   };
 
   const handleClose = () => {
@@ -185,7 +183,7 @@ const TimerPopup = (props) => {
   const [timeStart, setTimeStart] = useState(accumulatedTime)
   // const countRef = useRef(null)
 
-  // console.log(' ||||||||||||||||||||||||||||||||||||||||||||||| '  )
+  console.log(' ||||||||||||||||||||||||||||||||||||||||||||||| '  )
 
   //  console.log('[TimerPopup] timerStatus for : ', clockStatus )
 
@@ -205,22 +203,17 @@ const TimerPopup = (props) => {
 
   // console.log(' ||||||||||||||||||||||||||||||||||||||||||||||| '  )
 
-  useEffect(()=>{
-
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setClockStatus(timerStatus)
-
-    console.log(' useEffect Timer Status '  , timerStatus)
-
- 
 
 
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  const handleChangeStatus = (evt) => {
+    // start button logic here
+    
+    let buttonId = evt.currentTarget.id
 
-
-  
-  }, [ timerStatus]) 
-
+    
+    console.log('[TimerPopup] handleChangeStatus is : ', buttonId)
+    props.changeTimerStatus('spot_1' , 'spot_1_task_1', buttonId)
+  }
 
 
 
@@ -240,7 +233,7 @@ const TimerPopup = (props) => {
         aria-describedby={id} 
         variant="contained" 
         color="primary" 
-        onClick={(evt)=>openTimerWindow(evt)}/>
+        onClick={(evt)=>handleClick(evt)}/>
         
       <Popover
         id={id}
@@ -264,8 +257,8 @@ const TimerPopup = (props) => {
         
         <Wrapper>
 
-        <PopupTimerDisplay
-      
+        <TimerDisplay
+          timerData = {clockData}
           spotlightId  = {spotlightId}
           taskId = {taskId} 
         />
@@ -276,7 +269,7 @@ const TimerPopup = (props) => {
             <StyledButton
               variant="contained"
               id = 'start'
-              onClick={(evt)=>handleUpdateTimerStatus(evt)}
+              onClick={(evt)=>handleChangeStatus(evt)}
                
               endIcon={<PlayArrowIcon />}
             >
@@ -286,8 +279,8 @@ const TimerPopup = (props) => {
             {clockStatus === 'running'  &&  
             <StyledButton
             variant="contained"
-             id = 'paused'
-             onClick={(evt)=>handleUpdateTimerStatus(evt)}
+             id = 'pause'
+             onClick={(evt)=>handleChangeStatus(evt)}
             endIcon={<PauseIcon />}
           >
               Pause
@@ -299,7 +292,7 @@ const TimerPopup = (props) => {
             <StyledButton
             variant="contained"
              id = 'resume'
-             onClick={(evt)=>handleUpdateTimerStatus(evt)}
+             onClick={(evt)=>handleChangeStatus(evt)}
             endIcon={<PlayArrowIcon />}
           >
               Resume
@@ -311,7 +304,7 @@ const TimerPopup = (props) => {
             <StyledButton
             variant="contained"
              id = 'reset'
-             onClick={(evt)=>handleUpdateTimerStatus(evt)}
+             onClick={(evt)=>handleChangeStatus(evt)}
             //  fontSize = 'large'
             endIcon={<RefreshIcon />}
           >

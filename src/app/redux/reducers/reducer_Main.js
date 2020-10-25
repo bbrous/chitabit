@@ -19,7 +19,9 @@ import {
           // CLOSE_SPOTLIGHT_PAGE,
           // CHANGE_DISPLAY, 
           UPDATE_TASK_ARRAY,
-          ADD_TASK
+          ADD_TASK,
+
+          CHANGE_TIMER_STATUS
         
         } from '../store/storeConstants';
 
@@ -105,7 +107,25 @@ const reducer_Main = produce((draft = initialState, action) => {
         }// end CHANGE_DISPLAY_SPOTLIGHT
 
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+      case CHANGE_TIMER_STATUS : 
+        {
+
+          let spotId = payload.spotId
+          let taskId = payload.taskId
+          let newTimerObject = payload.newTimerObject
+          
+
+          draft.data.spotlightData.spotlights[spotId].tasks[taskId].clock = newTimerObject
+         console.log('REDUCER MAIN - CHANGE_TIMER_STATUS clicked reduce ', newTimerObject)
+           
+
+         return draft;
+         
+       }// end CHANGE_TIMER_STATUS
+
+        
 
     case UPDATE_TASK_ARRAY : 
          {
@@ -113,7 +133,7 @@ const reducer_Main = produce((draft = initialState, action) => {
           
 
           let id = payload.id
-              let taskArray = payload.taskArray
+          let taskArray = payload.taskArray
           draft.data.spotlightData.spotlights[id].taskArray = taskArray
           return draft;
           

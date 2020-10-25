@@ -175,20 +175,20 @@ function TaskTimerDisplay() {
       <TaskTimeStatus>
         Running :
       </TaskTimeStatus>
-      {timerDays > 0 && 
+     
       <TaskTimeComponent>
         <TaskTime>{timerDays}</TaskTime>
         <TaskTimeLabel>d :</TaskTimeLabel>
       </TaskTimeComponent>
  
-      }
-    {timerHours > 0 && 
+    
+     
       <TaskTimeComponent>
         <TaskTime>{timerHours}</TaskTime>
         <TaskTimeLabel>h :</TaskTimeLabel>
      
       </TaskTimeComponent>
- }
+ 
       <TaskTimeComponent>
         <TaskTime>{timerMinutes}</TaskTime>
         <TaskTimeLabel>m :</TaskTimeLabel>

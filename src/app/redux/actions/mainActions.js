@@ -16,7 +16,8 @@
           ADD_SPOTLIGHT,
           CHANGE_DISPLAY,
           UPDATE_TASK_ARRAY,
-          ADD_TASK
+          ADD_TASK,
+          CHANGE_TIMER_STATUS
           
           
         } from '../store/storeConstants';
@@ -202,6 +203,21 @@
             payload: {
               spotlight : spotlight,
               newSpotlightId: newSpotlightId
+            }
+          }
+        }
+
+        
+        export const  changeTimerStatus= (spotId, taskId, newTimerObject) => {
+
+          // console.log('[mainActions I be clicked - changeTimerStatus = ' , changeTimerStatus)
+          return {
+            type: CHANGE_TIMER_STATUS,
+            payload: {
+              spotId: spotId,
+              taskId: taskId,
+              newTimerObject: newTimerObject
+              
             }
           }
         }

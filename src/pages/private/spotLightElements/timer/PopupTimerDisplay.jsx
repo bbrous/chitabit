@@ -218,12 +218,15 @@ const TaskTimeLabel= styled('div')({
 
 
 // ==================================
- function TimerDisplay(props) {
-  let {spotlightId, taskId, timerData }  = props
+ function PopupTimerDisplay(props) {
+  let {spotlightId, taskId}  = props
+
+
+
+  let timerData = props.display.private.data.spotlightData.spotlights[spotlightId].tasks[taskId].clock
   let {timerStatus, accumulatedTime, lastDate }  = timerData
 
-  console.log('[Timer DISPLAY] timerStatus for : ', timerData )
-
+  // console.log('[Popup Timer DISPLAY] timerStatus : ', timerStatus)
 
 
   const [timerDays, setTimerDays] = useState('00')
@@ -262,7 +265,7 @@ const TaskTimeLabel= styled('div')({
     // const startTime = 1602946470000
     const elapsedTime  = startingElapsedTime(timerStatus, accumulatedTime, lastDate)
     const startTime = new Date().getTime() - elapsedTime
-    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
   
     console.log('[000 000 TimerDisplay] SPOTLIGHT ID  is : ', startTime )
     // console.log('[TimerDisplay] taskId is : ', taskId )
@@ -360,6 +363,6 @@ const mapState = state => ({
   display: state
 })
 
-export default connect(mapState)(TimerDisplay)
+export default connect(mapState)(PopupTimerDisplay)
 
 

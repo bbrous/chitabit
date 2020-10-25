@@ -570,7 +570,7 @@ const Task= styled('div')({
 export const Spotlight = (props) => {
   // console.log('[SPOTLIGHT ] &&&& spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id]) 
 
-  console.log('[SPOTLIGHT] id is: , ', props)
+  // console.log('[SPOTLIGHT] id is: , ', props)
 
   let spotlightData = props.display.private.data.spotlightData
 
@@ -580,7 +580,7 @@ export const Spotlight = (props) => {
 
   const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
 
-  console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
+  // console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
   
   // convert target Date in ISO to UTC for addition/subtraction etc
   let targetDate, days, hours, mins, secs
@@ -602,8 +602,9 @@ export const Spotlight = (props) => {
      mins = Math.abs(timeRemainingObject.minute)
      secs = Math.abs(timeRemainingObject.seconds)
   
-    console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs
-    )
+    // console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs)
+
+
   }else{
     targetDate  = 'No target date provided'
     

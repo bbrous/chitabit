@@ -98,8 +98,8 @@ export const spotlightIdGenerator = (spotlightsObject) => {
   
     newSpotlightId ='spot_' + newSpotlightIdNumber.toString()
 
-    console.log('IDKEYGENERARTORS + newSpotlightId - ' , newSpotlightId)
-    console.log('============================ '  )
+    // console.log('IDKEYGENERARTORS + newSpotlightId - ' , newSpotlightId)
+    // console.log('============================ '  )
 
   return (
     newSpotlightId

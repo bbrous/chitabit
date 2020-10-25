@@ -18,11 +18,16 @@ import {DatetoUTC} from './dateHelper'
 export function startingElapsedTime(timerStatus, accumulatedTime, lastDate){
 
   let startTime
+  let closedWindowTime
 
   if(timerStatus === 'running'){
 
-    let closedWindowTime = new Date().getTime() - new Date(lastDate).getTime()
 
+    if(lastDate !== null){
+     closedWindowTime = new Date().getTime() - new Date(lastDate).getTime()
+    }else{
+       closedWindowTime = 0 
+    }
     // let closedWindowTime = new Date().getTime() -1602997683000
     // let currentTime = new Date().getTime()
     startTime = accumulatedTime + closedWindowTime

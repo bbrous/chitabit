@@ -165,7 +165,8 @@ const InitialStore = {
           {taskItem: 'spot_1_task_1',completed: false, type: 'task'}, 
           {taskItem: 'spot_1_task_2',completed: false, type: 'task'},
           {taskItem: 'spot_1_task_3',completed: false, type: 'task'},
-          {taskItem: 'spot_1_task_6',completed: false, type: 'task'}
+          {taskItem: 'spot_1_task_6',completed: false, type: 'task'},
+          {taskItem: 'spot_1_task_4',completed: false, type: 'task'}
          
         ],
 
@@ -185,6 +186,8 @@ const InitialStore = {
             },             
             
           },
+
+
           'spot_1_task_6' : {
             id: 'spot_1_task_0',
             type: 'task',  //or spotlight
@@ -193,7 +196,7 @@ const InitialStore = {
             spotHolder: 'spot_1',
             title: 'We are almost done',
             clock: {
-              timerStatus: 'inactive', // inactive, running, paused, stopped
+              timerStatus: 'running', // inactive, running, paused, stopped
               accumulatedTime: 0,
               lastDate: null
             },             
@@ -202,7 +205,7 @@ const InitialStore = {
           'spot_1_task_1' : {
             id: 'spot_1_task_1',
             type: 'task',  //or spotlight
-            completed: true,
+            completed: false,
 
             title: 'Transfer A-try into Spotlight',
                     clock: {
@@ -223,7 +226,7 @@ const InitialStore = {
             title: 'In Spotlight - complete layout with params from Initial Store',
             clock: {
               timerStatus: 'paused', // inactive, running, paused, stopped
-              accumulatedTime: 0,
+              accumulatedTime: 5600000,
               lastDate: null
             },             
             
@@ -237,11 +240,27 @@ const InitialStore = {
 
             title: 'Clocks and Note Popups create',
             clock: {
-              timerStatus: 'completed', // inactive, running, paused, stopped
+              timerStatus: 'running', // inactive, running, paused, stopped
               accumulatedTime: 55566000,
               lastDate: null
             },            
             note: null
+            
+          },
+
+          
+          'spot_1_task_4' : {
+            id: 'spot_1_task_4',
+            type: 'task',  //or spotlight
+            completed: false,
+    
+            spotHolder: 'spot_1',
+            title: 'Inagodta davita',
+            clock: {
+              timerStatus: 'inactive', // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },             
             
           },
 

@@ -437,7 +437,7 @@ const SpotlightNav = (props) => {
   // ##################TEMP ####################
 
 
-  console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
+  // console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
 
 
   // let stateSpotlightId = props.view.displayId
@@ -447,7 +447,7 @@ const SpotlightNav = (props) => {
   let initialTaskArray = props.display.private.data.spotlightData.spotlights[stateSpotlightId].taskArray
   const [spotLightTasks, setSpotLightTasks] = useState(initialTaskArray);
 
-  console.log('[SpotlightNav] @@ - props.spotLightTasks' ,  initialTaskArray)
+  // console.log('[SpotlightNav] @@ - props.spotLightTasks' ,  initialTaskArray)
 
   useEffect(() => {
     
