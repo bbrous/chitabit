@@ -12,6 +12,8 @@ import {
           // SHOW_SPOTLIGHT,
           // CLOSE_SPOTLIGHT,
           CHANGE_DISPLAY_SPOTLIGHT,
+          CHANGE_TASK_COMPLETED_STATUS,
+
           ADD_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
@@ -100,13 +102,28 @@ const reducer_Main = produce((draft = initialState, action) => {
     case CHANGE_DISPLAY_SPOTLIGHT : 
          {
 
-          console.log('REDUCER MAIN - CHANGE_DISPLAY_SPOTLIGHT clicked reduce ')
+          // console.log('REDUCER MAIN - CHANGE_DISPLAY_SPOTLIGHT clicked reduce ')
           draft.spotLightDisplay.displayedSpotLightId = payload.displayedSpotLightId
           return draft;
           
         }// end CHANGE_DISPLAY_SPOTLIGHT
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+      case CHANGE_TASK_COMPLETED_STATUS : 
+        {
+
+         console.log('REDUCER MAIN - CHANGE_TASK_COMPLETED_STATUS clicked reduce ', payload)
+        //  draft.spotLightDisplay.displayedSpotLightId = payload.displayedSpotLightId
+        //  return draft;
+
+        return draft
+         
+       }// end CHANGE_DISPLAY_SPOTLIGHT
+
+
+        
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       case CHANGE_TIMER_STATUS : 
@@ -185,8 +202,12 @@ const reducer_Main = produce((draft = initialState, action) => {
             type: 'task',  
             completed: false,
            
-            title: 'First task begin', 
-            clock: 'clock6',
+            title: 'Spotlight begin', 
+            clock: {
+              timerStatus: 'inactive', // inactive, running, paused, stopped
+              accumulatedTime: 0,
+              lastDate: null
+            },   
 
             timeStamp: timestamp,
 
@@ -209,7 +230,14 @@ const reducer_Main = produce((draft = initialState, action) => {
 
           let taskTaskArray = {taskItem: taskItem, completed: false, title: todo, type: 'task', parent: id}
 
-          let taskTask = {id: taskItem, completed: false, title: todo, type: 'task', spotHolder: id }
+          let taskTask = {id: taskItem, completed: false, title: todo, type: 'task', spotHolder: id ,
+          clock: {
+            timerStatus: 'inactive', // inactive, running, paused, stopped
+            accumulatedTime: 0,
+            lastDate: null
+          },             
+          
+        }
 
           draft.data.spotlightData.spotlights[id].taskArray.push(
            taskTaskArray
@@ -256,17 +284,13 @@ const reducer_Main = produce((draft = initialState, action) => {
 
 
 
-            clock: {
-              timerStatus: null, // inactive, running, paused, stopped
-              accumulatedTime: 0,
-              lastDate: null
-             }, 
+            
 
             note: payload.spotlight.note,
             taskArray: [
               {
-                taskItem: 'task0' ,
-                completed: false, 
+                taskItem: newSpotlightId,
+                
                 type: 'task'
               }
 
@@ -278,8 +302,12 @@ const reducer_Main = produce((draft = initialState, action) => {
               type: 'task',  
               completed: false,
              
-              title: 'First task begin', 
-              clock: 'clock6',
+              title: 'Spotlight begin', 
+              clock: {
+                timerStatus: 'inactive', // inactive, running, paused, stopped
+                accumulatedTime: 0,
+                lastDate: null
+               }, 
   
               timeStamp: timestamp,
   

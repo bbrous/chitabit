@@ -129,7 +129,7 @@ const Container= styled(Paper)({
   height: '90%',
   marginBottom: '5%',
   
-  overflowY: 'auto',
+  overflowY: 'hidden',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -139,6 +139,30 @@ const Container= styled(Paper)({
 backgroundColor: veryLightGrey,
 
 
+})
+
+const TopWrapper= styled('div')({
+  display: 'flex',
+   flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  margin: '.5rem 0 0 0',
+  color: 'red',
+ 
+  width: '98%',
+  padding: '0 .5rem',
+
+  fontSize: '1rem',
+  
+backgroundColor: 'white',
+border: '1px solid #727376',
+borderRadius: '5px',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
 })
 
 const TitleWrapper= styled('div')({
@@ -156,6 +180,7 @@ const TitleWrapper= styled('div')({
   fontSize: '1rem',
   
 backgroundColor: 'white',
+
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -495,7 +520,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
             alignItems: 'center',
             
             width: '98%',
-            margin: '.25rem 0',
+            margin: '.25rem 0 0 0',
             
             
           backgroundColor: veryLightGrey,
@@ -634,7 +659,7 @@ export const Spotlight = (props) => {
 
 
 
-
+<TopWrapper> 
     <TitleWrapper>
       <div><CheckCircleWrapper> 
       {!completed && 
@@ -703,12 +728,12 @@ export const Spotlight = (props) => {
 
       </DetailWrapper>
 
-
+  
       <MenuWrapper>
        <MenuPopup  id = {id}/>
       </MenuWrapper>
     </DetailContainer>
-
+    </TopWrapper>
 
     <FormContainer>
        

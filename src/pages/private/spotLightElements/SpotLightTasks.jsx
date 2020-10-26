@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus} from '../../../app/redux/actions/mainActions'
-import{chitOrange ,  mediumLightGrey } from '../../../styles/colors'
+import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} from '../../../app/redux/actions/mainActions'
+
+import{chitOrange ,  lightGrey,  mediumLightGrey } from '../../../styles/colors'
 // import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
 import TaskTimerDisplay from './timer/TaskTimerDisplay'
 import {startingElapsedTime} from '../../../app/helpers/timerHelpers'
@@ -33,12 +34,12 @@ const Wrapper= styled('div')({
   alignItems: 'center',
   
   width: '98%',
-    
+    height: '65%',
   padding: '0 .5rem',
   margin: ' 0',
-
-// backgroundColor: lightGrey,
-
+borderRadius: '5px',
+backgroundColor: lightGrey,
+overflowY: 'auto',
   fontSize: '.8rem',
 
 
@@ -57,8 +58,8 @@ const ListWrapper = styled('div')({
   alignItems: 'center',
 
   width: '100%',
-  height: '90%',
-  // backgroundColor: 'yellow',
+  height: '95%',
+ 
 
   '& ul': {
     width: '98%',
@@ -336,12 +337,12 @@ const SpotlightTag= styled('div')({
 
 
 
-const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus} ) => {
+const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} ) => {
 
   //  set up drag for Sortable Element using a handle
   const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
 
-
+   
  
 
 // ------------------------------------------------------------------ 
@@ -352,25 +353,22 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 
   if(value.type === 'task'){
 
-    // itemAddress = spotlightData.tasks
-    itemAddress = spotlightData.spotlights[spotlightId].tasks
+    // itemAddress - all tasks in a  a specific spotlight
+    itemAddress = spotlightData.spotlights[spotlightId].tasks 
 
     taskId = value.taskItem 
     itemObject = itemAddress[taskId]
     timerData = spotlightData.spotlights[spotlightId].tasks[taskId].clock
-    let {timerStatus, accumulatedTime, lastDate }  = timerData
+    
 
-    // console.log('[SPOTLIGHT TASKS] --- timerData -' , timerData)
-    // console.log('[SPOTLIGHT TASKS] --- accumulatedTime -' , accumulatedTime)
 
-    // console.log('[SPOT LIGHT TASKS] - BULAH HA HA HA - props are : ' , spotlightData.spotlights[spotlightId].tasks[taskId].clock )
 
 
   } // end if - task
 
   if(value.type === 'spotlight'){
 
-    itemAddress = spotlightData.spotlights
+    itemAddress = spotlightData.spotlights  //all spotlights
     taskId = value.taskItem 
     itemObject = itemAddress[taskId]
 
@@ -392,7 +390,38 @@ let currentStatus = 'begun'
 
 
  
+//  ---- Completed Functions
 
+const handleCompletedStatus = () => {
+  
+
+  let taskType = value.type 
+    // console.log('[SPOTLIGHT TASKS -- I be clicked - value.type is : ' , taskType)
+    // console.log('[SPOTLIGHT TASKS -- I be clicked - taskId is : ' , taskId )
+    // console.log('[SPOTLIGHT TASKS -- I be clicked - spotlightData is : ' , spotlightData )
+    // console.log('[SPOTLIGHT TASKS -- I be clicked - itemAddress is : ' , itemAddress )
+
+  let completedStatus = itemAddress[taskId].completed
+  let newCompletedStatus = completedStatus ? false : true
+  
+  if(taskType === 'task'){
+    
+    // 1. get task completed status 
+    
+    console.log('[SPOTLIGHT TASKS -- Task completed status : ' , completedStatus)
+    console.log('[SPOTLIGHT TASKS -- Task newCompletedStatus : ' , newCompletedStatus)
+  }
+
+  if(taskType === 'spotlight'){
+    // 1. get task completed status 
+   
+    console.log('[SPOTLIGHT TASKS -- Task completed status : ' , completedStatus)
+    console.log('[SPOTLIGHT TASKS -- Spotlight newCompletedStatus : ' ,  newCompletedStatus)
+  }
+
+  console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+  changeTaskCompletedStatus('spot_1' , 'spot_1_task_1' )
+}
 
   
 
@@ -509,7 +538,11 @@ const handleUpdateTimerStatus = (evt) => {
         </SpotLightWrapper>
 
           <TaskBlock>  
-            <CheckCircleWrapper>
+            <CheckCircleWrapper
+            
+            onClick={()=> handleCompletedStatus( taskId)}
+            
+            >
 
             {! completed && 
               <CheckCircle/>
@@ -599,7 +632,7 @@ const handleUpdateTimerStatus = (evt) => {
 // ------- Map of Items   --------------------[]
 
 
-const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus  } ) => {
+const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus  } ) => {
  
 
 
@@ -621,6 +654,7 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId,chan
           spotlightId = {spotlightId}
           changeDisplaySpotlight= {changeDisplaySpotlight}
           changeTimerStatus = { changeTimerStatus}
+          changeTaskCompletedStatus = {changeTaskCompletedStatus}
        
         />
          
@@ -720,6 +754,7 @@ let spotlightId = props.id
             spotlightId = {spotlightId}
             changeDisplaySpotlight = {props.changeDisplaySpotlight}
             changeTimerStatus = {props.changeTimerStatus}
+            changeTaskCompletedStatus = {props.changeTaskCompletedStatus}
             />
 
 
@@ -738,7 +773,8 @@ const actions = {
   updateTaskArray, 
   openModal,
   changeDisplaySpotlight,
-  changeTimerStatus
+  changeTimerStatus,
+  changeTaskCompletedStatus
 }
 
 const mapState = state => ({

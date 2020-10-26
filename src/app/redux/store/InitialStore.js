@@ -158,15 +158,14 @@ const InitialStore = {
         taskArray: [
           {
             taskItem: 'spot_1_task_0',
-            completed: false, 
             type: 'task'
           },
-          {taskItem: 'spot_2',completed: false, type: 'spotlight'},
-          {taskItem: 'spot_1_task_1',completed: false, type: 'task'}, 
-          {taskItem: 'spot_1_task_2',completed: false, type: 'task'},
-          {taskItem: 'spot_1_task_3',completed: false, type: 'task'},
-          {taskItem: 'spot_1_task_6',completed: false, type: 'task'},
-          {taskItem: 'spot_1_task_4',completed: false, type: 'task'}
+          {taskItem: 'spot_2', type: 'spotlight'},
+          {taskItem: 'spot_1_task_1', type: 'task'}, 
+          {taskItem: 'spot_1_task_2', type: 'task'},
+          {taskItem: 'spot_1_task_3', type: 'task'},
+          {taskItem: 'spot_1_task_6', type: 'task'},
+          {taskItem: 'spot_1_task_4', type: 'task'}
          
         ],
 
@@ -178,7 +177,7 @@ const InitialStore = {
             completed: true,
     
             spotHolder: 'spot_1',
-            title: 'First task begin',
+            title: 'Spotlight begin',
             clock: {
               timerStatus: 'inactive', // inactive, running, paused, stopped
               accumulatedTime: 0,
@@ -326,7 +325,7 @@ const InitialStore = {
             type: 'task',  //or spotlight
             completed: true,
 
-            title: 'First task begin',
+            title: 'Spotlight begin',
             clock: {
               timerStatus: null, // inactive, running, paused, stopped
               accumulatedTime: 0,
@@ -427,7 +426,7 @@ const InitialStore = {
             type: 'task',  //or spotlight
             completed: true,
     
-            title: 'First task begin',
+            title: 'Spotlight begin',
             clock: {
               timerStatus: null, // inactive, running, paused, stopped
               accumulatedTime: 0,
@@ -522,7 +521,7 @@ const InitialStore = {
             type: 'task',  //or spotlight
             completed: false,
 
-            title: 'First task begin',
+            title: 'Spotlight begin',
             clock: {
               timerStatus: null, // inactive, running, paused, stopped
               accumulatedTime: 0,
@@ -573,7 +572,7 @@ const InitialStore = {
         type: 'task',  //or spotlight
         completed: false,
 
-        title: 'First task begin',
+        title: 'Spotlight begin',
         clock: {
           timerStatus: null, // inactive, running, paused, stopped
           accumulatedTime: 0,

@@ -11,6 +11,8 @@
           OPEN_MODAL,
           CLOSE_MODAL,
           CHANGE_DISPLAY_SPOTLIGHT,
+          CHANGE_TASK_COMPLETED_STATUS,
+
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
           ADD_SPOTLIGHT,
@@ -221,5 +223,20 @@
             }
           }
         }
-        
-        
+        // spotId, taskId, newTimerObject
+        export const  changeTaskCompletedStatus = (taskId) => {
+
+          console.log('[mainActions I be clicked - hi changeTaskCompletedStatus = ' , taskId)
+
+          return {
+            type: CHANGE_TASK_COMPLETED_STATUS,
+            payload: {
+              // spotId: spotId,
+              // taskId: taskId,
+              // newTimerObject: newTimerObject
+
+              spotId: taskId
+              
+            }
+          }
+        }

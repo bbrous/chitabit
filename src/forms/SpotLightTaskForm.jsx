@@ -31,12 +31,12 @@ const theme = createMuiTheme(); // mui theme for styled component
 const Wrapper= styled('div')({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'flex-end',
+  justifyContent: 'center',
   alignItems: 'center',
  
    
   width: '100%',
-  
+  backgroundColor: 'white'
 
 })
 
