@@ -8,15 +8,6 @@ import {UTCtoDate, DatetoUTC, msToStringDisplay, convertElapsedTime} from '../..
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
 
-/* ###################################################
-############# WARNING SOLUTION _____ ##########################
-
-
-https://medium.com/@shanplourde/avoid-react-state-update-warnings-on-unmounted-components-bcecf054e953
-
-Move up the component tree
-
-#####################################################   */
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
@@ -219,6 +210,7 @@ const TaskTimeLabel= styled('div')({
 
 // ==================================
  function PopupTimerDisplay(props) {
+
   let {spotlightId, taskId}  = props
 
 
@@ -226,11 +218,10 @@ const TaskTimeLabel= styled('div')({
   let timerData = props.display.private.data.spotlightData.spotlights[spotlightId].tasks[taskId].clock
   let {timerStatus, accumulatedTime, lastDate }  = timerData
 
-  // console.log('[Popup Timer DISPLAY] timerStatus : ', timerStatus)
 
-
+  // set intial state
   const [timerDays, setTimerDays] = useState('00')
- const [timerHours, setTimerHours] = useState('00')
+  const [timerHours, setTimerHours] = useState('00')
   const [timerMinutes, setTimerMinutes] = useState('00')
   const [timerSeconds, setTimerSeconds] = useState('00')
   const [status, setStatus] = useState(timerStatus)
@@ -241,14 +232,21 @@ const TaskTimeLabel= styled('div')({
   let startTimerStopped = useRef()
 
   function addZeroBefore(n) {
+    // used to format add a '0' before # ... for values less than 10
     return (n < 10 ? '0' : '') + n;
   }
 
 
+
   startTimerStopped.current = () => {
+
+    /*  
+     shows frozen accumulated time
+     derived from Redux task.clock.accumulatedTime
+    */ 
+
     let displayTime = msToStringDisplay(accumulatedTime)
     let {days, hours, minutes, seconds} = displayTime
-
 
       setTimerDays(days)
       setTimerHours(addZeroBefore(hours))
@@ -258,21 +256,13 @@ const TaskTimeLabel= styled('div')({
   }
 
   startTimerRunning.current = () => {
-
-    const countdownDate = new Date( "2020-12-14T04:46:20.619Z").getTime()
-    // const startTime = new Date().getTime() - 5566000
-    
-    // const startTime = 1602946470000
-    const elapsedTime  = startingElapsedTime(timerStatus, accumulatedTime, lastDate)
+  /*  
+     shows running time 
+     calculated:  current (date-time) - (lastDate)
+  */ 
+ 
     const startTime = new Date(lastDate).getTime() 
-    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-  
-    console.log('[000 000 TimerDisplay] SPOTLIGHT ID  is : ', startTime )
-    // console.log('[TimerDisplay] taskId is : ', taskId )
-    // console.log('[TimerDisplay] timerData is : ', timerData )
-  
-  
-    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+ 
 
     
     interval = setInterval(() => {
@@ -295,29 +285,20 @@ const TaskTimeLabel= styled('div')({
 
   useEffect(()=>{
 
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
     setStatus(timerStatus)
-
-
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
     
     if(status === 'running'){
-    startTimerRunning.current()
-    return  ()=> {clearInterval(interval)}
+      startTimerRunning.current()
+      return  ()=> {clearInterval(interval)}
     }else{
       startTimerStopped.current()
     }
   }, [startTimerRunning, status,timerStatus]) 
 
 
- 
 
+  // []-----------------------------------------------
 
-  // ------
   return (
     <TimeWrapper>
 

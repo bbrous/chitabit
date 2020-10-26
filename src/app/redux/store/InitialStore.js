@@ -236,13 +236,13 @@ const InitialStore = {
           'spot_1_task_3' :{
             id: 'spot_1_task_3',
             type: 'task',  //or spotlight
-            completed: true,
+            completed: false,
 
             title: 'Clocks and Note Popups create',
             clock: {
               timerStatus: 'running', // inactive, running, paused, stopped
-              accumulatedTime: 55566000,
-              lastDate: null
+              accumulatedTime: 0,
+              lastDate: '2020-10-26T01:46:20.619Z'
             },            
             note: null
             

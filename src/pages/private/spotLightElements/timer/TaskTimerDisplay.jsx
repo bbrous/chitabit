@@ -1,7 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
+import {startingElapsedTime} from '../../../../app/helpers/timerHelpers'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, darkGrey, } from '../../../../styles/colors'
-import {UTCtoDate, DatetoUTC, convertMS, convertElapsedTime} from '../../../../app/helpers/dateHelper'
+import {UTCtoDate, DatetoUTC, msToStringDisplay, convertElapsedTime} from '../../../../app/helpers/dateHelper'
+
 
 // ----Material ui imports  -------
 import { styled, createMuiTheme  } from "@material-ui/core/styles"
@@ -120,37 +122,67 @@ const TaskTimeLabel= styled('div')({
 
 
 // ==========================
-function TaskTimerDisplay() {
+function TaskTimerDisplay(props) {
 
-  const [timerDays, setTimerDays] = useState('0')
-  const [timerHours, setTimerHours] = useState('0')
-  const [timerMinutes, setTimerMinutes] = useState('0')
-  const [timerSeconds, setTimerSeconds] = useState('0')
+  let {spotlightId, taskId}  = props
 
+
+
+  let timerData = props.display.private.data.spotlightData.spotlights[spotlightId].tasks[taskId].clock
+  let {timerStatus, accumulatedTime, lastDate }  = timerData
+
+
+  // set intial state
+  const [timerDays, setTimerDays] = useState('00')
+  const [timerHours, setTimerHours] = useState('00')
+  const [timerMinutes, setTimerMinutes] = useState('00')
+  const [timerSeconds, setTimerSeconds] = useState('00')
+  const [status, setStatus] = useState(timerStatus)
 
 
   let interval = useRef()
-  let startTimer = useRef()
-  // function addZeroBefore(n) {
-  //   return (n < 10 ? '0' : '') + n;
-  // }
-  startTimer.current = () => {
+  let startTimerRunning = useRef()
+  let startTimerStopped = useRef()
 
 
-    const startTime = new Date().getTime() - 566000
 
+  startTimerStopped.current = () => {
+
+    /*  
+     shows frozen accumulated time
+     derived from Redux task.clock.accumulatedTime
+    */ 
+
+    let displayTime = msToStringDisplay(accumulatedTime)
+    let {days, hours, minutes, seconds} = displayTime
+
+      setTimerDays(days)
+      setTimerHours(hours)
+      setTimerMinutes(minutes)
+      setTimerSeconds(seconds)
+    
+  }
+
+  startTimerRunning.current = () => {
+  /*  
+     shows running time 
+     calculated:  current (date-time) - (lastDate)
+  */ 
+ 
+    const startTime = new Date(lastDate).getTime() 
+ 
+
+    
     interval = setInterval(() => {
       const now = new Date().getTime()
       const  distance = now - startTime 
+      
+      let displayTime = msToStringDisplay(distance)
+      let {days, hours, minutes, seconds} = displayTime
 
-      const days = Math.floor(distance /  ( 1000 * 60 * 60 * 24) )
-      const hours = Math.floor((distance % ( 1000 * 60 * 60 * 24) / ( 1000 * 60 * 60) ) )
-      const minutes = Math.floor((distance % ( 1000 * 60 * 60 ) / ( 1000 * 60 ) ) )
-      const seconds = Math.floor((distance % ( 1000 * 60 ) / ( 1000) ) )
 
-  
         setTimerDays(days)
-        setTimerHours( hours)
+        setTimerHours(hours)
         setTimerMinutes(minutes)
         setTimerSeconds(seconds)
  
@@ -160,11 +192,20 @@ function TaskTimerDisplay() {
   }
 
   useEffect(()=>{
-    startTimer.current()
-    return  ()=> {clearInterval(interval)}
-  }, [startTimer])
 
-  // ------
+    setStatus(timerStatus)
+    
+    if(status === 'running'){
+      startTimerRunning.current()
+      return  ()=> {clearInterval(interval)}
+    }else{
+      startTimerStopped.current()
+    }
+  }, [startTimerRunning, status,timerStatus]) 
+
+
+
+  // []-----------------------------------------------
   return (
     <TaskTimeWrapper>
 

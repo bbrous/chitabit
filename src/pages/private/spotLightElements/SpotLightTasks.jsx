@@ -400,15 +400,34 @@ let currentStatus = 'begun'
 
   
 const handleUpdateTimerStatus = (evt) => {
-  // start button logic here
 
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  /* About Timer button actions
+    Actions take place in TimerPopup.jsx
+
+    Timer calculations in general use formula:
+        currentTimestamp - lastDate (in Redux)
+
+     Start: Shown only when timer is incative
+        on click - uploads currentTimestamp into lastDate
+                 - changes status to "running"
+  
+                 
+     Pause: Shown when a timer is 'running'
+        on click - calculates accumulated time and uploads to Redux
+                 - changes status to "paused"
+                 - clears the lastDate in Redux
+
+     Resume: Shown when a timer is 'paused'
+        on click - calculates new lastDate and uploads to Redux
+                  - changes status to "running"
+                  - clears the lastDate in Redux                
+
+  */
 
   
   let buttonId = evt.currentTarget.id
-  console.log('[SPOTLIGHT TASKS]  -', buttonId) 
-  const {timerStatus, accumulatedTime, lastDate} = timerData
+ 
+  const {accumulatedTime, lastDate} = timerData
   let newTimerStatus,  newLastDate, newAccumulatedTime
 
 
@@ -424,10 +443,10 @@ const handleUpdateTimerStatus = (evt) => {
 
   if(buttonId === 'paused'){
 
-    let currentMS = new Date(currentTimeStamp).getTime()
+    let currentMs = new Date(currentTimeStamp).getTime()
     let lastMs = new Date(lastDate).getTime()
     newTimerStatus = 'paused'
-    newAccumulatedTime = currentTimeStamp - lastMs
+    newAccumulatedTime = currentMs - lastMs
     newLastDate = ''
   }
 
@@ -449,11 +468,7 @@ const handleUpdateTimerStatus = (evt) => {
     newAccumulatedTime = 0
     newLastDate = ''
   }
-
-  console.log('[SPOTLIGHT TASKS] --- timerStatus -' , timerStatus)
-  console.log('[SPOTLIGHT TASKS] --- accumulatedTimer -' , accumulatedTime)
-  console.log('[SPOTLIGHT TASKS] --- lastDate -' , currentTimeStamp)
-  
+ 
   
   let newTimerObject = {
     timerStatus: newTimerStatus,
@@ -462,40 +477,11 @@ const handleUpdateTimerStatus = (evt) => {
   }
 
 
-
-
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-
-
-
-  
-  // console.log('[TimerPopup] handleUpdateTimerStatus is : ', buttonId)
   changeTimerStatus(spotlightId , taskId, newTimerObject)
 }
 
 
-
- 
-
-
-
-
-
-
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
-  //--------------------------------------------------- []
-
-
-
-
+// [] ----------------------------------------------------
 
   return(
 
@@ -515,17 +501,7 @@ const handleUpdateTimerStatus = (evt) => {
           
           {type === 'spotlight' && 
             <SpotlightTag 
-
-            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
-            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
-
-              // Shows up in actions (console.log), but does not trigger Change
-
-            onClick={()=> changeDisplaySpotlight(taskId)}
-
-            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
-            // @@@@@@@@@@@@@@@  HEREERERERERERE  @@@@@@@@@@@@@@@
-           
+              onClick={()=> changeDisplaySpotlight(taskId)}
             >Spotlight</SpotlightTag>
           } 
           
@@ -563,18 +539,21 @@ const handleUpdateTimerStatus = (evt) => {
           <NotificationWrapper>
 
             <StatusWrapper> 
-            {type === 'spotlight' && currentStatus === 'begun' && 
-              <Status>In progress</Status>
-            }
+              {type === 'spotlight' && currentStatus === 'begun' && 
+                <Status>In progress</Status>
+              }
 
-            {type === 'task' && 
-              <TaskTimerDisplay/>
-         
-            }
+              {type === 'task' && 
+                <TaskTimerDisplay
+                taskId = {taskId} 
+                  spotlightId = {spotlightId}
+                  timerData = {timerData}
+                />
+          
+              }
 
-</StatusWrapper>
+            </StatusWrapper>
             <IconWrapper>
-
 
               {note && 
               <NotePopup 
@@ -583,14 +562,14 @@ const handleUpdateTimerStatus = (evt) => {
               />
               }
 
-{type === 'task' && 
-              <TimerPopup 
-                taskId = {taskId} 
-                spotlightId = {spotlightId}
-                timerData = {timerData}
-                handleUpdateTimerStatus = {handleUpdateTimerStatus}
-              />    
-            }          
+              {type === 'task' && 
+                <TimerPopup 
+                  taskId = {taskId} 
+                  spotlightId = {spotlightId}
+                  timerData = {timerData}
+                  handleUpdateTimerStatus = {handleUpdateTimerStatus}
+                />    
+              }          
             </IconWrapper>
  
 
