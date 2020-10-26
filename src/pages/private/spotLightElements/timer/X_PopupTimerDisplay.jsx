@@ -264,7 +264,7 @@ const TaskTimeLabel= styled('div')({
     
     // const startTime = 1602946470000
     const elapsedTime  = startingElapsedTime(timerStatus, accumulatedTime, lastDate)
-    const startTime = new Date(lastDate).getTime() 
+    const startTime = new Date().getTime() - elapsedTime
     // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
   
     console.log('[000 000 TimerDisplay] SPOTLIGHT ID  is : ', startTime )

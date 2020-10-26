@@ -434,12 +434,12 @@ const handleUpdateTimerStatus = (evt) => {
   
   if(buttonId === 'resume'){
 
-    let currentMS = new Date(currentTimeStamp).getTime()
-    let lastMs = new Date(lastDate).getTime()
-                //  new Date( "2020-12-14T04:46:20.619Z").getTime()
+    let currentMs = new Date(currentTimeStamp).getTime()
+    let lastMs = currentMs - accumulatedTime
+                
     newTimerStatus = 'running'
     newAccumulatedTime =  accumulatedTime
-    newLastDate = currentTimeStamp
+    newLastDate = new Date(lastMs)
   }
 
   if(buttonId === 'reset'){
