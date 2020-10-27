@@ -13,6 +13,7 @@ import {
           // CLOSE_SPOTLIGHT,
           CHANGE_DISPLAY_SPOTLIGHT,
           CHANGE_TASK_COMPLETED_STATUS,
+          CHANGE_SPOTLIGHT_COMPLETED_STATUS,
 
           ADD_SPOTLIGHT,
           OPEN_MODAL,
@@ -120,9 +121,20 @@ const reducer_Main = produce((draft = initialState, action) => {
 
         return draft
          
-       }// end CHANGE_DISPLAY_SPOTLIGHT
+       }// end CHANGE_TASK_COMPLETED_STATUS
 
 
+
+       case CHANGE_SPOTLIGHT_COMPLETED_STATUS : 
+       {
+
+        console.log('REDUCER MAIN - CHANGE_SPOTLIGHT_COMPLETED_STATUS clicked reduce ', payload)
+       //  draft.spotLightDisplay.displayedSpotLightId = payload.displayedSpotLightId
+       //  return draft;
+
+       return draft
+        
+      }// end CHANGE_SPOTLIGHT_COMPLETED_STATUS
         
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -179,6 +191,7 @@ const reducer_Main = produce((draft = initialState, action) => {
           title: todo, 
           type: 'spotlight', 
           parent: id,
+          spotlightStatus: 'inactive', // begun, inactive
           timeStamp:"2020-09-25T04:46:20.619Z",
           clock: {
             timerStatus: null, // inactive, running, paused, stopped

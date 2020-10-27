@@ -150,6 +150,7 @@ const InitialStore = {
 
         title: 'Complete Journal and Spotlight',
 
+        spotlightStatus: 'begun', // inactive
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-10-15T04:46:20.619Z",  //October 15  
         note: 'This is a note for spot 1',
@@ -290,7 +291,7 @@ const InitialStore = {
         completed: false,
 
         title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
-
+        spotlightStatus: 'inactive', // begun, inactive
         timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
@@ -393,7 +394,8 @@ const InitialStore = {
         completed: false,
 
         title: 'Popups for note and clock',
-
+        
+        spotlightStatus: 'inactive', // begun, inactive
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
@@ -494,6 +496,7 @@ const InitialStore = {
 
         title: 'Dummy Spotlight 5',
 
+        spotlightStatus: 'inactive', // begun, inactive
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
@@ -543,7 +546,8 @@ const InitialStore = {
         completed: false,
 
         title: 'Dummy Spotlight 4',
-
+        
+        spotlightStatus: 'inactive', // begun, inactive
         timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 

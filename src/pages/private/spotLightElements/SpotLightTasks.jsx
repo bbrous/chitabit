@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {Fragment, useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} from '../../../app/redux/actions/mainActions'
+import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus, changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
-import{chitOrange ,  lightGrey,  mediumLightGrey } from '../../../styles/colors'
+import{chitOrange ,  chitOrangeVeryLight,  lightGrey,  mediumLightGrey } from '../../../styles/colors'
 // import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
 import TaskTimerDisplay from './timer/TaskTimerDisplay'
 import {startingElapsedTime} from '../../../app/helpers/timerHelpers'
@@ -84,11 +84,38 @@ const ItemWrapper = styled(Paper)({
  alignItems: 'center',
 
   width: '99%',
-  
+  // border: '1px solid white',
   margin: '4px 0',
   
   
 })
+
+const SpotlightItemWrapper = styled(Paper)({
+  display: 'flex',
+  justifyContent: 'space-between',
+ alignItems: 'center',
+
+  width: '99%',
+  // border: '1px solid orange',
+  backgroundColor: chitOrangeVeryLight,
+  margin: '4px 0',
+  
+  
+})
+
+const SpotlightTaskWrapper = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100%',
+  flexGrow: '1',
+ 
+  textAlign: 'center',
+  backgroundColor: 'chitOrangeVeryLight',
+  
+})
+
 const TaskWrapper = styled('div')({
   display: 'flex',
   flexDirection: 'column',
@@ -141,7 +168,7 @@ const DragDiv = styled('div')({
   cursor: 'pointer',
   
   '&:hover' : {
-    // backgroundColor:chitOrangeLight
+    // backgroundColor:chitOrangeVeryLight
     border: '1px solid #FADAC1'
   }
 
@@ -176,7 +203,7 @@ const CheckCircleWrapper= styled('div')({
  
   marginRight: '1rem',
   // color: mediumLightGrey,
-
+ 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
@@ -192,7 +219,10 @@ const CheckCircle= styled('div')({
   height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
-   
+  '&:hover' : {
+     
+    border: '1px solid orange'
+  },
   // color: mediumLightGrey,
   
   cursor: 'pointer',
@@ -257,7 +287,7 @@ const SpotLightWrapper = styled('div')({
   justifyContent: 'flex-end',
   width: '100%',
   marginBottom: '4px',
-//  backgroundColor: 'red',
+ 
  
 
   
@@ -337,7 +367,7 @@ const SpotlightTag= styled('div')({
 
 
 
-const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} ) => {
+const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus, changeSpotlightCompletedStatus} ) => {
 
   //  set up drag for Sortable Element using a handle
   const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
@@ -384,8 +414,8 @@ const { type, title, completed, note } = itemObject
 
 
 
-// @@@@@@@@@@@@@@@@@ TEMP  Get from Redux store @@@@@@@@@@@@@@@@@@@@@@
-let currentStatus = 'begun'
+// determine if specific spotlight has been started or not
+let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus
 
 
 
@@ -410,17 +440,18 @@ const handleCompletedStatus = () => {
     
     console.log('[SPOTLIGHT TASKS -- Task completed status : ' , completedStatus)
     console.log('[SPOTLIGHT TASKS -- Task newCompletedStatus : ' , newCompletedStatus)
+    changeTaskCompletedStatus('spot_1_task_1' )
   }
 
   if(taskType === 'spotlight'){
     // 1. get task completed status 
    
-    console.log('[SPOTLIGHT TASKS -- Task completed status : ' , completedStatus)
+    console.log('[SPOTLIGHT TASKS -- Spotlight completed status : ' , completedStatus)
     console.log('[SPOTLIGHT TASKS -- Spotlight newCompletedStatus : ' ,  newCompletedStatus)
   }
 
   console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-  changeTaskCompletedStatus('spot_1' , 'spot_1_task_1' )
+  changeSpotlightCompletedStatus('spot_1' )
 }
 
   
@@ -513,8 +544,8 @@ const handleUpdateTimerStatus = (evt) => {
 // [] ----------------------------------------------------
 
   return(
-
-
+<Fragment>
+    {type !== 'spotlight'  &&
       <ItemWrapper
        
         id = {taskId}
@@ -572,7 +603,7 @@ const handleUpdateTimerStatus = (evt) => {
           <NotificationWrapper>
 
             <StatusWrapper> 
-              {type === 'spotlight' && currentStatus === 'begun' && 
+              {type === 'spotlight' && currentSpotlightStatus === 'begun' && 
                 <Status>In progress</Status>
               }
 
@@ -620,9 +651,130 @@ const handleUpdateTimerStatus = (evt) => {
 
 
       </ItemWrapper>
+}
+
+{type === 'spotlight'  &&
+      <SpotlightItemWrapper
+       
+        id = {taskId}
+      >
+       <DragHandle />
+
+       
+       <SpotlightTaskWrapper>
+        <TaskBlockWrapper>
+          <SpotLightWrapper>
+          <IconWrapper>
+            &nbsp; 
+          
+          {type === 'spotlight' && 
+            <SpotlightTag 
+              onClick={()=> changeDisplaySpotlight(taskId)}
+            >Spotlight</SpotlightTag>
+          } 
+          
+          </IconWrapper>
+        </SpotLightWrapper>
+
+          <TaskBlock>  
+            <CheckCircleWrapper
+            
+            onClick={()=> handleCompletedStatus( taskId)}
+            
+            >
+
+            {! completed && 
+              <CheckCircle/>
+              }
+              { completed && 
+              <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
+              }
+
+
+              
+              
+              </CheckCircleWrapper>
+
+
+
+
+              {! completed && 
+              <TitleWrapper> {title}</TitleWrapper> 
+              }
+              { completed && 
+              <TitleWrapperCompleted>  {title}</TitleWrapperCompleted> 
+              }
+
+
+          </TaskBlock>
+          
+          <NotificationWrapper>
+
+            <StatusWrapper> 
+              {type === 'spotlight' && currentSpotlightStatus === 'begun' && 
+                <Status>In progress</Status>
+              }
+
+              {type === 'task' && 
+                <TaskTimerDisplay
+                taskId = {taskId} 
+                  spotlightId = {spotlightId}
+                  timerData = {timerData}
+                />
+          
+              }
+
+            </StatusWrapper>
+            <IconWrapper>
+
+              {note && 
+              <NotePopup 
+                note = {note} 
+                spotlightData = {spotlightData}
+              />
+              }
+
+              {type === 'task' && 
+                <TimerPopup 
+                  taskId = {taskId} 
+                  spotlightId = {spotlightId}
+                  timerData = {timerData}
+                  handleUpdateTimerStatus = {handleUpdateTimerStatus}
+                />    
+              }          
+            </IconWrapper>
+ 
+
+        </NotificationWrapper>
+
+
+        </TaskBlockWrapper>
+        
+       </SpotlightTaskWrapper>
+        
+
+       <MenuPopup id = {taskId}/>
+
+
+
+
+      </SpotlightItemWrapper>
+}
+
+
+
+
+</Fragment>
+
+
+
+
+
+
+
  
   )// end RETURN Sortable Item
-
+  
 })// end SortableItem
     
 
@@ -632,7 +784,7 @@ const handleUpdateTimerStatus = (evt) => {
 // ------- Map of Items   --------------------[]
 
 
-const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus  } ) => {
+const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus,  changeSpotlightCompletedStatus } ) => {
  
 
 
@@ -655,6 +807,7 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId,chan
           changeDisplaySpotlight= {changeDisplaySpotlight}
           changeTimerStatus = { changeTimerStatus}
           changeTaskCompletedStatus = {changeTaskCompletedStatus}
+          changeSpotlightCompletedStatus = {changeSpotlightCompletedStatus}
        
         />
          
@@ -755,6 +908,7 @@ let spotlightId = props.id
             changeDisplaySpotlight = {props.changeDisplaySpotlight}
             changeTimerStatus = {props.changeTimerStatus}
             changeTaskCompletedStatus = {props.changeTaskCompletedStatus}
+            changeSpotlightCompletedStatus = {props.changeSpotlightCompletedStatus}
             />
 
 
@@ -774,7 +928,9 @@ const actions = {
   openModal,
   changeDisplaySpotlight,
   changeTimerStatus,
-  changeTaskCompletedStatus
+  changeTaskCompletedStatus,
+  changeSpotlightCompletedStatus
+  
 }
 
 const mapState = state => ({

@@ -224,6 +224,8 @@
           }
         }
         // spotId, taskId, newTimerObject
+
+
         export const  changeTaskCompletedStatus = (taskId) => {
 
           console.log('[mainActions I be clicked - hi changeTaskCompletedStatus = ' , taskId)
@@ -236,6 +238,24 @@
               // newTimerObject: newTimerObject
 
               spotId: taskId
+              
+            }
+          }
+        }
+
+
+        export const  changeSpotlightCompletedStatus = (spotId) => {
+
+          console.log('[mainActions I be clicked - hi changeSpotlightCompletedStatus = ' , spotId)
+
+          return {
+            type: CHANGE_TASK_COMPLETED_STATUS,
+            payload: {
+              // spotId: spotId,
+              // taskId: taskId,
+              // newTimerObject: newTimerObject
+
+              spotId: spotId
               
             }
           }

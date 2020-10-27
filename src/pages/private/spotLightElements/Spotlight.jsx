@@ -77,7 +77,7 @@ const BreadCrumbs= styled('div')({
   alignItems: 'center',
   height: '3.5%',
   
-  margin: '1.5rem 0',
+  margin: '1rem 0',
   color: chitBlueDull,
 
 
