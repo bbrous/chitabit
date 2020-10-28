@@ -390,7 +390,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     itemObject = itemAddress[taskId]
     timerData = spotlightData.spotlights[spotlightId].tasks[taskId].clock
     
-
+    console.log('[SPOTLIGHT TASKS -- duh  Status : ' , spotlightData.spotlights[spotlightId].tasks[taskId].completed)
 
 
 
@@ -418,35 +418,32 @@ const { type, title, completed, note } = itemObject
 let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus
 
 
-
- 
-//  ---- Completed Functions
-
-const handleSpotlightCompletedStatus = () => {
+const handleTaskCompletedStatus = () => {
 
   // 1. get current Spotlight completed status
   
-  let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus 
+  let currentTaskStatus = spotlightData.spotlights[spotlightId].tasks[taskId].completed
 
  
-    console.log('[SPOTLIGHT TASKS -- handleSpotlightCompletedStatus spotlight Status : ' , currentSpotlightStatus)
-    console.log('[SPOTLIGHT TASKS -- I be clicked - taskId is : ' , taskId )
-    // console.log('[SPOTLIGHT TASKS -- I be clicked - spotlightData is : ' , spotlightData )
-    // console.log('[SPOTLIGHT TASKS -- I be clicked - itemAddress is : ' , itemAddress )
+    // console.log('[SPOTLIGHT TASKS -- currentTaskStatus  Status : ' , currentTaskStatus)
+    // console.log('[SPOTLIGHT TASKS -- I be clicked - taskId is : ' , taskId )
+    // console.log('[SPOTLIGHT TASKS -- I be clicked - spotlightId is : ' , spotlightId )
+    // console.log('[SPOTLIGHT TASKS -- ^^^^^^^^^^^^^^^^^^^^^^^^^^'  )
 
-  let completedStatus, newCompletedStatus
+
+
   
 
 
 
-    completedStatus = itemAddress[taskId].completed
-    newCompletedStatus = completedStatus ? false : true
-    console.log('[SPOTLIGHT TASKS -- Spotlight completed status : ' , completedStatus)
+     
+    let newCompletedStatus = currentTaskStatus ? false : true
+    console.log('[SPOTLIGHT TASKS -- Spotlight completed status : ' , currentTaskStatus)
     console.log('[SPOTLIGHT TASKS -- Spotlight newCompletedStatus : ' ,  newCompletedStatus)
 
 
   console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-  changeSpotlightCompletedStatus('spot_1', newCompletedStatus )
+  changeTaskCompletedStatus(spotlightId, taskId, newCompletedStatus )
 }
 
   
@@ -559,13 +556,6 @@ const handleUpdateTimerStatus = (evt) => {
           <IconWrapper>
             &nbsp; 
 
-   
-
-          {type === 'spotlight' && 
-            <SpotlightTag 
-              onClick={()=> changeDisplaySpotlight(taskId)}
-            >Spotlight</SpotlightTag>
-          } 
           
           </IconWrapper>
         </SpotLightWrapper>
@@ -573,7 +563,7 @@ const handleUpdateTimerStatus = (evt) => {
           <TaskBlock>  
             <CheckCircleWrapper
             
-            onClick={()=> handleSpotlightCompletedStatus( taskId)}
+            onClick={()=> handleTaskCompletedStatus( taskId)}
             
             >
 
@@ -846,13 +836,13 @@ let spotlightId = props.id
   }, [ items, spotlightId, reduxUpdateTaskArray]);
 
 
-  //clock functions
+  // taskComplete functions
 
   const [timer, setTimer] = useState(0);
 
 // updateDatabase runs on compenent unmount
   const updateDatabase = ()=>{
-    console.log('[DUMMY FUNCTION RUN]... hopefully on close')
+    // console.log('[DUMMY FUNCTION RUN]... hopefully on close')
   }
 
 
@@ -871,13 +861,13 @@ let spotlightId = props.id
 
 //completed functions
 
-  const [spotlightCompetedStatus, setSpotlightCompetedStatus] = useState();
+  const [tasktCompetedStatus, setTaskCompetedStatus] = useState();
 
 
   useEffect(() => {
     
-
-    setSpotlightCompetedStatus(true)
+    console.log('[SPOTLIGHT TASKS useEffect ]... hopefully on close')
+    setTaskCompetedStatus(true)
 
     return updateDatabase
 

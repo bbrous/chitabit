@@ -227,18 +227,20 @@
         // spotId, taskId, newTimerObject
 
 
-        export const  changeTaskCompletedStatus = (taskId) => {
+        export const  changeTaskCompletedStatus = (spotId, taskId, newCompletedStatus) => {
 
-          console.log('[mainActions I be clicked - hi changeTaskCompletedStatus = ' , taskId)
+          console.log('[mainActions...changeTaskCompletedStatus spotId= ' , spotId)
+          console.log('[mainActions...changeTaskCompletedStatus taskId= ' , taskId)
+          console.log('[mainActions...changeTaskCompletedStatus newCompletedStatus= ' , newCompletedStatus)
+          console.log('[mainActions...================================= ' )
 
           return {
             type: CHANGE_TASK_COMPLETED_STATUS,
             payload: {
-              // spotId: spotId,
-              // taskId: taskId,
-              // newTimerObject: newTimerObject
-
-              spotId: taskId
+              spotId: spotId,
+              taskId: taskId,
+              completed: newCompletedStatus
+ 
               
             }
           }
