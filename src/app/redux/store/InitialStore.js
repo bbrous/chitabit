@@ -146,12 +146,12 @@ const InitialStore = {
         id: 'spot_1',
         type: 'spotlight',
         parent: '',
-        completed: false,
 
         title: 'Complete Journal and Spotlight',
 
-        spotlightStatus: 'begun', // inactive
+        spotlightStatus: 'begun', // inactive, begun, completed
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        
         endEst: "2020-10-15T04:46:20.619Z",  //October 15  
         note: 'This is a note for spot 1',
  
@@ -288,10 +288,9 @@ const InitialStore = {
         id: 'spot_2',
         type: 'spotlight',
         parent: '',
-        completed: false,
 
         title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
-        spotlightStatus: 'inactive', // begun, inactive
+        spotlightStatus: 'inactive', // inactive, begun, completed
         timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
@@ -391,11 +390,10 @@ const InitialStore = {
         id: 'spot_3',
         type: 'spotlight',
         parent: '',
-        completed: false,
 
         title: 'Popups for note and clock',
         
-        spotlightStatus: 'inactive', // begun, inactive
+        spotlightStatus: 'inactive', // inactive, begun, completed
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
@@ -492,11 +490,10 @@ const InitialStore = {
         id: 'spot_5',
         type: 'spotlight',
         parent: '',
-        completed: false,
 
         title: 'Dummy Spotlight 5',
 
-        spotlightStatus: 'inactive', // begun, inactive
+        spotlightStatus: 'inactive', // inactive, begun, completed
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
@@ -543,11 +540,10 @@ const InitialStore = {
         id: 'spot_4',
         type: 'spotlight',
         parent: '',
-        completed: false,
 
         title: 'Dummy Spotlight 4',
         
-        spotlightStatus: 'inactive', // begun, inactive
+        spotlightStatus: 'inactive', // inactive, begun, completed
         timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 

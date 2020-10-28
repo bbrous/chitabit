@@ -422,36 +422,31 @@ let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStat
  
 //  ---- Completed Functions
 
-const handleCompletedStatus = () => {
-  
+const handleSpotlightCompletedStatus = () => {
 
-  let taskType = value.type 
-    // console.log('[SPOTLIGHT TASKS -- I be clicked - value.type is : ' , taskType)
-    // console.log('[SPOTLIGHT TASKS -- I be clicked - taskId is : ' , taskId )
+  // 1. get current Spotlight completed status
+  
+  let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus 
+
+ 
+    console.log('[SPOTLIGHT TASKS -- handleSpotlightCompletedStatus spotlight Status : ' , currentSpotlightStatus)
+    console.log('[SPOTLIGHT TASKS -- I be clicked - taskId is : ' , taskId )
     // console.log('[SPOTLIGHT TASKS -- I be clicked - spotlightData is : ' , spotlightData )
     // console.log('[SPOTLIGHT TASKS -- I be clicked - itemAddress is : ' , itemAddress )
 
-  let completedStatus = itemAddress[taskId].completed
-  let newCompletedStatus = completedStatus ? false : true
+  let completedStatus, newCompletedStatus
   
-  if(taskType === 'task'){
-    
-    // 1. get task completed status 
-    
-    console.log('[SPOTLIGHT TASKS -- Task completed status : ' , completedStatus)
-    console.log('[SPOTLIGHT TASKS -- Task newCompletedStatus : ' , newCompletedStatus)
-    changeTaskCompletedStatus('spot_1_task_1' )
-  }
 
-  if(taskType === 'spotlight'){
-    // 1. get task completed status 
-   
+
+
+    completedStatus = itemAddress[taskId].completed
+    newCompletedStatus = completedStatus ? false : true
     console.log('[SPOTLIGHT TASKS -- Spotlight completed status : ' , completedStatus)
     console.log('[SPOTLIGHT TASKS -- Spotlight newCompletedStatus : ' ,  newCompletedStatus)
-  }
+
 
   console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-  changeSpotlightCompletedStatus('spot_1' )
+  changeSpotlightCompletedStatus('spot_1', newCompletedStatus )
 }
 
   
@@ -544,7 +539,12 @@ const handleUpdateTimerStatus = (evt) => {
 // [] ----------------------------------------------------
 
   return(
-<Fragment>
+
+    
+  <div> {/* div necessary to make sortable HOC work-*/}
+
+   
+   
     {type !== 'spotlight'  &&
       <ItemWrapper
        
@@ -558,7 +558,9 @@ const handleUpdateTimerStatus = (evt) => {
           <SpotLightWrapper>
           <IconWrapper>
             &nbsp; 
-          
+
+   
+
           {type === 'spotlight' && 
             <SpotlightTag 
               onClick={()=> changeDisplaySpotlight(taskId)}
@@ -571,7 +573,7 @@ const handleUpdateTimerStatus = (evt) => {
           <TaskBlock>  
             <CheckCircleWrapper
             
-            onClick={()=> handleCompletedStatus( taskId)}
+            onClick={()=> handleSpotlightCompletedStatus( taskId)}
             
             >
 
@@ -653,7 +655,7 @@ const handleUpdateTimerStatus = (evt) => {
       </ItemWrapper>
 }
 
-{type === 'spotlight'  &&
+    {type === 'spotlight'  &&
       <SpotlightItemWrapper
        
         id = {taskId}
@@ -677,19 +679,9 @@ const handleUpdateTimerStatus = (evt) => {
         </SpotLightWrapper>
 
           <TaskBlock>  
-            <CheckCircleWrapper
-            
-            onClick={()=> handleCompletedStatus( taskId)}
-            
-            >
+            <CheckCircleWrapper>
 
-            {! completed && 
-              <CheckCircle/>
-              }
-              { completed && 
-              <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
-              }
-
+            
 
               
               
@@ -764,7 +756,7 @@ const handleUpdateTimerStatus = (evt) => {
 
 
 
-</Fragment>
+</div>
 
 
 
@@ -854,9 +846,7 @@ let spotlightId = props.id
   }, [ items, spotlightId, reduxUpdateTaskArray]);
 
 
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-//clock functions
+  //clock functions
 
   const [timer, setTimer] = useState(0);
 
@@ -871,6 +861,23 @@ let spotlightId = props.id
     
 
     // clock stuff here
+
+    return updateDatabase
+
+    
+  }, []);
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//completed functions
+
+  const [spotlightCompetedStatus, setSpotlightCompetedStatus] = useState();
+
+
+  useEffect(() => {
+    
+
+    setSpotlightCompetedStatus(true)
 
     return updateDatabase
 

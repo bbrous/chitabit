@@ -12,7 +12,8 @@
           CLOSE_MODAL,
           CHANGE_DISPLAY_SPOTLIGHT,
           CHANGE_TASK_COMPLETED_STATUS,
-
+          CHANGE_SPOTLIGHT_COMPLETED_STATUS,
+          
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
           ADD_SPOTLIGHT,
@@ -244,18 +245,17 @@
         }
 
 
-        export const  changeSpotlightCompletedStatus = (spotId) => {
+        export const  changeSpotlightCompletedStatus = (spotId, newCompletedStatus) => {
 
           console.log('[mainActions I be clicked - hi changeSpotlightCompletedStatus = ' , spotId)
+          console.log('[mainActions I be clicked - hi changeSpotlightCompletedStatus = ' , newCompletedStatus)
 
           return {
-            type: CHANGE_TASK_COMPLETED_STATUS,
+            type: CHANGE_SPOTLIGHT_COMPLETED_STATUS,
             payload: {
-              // spotId: spotId,
-              // taskId: taskId,
-              // newTimerObject: newTimerObject
+              spotId: spotId,
+              newCompletedStatus: newCompletedStatus
 
-              spotId: spotId
               
             }
           }
