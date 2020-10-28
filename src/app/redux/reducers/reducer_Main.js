@@ -133,11 +133,14 @@ const reducer_Main = produce((draft = initialState, action) => {
        case CHANGE_SPOTLIGHT_COMPLETED_STATUS : 
        {
 
-        const{spotId, newCompletedStatus} = payload
-        // console.log('REDUCER MAIN - aaCHANGE_SPOTLIGHT_COMPLETED_STATUS clicked reduce ')
+        let spotId = payload.spotId
+          
+          let spotlightStatus = payload.spotlightStatus
+ 
+        console.log('REDUCER MAIN - aaCHANGE_SPOTLIGHT_COMPLETED_STATUS clicked reduce ', spotlightStatus)
 
 
-        draft.data.spotlightData.spotlights[spotId].completed= newCompletedStatus
+        draft.data.spotlightData.spotlights[spotId].spotlightStatus = spotlightStatus
        
 
        return draft

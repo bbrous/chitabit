@@ -256,7 +256,7 @@
             type: CHANGE_SPOTLIGHT_COMPLETED_STATUS,
             payload: {
               spotId: spotId,
-              newCompletedStatus: newCompletedStatus
+              spotlightStatus: newCompletedStatus
 
               
             }

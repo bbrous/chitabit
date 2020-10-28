@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus, changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
+import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} from '../../../app/redux/actions/mainActions'
 
 import{chitOrange ,  chitOrangeVeryLight,  lightGrey,  mediumLightGrey } from '../../../styles/colors'
 // import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
@@ -367,7 +367,7 @@ const SpotlightTag= styled('div')({
 
 
 
-const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus, changeSpotlightCompletedStatus} ) => {
+const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} ) => {
 
   //  set up drag for Sortable Element using a handle
   const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
@@ -390,7 +390,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     itemObject = itemAddress[taskId]
     timerData = spotlightData.spotlights[spotlightId].tasks[taskId].clock
     
-    console.log('[SPOTLIGHT TASKS -- duh  Status : ' , spotlightData.spotlights[spotlightId].tasks[taskId].completed)
+    // console.log('[SPOTLIGHT TASKS -- duh  Status : ' , spotlightData.spotlights[spotlightId].tasks[taskId].completed)
 
 
 
@@ -423,27 +423,14 @@ const handleTaskCompletedStatus = () => {
   // 1. get current Spotlight completed status
   
   let currentTaskStatus = spotlightData.spotlights[spotlightId].tasks[taskId].completed
+  let newCompletedStatus = currentTaskStatus ? false : true
 
+  changeTaskCompletedStatus(spotlightId, taskId, newCompletedStatus )
  
-    // console.log('[SPOTLIGHT TASKS -- currentTaskStatus  Status : ' , currentTaskStatus)
-    // console.log('[SPOTLIGHT TASKS -- I be clicked - taskId is : ' , taskId )
-    // console.log('[SPOTLIGHT TASKS -- I be clicked - spotlightId is : ' , spotlightId )
-    // console.log('[SPOTLIGHT TASKS -- ^^^^^^^^^^^^^^^^^^^^^^^^^^'  )
-
-
-
-  
-
-
-
-     
-    let newCompletedStatus = currentTaskStatus ? false : true
-    console.log('[SPOTLIGHT TASKS -- Spotlight completed status : ' , currentTaskStatus)
-    console.log('[SPOTLIGHT TASKS -- Spotlight newCompletedStatus : ' ,  newCompletedStatus)
 
 
   console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-  changeTaskCompletedStatus(spotlightId, taskId, newCompletedStatus )
+
 }
 
   
@@ -766,7 +753,7 @@ const handleUpdateTimerStatus = (evt) => {
 // ------- Map of Items   --------------------[]
 
 
-const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus,  changeSpotlightCompletedStatus } ) => {
+const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} ) => {
  
 
 
@@ -789,7 +776,7 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId,chan
           changeDisplaySpotlight= {changeDisplaySpotlight}
           changeTimerStatus = { changeTimerStatus}
           changeTaskCompletedStatus = {changeTaskCompletedStatus}
-          changeSpotlightCompletedStatus = {changeSpotlightCompletedStatus}
+      
        
         />
          
@@ -905,7 +892,7 @@ let spotlightId = props.id
             changeDisplaySpotlight = {props.changeDisplaySpotlight}
             changeTimerStatus = {props.changeTimerStatus}
             changeTaskCompletedStatus = {props.changeTaskCompletedStatus}
-            changeSpotlightCompletedStatus = {props.changeSpotlightCompletedStatus}
+           
             />
 
 
@@ -926,7 +913,7 @@ const actions = {
   changeDisplaySpotlight,
   changeTimerStatus,
   changeTaskCompletedStatus,
-  changeSpotlightCompletedStatus
+  
   
 }
 

@@ -5,6 +5,7 @@ import SpotLightTasks from './SpotLightTasks'
 import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey,   veryLightGrey} from '../../../styles/colors'
+import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 import MenuPopup from './MenuPopup'
@@ -603,7 +604,7 @@ export const Spotlight = (props) => {
 
   let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
 
-  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
+  const {id, type, parent, completed, spotlightStatus, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
 
   // console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
   
@@ -636,7 +637,26 @@ export const Spotlight = (props) => {
   }
   
 
+  const handleSpotlightCompletedStatus = () => {
 
+    // 1. get current Spotlight completed status
+
+    console.log('[SPOTLIGHT] handleSpotlightCompletedStatus, id : ', id)
+    
+    let currentSpotlightStatus = spotlightData.spotlights[id].spotlightStatus
+    let newCompletedStatus 
+
+    if(currentSpotlightStatus === 'inactive'){newCompletedStatus = 'begun'}
+    if(currentSpotlightStatus === 'completed'){newCompletedStatus = 'begun'}
+    if(currentSpotlightStatus === 'begun'){newCompletedStatus = 'completed'}
+  
+    props.changeSpotlightCompletedStatus(id, newCompletedStatus )
+   
+  
+  
+    console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+  
+  }
 
   return (
     <Fragment>
@@ -661,11 +681,11 @@ export const Spotlight = (props) => {
 
 <TopWrapper> 
     <TitleWrapper>
-      <div><CheckCircleWrapper> 
-      {!completed && 
+      <div><CheckCircleWrapper onClick={()=> handleSpotlightCompletedStatus( id)}> 
+      {spotlightStatus !== 'completed' && 
               <CheckCircle/>
               }
-              {completed && 
+              {spotlightStatus === 'completed' && 
               <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
               }
         </CheckCircleWrapper></div>
@@ -764,7 +784,7 @@ export const Spotlight = (props) => {
 
 const actions = {
   // changeDisplaySpotlight,
-  // openCloseSidePanel
+  changeSpotlightCompletedStatus
 }
 
 const mapState = state => ({
