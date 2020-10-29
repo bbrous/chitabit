@@ -12,6 +12,8 @@ import MenuPopup from './MenuPopup'
 import ClockPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
 
+import CountDownDisplay from './timer/CountDownDisplay'
+
 // &&&&   TEMP Initial Store Import -- Get from Database
 // import InitialStore from '../../../app/redux/store/InitialStore'
 
@@ -722,6 +724,14 @@ export const Spotlight = (props) => {
         <DetailRow>
           <DetailRowLeft>Elapsed: </DetailRowLeft>
           <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
+
+        </DetailRow>
+
+        <DetailRow>
+        <DetailRowLeft>Elapsed *** : </DetailRowLeft>
+          <DetailRowRight><CountDownDisplay/></DetailRowRight>
+
+          
         </DetailRow>
         
          <BottomWrapper> 
