@@ -611,24 +611,11 @@ export const Spotlight = (props) => {
   // console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
   
   // convert target Date in ISO to UTC for addition/subtraction etc
-  let targetDate, days, hours, mins, secs
+  let targetDate, beginDate
   if(endEst) {
     let targetDateInMilliseconds = DatetoUTC(endEst)
-    
     // format target Date in milliseconds for display
     targetDate  =  UTCtoDate(targetDateInMilliseconds)
-    let currentDate = new Date()
-
-
-
-    let currentUTCDate = DatetoUTC(currentDate)
-    let UTCTimeRemaining = targetDateInMilliseconds - currentUTCDate
-  
-    let  timeRemainingObject =  convertMS(UTCTimeRemaining)
-     days = Math.abs(timeRemainingObject.day)
-     hours = Math.abs(timeRemainingObject.hour)
-     mins = Math.abs(timeRemainingObject.minute)
-     secs = Math.abs(timeRemainingObject.seconds)
   
     // console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs)
 
@@ -637,7 +624,18 @@ export const Spotlight = (props) => {
     targetDate  = 'No target date provided'
     
   }
+  if(timeStamp) {
+    let beginDateInMilliseconds = DatetoUTC(timeStamp)
+    // format target Date in milliseconds for display
+    beginDate  =  UTCtoDate(beginDateInMilliseconds)
   
+    // console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs)
+
+
+  }else{
+    targetDate  = 'No target date provided'
+    
+  }
 
   const handleSpotlightCompletedStatus = () => {
 
@@ -702,46 +700,64 @@ export const Spotlight = (props) => {
     <DetailContainer>
 
       <DetailWrapper>
-
+      {endEst && 
         <DetailRow>
-          <DetailRowLeft>Target: </DetailRowLeft>
+          <DetailRowLeft>Targeted End: </DetailRowLeft>
  
           <DetailRowRight> {targetDate} </DetailRowRight>
           
           
         </DetailRow>
+      }
+      {!endEst && 
+        <DetailRow>
+          <DetailRowLeft>Targeted End: </DetailRowLeft>
+ 
+          <DetailRowRight> No Targeted End Date </DetailRowRight>
+          
+          
+        </DetailRow>
+      }
+      {timeStamp && 
+        <DetailRow>
+          <DetailRowLeft>Begin Date: </DetailRowLeft>
+ 
+          <DetailRowRight> {beginDate} </DetailRowRight>
+          
+          
+        </DetailRow>
+      }
+
+      {!timeStamp && 
+        <DetailRow>
+          <DetailRowLeft>Begin Date: </DetailRowLeft>
+ 
+          <DetailRowRight> Not Started </DetailRowRight>
+          
+          
+        </DetailRow>
+      }
         {/* If there is an estimated end date ... display  */}
         
         {endEst && 
-          <DetailRowOrange>
-            <DetailRowLeft>Remaining: </DetailRowLeft>
-            
-            <DetailRowRight>{days} days {hours} hrs {mins} min {secs} secs</DetailRowRight>
-            
-            
-          </DetailRowOrange>
+            <DetailRow>
+                 <CountDownDisplay/> 
+            </DetailRow>
+              
         }
-        <DetailRow>
-          <DetailRowLeft>Elapsed: </DetailRowLeft>
-          <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
-
-        </DetailRow>
-
-        <DetailRow>
-        <DetailRowLeft>Elapsed *** : </DetailRowLeft>
-          <DetailRowRight><CountDownDisplay/></DetailRowRight>
-
-          
-        </DetailRow>
         
+
+
+ 
          <BottomWrapper> 
           <CheckBoxWrapper>   
-            <SpotlightCheckbox   
+            {/* <SpotlightCheckbox   
             checked = {true}  
             // onClick = {(evt)=> handleDefault(evt)}
           /> 
-          <div>   make default popup  </div>
+          <div>   make default popup  </div> */}
           </CheckBoxWrapper>
+          
           <IconsWrapper> 
           {note && 
               <NotePopup 

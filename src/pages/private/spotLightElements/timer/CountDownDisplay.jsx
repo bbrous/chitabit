@@ -20,7 +20,7 @@ const TaskTimeWrapper= styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   width: '100%',
  
   
@@ -121,6 +121,62 @@ const TaskTimeLabel= styled('div')({
 })
 
 
+// -----formating display
+
+const DetailRow= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  color: chitOrange,
+ 
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowLeft= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  width: '6rem',
+
+  // backgroundColor: 'aqua',
+   
+
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowRight= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  flexGrow: '1',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  // backgroundColor: 'green',
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
 // ==========================
 function CountDownDisplay(props) {
 
@@ -129,11 +185,11 @@ function CountDownDisplay(props) {
 // let {spotlightId, taskId}  = props
 
   let timeStart = props.display.private.data.spotlightData.spotlights[spotlightId].timeStamp
- 
+  let timeEndEst = props.display.private.data.spotlightData.spotlights[spotlightId].endEst
  
 
   
-  console.log('[COUNTDOWN DISPLAY] timerStart - ' , timeStart)
+  // console.log('[COUNTDOWN DISPLAY] timerStart - ' , timeStart)
 
 
 
@@ -142,11 +198,18 @@ function CountDownDisplay(props) {
 
 
   // set intial state
-  const [timerWeeks, setTimerWeeks] = useState('0')
-  const [timerDays, setTimerDays] = useState('00')
-  const [timerHours, setTimerHours] = useState('00')
-  const [timerMinutes, setTimerMinutes] = useState('00')
-  const [timerSeconds, setTimerSeconds] = useState('00')
+  const [timerRemainingWeeks, setTimerRemainingWeeks] = useState('0')
+  const [timerRemainingDays, setTimerRemainingDays] = useState('00')
+  const [timerRemainingHours, setTimerRemainingHours] = useState('00')
+  const [timerRemainingMinutes, setTimerRemainingMinutes] = useState('00')
+  const [timerRemainingSeconds, setTimerRemainingSeconds] = useState('00')
+
+  const [timerElapsedWeeks, setTimerElapsedWeeks] = useState('0')
+  const [timerElapsedDays, setTimerElapsedDays] = useState('00')
+  const [timerElapsedHours, setTimerElapsedHours] = useState('00')
+  const [timerElapsedMinutes, setTimerElapsedMinutes] = useState('00')
+  const [timerElapsedSeconds, setTimerElapsedSeconds] = useState('00')
+
   const [status, setStatus] = useState(timerStatus)
 
 
@@ -167,13 +230,13 @@ function CountDownDisplay(props) {
   //    derived from Redux task.clock.accumulatedTime
   //   */ 
 
-  //   let displayTime = msToStringDisplay(accumulatedTime)
-  //   let {days, hours, minutes, seconds} = displayTime
+  //   let displayRemainingTime = msToStringDisplay(accumulatedTime)
+  //   let {days, hours, minutes, seconds} = displayRemainingTime
 
-  //     setTimerDays(days)
-  //     setTimerHours(hours)
-  //     setTimerMinutes(minutes)
-  //     setTimerSeconds(seconds)
+  //     setTimerRemainingDays(days)
+  //     setTimerRemainingHours(hours)
+  //     setTimerRemainingMinutes(minutes)
+  //     setTimerRemainingSeconds(seconds)
     
   // }
 
@@ -191,22 +254,32 @@ function CountDownDisplay(props) {
       // const now = new Date().getTime()
       // const  distance =  timeStart - now 
       
-      // let displayTime = msToStringDisplay(distance)
-      // let {weeks, days, hours, minutes, seconds} = displayTime
+      // let displayRemainingTime = msToStringDisplay(distance)
+      // let {weeks, days, hours, minutes, seconds} = displayRemainingTime
 
       const now = new Date().getTime()
-      const  distance =  new Date(timeStart).getTime() - now 
+
+
+      const  remainingDistance =  new Date(timeEndEst).getTime() - now 
       
-      let displayTime = msToStringDisplay(distance)
-      let {weeks, days, hours, minutes, seconds} = displayTime
+      let displayRemainingTime = msToStringDisplay(remainingDistance)
+      
 
-        setTimerDays(weeks)
-        setTimerDays(days)
-        setTimerHours(hours)
-        setTimerMinutes(minutes)
-        setTimerSeconds(seconds)
+        setTimerRemainingWeeks(displayRemainingTime.weeks)
+        setTimerRemainingDays(displayRemainingTime.days)
+        setTimerRemainingHours(displayRemainingTime.hours)
+        setTimerRemainingMinutes(displayRemainingTime.minutes)
+        setTimerRemainingSeconds(displayRemainingTime.seconds)
  
+      const  elapsedDistance =  now - new Date(timeStart).getTime() 
+      let displayElapsedTime = msToStringDisplay(elapsedDistance)
+      
 
+        setTimerElapsedDays(displayElapsedTime.weeks)
+        setTimerElapsedDays(displayElapsedTime.days)
+        setTimerElapsedHours(displayElapsedTime.hours)
+        setTimerElapsedMinutes(displayElapsedTime.minutes)
+        setTimerElapsedSeconds(displayElapsedTime.seconds)
     }, 1000)
 
   }
@@ -235,54 +308,114 @@ function CountDownDisplay(props) {
 
   // []-----------------------------------------------
   return (
+
     <TaskTimeWrapper>
-
-
-     
-    <TaskTimeRow> 
+        <DetailRow>
+          <DetailRowLeft>Remaining</DetailRowLeft>
+ 
+          <DetailRowRight> 
+          
+          <TaskTimeRow> 
  
 
-      <TaskTimeComponent>
-        {/* <TaskTime>3</TaskTime> */}
-        <TaskTime>{timerWeeks}</TaskTime>
+            <TaskTimeComponent>
+              {/* <TaskTime>3</TaskTime> */}
+              <TaskTime>{timerRemainingWeeks}</TaskTime>
 
 
-        <TaskTimeLabel>wks :</TaskTimeLabel>
-      </TaskTimeComponent>
+              <TaskTimeLabel>wks :</TaskTimeLabel>
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>5</TaskTime> */}
+              <TaskTime>{timerRemainingDays}</TaskTime>
+
+              <TaskTimeLabel>days :</TaskTimeLabel>
+            </TaskTimeComponent>
+
+
+
+            <TaskTimeComponent>
+              {/* <TaskTime>14</TaskTime> */}
+              <TaskTime>{timerRemainingHours}</TaskTime>
+
+              <TaskTimeLabel>hrs :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>37</TaskTime> */}
+              <TaskTime>{timerRemainingMinutes}</TaskTime>
+
+              <TaskTimeLabel>mins :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>41</TaskTime> */}
+              <TaskTime>{timerRemainingSeconds}</TaskTime>
+
+              <TaskTimeLabel>secs</TaskTimeLabel>
+
+            </TaskTimeComponent>
+            </TaskTimeRow>
+          
+          </DetailRowRight>
+          
+          
+        </DetailRow>
+
      
-      <TaskTimeComponent>
-        {/* <TaskTime>5</TaskTime> */}
-        <TaskTime>{timerDays}</TaskTime>
-
-        <TaskTimeLabel>days :</TaskTimeLabel>
-      </TaskTimeComponent>
+        <DetailRow>
+          <DetailRowLeft>Elapsed: </DetailRowLeft>
+          <DetailRowRight>
+          
+          
+          <TaskTimeRow> 
  
-    
-     
-      <TaskTimeComponent>
-        {/* <TaskTime>14</TaskTime> */}
-        <TaskTime>{timerHours}</TaskTime>
 
-        <TaskTimeLabel>hrs :</TaskTimeLabel>
-     
-      </TaskTimeComponent>
- 
-      <TaskTimeComponent>
-        {/* <TaskTime>37</TaskTime> */}
-        <TaskTime>{timerMinutes}</TaskTime>
+            <TaskTimeComponent>
+              {/* <TaskTime>3</TaskTime> */}
+              <TaskTime>{timerElapsedWeeks}</TaskTime>
 
-        <TaskTimeLabel>mins :</TaskTimeLabel>
 
-      </TaskTimeComponent>
+              <TaskTimeLabel>wks :</TaskTimeLabel>
+            </TaskTimeComponent>
 
-      <TaskTimeComponent>
-        {/* <TaskTime>41</TaskTime> */}
-        <TaskTime>{timerSeconds}</TaskTime>
+            <TaskTimeComponent>
+              {/* <TaskTime>5</TaskTime> */}
+              <TaskTime>{timerElapsedDays}</TaskTime>
 
-        <TaskTimeLabel>secs</TaskTimeLabel>
-    
-      </TaskTimeComponent>
-    </TaskTimeRow>
+              <TaskTimeLabel>days :</TaskTimeLabel>
+            </TaskTimeComponent>
+
+
+
+            <TaskTimeComponent>
+              {/* <TaskTime>14</TaskTime> */}
+              <TaskTime>{timerElapsedHours}</TaskTime>
+
+              <TaskTimeLabel>hrs :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>37</TaskTime> */}
+              <TaskTime>{timerElapsedMinutes}</TaskTime>
+
+              <TaskTimeLabel>mins :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            
+            </TaskTimeRow>
+          
+          </DetailRowRight>
+
+
+           
+
+        </DetailRow>
     
     
     
