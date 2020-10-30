@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
 import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} from '../../../app/redux/actions/mainActions'
 
-import{chitOrange ,  chitOrangeVeryLight,  lightGrey,  mediumLightGrey } from '../../../styles/colors'
+import{chitOrange ,  chitOrangeVeryLight,  lightGrey,  mediumLightGrey, veryLightGrey, mediumGrey } from '../../../styles/colors'
 // import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
 import TaskTimerDisplay from './timer/TaskTimerDisplay'
 import {startingElapsedTime} from '../../../app/helpers/timerHelpers'
@@ -86,9 +86,18 @@ const ItemWrapper = styled(Paper)({
   width: '99%',
   // border: '1px solid white',
   margin: '4px 0',
+  backgroundColor: 'white',
   
+  '&.backgroundCompleted' : {
+    backgroundColor: mediumLightGrey,
+    color: 'white', 
+     
+  
+  }
   
 })
+
+
 
 const SpotlightItemWrapper = styled(Paper)({
   display: 'flex',
@@ -99,9 +108,11 @@ const SpotlightItemWrapper = styled(Paper)({
   // border: '1px solid orange',
   backgroundColor: chitOrangeVeryLight,
   margin: '4px 0',
-  
+
+  '&.backgroundCompleted' : {backgroundColor: mediumLightGrey, color: 'white'}
   
 })
+
 
 const SpotlightTaskWrapper = styled('div')({
   display: 'flex',
@@ -112,7 +123,7 @@ const SpotlightTaskWrapper = styled('div')({
   flexGrow: '1',
  
   textAlign: 'center',
-  backgroundColor: 'chitOrangeVeryLight',
+   
   
 })
 
@@ -125,7 +136,7 @@ const TaskWrapper = styled('div')({
   flexGrow: '1',
  
   textAlign: 'center',
-  backgroundColor: 'white',
+  
   
 })
 
@@ -177,7 +188,7 @@ const DragDiv = styled('div')({
 
 const TitleWrapper= styled('div')({
   
-  color: 'black',
+  
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -187,7 +198,7 @@ const TitleWrapper= styled('div')({
 
 const TitleWrapperCompleted = styled('div')({
   
-  color: mediumLightGrey,
+  
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -247,7 +258,7 @@ const CheckCircleCompleted = styled('div')({
   borderRadius: '200px',
    
   color: 'white' ,
-  backgroundColor: mediumLightGrey,
+  backgroundColor: mediumGrey,
 
 
   
@@ -379,7 +390,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 /* 1. Get passed variables depending on whether a task is a
       spotlight or a task */
 
-      let itemObject, itemAddress,  taskId, timerData
+      let itemObject, itemAddress,  taskId, timerData, taskStatus, spotlightTaskStatus
 
   if(value.type === 'task'){
 
@@ -389,10 +400,13 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     taskId = value.taskItem 
     itemObject = itemAddress[taskId]
     timerData = spotlightData.spotlights[spotlightId].tasks[taskId].clock
+    taskStatus = spotlightData.spotlights[spotlightId].tasks[taskId].completed 
+      //  note: task - taskStatus is true / false
     
     // console.log('[SPOTLIGHT TASKS -- duh  Status : ' , spotlightData.spotlights[spotlightId].tasks[taskId].completed)
 
-
+    console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+    console.log('[SPOTLIGHT TASKS] -- taskStatus : ' , taskStatus)
 
   } // end if - task
 
@@ -401,9 +415,11 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     itemAddress = spotlightData.spotlights  //all spotlights
     taskId = value.taskItem 
     itemObject = itemAddress[taskId]
+    spotlightTaskStatus = itemObject.spotlightStatus
 
     
-
+    console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+    console.log('[SPOTLIGHT TASKS] -- spotlight Status : ' , spotlightTaskStatus)
   
 
 
@@ -416,7 +432,7 @@ const { type, title, completed, note } = itemObject
 
 // determine if specific spotlight has been started or not
 let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus
-
+// console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
 
 const handleTaskCompletedStatus = () => {
 
@@ -429,7 +445,7 @@ const handleTaskCompletedStatus = () => {
  
 
 
-  console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+
 
 }
 
@@ -531,7 +547,7 @@ const handleUpdateTimerStatus = (evt) => {
    
     {type !== 'spotlight'  &&
       <ItemWrapper
-       
+       className =  {taskStatus ? "backgroundCompleted" : ""}
         id = {taskId}
       >
        <DragHandle />
@@ -634,13 +650,13 @@ const handleUpdateTimerStatus = (evt) => {
 
     {type === 'spotlight'  &&
       <SpotlightItemWrapper
-       
+      className =  {spotlightTaskStatus === 'completed' ? "backgroundCompleted" : ""}
         id = {taskId}
       >
        <DragHandle />
 
        
-       <SpotlightTaskWrapper>
+       <SpotlightTaskWrapper >
         <TaskBlockWrapper>
           <SpotLightWrapper>
           <IconWrapper>

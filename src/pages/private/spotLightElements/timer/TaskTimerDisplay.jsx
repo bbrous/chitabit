@@ -24,7 +24,7 @@ const TaskTimeWrapper= styled('div')({
   width: '100%',
  
   
-backgroundColor: 'white',
+// backgroundColor: 'white',
   borderRadius: '3px',
 
 

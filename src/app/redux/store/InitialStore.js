@@ -290,7 +290,7 @@ const InitialStore = {
         parent: '',
 
         title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
-        spotlightStatus: 'inactive', // inactive, begun, completed
+        spotlightStatus: 'completed', // inactive, begun, completed
         timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
