@@ -608,7 +608,7 @@ export const Spotlight = (props) => {
 
   const {id, type, parent, completed, spotlightStatus, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
 
-  // console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
+  console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
   
   // convert target Date in ISO to UTC for addition/subtraction etc
   let targetDate, beginDate
@@ -741,7 +741,9 @@ export const Spotlight = (props) => {
         
         {endEst && 
             <DetailRow>
-                 <CountDownDisplay/> 
+                 <CountDownDisplay
+                 spotlightId = {id}
+                 /> 
             </DetailRow>
               
         }

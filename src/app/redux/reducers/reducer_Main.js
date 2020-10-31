@@ -118,6 +118,7 @@ const reducer_Main = produce((draft = initialState, action) => {
           let spotId = payload.spotId
           let taskId = payload.taskId
           let newCompletedStatus = payload.completed
+          let spotlightStatus = payload.spotlightStatus
 
          console.log('xxx REDUCER MAIN - CHANGE_TASK_COMPLETED_STATUS clicked reduce ', payload)
 

@@ -149,10 +149,13 @@ const InitialStore = {
 
         title: 'Complete Journal and Spotlight',
 
+        // spotlightStatus: 'inactive', // inactive, begun, completed
+        // timeStamp:  '',  // September 14
+
         spotlightStatus: 'begun', // inactive, begun, completed
-        timeStamp:  "2020-09-21T04:46:20.619Z",  // September 14
+        timeStamp:  "2020-10-30T08:46:20.619Z",  // September 14
         // endEst: "",  //October 15 
-        endEst: "2020-11-15T04:46:20.619Z",  //October 15  
+        endEst: "2020-10-23T04:46:20.619Z",  //October 15  
         note: 'This is a note for spot 1',
  
 
@@ -175,7 +178,7 @@ const InitialStore = {
           'spot_1_task_0' : {
             id: 'spot_1_task_0',
             type: 'task',  //or spotlight
-            completed: true,
+            completed: false,
     
             spotHolder: 'spot_1',
             title: 'Spotlight begin',
@@ -191,7 +194,7 @@ const InitialStore = {
           'spot_1_task_6' : {
             id: 'spot_1_task_0',
             type: 'task',  //or spotlight
-            completed: true,
+            completed: false,
     
             spotHolder: 'spot_1',
             title: 'We are almost done',
@@ -290,9 +293,12 @@ const InitialStore = {
         parent: '',
 
         title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
-        spotlightStatus: 'completed', // inactive, begun, completed
-        timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
-        endEst: "2020-10-09T04:46:20.619Z",  //October 9 
+        spotlightStatus: 'inactive', // inactive, begun, completed
+        // timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
+        // endEst: "2020-10-09T04:46:20.619Z",  //October 9 
+
+        timeStamp:  '',  // September 25
+        endEst: '',  //October 9 
 
         clock: {
           timerStatus: null, // inactive, running, paused, stopped

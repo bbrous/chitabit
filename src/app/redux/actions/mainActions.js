@@ -227,7 +227,7 @@
         // spotId, taskId, newTimerObject
 
 
-        export const  changeTaskCompletedStatus = (spotId, taskId, newCompletedStatus) => {
+        export const  changeTaskCompletedStatus = (spotId, taskId, newCompletedStatus, spotlightStatus) => {
 
           console.log('[mainActions...changeTaskCompletedStatus spotId= ' , spotId)
           console.log('[mainActions...changeTaskCompletedStatus taskId= ' , taskId)
@@ -239,7 +239,8 @@
             payload: {
               spotId: spotId,
               taskId: taskId,
-              completed: newCompletedStatus
+              completed: newCompletedStatus,
+              spotlightStatus: spotlightStatus
  
               
             }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {startingElapsedTime} from '../../../../app/helpers/timerHelpers'
 import{chitOrange,  mediumGrey, mediumLightGrey, chitOrangeLight, darkGrey, } from '../../../../styles/colors'
@@ -181,7 +181,7 @@ const DetailRowRight= styled('div')({
 function CountDownDisplay(props) {
 
   let spotlightId = 'spot_1'
-  let timerStatus = 'begun'
+  let spotlightStatus = props.display.private.data.spotlightData.spotlights[spotlightId].spotlightStatus
 // let {spotlightId, taskId}  = props
 
   let timeStart = props.display.private.data.spotlightData.spotlights[spotlightId].timeStamp
@@ -189,12 +189,12 @@ function CountDownDisplay(props) {
  
 
   
-  // console.log('[COUNTDOWN DISPLAY] timerStart - ' , timeStart)
-
+  console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
+  console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
 
 
   // let timerData = props.display.private.data.spotlightData.spotlights[spotlightId].tasks[taskId].clock
-  // let {timerStatus, accumulatedTime, lastDate }  = timerData
+  // let {spotlightStatus, accumulatedTime, lastDate }  = timerData
 
 
   // set intial state
@@ -210,7 +210,7 @@ function CountDownDisplay(props) {
   const [timerElapsedMinutes, setTimerElapsedMinutes] = useState('00')
   const [timerElapsedSeconds, setTimerElapsedSeconds] = useState('00')
 
-  const [status, setStatus] = useState(timerStatus)
+  const [status, setStatus] = useState(spotlightStatus)
 
 
   let interval = useRef()
@@ -286,12 +286,13 @@ function CountDownDisplay(props) {
 
   useEffect(()=>{
 
-    setStatus(timerStatus)
+    setStatus(spotlightStatus)
+    console.log('[COUNTDOWN DISPLAY status - ', status )
 
-
+      if(status === 'begun'){
         startTimerRunning.current()
       return  ()=> {clearInterval(interval)}
-
+      }
 
 
 
@@ -302,14 +303,19 @@ function CountDownDisplay(props) {
   //   }else{
   //     startTimerStopped.current()
   //   }
-  }, [startTimerRunning, status,timerStatus]) 
+  }, [startTimerRunning, status,spotlightStatus]) 
 
 
 
   // []-----------------------------------------------
   return (
+    <Fragment> 
 
+    {spotlightStatus === 'begun' && 
     <TaskTimeWrapper>
+
+  {/* --------REMAINING TIME ------------------------------- */}
+
         <DetailRow>
           <DetailRowLeft>Remaining</DetailRowLeft>
  
@@ -317,15 +323,15 @@ function CountDownDisplay(props) {
           
           <TaskTimeRow> 
  
-
+          {timerRemainingWeeks > 0 &&  
             <TaskTimeComponent>
               {/* <TaskTime>3</TaskTime> */}
               <TaskTime>{timerRemainingWeeks}</TaskTime>
-
+          
 
               <TaskTimeLabel>wks :</TaskTimeLabel>
             </TaskTimeComponent>
-
+          }
             <TaskTimeComponent>
               {/* <TaskTime>5</TaskTime> */}
               <TaskTime>{timerRemainingDays}</TaskTime>
@@ -365,6 +371,7 @@ function CountDownDisplay(props) {
           
         </DetailRow>
 
+{/* --------ELAPSED TIME ------------------------------- */}
      
         <DetailRow>
           <DetailRowLeft>Elapsed: </DetailRowLeft>
@@ -373,14 +380,18 @@ function CountDownDisplay(props) {
           
           <TaskTimeRow> 
  
-
+          {timerElapsedWeeks > 0 &&  
             <TaskTimeComponent>
               {/* <TaskTime>3</TaskTime> */}
+             
               <TaskTime>{timerElapsedWeeks}</TaskTime>
 
 
               <TaskTimeLabel>wks :</TaskTimeLabel>
             </TaskTimeComponent>
+          }
+
+            
 
             <TaskTimeComponent>
               {/* <TaskTime>5</TaskTime> */}
@@ -388,7 +399,7 @@ function CountDownDisplay(props) {
 
               <TaskTimeLabel>days :</TaskTimeLabel>
             </TaskTimeComponent>
-
+          
 
 
             <TaskTimeComponent>
@@ -403,7 +414,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>37</TaskTime> */}
               <TaskTime>{timerElapsedMinutes}</TaskTime>
 
-              <TaskTimeLabel>mins :</TaskTimeLabel>
+              <TaskTimeLabel>mins </TaskTimeLabel>
 
             </TaskTimeComponent>
 
@@ -421,6 +432,8 @@ function CountDownDisplay(props) {
     
     
               </TaskTimeWrapper>
+}
+              </Fragment>
   )
 }// end TaskTimerDisplay
 
