@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react'
 import {connect} from 'react-redux'
-import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} from '../../../app/redux/actions/mainActions'
+import{updateTaskArray, openModal, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus, changeSpotlightStartStatus} from '../../../app/redux/actions/mainActions'
 
 import{chitOrange ,  chitOrangeVeryLight,  lightGrey,  mediumLightGrey, veryLightGrey, mediumGrey } from '../../../styles/colors'
 // import{changeDisplaySpotlight } from '../../../app/redux/actions/mainActions'
@@ -378,7 +378,8 @@ const SpotlightTag= styled('div')({
 
 
 
-const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} ) => {
+const SortableItem = SortableElement(({ handleClick, value , spotlightData, spotlightId, changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus, changeSpotlightStartStatus} ) => {
+  
 
   //  set up drag for Sortable Element using a handle
   const DragHandle = sortableHandle(() => <DragDiv>:::</DragDiv>);
@@ -405,8 +406,8 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     
     // console.log('[SPOTLIGHT TASKS -- duh  Status : ' , spotlightData.spotlights[spotlightId].tasks[taskId].completed)
 
-    console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-    console.log('[SPOTLIGHT TASKS] -- taskStatus : ' , taskStatus)
+    // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+    // console.log('[SPOTLIGHT TASKS] -- taskStatus : ' , taskStatus)
 
   } // end if - task
 
@@ -418,8 +419,8 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     spotlightTaskStatus = itemObject.spotlightStatus
 
     
-    console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-    console.log('[SPOTLIGHT TASKS] -- spotlight Status : ' , spotlightTaskStatus)
+    // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+    // console.log('[SPOTLIGHT TASKS] -- spotlight Status : ' , spotlightTaskStatus)
   
 
 
@@ -434,15 +435,24 @@ const { type, title, completed, note } = itemObject
 let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus
 // console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
 
+
+
 const handleTaskCompletedStatus = () => {
 
   // 1. get current Spotlight completed status
+  console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
+  if(spotlightTaskStatus === 'inactive'){
+
+    console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
+  }
   
   let currentTaskStatus = spotlightData.spotlights[spotlightId].tasks[taskId].completed
   let newCompletedStatus = currentTaskStatus ? false : true
 
   changeTaskCompletedStatus(spotlightId, taskId, newCompletedStatus )
  
+
+  changeSpotlightStartStatus(spotlightId)
 
 
 
@@ -480,6 +490,10 @@ const handleUpdateTimerStatus = (evt) => {
   */
 
   
+ if(currentSpotlightStatus === 'inactive'){
+  changeSpotlightStartStatus(spotlightId)
+     
+      }
   let buttonId = evt.currentTarget.id
  
   const {accumulatedTime, lastDate} = timerData
@@ -627,6 +641,7 @@ const handleUpdateTimerStatus = (evt) => {
                   spotlightId = {spotlightId}
                   timerData = {timerData}
                   handleUpdateTimerStatus = {handleUpdateTimerStatus}
+                  currentSpotlightStatus = {currentSpotlightStatus}
                 />    
               }          
             </IconWrapper>
@@ -769,7 +784,7 @@ const handleUpdateTimerStatus = (evt) => {
 // ------- Map of Items   --------------------[]
 
 
-const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus} ) => {
+const SortableList = SortableContainer(({ items, spotlightData, spotlightId,changeDisplaySpotlight, changeTimerStatus, changeTaskCompletedStatus, changeSpotlightStartStatus} ) => {
  
 
 
@@ -792,8 +807,8 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId,chan
           changeDisplaySpotlight= {changeDisplaySpotlight}
           changeTimerStatus = { changeTimerStatus}
           changeTaskCompletedStatus = {changeTaskCompletedStatus}
-      
-       
+          changeSpotlightStartStatus = {changeSpotlightStartStatus}
+          
         />
          
       ))}
@@ -908,6 +923,7 @@ let spotlightId = props.id
             changeDisplaySpotlight = {props.changeDisplaySpotlight}
             changeTimerStatus = {props.changeTimerStatus}
             changeTaskCompletedStatus = {props.changeTaskCompletedStatus}
+            changeSpotlightStartStatus = {props.changeSpotlightStartStatus}
            
             />
 
@@ -929,6 +945,7 @@ const actions = {
   changeDisplaySpotlight,
   changeTimerStatus,
   changeTaskCompletedStatus,
+  changeSpotlightStartStatus
   
   
 }

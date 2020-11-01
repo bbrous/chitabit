@@ -189,8 +189,8 @@ function CountDownDisplay(props) {
   
   let completedTimeStamp = props.display.private.data.spotlightData.spotlights[spotlightId].completedTimeStamp
   
-  console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
-  console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
+  // console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
+  // console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
 
 
   // let timerData = props.display.private.data.spotlightData.spotlights[spotlightId].tasks[taskId].clock

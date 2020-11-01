@@ -644,13 +644,23 @@ export const Spotlight = (props) => {
     console.log('[SPOTLIGHT] handleSpotlightCompletedStatus, id : ', id)
     
     let currentSpotlightStatus = spotlightData.spotlights[id].spotlightStatus
-    let newCompletedStatus 
+    let newSpotlightCompletedStatus, newSpotlightCompletedTime 
 
-    if(currentSpotlightStatus === 'inactive'){newCompletedStatus = 'begun'}
-    if(currentSpotlightStatus === 'completed'){newCompletedStatus = 'begun'}
-    if(currentSpotlightStatus === 'begun'){newCompletedStatus = 'completed'}
+    if(currentSpotlightStatus === 'inactive'){
+      newSpotlightCompletedStatus = 'begun'
+      newSpotlightCompletedTime = ''
+    }
+    if(currentSpotlightStatus === 'completed'){
+      newSpotlightCompletedStatus = 'begun'
+      newSpotlightCompletedTime = ''
+    }
+    if(currentSpotlightStatus === 'begun'){
+      newSpotlightCompletedStatus = 'completed'
+      newSpotlightCompletedTime = new Date()
+      
+    }
   
-    props.changeSpotlightCompletedStatus(id, newCompletedStatus )
+    props.changeSpotlightCompletedStatus(id, newSpotlightCompletedStatus, newSpotlightCompletedTime )
    
   
   

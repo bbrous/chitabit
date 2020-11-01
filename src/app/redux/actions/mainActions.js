@@ -13,6 +13,7 @@
           CHANGE_DISPLAY_SPOTLIGHT,
           CHANGE_TASK_COMPLETED_STATUS,
           CHANGE_SPOTLIGHT_COMPLETED_STATUS,
+          CHANGE_SPOTLIGHT_START_STATUS,
           
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
@@ -248,18 +249,33 @@
         }
 
 
-        export const  changeSpotlightCompletedStatus = (spotId, newCompletedStatus) => {
+        export const  changeSpotlightCompletedStatus = (spotId, newSpotlightCompletedStatus, newSpotlightCompletedTime) => {
 
           console.log('[mainActions I be clicked - hi changeSpotlightCompletedStatus = ' , spotId)
-          console.log('[mainActions I be clicked - hi changeSpotlightCompletedStatus = ' , newCompletedStatus)
+          console.log('[mainActions I be clicked - hi changeSpotlightCompletedStatus = ' , newSpotlightCompletedStatus)
 
           return {
             type: CHANGE_SPOTLIGHT_COMPLETED_STATUS,
             payload: {
               spotId: spotId,
-              spotlightStatus: newCompletedStatus
+              spotlightStatus: newSpotlightCompletedStatus,
+              completedTimeStamp: newSpotlightCompletedTime
 
               
+            }
+          }
+        }
+
+        export const  changeSpotlightStartStatus = (spotId, newSpotlightCompletedStatus, newSpotlightCompletedTime) => {
+
+          console.log('[mainActions I be clicked - hi changeSpotlightCompletedStatus = ' , spotId)
+          
+
+          return {
+            type: CHANGE_SPOTLIGHT_START_STATUS,
+            payload: {
+              spotId: spotId,
+
             }
           }
         }

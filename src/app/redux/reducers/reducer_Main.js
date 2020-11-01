@@ -14,6 +14,7 @@ import {
           CHANGE_DISPLAY_SPOTLIGHT,
           CHANGE_TASK_COMPLETED_STATUS,
           CHANGE_SPOTLIGHT_COMPLETED_STATUS,
+          CHANGE_SPOTLIGHT_START_STATUS,
 
           ADD_SPOTLIGHT,
           OPEN_MODAL,
@@ -137,16 +138,37 @@ const reducer_Main = produce((draft = initialState, action) => {
         let spotId = payload.spotId
           
           let spotlightStatus = payload.spotlightStatus
+          let spotlightTimeStamp = payload.completedTimeStamp
  
         console.log('REDUCER MAIN - aaCHANGE_SPOTLIGHT_COMPLETED_STATUS clicked reduce ', spotlightStatus)
 
 
         draft.data.spotlightData.spotlights[spotId].spotlightStatus = spotlightStatus
-       
+        draft.data.spotlightData.spotlights[spotId].completedTimeStamp = spotlightTimeStamp
 
        return draft
         
       }// end CHANGE_SPOTLIGHT_COMPLETED_STATUS
+
+      
+
+      
+      case CHANGE_SPOTLIGHT_START_STATUS : 
+      {
+
+       let spotId = payload.spotId
+         
+         
+
+       console.log('REDUCER MAIN - aaCHANGE_SPOTLIGHT_START_STATUS clicked reduce ', )
+
+
+       draft.data.spotlightData.spotlights[spotId].spotlightStatus = 'begun'
+       draft.data.spotlightData.spotlights[spotId].timeStamp = new Date()
+
+      return draft
+       
+     }// end CHANGE_SPOTLIGHT_COMPLETED_STATUS
         
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -159,7 +181,7 @@ const reducer_Main = produce((draft = initialState, action) => {
           
 
           draft.data.spotlightData.spotlights[spotId].tasks[taskId].clock = newTimerObject
-         console.log('REDUCER MAIN - CHANGE_TIMER_STATUS clicked reduce ', newTimerObject)
+        //  console.log('REDUCER MAIN - CHANGE_TIMER_STATUS clicked reduce ', newTimerObject)
            
 
          return draft;

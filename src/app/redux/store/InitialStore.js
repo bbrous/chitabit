@@ -152,13 +152,13 @@ const InitialStore = {
         // spotlightStatus: 'inactive', // inactive, begun, completed
         // timeStamp:  '',  // September 14
 
-        spotlightStatus: 'completed', // inactive, begun, completed
-        timeStamp:  "2020-10-30T08:46:20.619Z",  // September 14
+        spotlightStatus: 'inactive', // inactive, begun, completed
+        timeStamp:  '',  // September 14
         
-        completedTimeStamp:  "2020-11-10T03:46:20.619Z", 
+        completedTimeStamp:  '', 
 
         // endEst: "",  //October 15 
-        endEst: "2020-10-23T04:46:20.619Z",  //October 15  
+        endEst: "2020-11-23T04:46:20.619Z",  //October 15  
         note: 'This is a note for spot 1',
  
 
