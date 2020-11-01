@@ -700,6 +700,14 @@ export const Spotlight = (props) => {
     <DetailContainer>
 
       <DetailWrapper>
+
+      <DetailRow>
+          <DetailRowLeft>Status: </DetailRowLeft>
+ 
+          <DetailRowRight> {spotlightStatus}</DetailRowRight>
+          
+          
+        </DetailRow>
       {endEst && 
         <DetailRow>
           <DetailRowLeft>Targeted End: </DetailRowLeft>
@@ -718,7 +726,7 @@ export const Spotlight = (props) => {
           
         </DetailRow>
       }
-      {timeStamp && 
+      {timeStamp && spotlightStatus !== 'inactive' &&
         <DetailRow>
           <DetailRowLeft>Begin Date: </DetailRowLeft>
  
@@ -728,7 +736,7 @@ export const Spotlight = (props) => {
         </DetailRow>
       }
 
-      {!timeStamp && 
+      {/* {!timeStamp && 
         <DetailRow>
           <DetailRowLeft>Begin Date: </DetailRowLeft>
  
@@ -736,7 +744,7 @@ export const Spotlight = (props) => {
           
           
         </DetailRow>
-      }
+      } */}
         {/* If there is an estimated end date ... display  */}
         
         {endEst && 

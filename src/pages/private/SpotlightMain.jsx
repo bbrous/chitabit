@@ -89,9 +89,12 @@ export const SpotlightMain = (props) => {
 
               Spotlights are based on decomposition of an undertaking … that is the breaking down the objective into individual subtasks in the order they should be performed  to accomplish the undertaking.   An individual subtask of the overall objective can be further be decomposed into subtasks… this makes it a child spotlight of the overall spotlight.
 
-              There are 2 differences between a spotlight and a task.  
-                - Spotlights have timers and/or date objectives to track progress
-                - Spotlights may or may not have  subtasks.  Tasks never have subtasks.
+              There differences between a spotlight and a task are: 
+
+                - Spotlights can be broken down into smaller steps.  These smaller steps
+                  can be tasks or spotlights.
+                - Spotlights can have a target date-time objective.
+                - Tasks can be timed   
 
               To turn the task into a spotlight, right click on the desired task and choose the “convert to spotlight” menu option.
 

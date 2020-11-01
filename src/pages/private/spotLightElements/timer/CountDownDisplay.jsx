@@ -186,8 +186,8 @@ function CountDownDisplay(props) {
 
   let timeStart = props.display.private.data.spotlightData.spotlights[spotlightId].timeStamp
   let timeEndEst = props.display.private.data.spotlightData.spotlights[spotlightId].endEst
- 
-
+  
+  let completedTimeStamp = props.display.private.data.spotlightData.spotlights[spotlightId].completedTimeStamp
   
   console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
   console.log('[COUNTDOWN DISPLAY] props. spotlightId - ' , props.spotlightId)
@@ -214,7 +214,10 @@ function CountDownDisplay(props) {
 
 
   let interval = useRef()
-  let startTimerRunning = useRef()
+  let startTimerRunningBegun = useRef()
+  let startTimerRunningInactive = useRef()
+  let timerCompleted = useRef()
+
   let startTimerStopped = useRef()
 
 
@@ -240,7 +243,7 @@ function CountDownDisplay(props) {
     
   // }
 
-  startTimerRunning.current = () => {
+  startTimerRunningBegun.current = () => {
   /*  
      shows running time 
      calculated:  current (date-time) - (lastDate)
@@ -284,26 +287,104 @@ function CountDownDisplay(props) {
 
   }
 
+  startTimerRunningInactive.current = () => {
+    /*  
+       shows running time 
+       calculated:  current (date-time) - (lastDate)
+    */ 
+   
+      
+   
+  
+      
+      interval = setInterval(() => {
+        // const now = new Date().getTime()
+        // const  distance =  timeStart - now 
+        
+        // let displayRemainingTime = msToStringDisplay(distance)
+        // let {weeks, days, hours, minutes, seconds} = displayRemainingTime
+  
+        const now = new Date().getTime()
+  
+  
+        const  remainingDistance =  new Date(timeEndEst).getTime() - now 
+        
+        let displayRemainingTime = msToStringDisplay(remainingDistance)
+        
+  
+          setTimerRemainingWeeks(displayRemainingTime.weeks)
+          setTimerRemainingDays(displayRemainingTime.days)
+          setTimerRemainingHours(displayRemainingTime.hours)
+          setTimerRemainingMinutes(displayRemainingTime.minutes)
+          setTimerRemainingSeconds(displayRemainingTime.seconds)
+   
+        
+      }, 1000)
+  
+    }
+
+    
+    timerCompleted.current = () => {
+    /*  
+       shows running time 
+       calculated:  current (date-time) - (lastDate)
+    */ 
+   
+      
+   
+  
+      
+     
+  
+        const timeCompleted = new Date().getTime(completedTimeStamp)
+  
+  
+        const  remainingDistance =  timeCompleted - new Date(timeEndEst).getTime() 
+        
+        let displayRemainingTime = msToStringDisplay(remainingDistance)
+        
+  
+          setTimerRemainingWeeks(displayRemainingTime.weeks)
+          setTimerRemainingDays(displayRemainingTime.days)
+          setTimerRemainingHours(displayRemainingTime.hours)
+          setTimerRemainingMinutes(displayRemainingTime.minutes)
+          setTimerRemainingSeconds(displayRemainingTime.seconds)
+   
+
+  
+    }
+
   useEffect(()=>{
 
     setStatus(spotlightStatus)
     console.log('[COUNTDOWN DISPLAY status - ', status )
 
-      if(status === 'begun'){
-        startTimerRunning.current()
+      if(status === 'begun' ){
+        startTimerRunningBegun.current()
       return  ()=> {clearInterval(interval)}
       }
+
+      if(status === 'inactive' ){
+        startTimerRunningInactive.current()
+      return  ()=> {clearInterval(interval)}
+      }
+
+      if(status === 'completed' ){
+        timerCompleted.current()
+       
+      }
+      
 
 
 
     
   //   if(status === 'running'){
-  //     startTimerRunning.current()
+  //     startTimerRunningBegun.current()
   //     return  ()=> {clearInterval(interval)}
   //   }else{
   //     startTimerStopped.current()
   //   }
-  }, [startTimerRunning, status,spotlightStatus]) 
+  }, [startTimerRunningBegun, status,spotlightStatus]) 
 
 
 
@@ -432,7 +513,143 @@ function CountDownDisplay(props) {
     
     
               </TaskTimeWrapper>
-}
+      }
+
+{spotlightStatus === 'inactive' && 
+    <TaskTimeWrapper>
+
+  {/* --------REMAINING TIME ------------------------------- */}
+
+        <DetailRow>
+          <DetailRowLeft>Remaining</DetailRowLeft>
+ 
+          <DetailRowRight> 
+          
+          <TaskTimeRow> 
+ 
+          {timerRemainingWeeks > 0 &&  
+            <TaskTimeComponent>
+              {/* <TaskTime>3</TaskTime> */}
+              <TaskTime>{timerRemainingWeeks}</TaskTime>
+          
+
+              <TaskTimeLabel>wks :</TaskTimeLabel>
+            </TaskTimeComponent>
+          }
+            <TaskTimeComponent>
+              {/* <TaskTime>5</TaskTime> */}
+              <TaskTime>{timerRemainingDays}</TaskTime>
+
+              <TaskTimeLabel>days :</TaskTimeLabel>
+            </TaskTimeComponent>
+
+
+
+            <TaskTimeComponent>
+              {/* <TaskTime>14</TaskTime> */}
+              <TaskTime>{timerRemainingHours}</TaskTime>
+
+              <TaskTimeLabel>hrs :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>37</TaskTime> */}
+              <TaskTime>{timerRemainingMinutes}</TaskTime>
+
+              <TaskTimeLabel>mins :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>41</TaskTime> */}
+              <TaskTime>{timerRemainingSeconds}</TaskTime>
+
+              <TaskTimeLabel>secs</TaskTimeLabel>
+
+            </TaskTimeComponent>
+            </TaskTimeRow>
+          
+          </DetailRowRight>
+          
+          
+        </DetailRow>
+
+    
+    
+    
+    
+              </TaskTimeWrapper>
+      }
+
+
+{spotlightStatus === 'completed' && 
+    <TaskTimeWrapper>
+
+  {/* --------Completed TIME ------------------------------- */}
+
+        <DetailRow>
+          <DetailRowLeft>Elapsed Time</DetailRowLeft>
+ 
+          <DetailRowRight> 
+          
+          <TaskTimeRow> 
+ 
+          {timerRemainingWeeks > 0 &&  
+            <TaskTimeComponent>
+              {/* <TaskTime>3</TaskTime> */}
+              <TaskTime>{timerRemainingWeeks}</TaskTime>
+          
+
+              <TaskTimeLabel>wks :</TaskTimeLabel>
+            </TaskTimeComponent>
+          }
+            <TaskTimeComponent>
+              {/* <TaskTime>5</TaskTime> */}
+              <TaskTime>{timerRemainingDays}</TaskTime>
+
+              <TaskTimeLabel>days :</TaskTimeLabel>
+            </TaskTimeComponent>
+
+
+
+            <TaskTimeComponent>
+              {/* <TaskTime>14</TaskTime> */}
+              <TaskTime>{timerRemainingHours}</TaskTime>
+
+              <TaskTimeLabel>hrs :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>37</TaskTime> */}
+              <TaskTime>{timerRemainingMinutes}</TaskTime>
+
+              <TaskTimeLabel>mins :</TaskTimeLabel>
+
+            </TaskTimeComponent>
+
+            <TaskTimeComponent>
+              {/* <TaskTime>41</TaskTime> */}
+              <TaskTime>{timerRemainingSeconds}</TaskTime>
+
+              <TaskTimeLabel>secs</TaskTimeLabel>
+
+            </TaskTimeComponent>
+            </TaskTimeRow>
+          
+          </DetailRowRight>
+          
+          
+        </DetailRow>
+
+    
+    
+    
+    
+              </TaskTimeWrapper>
+      }
+
               </Fragment>
   )
 }// end TaskTimerDisplay

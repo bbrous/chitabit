@@ -152,8 +152,11 @@ const InitialStore = {
         // spotlightStatus: 'inactive', // inactive, begun, completed
         // timeStamp:  '',  // September 14
 
-        spotlightStatus: 'begun', // inactive, begun, completed
+        spotlightStatus: 'completed', // inactive, begun, completed
         timeStamp:  "2020-10-30T08:46:20.619Z",  // September 14
+        
+        completedTimeStamp:  "2020-11-10T03:46:20.619Z", 
+
         // endEst: "",  //October 15 
         endEst: "2020-10-23T04:46:20.619Z",  //October 15  
         note: 'This is a note for spot 1',
@@ -298,6 +301,7 @@ const InitialStore = {
         // endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
         timeStamp:  '',  // September 25
+        completedTimeStamp: '', 
         endEst: '',  //October 9 
 
         clock: {
@@ -401,6 +405,8 @@ const InitialStore = {
         
         spotlightStatus: 'inactive', // inactive, begun, completed
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        
+        completedTimeStamp: '', 
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         clock: {
@@ -501,6 +507,8 @@ const InitialStore = {
 
         spotlightStatus: 'inactive', // inactive, begun, completed
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
+        
+        completedTimeStamp: '', 
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         clock: {
@@ -551,6 +559,8 @@ const InitialStore = {
         
         spotlightStatus: 'inactive', // inactive, begun, completed
         timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
+        
+        completedTimeStamp: '', 
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 
         clock: {
