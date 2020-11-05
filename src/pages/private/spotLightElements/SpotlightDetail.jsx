@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import SpotLightTasks from './SpotLightTasks'
 import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
-import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
+import {UTCtoDate, DatetoUTC, convertMS, UTCtoDateTime} from '../../../app/helpers/dateHelper'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey} from '../../../styles/colors'
 import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
@@ -400,7 +400,7 @@ function SpotlightDetail(props) {
         <DetailRow>
           <DetailRowLeft>Ended: </DetailRowLeft>
  
-          <DetailRowRight> 12 Nov, 2020 </DetailRowRight>
+          <DetailRowRight> {UTCtoDate(DatetoUTC(completedTimeStamp))} </DetailRowRight>
           
           
         </DetailRow>
@@ -444,8 +444,8 @@ function SpotlightDetail(props) {
         <DetailRow>
           <DetailRowLeft>Began: </DetailRowLeft>
  
-          <DetailRowRight>12 Nov, 2020 8:45 AM </DetailRowRight>
           
+          <DetailRowRight>{new Date(timeStamp).toLocaleString()}</DetailRowRight>
           
         </DetailRow>
  
@@ -454,7 +454,7 @@ function SpotlightDetail(props) {
         <DetailRow>
           <DetailRowLeft>Ended: </DetailRowLeft>
  
-          <DetailRowRight> 12 Nov, 2020 2:55 PM </DetailRowRight>
+          <DetailRowRight>{new Date(completedTimeStamp).toLocaleString()}</DetailRowRight>
           
           
         </DetailRow>
