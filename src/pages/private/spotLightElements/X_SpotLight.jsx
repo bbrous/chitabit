@@ -1,15 +1,18 @@
-import React, {Fragment } from 'react'
+import React, {Fragment, useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 
 import SpotLightTasks from './SpotLightTasks'
 import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey,   veryLightGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey} from '../../../styles/colors'
+import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 import MenuPopup from './MenuPopup'
-import ClockPopup from './ClockPopup'
+import ClockPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
+
+import CountDownDisplay from './timer/CountDownDisplay'
 
 // &&&&   TEMP Initial Store Import -- Get from Database
 // import InitialStore from '../../../app/redux/store/InitialStore'
@@ -77,7 +80,7 @@ const BreadCrumbs= styled('div')({
   alignItems: 'center',
   height: '3.5%',
   
-  margin: '1.5rem 0',
+  margin: '1rem 0',
   color: chitBlueDull,
 
 
@@ -129,7 +132,7 @@ const Container= styled(Paper)({
   height: '90%',
   marginBottom: '5%',
   
-  overflowY: 'auto',
+  overflowY: 'hidden',
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -139,6 +142,38 @@ const Container= styled(Paper)({
 backgroundColor: veryLightGrey,
 
 
+})
+
+const TopWrapper= styled('div')({
+  display: 'flex',
+   flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+   
+  margin: '.5rem 0 0 0',
+  color: 'red',
+ 
+  width: '98%',
+  padding: '0 .5rem',
+
+  fontSize: '1rem',
+  
+backgroundColor: 'white',
+border: '1px solid #727376',
+borderRadius: '5px',
+
+
+'&.backgroundCompleted' : {
+  backgroundColor: mediumLightGrey,
+  color: 'white', 
+   
+
+},
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
 })
 
 const TitleWrapper= styled('div')({
@@ -155,7 +190,13 @@ const TitleWrapper= styled('div')({
 
   fontSize: '1rem',
   
-backgroundColor: 'white',
+  '&.backgroundCompleted' : {
+     
+    color: 'white', 
+     
+  
+  },
+
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -170,7 +211,7 @@ const Title= styled('div')({
   alignItems: 'center',
    
   margin: '8px 0',
-  color: 'red',
+  
 
   flexWrap: 'wrap',
 
@@ -203,22 +244,31 @@ const CheckCircleWrapper= styled('div')({
 })
 
 const CheckCircle= styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   
   width: '1.05rem',
   height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
-   
-  // color: mediumGrey,
-
-
+  '&:hover' : {
+     
+    border: '1px solid orange'
+  },
+  // color: mediumLightGrey,
+  
   cursor: 'pointer',
+
+
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
   },
 })
+
+
 const CheckCircleCompleted = styled('div')({
   display: 'flex',
   justifyContent: 'center',
@@ -230,7 +280,7 @@ const CheckCircleCompleted = styled('div')({
   borderRadius: '200px',
    
   color: 'white' ,
-  backgroundColor: mediumLightGrey,
+  backgroundColor: mediumGrey,
 
 
   
@@ -255,11 +305,10 @@ const DetailContainer= styled('div')({
   padding: '.5rem .25rem .1rem .25rem', 
     
   
-  color: 'black',
+  // color: 'black',
   fontSize: '.8rem',
 
-
-  backgroundColor: 'white',
+ 
 borderTop: '1px solid lightgrey',
 
 
@@ -495,7 +544,7 @@ const ClockIcon= styled(QueryBuilderIcon)({
             alignItems: 'center',
             
             width: '98%',
-            margin: '.25rem 0',
+            margin: '.25rem 0 0 0',
             
             
           backgroundColor: veryLightGrey,
@@ -570,39 +619,103 @@ const Task= styled('div')({
 export const Spotlight = (props) => {
   // console.log('[SPOTLIGHT ] &&&& spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id]) 
 
-  console.log('[SPOTLIGHT] id is: , ', props)
+  // console.log('[SPOTLIGHT] id is: , ', props)
 
   let spotlightData = props.display.private.data.spotlightData
 
-  console.log('[SPOTLIGHT $$$$$ ] spotlights object' , spotlightData)
+ 
 
   let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
 
-  const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
+  const {id, type, parent, completed, spotlightStatus, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
+
+
+    const[spotlightState, setSpotlightState] = useState('')
+
+    useEffect(()=>{
+
+      // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      setSpotlightState(spotlightStatus)
   
-  // convert target Date in ISO to UTC for addition/subtraction etc
-  let targetDateInMilliseconds = DatetoUTC(endEst)
+      // console.log(' useEffect Timer Status '  , timerStatus)
   
-  // format target Date in milliseconds for display
-  let targetDate  =  UTCtoDate(targetDateInMilliseconds)
    
   
-  let currentDate = new Date()
+  
+      // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  
+  
+    
+    }, [ spotlightStatus]) 
+
+
+  console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
+  
+  // convert target Date in ISO to UTC for addition/subtraction etc
+  let targetDate, beginDate
+  if(endEst) {
+    let targetDateInMilliseconds = DatetoUTC(endEst)
+    // format target Date in milliseconds for display
+    targetDate  =  UTCtoDate(targetDateInMilliseconds)
+  
+    // console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs)
+
+
+  }else{
+    targetDate  = 'No target date provided'
+    
+  }
+  if(timeStamp) {
+    let beginDateInMilliseconds = DatetoUTC(timeStamp)
+    // format target Date in milliseconds for display
+    beginDate  =  UTCtoDate(beginDateInMilliseconds)
+  
+    // console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs)
+
+
+  }else{
+    targetDate  = 'No target date provided'
+    
+  }
+
+  const handleSpotlightCompletedStatus = () => {
+
+    // 1. get current Spotlight completed status
+
+    console.log('[SPOTLIGHT] handleSpotlightCompletedStatus, id : ', id)
+    
+    let currentSpotlightStatus = spotlightData.spotlights[id].spotlightStatus
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
-  let currentUTCDate = DatetoUTC(currentDate)
-  let UTCTimeRemaining = targetDateInMilliseconds - currentUTCDate
 
-  let timeRemainingObject =  convertMS(UTCTimeRemaining)
-  let days = Math.abs(timeRemainingObject.day)
-  let hours = Math.abs(timeRemainingObject.hour)
-  let mins = Math.abs(timeRemainingObject.minute)
-  let secs = Math.abs(timeRemainingObject.seconds)
 
-  console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs
-  )
 
+    let newSpotlightCompletedStatus, newSpotlightCompletedTime 
+
+    if(spotlightState === 'inactive'){
+      newSpotlightCompletedStatus = 'completed'
+      newSpotlightCompletedTime = ''
+    }
+    if(spotlightState === 'completed'){
+      newSpotlightCompletedStatus = 'begun'
+      newSpotlightCompletedTime = ''
+    }
+    if(spotlightState === 'begun'){
+      newSpotlightCompletedStatus = 'completed'
+      newSpotlightCompletedTime = new Date()
+      
+    }
+  
+    props.changeSpotlightCompletedStatus(id, newSpotlightCompletedStatus, newSpotlightCompletedTime )
+   
+  
+  
+    console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+  
+  }
 
   return (
     <Fragment>
@@ -625,13 +738,17 @@ export const Spotlight = (props) => {
 
 
 
-
-    <TitleWrapper>
-      <div><CheckCircleWrapper> 
-      {!completed && 
+<TopWrapper 
+  className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
+  > 
+    <TitleWrapper 
+    className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
+    > 
+      <div><CheckCircleWrapper onClick={()=> handleSpotlightCompletedStatus( id)}> 
+      {spotlightState !== 'completed' && 
               <CheckCircle/>
               }
-              {completed && 
+              {spotlightState === 'completed' && 
               <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
               }
         </CheckCircleWrapper></div>
@@ -643,42 +760,90 @@ export const Spotlight = (props) => {
     </TitleWrapper>
 
 
+
+
     <DetailContainer>
 
       <DetailWrapper>
 
+      <DetailRow>
+          <DetailRowLeft>Status: </DetailRowLeft>
+ 
+          <DetailRowRight> {spotlightState}</DetailRowRight>
+          
+          
+      </DetailRow>
+
+
+      {endEst && 
         <DetailRow>
-          <DetailRowLeft>Target: </DetailRowLeft>
+          <DetailRowLeft>Targeted End: </DetailRowLeft>
+ 
           <DetailRowRight> {targetDate} </DetailRowRight>
+          
+          
         </DetailRow>
-
-        <DetailRowOrange>
-          <DetailRowLeft>Remaining: </DetailRowLeft>
-          <DetailRowRight>{days} days {hours} hrs {mins} min {secs} secs</DetailRowRight>
-        </DetailRowOrange>
-
+      }
+      {!endEst && 
         <DetailRow>
-          <DetailRowLeft>Elapsed: </DetailRowLeft>
-          <DetailRowRight>2 wks 5 days 3 hrs 22 min</DetailRowRight>
+          <DetailRowLeft>Targeted End: </DetailRowLeft>
+ 
+          <DetailRowRight> No Targeted End Date </DetailRowRight>
+          
+          
         </DetailRow>
+      }
+      {timeStamp && spotlightState !== 'inactive' &&
+        <DetailRow>
+          <DetailRowLeft>Begin Date: </DetailRowLeft>
+ 
+          <DetailRowRight> {beginDate} </DetailRowRight>
+          
+          
+        </DetailRow>
+      }
+
+      {/* {!timeStamp && 
+        <DetailRow>
+          <DetailRowLeft>Begin Date: </DetailRowLeft>
+ 
+          <DetailRowRight> Not Started </DetailRowRight>
+          
+          
+        </DetailRow>
+      } */}
+        {/* If there is an estimated end date ... display  */}
         
+        {endEst && 
+            <DetailRow>
+                 <CountDownDisplay
+                 spotlightId = {id}
+                 /> 
+            </DetailRow>
+              
+        }
+        
+
+
+ 
          <BottomWrapper> 
           <CheckBoxWrapper>   
-            <SpotlightCheckbox   
+            {/* <SpotlightCheckbox   
             checked = {true}  
             // onClick = {(evt)=> handleDefault(evt)}
           /> 
-          <div>   make default popup  </div>
+          <div>   make default popup  </div> */}
           </CheckBoxWrapper>
+          
           <IconsWrapper> 
           {note && 
               <NotePopup 
-              noteId = {note} 
+              note = {note} 
               spotlightData = {spotlightData}
               
               />
           }
-              <ClockPopup id = {id}/>
+          
           </IconsWrapper> 
           </BottomWrapper>
           
@@ -686,12 +851,23 @@ export const Spotlight = (props) => {
 
       </DetailWrapper>
 
-
+  
       <MenuWrapper>
        <MenuPopup  id = {id}/>
       </MenuWrapper>
+
+
+
+
     </DetailContainer>
 
+
+
+
+
+
+
+    </TopWrapper>
 
     <FormContainer>
        
@@ -722,7 +898,7 @@ export const Spotlight = (props) => {
 
 const actions = {
   // changeDisplaySpotlight,
-  // openCloseSidePanel
+  changeSpotlightCompletedStatus
 }
 
 const mapState = state => ({

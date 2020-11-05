@@ -212,7 +212,7 @@ const DetailRowRight= styled('div')({
 
 
 // ==========================
-function CountDownDisplay(props) {
+function TimeComparator(props) {
 
   let spotlightId = 'spot_1'
   let spotlightStatus = props.display.private.data.spotlightData.spotlights[spotlightId].spotlightStatus
@@ -450,14 +450,14 @@ function CountDownDisplay(props) {
               <TaskTime>{timerRemainingWeeks}</TaskTime>
           
 
-              <TaskTimeLabel>w </TaskTimeLabel>
+              <TaskTimeLabel>wks :</TaskTimeLabel>
             </TaskTimeComponent>
           }
             <TaskTimeComponent>
               {/* <TaskTime>5</TaskTime> */}
               <TaskTime>{timerRemainingDays}</TaskTime>
 
-              <TaskTimeLabel>d</TaskTimeLabel>
+              <TaskTimeLabel>days :</TaskTimeLabel>
             </TaskTimeComponent>
 
 
@@ -466,7 +466,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>14</TaskTime> */}
               <TaskTime>{timerRemainingHours}</TaskTime>
 
-              <TaskTimeLabel>h :</TaskTimeLabel>
+              <TaskTimeLabel>hrs :</TaskTimeLabel>
 
             </TaskTimeComponent>
 
@@ -474,7 +474,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>37</TaskTime> */}
               <TaskTime>{timerRemainingMinutes}</TaskTime>
 
-              <TaskTimeLabel>m:</TaskTimeLabel>
+              <TaskTimeLabel>mins :</TaskTimeLabel>
 
             </TaskTimeComponent>
 
@@ -482,7 +482,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>41</TaskTime> */}
               <TaskTime>{timerRemainingSeconds}</TaskTime>
 
-              <TaskTimeLabel>s</TaskTimeLabel>
+              <TaskTimeLabel>secs</TaskTimeLabel>
 
             </TaskTimeComponent>
             </TaskTimeRow>
@@ -518,14 +518,14 @@ function CountDownDisplay(props) {
               <TaskTime>{timerRemainingWeeks}</TaskTime>
           
 
-              <TaskTimeLabel>w :</TaskTimeLabel>
+              <TaskTimeLabel>wks :</TaskTimeLabel>
             </TaskTimeComponent>
           }
             <TaskTimeComponent>
               {/* <TaskTime>5</TaskTime> */}
               <TaskTime>{timerRemainingDays}</TaskTime>
 
-              <TaskTimeLabel>d:</TaskTimeLabel>
+              <TaskTimeLabel>days :</TaskTimeLabel>
             </TaskTimeComponent>
 
 
@@ -534,7 +534,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>14</TaskTime> */}
               <TaskTime>{timerRemainingHours}</TaskTime>
 
-              <TaskTimeLabel>h :</TaskTimeLabel>
+              <TaskTimeLabel>hrs :</TaskTimeLabel>
 
             </TaskTimeComponent>
 
@@ -542,7 +542,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>37</TaskTime> */}
               <TaskTime>{timerRemainingMinutes}</TaskTime>
 
-              <TaskTimeLabel>m :</TaskTimeLabel>
+              <TaskTimeLabel>mins :</TaskTimeLabel>
 
             </TaskTimeComponent>
 
@@ -550,7 +550,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>41</TaskTime> */}
               <TaskTime>{timerRemainingSeconds}</TaskTime>
 
-              <TaskTimeLabel>s</TaskTimeLabel>
+              <TaskTimeLabel>secs</TaskTimeLabel>
 
             </TaskTimeComponent>
             </TaskTimeRow>
@@ -645,5 +645,5 @@ const mapState = state => ({
   display: state
 })
 
-export default connect(mapState)(CountDownDisplay)
+export default connect(mapState)(TimeComparator)
 

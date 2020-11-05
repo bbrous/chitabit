@@ -153,12 +153,16 @@ const InitialStore = {
         // timeStamp:  '',  // September 14
 
         spotlightStatus: 'inactive', // inactive, begun, completed
-        timeStamp:  '',  // September 14
+        timeStamp:  "2020-11-03T04:46:20.619Z",  // September 14
         
         completedTimeStamp:  '', 
 
+        
+        // timeEst: null, // 
         // endEst: "",  //October 15 
-        endEst: "2020-11-23T04:46:20.619Z",  //October 15  
+        
+        timeEst: null, 
+        endEst: "2020-11-06T04:46:20.619Z",  //--------
         note: 'This is a note for spot 1',
  
 
@@ -298,11 +302,14 @@ const InitialStore = {
         title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
         spotlightStatus: 'inactive', // inactive, begun, completed
         // timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
-        // endEst: "2020-10-09T04:46:20.619Z",  //October 9 
+        
+        timeEst: null, // 
+        endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
         timeStamp:  '',  // September 25
         completedTimeStamp: '', 
-        endEst: '',  //October 9 
+        
+        // endEst: '',  //October 9 
 
         clock: {
           timerStatus: null, // inactive, running, paused, stopped
@@ -407,6 +414,8 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         
         completedTimeStamp: '', 
+        
+        timeEst: null, 
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         clock: {
@@ -509,6 +518,8 @@ const InitialStore = {
         timeStamp:  "2020-09-14T04:46:20.619Z",  // September 14
         
         completedTimeStamp: '', 
+        
+        timeEst: null, 
         endEst: "2020-11-17T04:46:20.619Z",  //Nov 17
 
         clock: {
@@ -561,6 +572,8 @@ const InitialStore = {
         timeStamp:  "2020-09-11T04:46:20.619Z",  // September 11
         
         completedTimeStamp: '', 
+        
+        timeEst: null, 
         endEst: "2020-10-03T04:46:20.619Z",  //October 3 
 
         clock: {

@@ -1,10 +1,10 @@
-import React, {Fragment } from 'react'
+import React, {Fragment, useState, useEffect } from 'react'
 import {connect} from 'react-redux'
 
 import SpotLightTasks from './SpotLightTasks'
 import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumLightGrey,   veryLightGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey} from '../../../styles/colors'
 import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
@@ -12,8 +12,8 @@ import MenuPopup from './MenuPopup'
 import ClockPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
 
+import SpotlightDetail from './SpotlightDetail'
 import CountDownDisplay from './timer/CountDownDisplay'
-
 // &&&&   TEMP Initial Store Import -- Get from Database
 // import InitialStore from '../../../app/redux/store/InitialStore'
 
@@ -162,6 +162,14 @@ backgroundColor: 'white',
 border: '1px solid #727376',
 borderRadius: '5px',
 
+
+'&.backgroundCompleted' : {
+  backgroundColor: mediumLightGrey,
+  color: 'white', 
+   
+
+},
+
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
@@ -182,7 +190,12 @@ const TitleWrapper= styled('div')({
 
   fontSize: '1rem',
   
-backgroundColor: 'white',
+  '&.backgroundCompleted' : {
+     
+    color: 'white', 
+     
+  
+  },
 
 
   [theme.breakpoints.down('sm')] : {
@@ -198,7 +211,7 @@ const Title= styled('div')({
   alignItems: 'center',
    
   margin: '8px 0',
-  color: 'red',
+  
 
   flexWrap: 'wrap',
 
@@ -231,22 +244,31 @@ const CheckCircleWrapper= styled('div')({
 })
 
 const CheckCircle= styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   
   width: '1.05rem',
   height: '1.05rem',
   border: '1px solid grey',
   borderRadius: '200px',
-   
-  // color: mediumGrey,
-
-
+  '&:hover' : {
+     
+    border: '1px solid orange'
+  },
+  // color: mediumLightGrey,
+  
   cursor: 'pointer',
+
+
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
     // backgroundColor: 'red'
   },
 })
+
+
 const CheckCircleCompleted = styled('div')({
   display: 'flex',
   justifyContent: 'center',
@@ -258,7 +280,7 @@ const CheckCircleCompleted = styled('div')({
   borderRadius: '200px',
    
   color: 'white' ,
-  backgroundColor: mediumLightGrey,
+  backgroundColor: mediumGrey,
 
 
   
@@ -283,11 +305,10 @@ const DetailContainer= styled('div')({
   padding: '.5rem .25rem .1rem .25rem', 
     
   
-  color: 'black',
+  // color: 'black',
   fontSize: '.8rem',
 
-
-  backgroundColor: 'white',
+ 
 borderTop: '1px solid lightgrey',
 
 
@@ -315,76 +336,6 @@ const DetailWrapper= styled('div')({
 })
 
 
-
-
-const DetailRow= styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  marginLeft: '2.5rem',
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const DetailRowOrange= styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  color: chitOrange,
-  marginLeft: '2.5rem',
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const DetailRowLeft= styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  width: '6rem',
-
-  // backgroundColor: 'aqua',
-   
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const DetailRowRight= styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  flexGrow: '1',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-   
-  // backgroundColor: 'green',
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
 
 const BottomWrapper= styled('div')({
   display: 'flex',
@@ -606,36 +557,31 @@ export const Spotlight = (props) => {
 
   let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
 
-  const {id, type, parent, completed, spotlightStatus, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, note, taskArray } = spotLightDisplayed
+  const {id,  parent, completedTimeStamp, spotlightStatus, title, timeStamp, endEst, timeEst,  note } = spotLightDisplayed
+
+
+    const[spotlightState, setSpotlightState] = useState('')
+
+    useEffect(()=>{
+
+      // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      setSpotlightState(spotlightStatus)
+  
+      // console.log(' useEffect Timer Status '  , timerStatus)
+  
+   
+  
+  
+      // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  
+  
+    
+    }, [ spotlightStatus]) 
+
 
   console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
   
-  // convert target Date in ISO to UTC for addition/subtraction etc
-  let targetDate, beginDate
-  if(endEst) {
-    let targetDateInMilliseconds = DatetoUTC(endEst)
-    // format target Date in milliseconds for display
-    targetDate  =  UTCtoDate(targetDateInMilliseconds)
-  
-    // console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs)
 
-
-  }else{
-    targetDate  = 'No target date provided'
-    
-  }
-  if(timeStamp) {
-    let beginDateInMilliseconds = DatetoUTC(timeStamp)
-    // format target Date in milliseconds for display
-    beginDate  =  UTCtoDate(beginDateInMilliseconds)
-  
-    // console.log('[SPOTLIGHT ] -- REMAINING' ,  days, hours, mins, secs)
-
-
-  }else{
-    targetDate  = 'No target date provided'
-    
-  }
 
   const handleSpotlightCompletedStatus = () => {
 
@@ -644,17 +590,25 @@ export const Spotlight = (props) => {
     console.log('[SPOTLIGHT] handleSpotlightCompletedStatus, id : ', id)
     
     let currentSpotlightStatus = spotlightData.spotlights[id].spotlightStatus
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
     let newSpotlightCompletedStatus, newSpotlightCompletedTime 
 
-    if(currentSpotlightStatus === 'inactive'){
+    if(spotlightState === 'inactive'){
+      newSpotlightCompletedStatus = 'completed'
+      newSpotlightCompletedTime = ''
+    }
+    if(spotlightState === 'completed'){
       newSpotlightCompletedStatus = 'begun'
       newSpotlightCompletedTime = ''
     }
-    if(currentSpotlightStatus === 'completed'){
-      newSpotlightCompletedStatus = 'begun'
-      newSpotlightCompletedTime = ''
-    }
-    if(currentSpotlightStatus === 'begun'){
+    if(spotlightState === 'begun'){
       newSpotlightCompletedStatus = 'completed'
       newSpotlightCompletedTime = new Date()
       
@@ -689,13 +643,18 @@ export const Spotlight = (props) => {
 
 
 
-<TopWrapper> 
-    <TitleWrapper>
+<TopWrapper 
+  className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
+  > 
+
+    <TitleWrapper 
+    className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
+    > 
       <div><CheckCircleWrapper onClick={()=> handleSpotlightCompletedStatus( id)}> 
-      {spotlightStatus !== 'completed' && 
+      {spotlightState !== 'completed' && 
               <CheckCircle/>
               }
-              {spotlightStatus === 'completed' && 
+              {spotlightState === 'completed' && 
               <CheckCircleCompleted><CheckIcon fontSize = {'small'} /> </CheckCircleCompleted> 
               }
         </CheckCircleWrapper></div>
@@ -707,68 +666,35 @@ export const Spotlight = (props) => {
     </TitleWrapper>
 
 
+
+
     <DetailContainer>
+
+
+    
 
       <DetailWrapper>
 
-      <DetailRow>
-          <DetailRowLeft>Status: </DetailRowLeft>
- 
-          <DetailRowRight> {spotlightStatus}</DetailRowRight>
-          
-          
-        </DetailRow>
-      {endEst && 
-        <DetailRow>
-          <DetailRowLeft>Targeted End: </DetailRowLeft>
- 
-          <DetailRowRight> {targetDate} </DetailRowRight>
-          
-          
-        </DetailRow>
-      }
-      {!endEst && 
-        <DetailRow>
-          <DetailRowLeft>Targeted End: </DetailRowLeft>
- 
-          <DetailRowRight> No Targeted End Date </DetailRowRight>
-          
-          
-        </DetailRow>
-      }
-      {timeStamp && spotlightStatus !== 'inactive' &&
-        <DetailRow>
-          <DetailRowLeft>Begin Date: </DetailRowLeft>
- 
-          <DetailRowRight> {beginDate} </DetailRowRight>
-          
-          
-        </DetailRow>
-      }
-
-      {/* {!timeStamp && 
-        <DetailRow>
-          <DetailRowLeft>Begin Date: </DetailRowLeft>
- 
-          <DetailRowRight> Not Started </DetailRowRight>
-          
-          
-        </DetailRow>
-      } */}
-        {/* If there is an estimated end date ... display  */}
-        
-        {endEst && 
-            <DetailRow>
-                 <CountDownDisplay
-                 spotlightId = {id}
-                 /> 
-            </DetailRow>
-              
-        }
-        
 
 
- 
+  {/* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */}
+
+
+  <SpotlightDetail
+    spotlightId = {id}
+    endEst = {endEst}
+    timeEst = {timeEst}
+    timeStamp = {timeStamp}
+    completedTimeStamp = {completedTimeStamp}
+    spotlightStatus = {spotlightStatus}
+    
+  
+  />
+
+
+
+
+  {/* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */}
          <BottomWrapper> 
           <CheckBoxWrapper>   
             {/* <SpotlightCheckbox   
@@ -798,7 +724,18 @@ export const Spotlight = (props) => {
       <MenuWrapper>
        <MenuPopup  id = {id}/>
       </MenuWrapper>
+
+
+
+
     </DetailContainer>
+
+
+
+
+
+
+
     </TopWrapper>
 
     <FormContainer>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
-import{addSpotLight, closeModal} from '../app/redux/actions/mainActions'
+import{addSpotLight} from '../app/redux/actions/mainActions'
 import{spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
 // Material UI =============================
 
@@ -359,7 +359,6 @@ function StyledCheckbox(props) {
 }
 
 
-
 // ===========================================
 const SpotLightForm = (props) => {
 
@@ -392,11 +391,7 @@ const SpotLightForm = (props) => {
     };
              
 
-  const onSubmit = data => {
-    props.addSpotLight(data, newSpotlightId) 
-     props.closeModal()
-  
-  }
+  const onSubmit = data => props.addSpotLight(data, newSpotlightId)
   // const onSubmit = data => alert(JSON.stringify(data))
 
   // return ==================== return ================= return ==============
@@ -410,7 +405,7 @@ const SpotLightForm = (props) => {
 
         <FormWrapper>
 
-          <form onSubmit = {handleSubmit(onSubmit) }>
+          <form onSubmit = {handleSubmit(onSubmit)}>
 
 
 {/*  title  ----------- */}
@@ -444,7 +439,7 @@ const SpotLightForm = (props) => {
 
             <FormSegmentWrapper>
               <SegmentHeader>
-                When you hope to get it done by: 
+                Target date to complete
               </SegmentHeader>
 
               <FormInput>
@@ -467,9 +462,6 @@ const SpotLightForm = (props) => {
                             value={selectedDate}
                             keyboardIcon={<IconContainer>today_icon</IconContainer>}
                             onChange={handleDateChange}
-                            orientation = 'landscape'
-
-
                           />
                         }
                         control={control}
@@ -487,7 +479,7 @@ const SpotLightForm = (props) => {
 
             <FormSegmentWrapper>
               <SegmentHeader>
-                How long you think it might take:
+                Estimated time to complete
               </SegmentHeader>
 
                 <TimeWrapper>
@@ -574,7 +566,7 @@ const SpotLightForm = (props) => {
 
 {/*  Popup  ------------------- */}
 
-            {/* <FormSegmentWrapper>
+            <FormSegmentWrapper>
 
               <SegmentHeader>
                 Make default Popup
@@ -591,7 +583,7 @@ const SpotLightForm = (props) => {
                     <div>Show Spotlight as Popup</div>
                     </CheckBoxWrapper>
               </FormInput>            
-            </FormSegmentWrapper> */}
+            </FormSegmentWrapper>
 
             <SubmitWrapper>
             <SubmitButton type ="submit" >Submit</SubmitButton> 
@@ -608,8 +600,7 @@ const SpotLightForm = (props) => {
  
 
 const actions = {
-  addSpotLight,
-  closeModal 
+  addSpotLight
 }
 
 const mapState = state => ({
