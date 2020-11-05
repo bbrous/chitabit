@@ -491,15 +491,7 @@ const SpotLightForm = (props) => {
               </SegmentHeader>
 
                 <TimeWrapper>
-                  <TimeSection> 
-                    <TimeLabel>mos</TimeLabel>
-                    
-                    <Controller as={TimeForm} name="mos" 
-                      InputProps={{ disableUnderline: true }}
-                      control={control} 
-                       
-                    />
-                   </TimeSection>
+                   
                 
                   <TimeSection> 
                   <TimeLabel>wks</TimeLabel>
@@ -520,9 +512,9 @@ const SpotLightForm = (props) => {
                      
                     />
                    </TimeSection>
-                </TimeWrapper>
+            
                 
-                <TimeWrapper>
+                
                   <TimeSection> 
                   <TimeLabel>hrs</TimeLabel>
                    

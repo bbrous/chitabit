@@ -313,6 +313,40 @@ const reducer_Main = produce((draft = initialState, action) => {
           let timestamp = new Date()
           // let newSpotLightId = cuid().toString()
           let newSpotlightId = payload.newSpotlightId
+          let wksInput, daysInput, hrsInput, minsInput, wks, days, hrs, mins
+
+          // Calculate the Estimated Time from Form Input
+
+          const dayMS = 86400000 // ms in a day
+          const hourMS = 3600000
+          const minuteMS = 60000
+
+          //  (1) Get the object values and convert to integers
+
+          wksInput = parseInt(Object.values(payload.spotlight.wks))  
+          daysInput = parseInt(Object.values(payload.spotlight.days))  
+          hrsInput = parseInt(Object.values(payload.spotlight.hrs))  
+          minsInput = parseInt(Object.values(payload.spotlight.mins)) 
+
+          //  (2) Account for no input into form
+          
+          wks = wksInput ? parseInt(Object.values(payload.spotlight.wks))  : 0
+          days = daysInput ? parseInt(Object.values(payload.spotlight.days))  : 0
+          hrs = hrsInput ? parseInt(Object.values(payload.spotlight.hrs))  : 0
+          mins = minsInput ? parseInt(Object.values(payload.spotlight.mins))  : 0
+
+
+          //  (3) Calculate the total estimated time
+          
+          let calculatedInputTimeEst =  
+            wks * dayMS * 7 +
+            days * dayMS +
+            hrs * hourMS +
+            mins * minuteMS
+
+     
+          //  (4) If calculated time = 0, return null
+          let calculatedTimeEst = calculatedInputTimeEst === 0 ? null : calculatedInputTimeEst
 
           let spotlight  = {
             id: newSpotlightId,
@@ -323,11 +357,8 @@ const reducer_Main = produce((draft = initialState, action) => {
     
             timeStamp: timestamp,
             endEst:payload.spotlight.endEst,
-            mos: payload.spotlight.mos ,
-            wks: payload.spotlight.wks ,
-            days: payload.spotlight.days ,
-            hrs: payload.spotlight.hrs ,
-            mins: payload.spotlight.mins ,
+            timeEst:calculatedTimeEst,
+            
 
 
 
