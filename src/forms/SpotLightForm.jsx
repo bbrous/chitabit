@@ -33,7 +33,7 @@ const Wrapper= styled('div')({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  
+  zIndex: '95',
   // backgroundColor: 'pink',
   width: '100%',
   height: '100%',

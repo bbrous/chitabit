@@ -379,7 +379,7 @@ const IconsWrapper= styled('div')({
   alignItems: 'center',
   height: '100%',
   // backgroundColor: 'yellow',
-   
+  zIndex: '95',
 
   
 
@@ -397,7 +397,7 @@ const MenuWrapper= styled('div')({
   height: '100%',
   // backgroundColor: 'yellow',
    marginRight: '5px',
-
+   zIndex: '95',
   
 
 

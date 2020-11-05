@@ -36,7 +36,7 @@ const Wrapper= styled('div')({
  
    
   width: '100%',
-  backgroundColor: 'white'
+  backgroundColor: 'white',
 
 })
 

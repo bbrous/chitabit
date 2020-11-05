@@ -58,7 +58,7 @@ const StatusRow= styled('div')({
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: veryLightGrey,
+  backgroundColor: lightGrey,
   marginBottom: '8px',
   padding: '2px 0',
   color: 'black',
@@ -96,8 +96,9 @@ const StatusRowRight= styled('div')({
   justifyContent: 'flex-start',
   alignItems: 'center',
    
+  '&.blueHighlight' : {color: chitBlueDull, fontWeight: 'bold'},
   '&.redHighlight' : {color: 'red'},
-  '&.greenHighlight' : {color: 'green'},
+  '&.greenHighlight' : {color:'green'},
 
  
 
@@ -246,13 +247,32 @@ const DetailRowRight= styled('div')({
   },
 })
 
+const CompletedWrapper= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+   
+ 
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+
 
 // ---------------------------------
 
 function SpotlightDetail(props) {
   const {spotlightId, endEst, timeEst,  timeStamp, completedTimeStamp, spotlightStatus}= props
 
+  let statusDisplay
 
+
+  if(spotlightStatus === 'completed') {statusDisplay = 'Spotlight Completed'}
+  if(spotlightStatus === 'begun' ){statusDisplay = 'In Progress'}
+  if(spotlightStatus === 'inactive' ){statusDisplay ='Not Yet Started'}
 
   console.log('[SPOTLIGHT DETAIL - id -  ', spotlightId)
   console.log('[SPOTLIGHT DETAIL - endEst - ', endEst)
@@ -263,7 +283,8 @@ function SpotlightDetail(props) {
   console.log('========================')
   
   // convert target Date in ISO to UTC for addition/subtraction etc
-  let targetDate, beginDate
+  let targetDate, beginDate 
+
   if(endEst) {
     let targetDateInMilliseconds = DatetoUTC(endEst)
     // format target Date in milliseconds for display
@@ -299,12 +320,32 @@ function SpotlightDetail(props) {
 
          <StatusRow>
           <StatusRowLeft>Status: </StatusRowLeft>
-          <StatusRowRight
-             className = 'redHighlight'
-          
-          > 'inactive'</StatusRowRight>
+            {spotlightStatus === 'inactive' &&
+              <StatusRowRight
+                 
+              
+              > {statusDisplay} 
+              </StatusRowRight>
+  
+              }
+              {spotlightStatus === 'completed' &&
+                <StatusRowRight
+                  className = 'redHighlight'
+                
+                > {statusDisplay} 
+                </StatusRowRight>
  
-          {/* <DetailRowRight> {spotlightState}</DetailRowRight> */}
+              }
+
+            {spotlightStatus === 'begun' &&
+              <StatusRowRight
+                className='greenHighlight'
+
+              > {statusDisplay}
+              </StatusRowRight>
+
+            }
+          
           
           
         </StatusRow>
@@ -353,6 +394,9 @@ function SpotlightDetail(props) {
           <CountDownDisplay/>
         </DetailRow>
       }
+
+        {spotlightStatus === 'completed' && 
+        <CompletedWrapper>  
         <DetailRow>
           <DetailRowLeft>Ended: </DetailRowLeft>
  
@@ -371,7 +415,8 @@ function SpotlightDetail(props) {
           
           
         </DetailRow>
-
+        </CompletedWrapper>
+        }
 </VariablesLeft>
 
 {/* ---RIGHT SIDE ------------------ */}
@@ -389,7 +434,7 @@ function SpotlightDetail(props) {
         </DetailRow> */}
  
  <DetailRow>
-          <DetailRowLeft>Target Time: </DetailRowLeft>
+          <DetailRowLeft>Est Time: </DetailRowLeft>
  
           <DetailRowRight>+ 3 d 2h 21m </DetailRowRight>
           
@@ -403,15 +448,9 @@ function SpotlightDetail(props) {
           
           
         </DetailRow>
-
-        <DetailRow>
-          <DetailRowLeft>Lapsed TIme: </DetailRowLeft>
  
-          <DetailRowRight>+ 3 d 2h 21m  </DetailRowRight>
-          
-          
-        </DetailRow>
-
+        {spotlightStatus === 'completed' && 
+        <CompletedWrapper>  
         <DetailRow>
           <DetailRowLeft>Ended: </DetailRowLeft>
  
@@ -435,7 +474,8 @@ function SpotlightDetail(props) {
           
           
         </DetailRow>
- 
+        </CompletedWrapper>
+        }
   
 </VariablesRight>
         

@@ -568,72 +568,9 @@ function CountDownDisplay(props) {
       }
 
 
-{spotlightStatus === 'completed' && 
-    <TaskTimeWrapper>
-
-  {/* --------Completed TIME ------------------------------- */}
-
-        <DetailRowCompleted>
-          <DetailRowLeft>Remaining Time</DetailRowLeft>
- 
-          <DetailRowRight> 
-          
-          <TaskTimeRow> 
- 
-          {timerRemainingWeeks > 0 &&  
-            <TaskTimeComponent>
-              {/* <TaskTime>3</TaskTime> */}
-              <TaskTime>{timerRemainingWeeks}</TaskTime>
-          
-
-              <TaskTimeLabel>wks :</TaskTimeLabel>
-            </TaskTimeComponent>
-          }
-            <TaskTimeComponent>
-              {/* <TaskTime>5</TaskTime> */}
-              <TaskTime>{timerRemainingDays}</TaskTime>
-
-              <TaskTimeLabel>days :</TaskTimeLabel>
-            </TaskTimeComponent>
 
 
 
-            <TaskTimeComponent>
-              {/* <TaskTime>14</TaskTime> */}
-              <TaskTime>{timerRemainingHours}</TaskTime>
-
-              <TaskTimeLabel>hrs :</TaskTimeLabel>
-
-            </TaskTimeComponent>
-
-            <TaskTimeComponent>
-              {/* <TaskTime>37</TaskTime> */}
-              <TaskTime>{timerRemainingMinutes}</TaskTime>
-
-              <TaskTimeLabel>mins :</TaskTimeLabel>
-
-            </TaskTimeComponent>
-
-            <TaskTimeComponent>
-              {/* <TaskTime>41</TaskTime> */}
-              <TaskTime>{timerRemainingSeconds}</TaskTime>
-
-              <TaskTimeLabel>secs</TaskTimeLabel>
-
-            </TaskTimeComponent>
-            </TaskTimeRow>
-          
-          </DetailRowRight>
-          
-          
-        </DetailRowCompleted>
-
-    
-    
-    
-    
-              </TaskTimeWrapper>
-      }
 
               </Fragment>
   )

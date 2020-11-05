@@ -345,7 +345,7 @@ const reducer_Main = produce((draft = initialState, action) => {
             mins * minuteMS
 
      
-          //  (4) If calculated time = 0, return null
+          //  (4) If calc time = 0, return null else return calc time
           let calculatedTimeEst = calculatedInputTimeEst === 0 ? null : calculatedInputTimeEst
 
           let spotlight  = {
