@@ -1,31 +1,30 @@
-export const  updateTaskStatus= ( taskId) => {
+{dateDifference < 0 && 
+  <DetailRow>
+    <DetailRowLeft>Missed by: </DetailRowLeft>
 
-  console.log('[mainActions I be clicked - hi updateTaskStatus = ' , taskId)
-
- return {
-   type: CHANGE_TASK_COMPLETED_STATUS,
-   payload: {
-     // spotId: spotId,
-     // taskId: taskId,
-     // newTimerObject: newTimerObject
-
-     spotId: taskId
-     
-   }
- }
+    <DetailRowRight
+      className = 'redHighlight'
+    
+    > 
+    {weeks} w: {days} d: {hours} h: {minutes} m
+    
+    </DetailRowRight>
+    
+    
+  </DetailRow>
 }
+{dateDifference >= 0 &&
+  <DetailRow>
+    <DetailRowLeft>Goal achieved: </DetailRowLeft>
 
-       
-export const  updateSpotlightStatus= (spotId) => {
+    <DetailRowRight
+      className='redHighlight'
 
- console.log('[mainActions I be clicked - updateSpotlightStatus = ' , spotId)
- return {
-   type: UPDATE_SPOTLIGHT_STATUS,
-   payload: {
-     // spotId: spotId,
-     // taskId: taskId,
-     // newTimerObject: newTimerObject
-     
-   }
- }
+    >
+      {weeks} w: {days} d: {hours} h: {minutes} m
+
+</DetailRowRight>
+
+
+  </DetailRow>
 }

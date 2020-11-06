@@ -20,11 +20,12 @@ const TaskTimeWrapper= styled('div')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'flex-start',
+  alignItems: 'center',
   width: '100%',
+
  
   
-// backgroundColor: 'white',
+// backgroundColor: 'green',
   borderRadius: '3px',
 
 
@@ -40,6 +41,7 @@ const TaskTimeRow= styled('div')({
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
+ 
  
   
 
@@ -106,7 +108,7 @@ const TaskTimeLabel= styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  margin: '0 5px 0 1px',
+  
   fontStyle: ' italic',
   
   
@@ -125,10 +127,11 @@ const TaskTimeLabel= styled('div')({
 
 const DetailRowRemaining= styled('div')({
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
   color: chitOrange,
+ 
  
 
   
@@ -179,7 +182,7 @@ const DetailRowLeft= styled('div')({
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  width: '6rem',
+ 
 
   // backgroundColor: 'aqua',
    

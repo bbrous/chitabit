@@ -112,41 +112,21 @@ export const monthArrayLong = [
   'January','February','March','April','May','June','July','August','September','October','November','December',
   ]
 
-export function UTCtoDateTime(milSeconds){
+export function UTCtoDate(milSeconds){
 
 
   let year = new Date(milSeconds).getFullYear()
   let monthNumeric = new Date(milSeconds).getMonth()
   let month = monthArray[monthNumeric]
   let day = new Date(milSeconds).getDate()
-  let hrs = new Date(milSeconds).getHours()
-  let mins = new Date(milSeconds).getMinutes()
-  let secs = new Date(milSeconds).getSeconds()
 
 
-  // let dateReconstituted = day + ' ' + month + ', ' + year
-  // + '  ' + hrs + ':' + mins + ':' + secs + 's'
+  let dateReconstituted = day + ' ' + month + ', ' + year
 
-  let dateReconstituted =  new Date(milSeconds).toLocaleString()
+ 
 
   return dateReconstituted
   }
-
-  export function UTCtoDate(milSeconds){
-
-
-    let year = new Date(milSeconds).getFullYear()
-    let monthNumeric = new Date(milSeconds).getMonth()
-    let month = monthArray[monthNumeric]
-    let day = new Date(milSeconds).getDate()
-  
-  
-    let dateReconstituted = day + ' ' + month + ', ' + year
-  
-   
-  
-    return dateReconstituted
-    }
 
   export function UTCtoDateTradional(milSeconds){
 

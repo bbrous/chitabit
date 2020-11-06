@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import SpotLightTasks from './SpotLightTasks'
 import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
-import {UTCtoDate, DatetoUTC, convertMS, UTCtoDateTime} from '../../../app/helpers/dateHelper'
+import {UTCtoDate, DatetoUTC, convertMS, msToStringDisplay} from '../../../app/helpers/dateHelper'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey} from '../../../styles/colors'
 import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
@@ -176,8 +176,25 @@ const DetailRow= styled('div')({
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'center',
+ width: '100%',
  
+  
 
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    
+  },
+})
+
+const DetailRowRemaining= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+ width: '100%',
+// backgroundColor: 'aqua',
+marginTop: '8px',
   
 
 
@@ -189,22 +206,6 @@ const DetailRow= styled('div')({
 
 
 
-const DetailRowOrange= styled('div')({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  color: chitOrange,
-  marginLeft: '2.5rem',
-
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
 
 
 
@@ -219,7 +220,8 @@ const DetailRowLeft= styled('div')({
   // backgroundColor: 'gold',
    
 
-  
+  '&.redHighlight' : {color: 'red'},
+  '&.greenHighlight' : {color:'green'},
 
 
   [theme.breakpoints.down('sm')] : {
@@ -283,10 +285,10 @@ function SpotlightDetail(props) {
   console.log('========================')
   
   // convert target Date in ISO to UTC for addition/subtraction etc
-  let targetDate, beginDate 
+  let targetDate, beginDate, targetDateInMilliseconds, beginDateInMilliseconds, completedDateInMilliseconds 
 
   if(endEst) {
-    let targetDateInMilliseconds = DatetoUTC(endEst)
+    targetDateInMilliseconds = DatetoUTC(endEst)
     // format target Date in milliseconds for display
     targetDate  =  UTCtoDate(targetDateInMilliseconds)
   
@@ -298,7 +300,7 @@ function SpotlightDetail(props) {
     
   }
   if(timeStamp) {
-    let beginDateInMilliseconds = DatetoUTC(timeStamp)
+    beginDateInMilliseconds = DatetoUTC(timeStamp)
     // format target Date in milliseconds for display
     beginDate  =  UTCtoDate(beginDateInMilliseconds)
   
@@ -310,7 +312,13 @@ function SpotlightDetail(props) {
     
   }
 
+  completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
+  let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
 
+  let dateDifference = msToStringDisplay(dateDifferenceMS)
+
+  const {weeks, days, hours, minutes} = dateDifference
+  // console.log('[SPOTLIGHT Detail] -- dateDifference' ,  dateDifference)
   return (
     <Wrapper>
 
@@ -370,8 +378,8 @@ function SpotlightDetail(props) {
           }
 
           {endEst && 
-          <DetailRowRight> 
-            {UTCtoDate(DatetoUTC(endEst))} 
+          <DetailRowRight  className = 'blueHighlight'> 
+            {targetDate} 
           </DetailRowRight>
           }
           
@@ -381,18 +389,18 @@ function SpotlightDetail(props) {
           <DetailRowLeft>Began: </DetailRowLeft>
  
           <DetailRowRight
-            className = 'blueHighlight'
+           
           >
-            {UTCtoDate(DatetoUTC(timeStamp))} 
+            {beginDate} 
           </DetailRowRight>
           
           
         </DetailRow>
         
         {!completedTimeStamp &&
-        <DetailRow>
+        <DetailRowRemaining>
           <CountDownDisplay/>
-        </DetailRow>
+        </DetailRowRemaining>
       }
 
         {spotlightStatus === 'completed' && 
@@ -405,18 +413,44 @@ function SpotlightDetail(props) {
           
         </DetailRow>
 
-        <DetailRow>
-          <DetailRowLeft>Difference: </DetailRowLeft>
- 
-          <DetailRowRight
+        {dateDifferenceMS < 0 && 
+          <DetailRow>
+            <DetailRowLeft
             className = 'redHighlight'
-          
-          > + 3 d 2h 21m </DetailRowRight>
-          
-          
-        </DetailRow>
-        </CompletedWrapper>
+            
+            > Missed by: </DetailRowLeft>
+  
+            <DetailRowRight
+              className = 'redHighlight'
+            
+            > 
+            {weeks} w: {days} d: {hours} h: {minutes} m
+            
+            </DetailRowRight>
+            
+            
+          </DetailRow>
         }
+        {dateDifferenceMS > 0 &&
+          <DetailRow>
+            <DetailRowLeft
+            className='greenHighlight'
+            >Goal achieved: </DetailRowLeft>
+
+            <DetailRowRight
+              className='greenHighlight'
+
+            >
+              {weeks} w: {days} d: {hours} h: {minutes} m
+
+        </DetailRowRight>
+
+
+          </DetailRow>
+        }
+
+      </CompletedWrapper>
+      }
 </VariablesLeft>
 
 {/* ---RIGHT SIDE ------------------ */}
