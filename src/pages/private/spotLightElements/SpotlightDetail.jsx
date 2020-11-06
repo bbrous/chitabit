@@ -250,8 +250,8 @@ const DetailRowDifference= styled('div')({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
- width: '100%',
- marginTop: '8px',
+  width: '100%',
+  marginTop: '8px',
  
 
 
@@ -364,8 +364,13 @@ function SpotlightDetail(props) {
 
   completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
   let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
-  let dateDifference = msToStringDisplay(dateDifferenceMS)
+  let dateDifference = msToStringDisplay(Math.abs(dateDifferenceMS))
 
+  let targetTime = msToStringDisplay(timeEst)
+  let differenceTimeInMilliseconds = timeEst- (completedDateInMilliseconds - beginDateInMilliseconds)
+  let differenceTime = msToStringDisplay(Math.abs(differenceTimeInMilliseconds))
+
+     
   // completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
   // let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
   // let dateDifference = msToStringDisplay(dateDifferenceMS)
@@ -469,16 +474,16 @@ function SpotlightDetail(props) {
             <DetailRowLeftDifference
             className = 'redHighlight'
             
-            > Missed by: </DetailRowLeftDifference>
+            > Goal missed by: </DetailRowLeftDifference>
   
             <DetailRowRightDifference
               className = 'redHighlight'
             
             > 
-            {dateDifference.weeks} w: 
-            {dateDifference.days} d: 
-            {dateDifference.hours} h: 
-            {dateDifference.minutes} m
+            - {dateDifference.weeks} wks :    
+            {dateDifference.days} days :   
+            {dateDifference.hours} hrs :   
+            {dateDifference.minutes} mns
             
             </DetailRowRightDifference>
             
@@ -489,16 +494,16 @@ function SpotlightDetail(props) {
           <DetailRowDifference>
             <DetailRowLeftDifference
             className='greenHighlight'
-            >Goal achieved: </DetailRowLeftDifference>
+            >Goal achieved by: </DetailRowLeftDifference>
 
             <DetailRowRightDifference
               className='greenHighlight'
 
             >
-           {dateDifference.weeks} w: 
-            {dateDifference.days} d: 
-            {dateDifference.hours} h: 
-            {dateDifference.minutes} m
+           {dateDifference.weeks} wks   
+            {dateDifference.days} days   
+            {dateDifference.hours} hrs   
+            {dateDifference.minutes} mns
 
         </DetailRowRightDifference>
 
@@ -523,15 +528,38 @@ function SpotlightDetail(props) {
           
           
         </DetailRow> */}
- 
- <DetailRow>
+
+      {timeEst && 
+      <DetailRow>
           <DetailRowLeft>Est Time: </DetailRowLeft>
  
-          <DetailRowRight>+ 3 d 2h 21m </DetailRowRight>
+          <DetailRowRight>
+          {targetTime.weeks > 0 &&
+            <div>{targetTime.weeks} w ::   </div>
+          }
+          {targetTime.days > 0 &&
+            <div>{targetTime.days} d ::   </div>
+          }
+
+            {targetTime.hours} h ::   
+            {targetTime.minutes} m 
+             </DetailRowRight>
           
           
         </DetailRow>
-  
+  }
+
+{!timeEst && 
+      <DetailRow>
+          <DetailRowLeft>Est Time: </DetailRowLeft>
+ 
+          <DetailRowRight>
+          No target time created
+             </DetailRowRight>
+          
+          
+        </DetailRow>
+  }
         <DetailRow>
           <DetailRowLeft>Began: </DetailRowLeft>
  
@@ -550,21 +578,78 @@ function SpotlightDetail(props) {
           
         </DetailRow>
 
-        <DetailRow>
-          <DetailRowLeft>Total Time: </DetailRowLeft>
- 
-          <DetailRowRight> + 3 d 2h 21m </DetailRowRight>
-          
-          
-        </DetailRow>
 
-        <DetailRow>
-          <DetailRowLeft>Difference: </DetailRowLeft>
- 
-          <DetailRowRight> -  6h 27m </DetailRowRight>
+        {differenceTimeInMilliseconds < 0 && 
+          <DetailRowDifference>
+            <DetailRowLeftDifference
+            className = 'redHighlight'
+            
+            > Goal missed by: </DetailRowLeftDifference>
+  
+            <DetailRowRightDifference
+              className = 'redHighlight'
+            
+            > 
+            {differenceTime.weeks} w ::  
+            {differenceTime.days} d ::  
+            {differenceTime.hours} h ::  
+            {differenceTime.minutes} m
+            
+            </DetailRowRightDifference>
+            
+            
+          </DetailRowDifference>
+        }
+        {differenceTimeInMilliseconds > 0 &&
+          <DetailRowDifference>
+            <DetailRowLeftDifference
+            className='greenHighlight'
+            >Goal achieved by: </DetailRowLeftDifference>
+
+            <DetailRowRightDifference
+              className='greenHighlight'
+
+            >
+           {differenceTime.weeks} w ::  
+            {differenceTime.days} d ::  
+            {differenceTime.hours} h ::  
+            {differenceTime.minutes} m
+
+        </DetailRowRightDifference>
+
+
+          </DetailRowDifference>
+        }
+
+
+
+
+
+
+
+
+        {/* <DetailRow>
+        <DetailRowRight>
+          {differenceTime.weeks > 0 &&
+            <div>{differenceTime.weeks} w: </div>
+          }
+          {differenceTime.days > 0 &&
+            <div>{differenceTime.days} d: </div>
+          }
+
+            {differenceTime.hours} h: 
+            {totalTime.minutes} m
+             </DetailRowRight>
           
           
-        </DetailRow>
+        </DetailRow> */}
+
+
+
+
+
+
+
         </CompletedWrapper>
         }
   

@@ -396,7 +396,8 @@ const MenuWrapper= styled('div')({
   alignItems: 'center',
   height: '100%',
   // backgroundColor: 'yellow',
-   marginRight: '5px',
+   marginLeft: '5px',
+   width: '1.5rem',
    zIndex: '95',
   
 

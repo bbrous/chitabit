@@ -161,7 +161,7 @@ const InitialStore = {
         // timeEst: null, // 
         // endEst: "",  //October 15 
         
-        timeEst: null, 
+        timeEst: 311418000, 
         endEst: "2020-11-04T02:33:20.619Z",  //--------
         note: 'This is a note for spot 1',
  
