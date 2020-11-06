@@ -75,7 +75,7 @@ const TaskTimeComponent= styled('div')({
   flexDirection: 'row',
   justifyContent: 'space-around',
   alignItems: 'center',
- 
+  marginRight: '5px',
 
 
   
@@ -453,14 +453,14 @@ function CountDownDisplay(props) {
               <TaskTime>{timerRemainingWeeks}</TaskTime>
           
 
-              <TaskTimeLabel>w </TaskTimeLabel>
+              <TaskTimeLabel>wks  </TaskTimeLabel>
             </TaskTimeComponent>
           }
             <TaskTimeComponent>
               {/* <TaskTime>5</TaskTime> */}
               <TaskTime>{timerRemainingDays}</TaskTime>
 
-              <TaskTimeLabel>d</TaskTimeLabel>
+              <TaskTimeLabel>days : </TaskTimeLabel>
             </TaskTimeComponent>
 
 
@@ -469,7 +469,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>14</TaskTime> */}
               <TaskTime>{timerRemainingHours}</TaskTime>
 
-              <TaskTimeLabel>h :</TaskTimeLabel>
+              <TaskTimeLabel>hrs</TaskTimeLabel>
 
             </TaskTimeComponent>
 
@@ -477,7 +477,7 @@ function CountDownDisplay(props) {
               {/* <TaskTime>37</TaskTime> */}
               <TaskTime>{timerRemainingMinutes}</TaskTime>
 
-              <TaskTimeLabel>m:</TaskTimeLabel>
+              <TaskTimeLabel>mins</TaskTimeLabel>
 
             </TaskTimeComponent>
 

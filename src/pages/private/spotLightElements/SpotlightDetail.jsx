@@ -187,29 +187,6 @@ const DetailRow= styled('div')({
   },
 })
 
-const DetailRowRemaining= styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
- width: '100%',
-// backgroundColor: 'aqua',
-marginTop: '8px',
-  
-
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    
-  },
-})
-
-
-
-
-
-
-
 const DetailRowLeft= styled('div')({
   display: 'flex',
   flexDirection: 'row',
@@ -238,6 +215,79 @@ const DetailRowRight= styled('div')({
   alignItems: 'center',
    
   // backgroundColor: 'green',
+  
+  '&.blueHighlight' : {color: chitBlueDull, fontWeight: 'bold'},
+  '&.redHighlight' : {color: 'red'},
+  '&.greenHighlight' : {color:'green'},
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowRemaining= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+ width: '100%',
+// backgroundColor: 'aqua',
+marginTop: '8px',
+  
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    
+  },
+})
+
+
+
+const DetailRowDifference= styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+ width: '100%',
+ marginTop: '8px',
+ 
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    
+  },
+})
+
+
+
+const DetailRowLeftDifference= styled('div')({
+
+ 
+ color: 'grey',
+  
+   
+
+  '&.redHighlight' : {color: 'red'},
+  '&.greenHighlight' : {color:'green'},
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const DetailRowRightDifference= styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+ 
+  justifyContent: 'center',
+  alignItems: 'center',
+   
+ 
   
   '&.blueHighlight' : {color: chitBlueDull, fontWeight: 'bold'},
   '&.redHighlight' : {color: 'red'},
@@ -314,10 +364,11 @@ function SpotlightDetail(props) {
 
   completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
   let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
-
   let dateDifference = msToStringDisplay(dateDifferenceMS)
 
-  const {weeks, days, hours, minutes} = dateDifference
+  // completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
+  // let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
+  // let dateDifference = msToStringDisplay(dateDifferenceMS)
   // console.log('[SPOTLIGHT Detail] -- dateDifference' ,  dateDifference)
   return (
     <Wrapper>
@@ -414,39 +465,45 @@ function SpotlightDetail(props) {
         </DetailRow>
 
         {dateDifferenceMS < 0 && 
-          <DetailRow>
-            <DetailRowLeft
+          <DetailRowDifference>
+            <DetailRowLeftDifference
             className = 'redHighlight'
             
-            > Missed by: </DetailRowLeft>
+            > Missed by: </DetailRowLeftDifference>
   
-            <DetailRowRight
+            <DetailRowRightDifference
               className = 'redHighlight'
             
             > 
-            {weeks} w: {days} d: {hours} h: {minutes} m
+            {dateDifference.weeks} w: 
+            {dateDifference.days} d: 
+            {dateDifference.hours} h: 
+            {dateDifference.minutes} m
             
-            </DetailRowRight>
+            </DetailRowRightDifference>
             
             
-          </DetailRow>
+          </DetailRowDifference>
         }
         {dateDifferenceMS > 0 &&
-          <DetailRow>
-            <DetailRowLeft
+          <DetailRowDifference>
+            <DetailRowLeftDifference
             className='greenHighlight'
-            >Goal achieved: </DetailRowLeft>
+            >Goal achieved: </DetailRowLeftDifference>
 
-            <DetailRowRight
+            <DetailRowRightDifference
               className='greenHighlight'
 
             >
-              {weeks} w: {days} d: {hours} h: {minutes} m
+           {dateDifference.weeks} w: 
+            {dateDifference.days} d: 
+            {dateDifference.hours} h: 
+            {dateDifference.minutes} m
 
-        </DetailRowRight>
+        </DetailRowRightDifference>
 
 
-          </DetailRow>
+          </DetailRowDifference>
         }
 
       </CompletedWrapper>
