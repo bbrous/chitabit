@@ -374,7 +374,7 @@ function SpotlightDetail(props) {
   // completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
   // let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
   // let dateDifference = msToStringDisplay(dateDifferenceMS)
-  // console.log('[SPOTLIGHT Detail] -- dateDifference' ,  dateDifference)
+  console.log('[SPOTLIGHT Detail] -- dateDifferenceMS' ,  dateDifferenceMS)
   return (
     <Wrapper>
 
@@ -469,7 +469,7 @@ function SpotlightDetail(props) {
           
         </DetailRow>
 
-        {dateDifferenceMS < 0 && 
+        {endEst && dateDifferenceMS < 0 && 
           <DetailRowDifference>
             <DetailRowLeftDifference
             className = 'redHighlight'
@@ -490,7 +490,7 @@ function SpotlightDetail(props) {
             
           </DetailRowDifference>
         }
-        {dateDifferenceMS > 0 &&
+        {endEst && dateDifferenceMS > 0 &&
           <DetailRowDifference>
             <DetailRowLeftDifference
             className='greenHighlight'
@@ -579,7 +579,7 @@ function SpotlightDetail(props) {
         </DetailRow>
 
 
-        {differenceTimeInMilliseconds < 0 && 
+        {timeEst && differenceTimeInMilliseconds < 0 && 
           <DetailRowDifference>
             <DetailRowLeftDifference
             className = 'redHighlight'
@@ -600,7 +600,7 @@ function SpotlightDetail(props) {
             
           </DetailRowDifference>
         }
-        {differenceTimeInMilliseconds > 0 &&
+        {timeEst && differenceTimeInMilliseconds > 0 &&
           <DetailRowDifference>
             <DetailRowLeftDifference
             className='greenHighlight'
