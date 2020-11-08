@@ -43,7 +43,7 @@ const Hamburger= styled(MenuIcon)({
 
 
 
-const MenuPopup = (props) => {
+const MenuPopupTasks = (props) => {
 
   const {id, type} = props
 
@@ -97,7 +97,7 @@ const MenuPopup = (props) => {
       
       
       />
-{type === 'spotlight' && 
+
 
 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
@@ -110,8 +110,9 @@ const MenuPopup = (props) => {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     
                   <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Open Spotlight: {props.id }</MenuItemStyled>
+                    
                     <MenuItemStyled onClick={handleClose}>Edit Spotlight {props.id }</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}>Delete Spotlight</MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
                   
@@ -125,40 +126,11 @@ const MenuPopup = (props) => {
           )}
         </Popper>
 
-          }
-
-{type === 'task' && 
-
-<Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    
-                  <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
-                    
-                    <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
-                  
 
 
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-              
-            </Grow>
-          )}
-        </Popper>
-
-          }      
     </Fragment>
   )
 }
 
 
-export default MenuPopup
+export default MenuPopupTasks

@@ -43,7 +43,7 @@ const Hamburger= styled(MenuIcon)({
 
 
 
-const MenuPopup = (props) => {
+const MenuPopupTasks = (props) => {
 
   const {id, type} = props
 
@@ -161,4 +161,4 @@ const MenuPopup = (props) => {
 }
 
 
-export default MenuPopup
+export default MenuPopupTasks

@@ -8,7 +8,7 @@ import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumL
 import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
-import MenuPopup from './MenuPopup'
+import MenuPopupSpotlight from './MenuPopupSpotlight'
 import ClockPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
 
@@ -558,7 +558,7 @@ export const Spotlight = (props) => {
 
   let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
 
-  const {id,  parent, completedTimeStamp, spotlightStatus, title, timeStamp, endEst, timeEst,  note } = spotLightDisplayed
+  const {id,  parent, completedTimeStamp, spotlightStatus, title, timeStamp, endEst, timeEst, type,  note } = spotLightDisplayed
 
 
     const[spotlightState, setSpotlightState] = useState('')
@@ -723,7 +723,7 @@ export const Spotlight = (props) => {
 
   
       <MenuWrapper>
-       <MenuPopup  id = {id}/>
+       <MenuPopupSpotlight  id = {id} type = {type}/>
       </MenuWrapper>
 
 

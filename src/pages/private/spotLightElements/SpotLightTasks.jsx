@@ -8,7 +8,7 @@ import TaskTimerDisplay from './timer/TaskTimerDisplay'
 import {startingElapsedTime} from '../../../app/helpers/timerHelpers'
 import { msToStringDisplay} from '../../../app/helpers/dateHelper'
 
-import MenuPopup from './MenuPopup'
+import MenuPopupTasks from './MenuPopupTasks'
 import TimerPopup from './timer/TimerPopup'
 import NotePopup from './NotePopup'
 
@@ -655,7 +655,7 @@ const handleUpdateTimerStatus = (evt) => {
        </TaskWrapper>
         
 
-       <MenuPopup id = {taskId}/>
+       <MenuPopupTasks id = {taskId} type = {value.type}/>
 
 
 
@@ -753,7 +753,7 @@ const handleUpdateTimerStatus = (evt) => {
        </SpotlightTaskWrapper>
         
 
-       <MenuPopup id = {taskId}/>
+       <MenuPopupTasks id = {taskId} type = {type}/>
 
 
 

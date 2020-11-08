@@ -14,23 +14,33 @@ import NotePopup from './NotePopup'
 
 import CountDownDisplay from './timer/CountDownDisplay'
 
-// &&&&   TEMP Initial Store Import -- Get from Database
-// import InitialStore from '../../../app/redux/store/InitialStore'
+/*  -- Spotlight Detail Page -- 
 
+    Displays the top portion of Spotlight.jsx
 
+    Pulls and formats date and time estimates from database.
+    There are 2 possible estimates - a date goal and/or a time goal
+    These are displayed as "Targeted End" or "Est Time" respectively.
 
+    "Began"  is a formatted form of "timeStamp"
+    timeStamp is null to begin with
+    A date is put into timeStamp when any single Spotlight task 
+    is completed, or any single task's clock is started.
+    
+    "Ended" comes from completedTimeStamp which is null to begin with.
+    A date value is input int completedTimeStamp when user checks completed circle.
 
-//  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+    Only the timeEst object is in milliseconds.  All other date fields
+    are dates. For calculations, dates are first changed to milliseconds.
+    After calculations, the results are converted into formatted strings.
+    
+*/
 
 
 
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import InfoIcon from '@material-ui/icons/Info'
-import NotesIcon from '@material-ui/icons/Notes';
-import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-import CheckIcon from '@material-ui/icons/Check';
-import Paper from '@material-ui/core/Paper'
+
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 
 
@@ -319,20 +329,14 @@ const CompletedWrapper= styled('div')({
 function SpotlightDetail(props) {
   const {spotlightId, endEst, timeEst,  timeStamp, completedTimeStamp, spotlightStatus}= props
 
+  // format for status display
   let statusDisplay
-
 
   if(spotlightStatus === 'completed') {statusDisplay = 'Spotlight Completed'}
   if(spotlightStatus === 'begun' ){statusDisplay = 'In Progress'}
   if(spotlightStatus === 'inactive' ){statusDisplay ='Not Yet Started'}
 
-  console.log('[SPOTLIGHT DETAIL - id -  ', spotlightId)
-  console.log('[SPOTLIGHT DETAIL - endEst - ', endEst)
-  console.log('[SPOTLIGHT DETAIL - timeEst - ', timeEst )
-  console.log('[SPOTLIGHT DETAIL - timeStamp -  ', timeStamp)
-  console.log('[SPOTLIGHT DETAIL - completedTimeStamp - ', completedTimeStamp)
-  console.log('[SPOTLIGHT DETAIL - spotlightStatus - ', spotlightStatus)
-  console.log('========================')
+
   
   // convert target Date in ISO to UTC for addition/subtraction etc
   let targetDate, beginDate, targetDateInMilliseconds, beginDateInMilliseconds, completedDateInMilliseconds 
@@ -362,19 +366,20 @@ function SpotlightDetail(props) {
     
   }
 
+  // calculation to define if DATE goal achieved or not
+
   completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
   let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
   let dateDifference = msToStringDisplay(Math.abs(dateDifferenceMS))
+
+  // calculation to define if TIME goal achieved or not 
 
   let targetTime = msToStringDisplay(timeEst)
   let differenceTimeInMilliseconds = timeEst- (completedDateInMilliseconds - beginDateInMilliseconds)
   let differenceTime = msToStringDisplay(Math.abs(differenceTimeInMilliseconds))
 
-     
-  // completedDateInMilliseconds = DatetoUTC(completedTimeStamp)
-  // let dateDifferenceMS =  targetDateInMilliseconds - completedDateInMilliseconds
-  // let dateDifference = msToStringDisplay(dateDifferenceMS)
-  console.log('[SPOTLIGHT Detail] -- dateDifferenceMS' ,  dateDifferenceMS)
+
+  
   return (
     <Wrapper>
 
