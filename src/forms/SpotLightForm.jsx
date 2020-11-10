@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
-import{addSpotLight, closeModal} from '../app/redux/actions/mainActions'
+import{addSpotLight, updateSpotLight, closeModal} from '../app/redux/actions/mainActions'
 import{spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
 
 import {UTCtoDate, DatetoUTC, convertMS, calculateEstimatedTime} from '../app/helpers/dateHelper'
@@ -443,7 +443,7 @@ const SpotLightForm = (props) => {
 
 
       let newSpotlightDetail = {
-        ...initialSpotlightDetail,
+        spotlightId: spotlightFormId,
         title: title,
         timeEst: newEstDate,
         endEst: endEst,
@@ -455,7 +455,7 @@ const SpotLightForm = (props) => {
       console.log(' ------------------------- ' )
 
 
-      // props.editSpotLight(data, newSpotlightId) 
+      props.updateSpotLight( newSpotlightDetail) 
     }
 
         // #######################################################
@@ -671,6 +671,7 @@ const SpotLightForm = (props) => {
 
 const actions = {
   addSpotLight,
+  updateSpotLight,
   closeModal 
 }
 

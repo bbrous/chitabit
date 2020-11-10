@@ -17,6 +17,7 @@ import {
           CHANGE_SPOTLIGHT_START_STATUS,
 
           ADD_SPOTLIGHT,
+          UPDATE_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
           // OPEN_SPOTLIGHT_PAGE,
@@ -419,6 +420,28 @@ const reducer_Main = produce((draft = initialState, action) => {
          return draft;
          
        }// end ADD_SPOTLIGHT
+
+
+       case UPDATE_SPOTLIGHT : 
+       {
+
+        console.log('[REDUCER MAIN UPDATE Spotlight', payload.newSpotlightDetail.spotlightId)
+        // let spotlightId =  payload.newSpotlightDetail.spotlightId
+        const {spotlightId, title, timeEst, endEst, note} =  payload.newSpotlightDetail
+         
+         draft.data.spotlightData.spotlights[spotlightId].title = title
+         draft.data.spotlightData.spotlights[spotlightId].timeEst = timeEst
+         draft.data.spotlightData.spotlights[spotlightId].endEst = endEst
+         draft.data.spotlightData.spotlights[spotlightId].note = note
+       
+
+        return draft;
+        
+      }// end UPDATE_SPOTLIGHT
+
+
+
+
   // --------------------------------------------
     default:
       return draft

@@ -18,6 +18,8 @@
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
           ADD_SPOTLIGHT,
+
+          UPDATE_SPOTLIGHT,
           CHANGE_DISPLAY,
           UPDATE_TASK_ARRAY,
           ADD_TASK,
@@ -207,6 +209,17 @@
             payload: {
               spotlight : spotlight,
               newSpotlightId: newSpotlightId
+            }
+          }
+        }
+
+        export const  updateSpotLight = (newSpotlightDetail) => {
+          console.log('MAIN ACTIONS - updateSpotLight clicked', newSpotlightDetail)
+          return {
+            type: UPDATE_SPOTLIGHT,
+            payload: {
+               
+              newSpotlightDetail: newSpotlightDetail
             }
           }
         }
