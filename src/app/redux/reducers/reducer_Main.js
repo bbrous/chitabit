@@ -37,7 +37,7 @@ import {
           view: '',
           displaySidePanel: 'hide',
           display: 'spotlight',
-
+          spotlightFormId: '',
 // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
           modalDisplayed: false,
@@ -87,7 +87,12 @@ const reducer_Main = produce((draft = initialState, action) => {
 
     case OPEN_MODAL : 
     {
-     draft.modalType = 'spotLightForm'
+
+      let spotlightFormId = payload.spotlightFormId ? payload.spotlightFormId: ''
+
+     draft.modalType = payload.modalType
+    //  draft.spotlightFormId = payload.spotlightFormId
+    draft.spotlightFormId = spotlightFormId
      draft.modalDisplayed = true
      return draft;
      
@@ -97,6 +102,7 @@ const reducer_Main = produce((draft = initialState, action) => {
     {
      draft.modalType = ''
      draft.modalDisplayed = false
+     draft.spotlightFormId = ''
      return draft;
      
    }// end OPEN_MODAL
@@ -310,6 +316,8 @@ const reducer_Main = produce((draft = initialState, action) => {
 
           console.log('REDUCER MAIN - ADD_SPOTLIGHT reducer clicked @@@@@@ ', payload)
           
+         
+
           let timestamp = new Date()
           // let newSpotLightId = cuid().toString()
           let newSpotlightId = payload.newSpotlightId
@@ -348,6 +356,10 @@ const reducer_Main = produce((draft = initialState, action) => {
           //  (4) If calc time = 0, return null else return calc time
           let calculatedTimeEst = calculatedInputTimeEst === 0 ? null : calculatedInputTimeEst
 
+
+          let firstTask = newSpotlightId + '_task_0'
+
+
           let spotlight  = {
             id: newSpotlightId,
             type: 'spotlight', 
@@ -367,7 +379,7 @@ const reducer_Main = produce((draft = initialState, action) => {
             note: payload.spotlight.note,
             taskArray: [
               {
-                taskItem: newSpotlightId,
+                taskItem: firstTask,
                 
                 type: 'task'
               }
@@ -375,10 +387,13 @@ const reducer_Main = produce((draft = initialState, action) => {
             ],
 
             tasks  : {
-              'task0' : {
-              id: 'task0',
+              [firstTask]: {
+              id: firstTask,
               type: 'task',  
               completed: false,
+
+              
+        
              
               title: 'Spotlight begin', 
               clock: {

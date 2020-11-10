@@ -585,12 +585,12 @@ const SpotlightNav = (props) => {
 // ----------   openSpotlightForm
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-const openSpotlightForm = (evt)=>{
+const openSpotlightForm = ()=>{
  
   
-   props.openModal('spotLightForm', 'chit1'  )
+   props.openModal('spotLightForm')
 
-    console.log('[SPOTLIGHT NAV ] -  evt is  - ', evt)
+    // console.log('[SPOTLIGHT NAV ] -  spotlightId is  - ', spotlightId)
 
 }
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -610,7 +610,7 @@ const openSpotlightForm = (evt)=>{
         <NewWrapper elevation={1}>
           <New >   new spotlight </New>
  
-          <AddCircleIconWrapper onClick = {(evt)=> openSpotlightForm({evt})}/>
+          <AddCircleIconWrapper onClick = {()=> openSpotlightForm()}/>
         </NewWrapper>
 
         <FilterWrapper elevation={1}>

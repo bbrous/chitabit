@@ -104,7 +104,7 @@
         }
         
 
-        export const  openModal = (modalType, newChit) => {
+        export const  openModal = (modalType, spotlightId) => {
 
           // console.log('[mainActions I be clicked - type = ' , modalType)
           console.log('[mainActions OPEN_MODALOPEN_MODALOPEN_MODAL = ' , modalType)
@@ -112,7 +112,7 @@
             type: OPEN_MODAL,
             payload: {
               modalType: modalType, 
-              chitIdDisplayed: newChit,
+              spotlightFormId: spotlightId,
               modalDisplayed: true
               
             }
@@ -126,7 +126,7 @@
             type: CLOSE_MODAL,
             payload: {
               modalType: '',
-              chitIdDisplayed: '',
+              spotlightDisplayed: '',
               modalDisplayed: false
               
             }

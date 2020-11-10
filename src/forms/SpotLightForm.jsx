@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
 import{addSpotLight, closeModal} from '../app/redux/actions/mainActions'
 import{spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
+
+import {UTCtoDate, DatetoUTC, convertMS, calculateEstimatedTime} from '../app/helpers/dateHelper'
 // Material UI =============================
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -363,10 +365,26 @@ function StyledCheckbox(props) {
 // ===========================================
 const SpotLightForm = (props) => {
 
-  // console.log('[SPOTLIGHT FORM ] : props.display - ', props.display.private.data.spotlightData.spotlights)
+  // console.log('[SPOTLIGHT FORM ] : props - ', props)
+  let passedId  = props.display.private.spotlightFormId
+
+  const [spotlightFormId, setSpotlightFormId ]= useState('')
+
+  useEffect(() => {
+    
+    // Put ITEMS INTO REDUX HERE ************************
+    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+    
+    setSpotlightFormId(passedId)
+   
+    
+  }, [passedId]);
+
+    console.log('[SPOTLIGHT FORM ] : id passed - ', spotlightFormId)
 
   let allSpotlights = props.display.private.data.spotlightData.spotlights
-  let newSpotlightId = spotlightIdGenerator(allSpotlights)
+ 
+
 
   const today = new Date() // for datepicker initial value
 
@@ -374,12 +392,11 @@ const SpotLightForm = (props) => {
               defaultValues: {
                 title: '',
                 endEst:  null,
-                mos: '',
                 wks: '',
                 days: '',
                 hrs: '',
                 mins: '',
-                
+                note: '',
                  
                 popup: false
               }
@@ -393,7 +410,60 @@ const SpotLightForm = (props) => {
              
 
   const onSubmit = data => {
-    props.addSpotLight(data, newSpotlightId) 
+
+    if(!spotlightFormId) { 
+      console.log(' [SpotlightForm] , no Id so add new ', spotlightFormId)
+      // no Id so create new ID and add spotlight
+      let newSpotlightId = spotlightIdGenerator(allSpotlights)
+      
+      
+      
+
+      props.addSpotLight(data, newSpotlightId) 
+    
+    
+    
+    }
+
+    // #######################################################
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      // (1) First add editSpotlight to Redux actions, reducer etc
+      // (2) import editSpotlight at top and at bottom
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    if(spotlightFormId) { 
+
+      let initialSpotlightDetail = allSpotlights[spotlightFormId]
+      console.log(' [SpotlightForm] , Got an ID Initial SPotlight ', initialSpotlightDetail)
+
+      let {title, endEst, wks, days, hrs, mins, note} = data
+      let newEstDate = calculateEstimatedTime(wks, days, hrs, mins)
+ 
+
+
+      let newSpotlightDetail = {
+        ...initialSpotlightDetail,
+        title: title,
+        timeEst: newEstDate,
+        endEst: endEst,
+        note: note
+      }
+
+      console.log(' [SpotlightForm] , Got an ID UPDATED SPOTLIGHT ', newSpotlightDetail)
+
+      console.log(' ------------------------- ' )
+
+
+      // props.editSpotLight(data, newSpotlightId) 
+    }
+
+        // #######################################################
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      // #######################################################
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
      props.closeModal()
   
   }
@@ -434,7 +504,7 @@ const SpotLightForm = (props) => {
                   />
 
                   {errors.title && errors.title.type === "required" && 
-                    <ErrorWrapper>First name is required</ErrorWrapper>}
+                    <ErrorWrapper>Required field</ErrorWrapper>}
                   {errors.title && errors.title.type === "maxLength" && 
                     <ErrorWrapper>Maximum characters 40</ErrorWrapper>}
                     

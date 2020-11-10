@@ -1,5 +1,8 @@
 import React, {Fragment} from 'react'
 import{chitOrange, mediumGrey} from '../../../styles/colors'
+import {connect} from 'react-redux'
+import{changeDisplaySpotlight,  openModal} from '../../../app/redux/actions/mainActions'
+
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
@@ -47,11 +50,26 @@ const MenuPopupTasks = (props) => {
 
   const {id, type} = props
 
-  console.log('[Menu Popup] --- id are : ', id)
-  console.log('[Menu Popup] --- type are : ', type)
-  console.log('[Menu Popup] |||||||||||||||||||  ')
+  // console.log('[Menu Popup] --- id are : ', id)
+  // console.log('[Menu Popup] --- type are : ', type)
+  // console.log('[Menu Popup] |||||||||||||||||||  ')
 
+  //  handle Change Spotlight Menu option handler
 
+  const handleChangeSpotlight= (id)=>{
+     console.log('[MENU POPUPU TASKS] - id' ,  id)
+      props.changeDisplaySpotlight(id)
+      // props.openCloseSidePanel('hide')
+      }
+
+      const openSpotlightForm = ()=>{
+ 
+  
+        props.openModal('spotLightForm', props.id  )
+     
+         console.log('[MENU POPUP TASKS OpenModal ] -  spot id passed is  - ', props.id)
+     
+     }
   
   // ----- Popup Menu actions  -------------------------
  
@@ -110,8 +128,15 @@ const MenuPopupTasks = (props) => {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     
                   <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Open Spotlight: {props.id }</MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Edit Spotlight {props.id }</MenuItemStyled>
+                    <MenuItemStyled onClick = {()=>{
+                      
+                          handleChangeSpotlight(id)
+                        }}
+                    >Open Spotlight</MenuItemStyled>
+                    <MenuItemStyled 
+                    onClick={()=> openSpotlightForm({})}
+                    
+                    >Edit Spotlight {props.id }</MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
                   
@@ -161,4 +186,14 @@ const MenuPopupTasks = (props) => {
 }
 
 
-export default MenuPopupTasks
+
+const actions = {
+  changeDisplaySpotlight,
+  openModal
+}
+
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState, actions)(MenuPopupTasks)

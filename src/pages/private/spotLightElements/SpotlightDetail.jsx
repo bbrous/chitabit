@@ -7,10 +7,7 @@ import {UTCtoDate, DatetoUTC, convertMS, msToStringDisplay} from '../../../app/h
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey} from '../../../styles/colors'
 import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
-import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
-import MenuPopup from './MenuPopup'
-import ClockPopup from './timer/TimerPopup'
-import NotePopup from './NotePopup'
+ 
 
 import CountDownDisplay from './timer/CountDownDisplay'
 

@@ -181,5 +181,16 @@ export function unformattedUTCtoDate(milSeconds){
   return dateReconstituted
   }
 
+  export function calculateEstimatedTime(wks, days, hrs, mins) {
+          const weekMS = 86400000  * 7 
+          const dayMS = 86400000 // ms in a day
+          const hourMS = 3600000
+          const minuteMS = 60000
+
+          let calculatedMs = (wks * weekMS) + (days * dayMS) +(hrs * 3600000) + (mins * minuteMS)
+
+          return calculatedMs
+  }
+
 
 

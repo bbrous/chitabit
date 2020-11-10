@@ -1,5 +1,8 @@
 import React, {Fragment} from 'react'
 import{chitOrange, mediumGrey} from '../../../styles/colors'
+import {connect} from 'react-redux'
+import{changeDisplaySpotlight,  openModal} from '../../../app/redux/actions/mainActions'
+
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
@@ -43,7 +46,7 @@ const Hamburger= styled(MenuIcon)({
 
 
 
-const MenuPopup = (props) => {
+const MenuPopupTasks = (props) => {
 
   const {id, type} = props
 
@@ -51,7 +54,13 @@ const MenuPopup = (props) => {
   console.log('[Menu Popup] --- type are : ', type)
   console.log('[Menu Popup] |||||||||||||||||||  ')
 
+  //  handle Change Spotlight Menu option handler
 
+  const handleChangeSpotlight= (evt)=>{
+    //  console.log('[SpotlightNav] - evt.target is' , evt.currentTarget.id)
+      props.changeDisplaySpotlight(evt.currentTarget.id)
+      // props.openCloseSidePanel('hide')
+      }
   
   // ----- Popup Menu actions  -------------------------
  
@@ -97,7 +106,7 @@ const MenuPopup = (props) => {
       
       
       />
-
+{type === 'spotlight' && 
 
 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
@@ -105,14 +114,44 @@ const MenuPopup = (props) => {
               {...TransitionProps}
               style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
             >
-
-
-              {type === 'task' && 
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     
-                    <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
+                  <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
+                    <MenuItemStyled onClick = {(id)=>{
+                          handleChangeSpotlight(id)
+                        }}
+                    >Open Spotlight: {props.id }</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}>Edit Spotlight {props.id }</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
+                  
+
+
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+              
+            </Grow>
+          )}
+        </Popper>
+
+          }
+
+{type === 'task' && 
+
+<Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                    
+                  <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
                     
@@ -123,35 +162,25 @@ const MenuPopup = (props) => {
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
-            }
-
-            {type === 'spotlight' && 
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    
-                    <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Open Spotlight: {props.id }</MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Edit Spotlight {props.id }</MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
-                     
-                  
-
-
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            }
-
-
-
+              
             </Grow>
           )}
         </Popper>
+
+          }      
     </Fragment>
   )
 }
 
 
-export default MenuPopup
+
+const actions = {
+  changeDisplaySpotlight,
+  openModal
+}
+
+const mapState = state => ({
+  display: state
+})
+
+export default connect(mapState, actions)(MenuPopupTasks)
