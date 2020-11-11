@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import{addSpotLight, updateSpotLight, closeModal} from '../app/redux/actions/mainActions'
 import{spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
 
-import {UTCtoDate, DatetoUTC, convertMS, calculateEstimatedTime} from '../app/helpers/dateHelper'
+import {UTCtoDate, DatetoUTC, convertMS, calculateEstimatedTime, msToStringDisplay} from '../app/helpers/dateHelper'
 // Material UI =============================
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -368,19 +368,19 @@ const SpotLightForm = (props) => {
   // console.log('[SPOTLIGHT FORM ] : props - ', props)
   let passedId  = props.display.private.spotlightFormId
 
-  const [spotlightFormId, setSpotlightFormId ]= useState('')
+  // const [spotlightFormId, setSpotlightFormId ]= useState('')
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    // Put ITEMS INTO REDUX HERE ************************
-    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  //   // Put ITEMS INTO REDUX HERE ************************
+  //   //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
     
-    setSpotlightFormId(passedId)
+  //   setSpotlightFormId(passedId)
    
     
-  }, [passedId]);
+  // }, [passedId]);
 
-    console.log('[SPOTLIGHT FORM ] : id passed - ', spotlightFormId)
+    // console.log('[SPOTLIGHT FORM ] : id passed - ', spotlightFormId)
 
   let allSpotlights = props.display.private.data.spotlightData.spotlights
  
@@ -388,18 +388,65 @@ const SpotLightForm = (props) => {
 
   const today = new Date() // for datepicker initial value
 
+  let initialValues
+
+  if(!passedId) {
+    initialValues = {
+      title: '',
+      endEst:  null,
+      wks: '',
+      days: '',
+      hrs: '',
+      mins: '',
+      note: '',
+
+    }
+  }
+
+  if(passedId) {
+
+    let initialSpotlightDetail = props.display.private.data.spotlightData.spotlights[passedId]
+
+    console.log('[SPOTLIGHT FORM ] : initialSpotlightDetail passed - ', initialSpotlightDetail)
+
+    // convert preset timeEst from ms to days,wks, etc
+    let initialTimeEst, initialWks, initialDays,initialHrs, initialMns, formTimeEst
+
+    initialTimeEst = initialSpotlightDetail.timeEst
+      if(initialTimeEst){
+        formTimeEst = msToStringDisplay(initialTimeEst)
+        initialWks = formTimeEst.weeks
+        initialDays = formTimeEst.days
+        initialHrs = formTimeEst.hours
+        initialMns = formTimeEst.minutes
+
+      }else{
+         
+        initialWks = null
+        initialDays = null
+        initialHrs = null
+        initialMns = null
+
+      }
+
+
+    initialValues = {
+      title: initialSpotlightDetail.title,
+      endEst:  initialSpotlightDetail.endEst,
+      wks: initialWks,
+      days: initialDays,
+      hrs: initialHrs,
+      mins: initialMns,
+      note: initialSpotlightDetail.note
+
+    }
+  }
+
+
+
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
-              defaultValues: {
-                title: '',
-                endEst:  null,
-                wks: '',
-                days: '',
-                hrs: '',
-                mins: '',
-                note: '',
-                 
-                popup: false
-              }
+    
+              defaultValues: initialValues
          })
   // datepicker functions 
     const [selectedDate, setSelectedDate] = React.useState(new Date());
@@ -411,8 +458,8 @@ const SpotLightForm = (props) => {
 
   const onSubmit = data => {
 
-    if(!spotlightFormId) { 
-      console.log(' [SpotlightForm] , no Id so add new ', spotlightFormId)
+    if(!passedId) { 
+      console.log(' [SpotlightForm] , no Id so add new ', passedId)
       // no Id so create new ID and add spotlight
       let newSpotlightId = spotlightIdGenerator(allSpotlights)
       
@@ -432,20 +479,20 @@ const SpotLightForm = (props) => {
 
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-    if(spotlightFormId) { 
+    if(passedId) { 
 
-      let initialSpotlightDetail = allSpotlights[spotlightFormId]
+      let initialSpotlightDetail = allSpotlights[passedId]
       console.log(' [SpotlightForm] , Got an ID Initial SPotlight ', initialSpotlightDetail)
 
       let {title, endEst, wks, days, hrs, mins, note} = data
-      let newEstDate = calculateEstimatedTime(wks, days, hrs, mins)
+      let newEstTime = calculateEstimatedTime(wks, days, hrs, mins)
  
 
 
       let newSpotlightDetail = {
-        spotlightId: spotlightFormId,
+        spotlightId: passedId,
         title: title,
-        timeEst: newEstDate,
+        timeEst: newEstTime,
         endEst: endEst,
         note: note
       }

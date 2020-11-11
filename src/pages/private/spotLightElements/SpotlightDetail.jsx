@@ -531,7 +531,7 @@ function SpotlightDetail(props) {
           
         </DetailRow> */}
 
-      {timeEst && 
+      {timeEst > 0 && 
       <DetailRow>
           <DetailRowLeft>Est Time: </DetailRowLeft>
  

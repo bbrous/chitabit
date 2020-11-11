@@ -303,7 +303,8 @@ const InitialStore = {
         spotlightStatus: 'inactive', // inactive, begun, completed
         // timeStamp:  "2020-09-25T04:46:20.619Z",  // September 25
         
-        timeEst: null, // 
+        // timeEst: 3715380000,
+        timeEst: null,
         endEst: "2020-10-09T04:46:20.619Z",  //October 9 
 
         timeStamp:  '',  // September 25
