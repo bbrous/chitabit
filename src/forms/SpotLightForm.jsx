@@ -545,7 +545,7 @@ const SpotLightForm = (props) => {
                   defaultValue="" 
                   rules={{ 
                     required: true ,
-                    maxLength: 40
+                    maxLength: 60
                   
                   }}
                   />
@@ -553,7 +553,7 @@ const SpotLightForm = (props) => {
                   {errors.title && errors.title.type === "required" && 
                     <ErrorWrapper>Required field</ErrorWrapper>}
                   {errors.title && errors.title.type === "maxLength" && 
-                    <ErrorWrapper>Maximum characters 40</ErrorWrapper>}
+                    <ErrorWrapper>Maximum characters 60</ErrorWrapper>}
                     
             </FormSegmentWrapper>
 

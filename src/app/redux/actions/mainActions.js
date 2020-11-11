@@ -18,6 +18,7 @@
           OPEN_SPOTLIGHT_PAGE,
           CLOSE_SPOTLIGHT_PAGE,
           ADD_SPOTLIGHT,
+          DELETE_SPOTLIGHT,
 
           UPDATE_SPOTLIGHT,
           CHANGE_DISPLAY,
@@ -223,6 +224,18 @@
             }
           }
         }
+
+        export const  deleteSpotlight = (spotlightId) => {
+          console.log('MAIN ACTIONS - deleteSpotLight clicked', spotlightId)
+          return {
+            type: DELETE_SPOTLIGHT,
+            payload: {
+               
+              spotlightId: spotlightId
+            }
+          }
+        }
+
 
         
         export const  changeTimerStatus= (spotId, taskId, newTimerObject) => {

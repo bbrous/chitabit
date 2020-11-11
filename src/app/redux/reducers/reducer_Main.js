@@ -18,6 +18,7 @@ import {
 
           ADD_SPOTLIGHT,
           UPDATE_SPOTLIGHT,
+          DELETE_SPOTLIGHT,
           OPEN_MODAL,
           CLOSE_MODAL,
           // OPEN_SPOTLIGHT_PAGE,
@@ -440,6 +441,22 @@ const reducer_Main = produce((draft = initialState, action) => {
       }// end UPDATE_SPOTLIGHT
 
 
+      case DELETE_SPOTLIGHT : 
+      {
+
+       console.log('[REDUCER MAIN DELETE Spotlight] clicked', payload.spotlightId)
+       let spotlightId =  payload.spotlightId
+      //  const {spotlightId, title, timeEst, endEst, note} =  payload.newSpotlightDetail
+        
+       delete draft.data.spotlightData.spotlights[spotlightId] 
+      //   draft.data.spotlightData.spotlights[spotlightId].timeEst = timeEst
+      //   draft.data.spotlightData.spotlights[spotlightId].endEst = endEst
+      //   draft.data.spotlightData.spotlights[spotlightId].note = note
+      
+
+       return draft;
+       
+     }// end DELETE_SPOTLIGHT
 
 
   // --------------------------------------------

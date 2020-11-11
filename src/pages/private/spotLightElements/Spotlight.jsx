@@ -603,7 +603,7 @@ export const Spotlight = (props) => {
 
     if(spotlightState === 'inactive'){
       newSpotlightCompletedStatus = 'completed'
-      newSpotlightCompletedTime = ''
+      newSpotlightCompletedTime = new Date()
     }
     if(spotlightState === 'completed'){
       newSpotlightCompletedStatus = 'begun'

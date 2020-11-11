@@ -57,19 +57,15 @@ const MenuPopupTasks = (props) => {
   //  handle Change Spotlight Menu option handler
 
   const handleChangeSpotlight= (id)=>{
-     console.log('[MENU POPUPU TASKS] - id' ,  id)
-      props.changeDisplaySpotlight(id)
-      // props.openCloseSidePanel('hide')
-      }
+    // console.log('[MENU POPUPU TASKS] - id' ,  id)
+    props.changeDisplaySpotlight(id)
+    
+    }
 
-      const openSpotlightForm = ()=>{
- 
-  
-        props.openModal('spotLightForm', props.id  )
-     
-         console.log('[MENU POPUP TASKS OpenModal ] -  spot id passed is  - ', props.id)
-     
-     }
+  const openSpotlightForm = ()=>{
+    props.openModal('spotLightForm', props.id  )
+
+    }
   
   // ----- Popup Menu actions  -------------------------
  

@@ -326,6 +326,9 @@ const CompletedWrapper= styled('div')({
 function SpotlightDetail(props) {
   const {spotlightId, endEst, timeEst,  timeStamp, completedTimeStamp, spotlightStatus}= props
 
+  
+
+
   // format for status display
   let statusDisplay
 
@@ -482,10 +485,10 @@ function SpotlightDetail(props) {
               className = 'redHighlight'
             
             > 
-            - {dateDifference.weeks} wks :    
-            {dateDifference.days} days :   
-            {dateDifference.hours} hrs :   
-            {dateDifference.minutes} mns
+            - {dateDifference.weeks} w ::   
+            {dateDifference.days} d :: 
+            {dateDifference.hours} h ::   
+            {dateDifference.minutes} m ::
             
             </DetailRowRightDifference>
             
@@ -502,10 +505,10 @@ function SpotlightDetail(props) {
               className='greenHighlight'
 
             >
-           {dateDifference.weeks} wks   
-            {dateDifference.days} days   
-            {dateDifference.hours} hrs   
-            {dateDifference.minutes} mns
+           {dateDifference.weeks} w ::   
+            {dateDifference.days} d :: 
+            {dateDifference.hours} h ::   
+            {dateDifference.minutes} m ::
 
         </DetailRowRightDifference>
 
@@ -566,7 +569,9 @@ function SpotlightDetail(props) {
           <DetailRowLeft>Began: </DetailRowLeft>
  
           
-          <DetailRowRight>{new Date(timeStamp).toLocaleString()}</DetailRowRight>
+          <DetailRowRight>{
+          timeStamp ? new Date(timeStamp).toLocaleString(): ''
+          }</DetailRowRight>
           
         </DetailRow>
  
