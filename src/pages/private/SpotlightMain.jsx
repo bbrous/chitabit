@@ -124,7 +124,8 @@ export const SpotlightMain = (props) => {
       {spotlightDisplayed === 'show' && !spotlightId   &&  
             <NoneMessage>
               <div>Choose a spotlight to be displayed</div>
-              <div>or Create a new spotlight</div>
+              <div>or</div>
+              <div>Create a new spotlight</div>
             </NoneMessage>
           
            }

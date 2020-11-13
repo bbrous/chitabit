@@ -7,7 +7,7 @@ import{changeDisplaySpotlight,   openCloseSidePanel, openModal} from '../../../a
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 import {  styled, createMuiTheme } from "@material-ui/core/styles"
 
-import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange, chitOrangeVeryLight  } from '../../../styles/colors';
+import { chitBlueDull, chitRedDark, chitOrangeLight, darkGrey, lightGrey, chitOrange, chitOrangeVeryLight, headerGrey  } from '../../../styles/colors';
 import Paper from '@material-ui/core/Paper'; 
 
 import { unformattedUTCtoDate} from '../../../app/helpers/dateHelper'
@@ -106,7 +106,7 @@ const New= styled('div')({
 
 
 
-const FilterWrapper= styled(Paper)({
+const FilterWrapper= styled('div')({
 
   display: 'flex',
   justifyContent: 'center',
@@ -116,7 +116,7 @@ const FilterWrapper= styled(Paper)({
  
 borderRadius: '0',
 margin: '7px 0 0 0',
-backgroundColor: 'white' ,
+backgroundColor: '#727376' ,
 color: 'black',
 
   [theme.breakpoints.down('xs')] : {
@@ -124,29 +124,21 @@ color: 'black',
   }
 
 })
-const RadioBox= styled('div')({
+const SpotlightFilter= styled('select')({
   
   // padding: '0 5%',
  
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  border: '1px solid #FADAC1',
+  backgroundColor: 'white',
+  borderRadius: '4px',
+  color: headerGrey,
 
-  margin: '0 5px'
-})
+  margin: '0 5px 4px, 0',
+  '&:focus' : {outline: 'none'},
 
-const RadioBoxLabel= styled('div')({
-  
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  margin: '0 5px',
-  color: chitRedDark
-  
-  
-  
 
 })
+
 
 const SpotLightsContainer= styled('div')({
 
@@ -574,23 +566,14 @@ const SpotlightNav = (props) => {
         <FilterWrapper elevation={1}>
 
 
-        <RadioBox>
-          <input type="radio" id="sort" name="sort" value="asecending"
-          defaultChecked = "checked"
-          // onChange = {changeSort}
-          />
-          <RadioBoxLabel >latest first
-
-              </RadioBoxLabel>
-          </RadioBox>        
-          <RadioBox>
-          <input type="radio" id="sort" name="sort" value="descending"
-          // onChange = {changeSort}
-          />
-          <RadioBoxLabel >oldest first
-
-              </RadioBoxLabel>
-          </RadioBox>           
+        <SpotlightFilter name="spotlights" id="spotlights">
+  <option value="latest">All uncompleted - latest first</option>
+  <option value="voldestolvo">All uncompleted - oldest first</option>
+  <option value="active">Active only</option>
+  <option value="completed">Completed only</option>
+  <option value="all">All</option>
+ 
+</SpotlightFilter>          
         </FilterWrapper>
 
 

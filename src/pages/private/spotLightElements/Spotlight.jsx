@@ -5,7 +5,7 @@ import SpotLightTasks from './SpotLightTasks'
 import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
 import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey, chitOrangeVeryLight} from '../../../styles/colors'
-import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
+import{ changeSpotlightCompletedStatus, changeDisplaySpotlight} from '../../../app/redux/actions/mainActions'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
 import MenuPopupSpotlight from './MenuPopupSpotlight'
@@ -685,6 +685,12 @@ export const Spotlight = (props) => {
   
   }
 
+  const handleChangeSpotlight= (spotlightId)=>{
+    //  console.log('[SpotlightNav] - evt.target is' , evt.currentTarget.id)
+      props.changeDisplaySpotlight(spotlightId)
+      // props.openCloseSidePanel('hide')
+      }
+
   return (
     <Fragment>
       <Info/>
@@ -701,12 +707,14 @@ export const Spotlight = (props) => {
       {parent && 
       <ParentDetail> 
 
-        <ParentLinkWrapper>
+        <ParentLinkWrapper onClick = {(evt)=>{
+            handleChangeSpotlight(parent)
+          }}>
           <ParentLink/>
 
         </ParentLinkWrapper>
      
-      <div className = 'parentTitle'> Parent :  </div>
+      <div className = 'parentTitle' > Parent :  </div>
       <div> {parentTitle}  </div>
       </ParentDetail>
 }
@@ -837,7 +845,8 @@ export const Spotlight = (props) => {
 
 const actions = {
   // changeDisplaySpotlight,
-  changeSpotlightCompletedStatus
+  changeSpotlightCompletedStatus,
+  changeDisplaySpotlight
 }
 
 const mapState = state => ({
