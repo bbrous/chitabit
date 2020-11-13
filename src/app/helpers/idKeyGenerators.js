@@ -57,9 +57,21 @@ export const taskIdGenerator = (spotlightId, tasksObject) => {
 } // function taskIdGenerator
 
 
+// function to test if an Object is empty or not
+
+  function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+  }
 // ==== Spotlight Id Generator ========================================
 
 export const spotlightIdGenerator = (spotlightsObject) => {
+
+  console.log('[idKeyGenerator ] -  spotlightsObject is  - ', spotlightsObject)
+
 
   /*
   ---------------------------
@@ -71,6 +83,15 @@ export const spotlightIdGenerator = (spotlightsObject) => {
   */
 
   let newSpotlightId // new Id to be returned
+
+  /* a) first test if there are spotlights
+     b) if no spotlights create id of spot_1
+     c) else create id from last existing spotlight number and add 1
+  */
+
+  if(isEmpty(spotlightsObject)){
+    newSpotlightId = 'spot_1'
+  }else{
 
   // (1) convert input object to an array of spotlight id's  
   let currentSpotlightsArray = Object.keys(spotlightsObject)
@@ -100,7 +121,9 @@ export const spotlightIdGenerator = (spotlightsObject) => {
 
     // console.log('IDKEYGENERARTORS + newSpotlightId - ' , newSpotlightId)
     // console.log('============================ '  )
-
+        } 
+        console.log('[idKeyGenerator ] -  newSpotlightId is  - ', newSpotlightId)   
+        
   return (
     newSpotlightId
   )

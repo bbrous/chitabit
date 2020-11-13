@@ -297,7 +297,7 @@ const InitialStore = {
       'spot_2': {
         id: 'spot_2',
         type: 'spotlight',
-        parent: '',
+        parent: 'spot_1',
 
         title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
         spotlightStatus: 'inactive', // inactive, begun, completed
@@ -407,7 +407,7 @@ const InitialStore = {
       'spot_3': {
         id: 'spot_3',
         type: 'spotlight',
-        parent: '',
+        parent: 'spot_2',
 
         title: 'Popups for note and clock',
         

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import SpotLightTasks from './SpotLightTasks'
 import SpotLightTaskForm from '../../../forms/SpotLightTaskForm'
 import {UTCtoDate, DatetoUTC, convertMS} from '../../../app/helpers/dateHelper'
-import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey} from '../../../styles/colors'
+import{chitOrange, lightGrey, chitOrangeLight, chitBlueDull, mediumGrey, mediumLightGrey,  veryLightGrey, chitOrangeVeryLight} from '../../../styles/colors'
 import{ changeSpotlightCompletedStatus} from '../../../app/redux/actions/mainActions'
 
 import {SpotlightCheckbox} from '../../../forms/formElements/CheckBox'
@@ -14,6 +14,8 @@ import NotePopup from './NotePopup'
 
 import SpotlightDetail from './SpotlightDetail'
 import CountDownDisplay from './timer/CountDownDisplay'
+import ForwardIcon from '@material-ui/icons/Forward';
+
 // &&&&   TEMP Initial Store Import -- Get from Database
 // import InitialStore from '../../../app/redux/store/InitialStore'
 
@@ -74,49 +76,10 @@ const Info= styled(InfoIcon)({
   },
 })
 
-const BreadCrumbs= styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '3.5%',
-  
-  margin: '1rem 0',
-  color: chitBlueDull,
 
 
-// backgroundColor: 'aqua',
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
-    // backgroundColor: 'red'
-  },
-})
-
-const Crumb= styled('a')({
-   
-   
-  margin: '0 8px',
-  color: chitBlueDull,
-  textDecoration: 'underline',
-
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
- 
-  },
-})
-
-const CrumbLast= styled('span')({
-   
-   
-  margin: '0 8px',
-  color: chitOrange,
 
 
-  [theme.breakpoints.down('sm')] : {
-    // height: '1.25rem',
- 
-  },
-})
 
 const Container= styled(Paper)({
   display: 'flex',
@@ -130,7 +93,7 @@ const Container= styled(Paper)({
 
   // minHeight: '10rem',
   height: '90%',
-  marginBottom: '5%',
+  margin: '2rem 0 5% 0',
   
   overflowY: 'hidden',
 
@@ -142,6 +105,101 @@ const Container= styled(Paper)({
 backgroundColor: veryLightGrey,
 
 
+})
+
+const ParentContainer = styled(Paper)({
+  display: 'block',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  
+
+  color: 'grey',
+  width: '98%',
+
+  minHeight: '1rem',
+ 
+  
+  marginTop: '6px',
+   padding: '0 .5rem',
+
+  //  '&:hover' : {backgroundColor: chitOrangeVeryLight},
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+
+  },
+
+
+})
+
+const ParentDetail= styled('div')({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  height: '100%',
+  width: '100%',
+
+  color: chitBlueDull,
+  fontSize: '.8rem',
+
+// backgroundColor: 'aqua',
+
+'& .parentTitle' : {
+  color: 'red',
+  marginRight: '4px'
+
+},
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+const ParentLinkWrapper= styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+  width: '1.05rem',
+  height: '1.05rem',
+  margin: '4px .5rem 4px 0',
+  border: '1px solid orange',
+  borderRadius: '200px',
+
+  // color: mediumLightGrey,
+  
+  cursor: 'pointer',
+
+
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+const ParentLink= styled(ForwardIcon)({
+  display: 'inline-block',
+  width: '1.1rem',
+  height: '1.1rem',
+   
+  transform:'rotate(-90deg)',
+    
+  color: chitOrange,
+
+  '&:hover' : {
+     
+    color: chitOrangeLight
+  },
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
 })
 
 const TopWrapper= styled('div')({
@@ -560,7 +618,11 @@ export const Spotlight = (props) => {
 
   const {id,  parent, completedTimeStamp, spotlightStatus, title, timeStamp, endEst, timeEst, type,  note } = spotLightDisplayed
 
-
+  let parentId = props.display.private.data.spotlightData.spotlights[parent]
+  let parentTitle 
+  if(parent){
+  parentTitle = props.display.private.data.spotlightData.spotlights[parent].title
+  }
     const[spotlightState, setSpotlightState] = useState('')
 
     useEffect(()=>{
@@ -628,25 +690,32 @@ export const Spotlight = (props) => {
       <Info/>
 
 
-      <BreadCrumbs>
 
-<Crumb>  Parent  </Crumb>
-<span> {'>'}  </span>
-<Crumb>  Child  </Crumb>
-<span> {'>'}  </span>
-<CrumbLast>  Child's Child  </CrumbLast>
-
-</BreadCrumbs>
 
 
 
     <Container elevation = {3}>
 
+    <ParentContainer>
 
+      {parent && 
+      <ParentDetail> 
+
+        <ParentLinkWrapper>
+          <ParentLink/>
+
+        </ParentLinkWrapper>
+     
+      <div className = 'parentTitle'> Parent :  </div>
+      <div> {parentTitle}  </div>
+      </ParentDetail>
+}
+      </ParentContainer>
 
 <TopWrapper 
   className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
   > 
+
 
     <TitleWrapper 
     className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}

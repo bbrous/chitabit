@@ -46,8 +46,8 @@ import {
           modalType: 'spotLightForm',
 
           spotLightDisplay: {
-            displaySpotLight: 'show',  // or 'none'  or 'show ' 
-            displayedSpotLightId: 'spot_1',
+            displaySpotLight: 'show',  //initial or ''  or 'show ' 
+            displayedSpotLightId: '',
             // spotLightsArray: ['spot1','spot2','spot3','spot4','spot5',],  
             
             // displaySpotLightPage: false,
@@ -315,8 +315,10 @@ const reducer_Main = produce((draft = initialState, action) => {
         {
 
           //Add Spotlight 
+          // Creates a new spotlight and 
+          // changes which spotlight is displayed
 
-          console.log('REDUCER MAIN - ADD_SPOTLIGHT reducer clicked @@@@@@ ', payload)
+          // console.log('REDUCER MAIN - ADD_SPOTLIGHT reducer clicked @@@@@@ ', payload)
           
          
 
@@ -325,7 +327,8 @@ const reducer_Main = produce((draft = initialState, action) => {
           let newSpotlightId = payload.newSpotlightId
           let wksInput, daysInput, hrsInput, minsInput, wks, days, hrs, mins
 
-          // Calculate the Estimated Time from Form Input
+          // Calculate the Estimated Time from Form input
+          // Estimated time in database is in milliseconds... form in hrs, wks, etc
 
           const dayMS = 86400000 // ms in a day
           const hourMS = 3600000
@@ -372,11 +375,6 @@ const reducer_Main = produce((draft = initialState, action) => {
             timeStamp: timestamp,
             endEst:payload.spotlight.endEst,
             timeEst:calculatedTimeEst,
-            
-
-
-
-            
 
             note: payload.spotlight.note,
             taskArray: [
@@ -409,14 +407,12 @@ const reducer_Main = produce((draft = initialState, action) => {
             }
           }
         }
-          
- 
 
+        // update the store here...
 
-
- 
           draft.data.spotlightData.spotlights[newSpotlightId] = spotlight
-        
+          draft.spotLightDisplay.displayedSpotLightId  = 'spot_1'
+
 
          return draft;
          
@@ -426,8 +422,7 @@ const reducer_Main = produce((draft = initialState, action) => {
        case UPDATE_SPOTLIGHT : 
        {
 
-        console.log('[REDUCER MAIN UPDATE Spotlight', payload.newSpotlightDetail.spotlightId)
-        // let spotlightId =  payload.newSpotlightDetail.spotlightId
+       
         const {spotlightId, title, timeEst, endEst, note} =  payload.newSpotlightDetail
          
          draft.data.spotlightData.spotlights[spotlightId].title = title

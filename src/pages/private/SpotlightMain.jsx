@@ -53,7 +53,11 @@ const Initial= styled('div')({
 })
 
 const NoneMessage= styled('div')({
-  display: 'block',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  padding: '1.5rem 0',
   width: '80%',
   backgroundColor: 'white',
   marginTop: '2rem',
@@ -71,17 +75,22 @@ const NoneMessage= styled('div')({
 
 export const SpotlightMain = (props) => {
 
-  // console.log('[SPOTLIGHT MAIN] view------------------' , props.view)
 
   let spotlightDisplayed = props.view.private.spotLightDisplay.displaySpotLight
   let spotlightId = props.view.private.spotLightDisplay.displayedSpotLightId
+
+//  console.log('[SPOTLIGHT MAIN] view------spotlightDisplayed---' , spotlightDisplayed)
+ console.log('[SPOTLIGHT MAIN] view------spotlightId---' , spotlightId)
+ console.log('[SPOTLIGHT MAIN] view---------------------------------------' )
+
+
 
   return (
     <Wrapper>
 
 
    
-          {spotlightDisplayed === 'init' &&  
+          {spotlightDisplayed === 'initial' &&  
             <Initial>
               Spotlights are a goal and objective manager and decomposition tool.  
 
@@ -112,14 +121,15 @@ export const SpotlightMain = (props) => {
           
          }
 
-      {spotlightDisplayed === 'none'  &&  
+      {spotlightDisplayed === 'show' && !spotlightId   &&  
             <NoneMessage>
-              You have no spotlights -- make one?
+              <div>Choose a spotlight to be displayed</div>
+              <div>or Create a new spotlight</div>
             </NoneMessage>
           
            }
     
-            {spotlightDisplayed === 'show' && 
+            {spotlightDisplayed === 'show' && spotlightId   &&  
              <SpotLight 
                 id = {spotlightId}
              />  }

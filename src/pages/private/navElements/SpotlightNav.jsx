@@ -414,11 +414,10 @@ const SpotlightNav = (props) => {
 
 
 
-   // Put ITEMS INTO REDUX HERE ************************
-  //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
   let stateSpotlightId =  props.display.private.spotLightDisplay.displayedSpotLightId
 
+ console.log('[SpotlightNav] - stateSpotlightId', stateSpotlightId)
 
   const [id, setId] = useState(stateSpotlightId);
 
@@ -431,40 +430,6 @@ const SpotlightNav = (props) => {
 }, [id]);
 
 
-
-
-
-  // ##################TEMP ####################
-
-
-  // console.log('[SpotlightNav] - props.display' , props.display.private.spotLightDisplay.displayedSpotLightId)
-
-
-  // let stateSpotlightId = props.view.displayId
-  // let stateSpotlightId = 'all'
-  // let stateSpotlightId = 'spot2'
-
-  let initialTaskArray = props.display.private.data.spotlightData.spotlights[stateSpotlightId].taskArray
-  const [spotLightTasks, setSpotLightTasks] = useState(initialTaskArray);
-
-  // console.log('[SpotlightNav] @@ - props.spotLightTasks' ,  initialTaskArray)
-
-  useEffect(() => {
-    
-    // Put ITEMS INTO REDUX HERE ************************
-    //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-    
-    setSpotLightTasks(spotLightTasks)
-   
-    
-  }, [spotLightTasks]);
-   
- 
-
-  
-
-
-    // ##################TEMP ####################
 
 
 
@@ -522,7 +487,7 @@ const SpotlightNav = (props) => {
 
     let spotTitle =spot.title
     let dateEst = unformattedUTCtoDate(spot.endEst)
-    let numberOfTasks = spotLightTasks.length
+    // let numberOfTasks = navSpotlights.length
 
   /* func chooseDisplayType ---------------------------------
      desc: css changes highlight of person selected
@@ -582,21 +547,14 @@ const SpotlightNav = (props) => {
     }) // end function displaySpotlights
     
 
-// ----------   openSpotlightForm
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-const openSpotlightForm = ()=>{
- 
+  const openSpotlightForm = ()=>{
   
-   props.openModal('spotLightForm')
+    
+    props.openModal('spotLightForm')
 
-    // console.log('[SPOTLIGHT NAV ] -  spotlightId is  - ', spotlightId)
+      // console.log('[SPOTLIGHT NAV ] -  spotlightId is  - ', spotlightId)
 
-}
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+  }
 
 
 
