@@ -85,22 +85,66 @@ const MenuPopupSpotlight = (props) => {
     // console.log('[Menu Popup] |||||||||||||||||||  ')
     // }
 
+  // 1. get parent of Spotlight to be delted
+ 
+
+// &&&&&&&&&&&&&&  Delete Task from parentTaskArrayInitial   &&&&&&&&&&&&&&&&&&
+
+// -----create modified parent task array without spot id
+        let filteredParentTaskArray, filteredChildTaskArray // array to be returned with deleted spotlight
+
+        let parentId = props.display.private.data.spotlightData.spotlights[props.id].parent
+
+        let parentTaskArrayInitial = props.display.private.data.spotlightData.spotlights[parentId].taskArray
+
+
+        filteredParentTaskArray = parentTaskArrayInitial.filter(function(spotlight){
+
+          return spotlight.taskItem !== 'spot_2'
+        })
+
+// ------create array of children spotlights--------------------
+
+ 
+      let spotlightTaskArray = props.display.private.data.spotlightData.spotlights[props.id].taskArray
+
+      filteredChildTaskArray = spotlightTaskArray.filter(function(spotlight){
+
+        return spotlight.type === 'spotlight'
+      })
+
+      let childSpotlightArray = []
+      filteredChildTaskArray.map((child) => {
+
+        
+        childSpotlightArray.push(child.taskItem)
+        return childSpotlightArray
+
+      })
+
+          // console.log('[Menu Popup] |||||||||||||||||||  ')
+
+          // console.log('[Menu Spotlight Popup AFTER Filter] --- spotlightTaskArray are : ', spotlightTaskArray)
+
+          // console.log('[Menu Spotlight Popup handleDeleteSpotlight] --- filteredChildTaskArray are : ', filteredChildTaskArray)
+
+          // console.log('[Menu Spotlight Popup handleDeleteSpotlight] --- childSpotlights are : ', childSpotlightArray)
+
+          // // console.log('[Menu Spotlight Popup AFTER Filter] --- parentTaskArray are : ', filteredParentTaskArray)
+
+          // console.log('[Menu Popup] |||||||||||||||||||  ')
+
+// &&&&&&&&&&&&&&  Delete Task from parentTaskArrayInitial   &&&&&&&&&&&&&&&&&&
+
+
+
+
     props.deleteSpotlight( 
       {
-          spotlightId:  'spot_2',
-          parentId: 'spot_1',
-          parentTaskArray: 
-            [
-              {taskItem: 'spot_1_task_0', type: 'task'},
-              // {taskItem: 'spot_2', type: 'spotlight'}, // deleted spotlight
-              {taskItem: 'spot_1_task_1', type: 'task'}, 
-              {taskItem: 'spot_1_task_2', type: 'task'},
-              {taskItem: 'spot_1_task_3', type: 'task'},
-              {taskItem: 'spot_1_task_6', type: 'task'},
-              {taskItem: 'spot_1_task_4', type: 'task'}
-             
-            ],
-          childrenSpotlightArray: ['spot_3', 'spot_5'] 
+          spotlightId:  props.id,
+          parentId: parentId,
+          parentTaskArray: filteredParentTaskArray,
+          childrenSpotlightArray: childSpotlightArray 
         }
       )
     }
