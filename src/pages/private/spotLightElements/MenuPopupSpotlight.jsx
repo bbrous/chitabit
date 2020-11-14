@@ -59,10 +59,55 @@ const MenuPopupSpotlight = (props) => {
 
 
    const handleDeleteSpotlight = ()=>{
-    props.deleteSpotlight( props.id  )
-    console.log('[Menu Spotlight Popup handleDeleteSpotlight] --- type are : ', props.id)
-    console.log('[Menu Popup] |||||||||||||||||||  ')
+    /*
+      Deleting a spotlight requires 3 steps
+        1. checking for parent in spotlight to be deleted
+           if yes - reducer will require parent spotlight's 
+           taskArray to be updated with spotlight to be deleted removed
+        2. checking for children spotlights in spotlight to be deleted
+           if yes - reducer will require child Id's to reset their
+           parentId's to null
+        3.  passing the spotlight Id to be deleted
+
+        Passed argument to action is: 
+        {spotlightId:  'spot id',
+          parentTaskArray: {parentId: [new task array]}
+          childrenSpotlightArray: [children Id's]
+        }
+        
+    */
+
+
+    // props.deleteSpotlight( props.id  )
+
+    
+    // console.log('[Menu Spotlight Popup handleDeleteSpotlight] --- type are : ', props.id)
+    // console.log('[Menu Popup] |||||||||||||||||||  ')
+    // }
+
+    props.deleteSpotlight( 
+      {
+          spotlightId:  'spot_2',
+          parentId: 'spot_1',
+          parentTaskArray: 
+            [
+              {taskItem: 'spot_1_task_0', type: 'task'},
+              // {taskItem: 'spot_2', type: 'spotlight'}, // deleted spotlight
+              {taskItem: 'spot_1_task_1', type: 'task'}, 
+              {taskItem: 'spot_1_task_2', type: 'task'},
+              {taskItem: 'spot_1_task_3', type: 'task'},
+              {taskItem: 'spot_1_task_6', type: 'task'},
+              {taskItem: 'spot_1_task_4', type: 'task'}
+             
+            ],
+          childrenSpotlightArray: ['spot_3', 'spot_5'] 
+        }
+      )
     }
+
+
+
+
    
   // ----- Popup Menu actions  -------------------------
  
@@ -131,6 +176,7 @@ const MenuPopupSpotlight = (props) => {
                     onClick={()=> handleDeleteSpotlight()}
 
                     >Delete Spotlight</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}>Reset Begin Date</MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
                   

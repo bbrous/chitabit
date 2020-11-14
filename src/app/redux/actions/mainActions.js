@@ -225,13 +225,13 @@
           }
         }
 
-        export const  deleteSpotlight = (spotlightId) => {
-          console.log('MAIN ACTIONS - deleteSpotLight clicked', spotlightId)
+        export const  deleteSpotlight = (spotlightDeleteObject) => {
+          console.log('MAIN ACTIONS - deleteSpotLight clicked', spotlightDeleteObject)
           return {
             type: DELETE_SPOTLIGHT,
             payload: {
                
-              spotlightId: spotlightId
+              spotlightDeleteObject: spotlightDeleteObject
             }
           }
         }

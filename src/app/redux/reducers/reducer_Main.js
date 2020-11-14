@@ -439,14 +439,26 @@ const reducer_Main = produce((draft = initialState, action) => {
       case DELETE_SPOTLIGHT : 
       {
 
-       console.log('[REDUCER MAIN DELETE Spotlight] clicked', payload.spotlightId)
-       let spotlightId =  payload.spotlightId
-      //  const {spotlightId, title, timeEst, endEst, note} =  payload.newSpotlightDetail
-        
-       delete draft.data.spotlightData.spotlights[spotlightId] 
-      //   draft.data.spotlightData.spotlights[spotlightId].timeEst = timeEst
-      //   draft.data.spotlightData.spotlights[spotlightId].endEst = endEst
-      //   draft.data.spotlightData.spotlights[spotlightId].note = note
+      //  console.log('[REDUCER MAIN DELETE Spotlight] clicked', payload.spotlightDeleteObject)
+
+       const{spotlightId, parentId, parentTaskArray, childrenSpotlightArray} = payload.spotlightDeleteObject
+
+ 
+
+      // let parentId = draft.data.spotlightData.spotlights[spotlightId].parent
+      // let parentTaskArray =  draft.data.spotlightData.spotlights['spot_1'] 
+
+      console.log('[REDUCER MAIN DELETE Spotlight] =============================')
+      console.log('[REDUCER MAIN DELETE Spotlight] spotlightId', spotlightId)
+      console.log('[REDUCER MAIN DELETE Spotlight] parentId', parentId)
+      console.log('[REDUCER MAIN DELETE Spotlight] parentTaskArray', parentTaskArray)
+      console.log('[REDUCER MAIN DELETE Spotlight] childrenSpotlightArray', childrenSpotlightArray)
+      console.log('[REDUCER MAIN DELETE Spotlight] =============================')
+
+
+
+      //  delete draft.data.spotlightData.spotlights[spotlightId] 
+
       
 
        return draft;

@@ -565,15 +565,14 @@ const SpotlightNav = (props) => {
 
         <FilterWrapper elevation={1}>
 
+          <SpotlightFilter name="spotlights" id="spotlights">
+            <option value="latest">Uncompleted only</option>
+            <option value="active">Active only</option>
+            <option value="all">All - latest first</option>
+            <option value="all">All - oldest first</option>
+            <option value="completed">Completed only</option>   
+          </SpotlightFilter>          
 
-        <SpotlightFilter name="spotlights" id="spotlights">
-  <option value="latest">All uncompleted - latest first</option>
-  <option value="voldestolvo">All uncompleted - oldest first</option>
-  <option value="active">Active only</option>
-  <option value="completed">Completed only</option>
-  <option value="all">All</option>
- 
-</SpotlightFilter>          
         </FilterWrapper>
 
 

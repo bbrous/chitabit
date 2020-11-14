@@ -331,7 +331,8 @@ const InitialStore = {
           {taskItem: 'spot_2_task_1',completed: false, type: 'task'}, 
           {taskItem: 'spot_2_task_2',completed: false, type: 'task'},
           {taskItem: 'spot_2_task_3',completed: false, type: 'task'},
-          {taskItem: 'spot_3',completed: false, type: 'spotlight'}
+          {taskItem: 'spot_3',completed: false, type: 'spotlight'},
+          {taskItem: 'spot_5',completed: false, type: 'spotlight'},
          
         ],
  
@@ -511,7 +512,7 @@ const InitialStore = {
       'spot_5': {
         id: 'spot_5',
         type: 'spotlight',
-        parent: '',
+        parent: 'spot_2',
 
         title: 'Dummy Spotlight 5',
 

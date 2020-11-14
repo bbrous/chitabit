@@ -41,7 +41,11 @@ const TaskTimeRow= styled('div')({
   alignItems: 'center',
   width: '100%',
  
+  color: 'grey',
+
   
+  '& .green' : {color: 'green ', fontWeight: 'bold' },
+  '& .red' : {color: 'red ' , fontWeight: 'bold' },
 
 
   [theme.breakpoints.down('sm')] : {
@@ -57,7 +61,8 @@ const TaskTimeStatus= styled('div')({
   justifyContent: 'space-around',
   alignItems: 'center',
   marginRight: '.5rem',
-  color: 'green ',
+ 
+
 
   
 
@@ -213,10 +218,25 @@ function TaskTimerDisplay(props) {
      
     <TaskTimeRow> 
 
+      {timerStatus === 'inactive' && 
       <TaskTimeStatus>
-        Running :
+        {timerStatus} :
       </TaskTimeStatus>
-     
+     }
+
+{timerStatus === 'running' && 
+      <TaskTimeStatus className = 'green'>
+        {timerStatus} :
+      </TaskTimeStatus>
+     }
+
+{timerStatus === 'paused' && 
+      <TaskTimeStatus className = 'red'>
+        {timerStatus} :
+      </TaskTimeStatus>
+     }
+
+
       <TaskTimeComponent>
         <TaskTime>{timerDays}</TaskTime>
         <TaskTimeLabel>d :</TaskTimeLabel>
