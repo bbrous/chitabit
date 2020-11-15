@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import{chitOrange, mediumGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
 import{ openModal, deleteSpotlight} from '../../../app/redux/actions/mainActions'
-import { styled, createMuiTheme } from "@material-ui/core/styles"
+import { styled, createMuiTheme, useTheme } from "@material-ui/core/styles"
 
 
 import Popper from '@material-ui/core/Popper';
@@ -12,6 +12,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Paper from '@material-ui/core/Paper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
+
+// Dialog Box imports
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 const MenuItemStyled = styled(MenuItem)({
@@ -185,6 +194,22 @@ const MenuPopupSpotlight = (props) => {
       prevOpen.current = open;
     }, [open]);
 
+
+
+    // ----Dialog Functions -----------------------------------
+
+    
+      const [dialogOpen, setDialogOpen] = React.useState(false);
+      const theme = useTheme();
+      const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    
+      const handleClickDialogOpen = () => {
+        setDialogOpen(true);
+      };
+    
+      const handleDialogClose = () => {
+        setDialogOpen(false);
+      };
     
   return (
     <Fragment>
@@ -217,7 +242,8 @@ const MenuPopupSpotlight = (props) => {
                     >Edit Spotlight  </MenuItemStyled>
                     <MenuItemStyled 
                    
-                    onClick={()=> handleDeleteSpotlight()}
+                    // onClick={()=> handleDeleteSpotlight()}
+                    onClick={handleClickDialogOpen}
 
                     >Delete Spotlight</MenuItemStyled>
                     <MenuItemStyled onClick={handleClose}>Reset Begin Date</MenuItemStyled>
@@ -235,6 +261,30 @@ const MenuPopupSpotlight = (props) => {
         </Popper>
 
 
+
+        <Dialog
+        fullScreen={fullScreen}
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">Are you sure you wish to delete this spotlight?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            
+            All children tasks and their notes will be lost.
+
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleDialogClose} color="primary">
+            Cancel 
+          </Button>
+          <Button onClick={()=> handleDeleteSpotlight()} color="primary" autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
 
     </Fragment>
   )
