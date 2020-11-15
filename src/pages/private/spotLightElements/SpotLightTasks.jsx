@@ -407,7 +407,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     // console.log('[SPOTLIGHT TASKS -- duh  Status : ' , spotlightData.spotlights[spotlightId].tasks[taskId].completed)
 
     // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-    // console.log('[SPOTLIGHT TASKS] -- taskStatus : ' , taskStatus)
+    // console.log('[SPOTLIGHT TASKS] -- task TYPE in task : ' , value.type)
 
   } // end if - task
 
@@ -418,7 +418,8 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     itemObject = itemAddress[taskId]
     spotlightTaskStatus = itemObject.spotlightStatus
 
-    
+    // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
+    // console.log('[SPOTLIGHT TASKS] -- task TYPE in SPOT : ' , value.type)
     // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
     // console.log('[SPOTLIGHT TASKS] -- spotlight Status : ' , spotlightTaskStatus)
   
@@ -428,8 +429,9 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
 
 const { type, title, completed, note } = itemObject
 
-
-
+// console.log('[SPOTLIGHT TASKS] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' )
+//     console.log('[SPOTLIGHT TASKS] -- task TYPE in SPOT : ' , type)
+//     console.log('[SPOTLIGHT TASKS] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' )
 
 // determine if specific spotlight has been started or not
 let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus
@@ -655,7 +657,7 @@ const handleUpdateTimerStatus = (evt) => {
        </TaskWrapper>
         
 
-       <MenuPopupTasks id = {taskId} type = {value.type}/>
+       <MenuPopupTasks id = {taskId} type = {type} spotlightId ={spotlightId}/>
 
 
 

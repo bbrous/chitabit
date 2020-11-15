@@ -1,10 +1,10 @@
 import React, {Fragment} from 'react'
 import{chitOrange, mediumGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
-import{changeDisplaySpotlight,  openModal} from '../../../app/redux/actions/mainActions'
+import{changeDisplaySpotlight,  openModal, deleteTask} from '../../../app/redux/actions/mainActions'
 
 
-import { styled, createMuiTheme } from "@material-ui/core/styles"
+import { styled, createMuiTheme , useTheme} from "@material-ui/core/styles"
 
 
 import Popper from '@material-ui/core/Popper';
@@ -14,6 +14,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Paper from '@material-ui/core/Paper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
+
+// Dialog Box imports
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
 const MenuItemStyled = styled(MenuItem)({
@@ -48,11 +58,14 @@ const Hamburger= styled(MenuIcon)({
 
 const MenuPopupTasks = (props) => {
 
-  const {id, type} = props
+  const {id, type, spotlightId} = props
 
-  // console.log('[Menu Popup] --- id are : ', id)
-  // console.log('[Menu Popup] --- type are : ', type)
-  // console.log('[Menu Popup] |||||||||||||||||||  ')
+  console.log('[Menu Task Popup] XXXXXXXXXXXXXXXXXXXXXXXXXX  ')
+  console.log('[Menu Popup] --- id are : ', id)
+  console.log('[Menu Popup] --- type are : ', type)
+  console.log('[Menu Popup] --- spotlightId are : ', spotlightId)
+
+  console.log('[Menu Task Popup] XXXXXXXXXXXXXXXXXXXXXXXXXX  ')
 
   //  handle Change Spotlight Menu option handler
 
@@ -66,7 +79,64 @@ const MenuPopupTasks = (props) => {
     props.openModal('spotLightForm', props.id  )
 
     }
+
+  // -------Delete Spotlight ---------------------------
+
   
+
+  const handleDeleteTask= ()=>{
+    /*
+      Deleting a spotlight requires 3 steps
+
+        
+    */
+
+
+
+
+// -----create modified parent task array without spot id
+        let filteredParentTaskArray  // array to be returned with deleted spotlight
+
+        
+
+        let parentTaskArrayInitial = props.display.private.data.spotlightData.spotlights[spotlightId].taskArray
+
+
+        filteredParentTaskArray = parentTaskArrayInitial.filter(function(spotlight){
+
+          return spotlight.taskItem !== id
+        })
+
+
+
+          // console.log('[Menu Popup] |||||||||||||||||||  ')
+
+          // console.log('[Menu Spotlight Popup AFTER Filter] --- spotlightTaskArray are : ', spotlightTaskArray)
+
+          // console.log('[Menu Spotlight Popup handleDeleteSpotlight] --- filteredChildTaskArray are : ', filteredChildTaskArray)
+
+          // console.log('[Menu Spotlight Popup handleDeleteSpotlight] --- childSpotlights are : ', childSpotlightArray)
+
+          // // console.log('[Menu Spotlight Popup AFTER Filter] --- parentTaskArray are : ', filteredParentTaskArray)
+
+          // console.log('[Menu Popup] |||||||||||||||||||  ')
+
+// &&&&&&&&&&&&&&  Delete Task from parentTaskArrayInitial   &&&&&&&&&&&&&&&&&&
+
+
+
+
+    props.deleteTask( 
+      {
+        
+          spotlightId: spotlightId,
+          parentTaskArray: filteredParentTaskArray,
+          
+        }
+      )
+      setOpen(false)
+    }
+
   // ----- Popup Menu actions  -------------------------
  
   const [open, setOpen] = React.useState(false);
@@ -123,18 +193,28 @@ const MenuPopupTasks = (props) => {
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     
-                  <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
+                  <MenuItemStyled onClick={handleClose}> 
+                    Cancel  
+                  </MenuItemStyled>
                     <MenuItemStyled onClick = {()=>{
                       
                           handleChangeSpotlight(id)
                         }}
-                    >Open Spotlight</MenuItemStyled>
+                    >
+                      Open Spotlight
+                    </MenuItemStyled>
+
                     <MenuItemStyled 
                     onClick={()=> openSpotlightForm({})}
                     
-                    >Edit Spotlight {props.id }</MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
+                    >Edit Spotlight</MenuItemStyled>
+                    <MenuItemStyled onClick={handleClose}>
+                      Create a chit
+                    </MenuItemStyled>
+
+                    <MenuItemStyled onClick={handleClose}>
+                       Create Note 
+                    </MenuItemStyled>
                   
 
 
@@ -160,11 +240,20 @@ const MenuPopupTasks = (props) => {
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     
-                  <MenuItemStyled onClick={handleClose}> Cancel </MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}> Create Note </MenuItemStyled>
-                    <MenuItemStyled onClick={handleClose}>Create a chit</MenuItemStyled>
+                  <MenuItemStyled onClick={handleClose}>
+                     Cancel 
+                     
+                  </MenuItemStyled>
+                  <MenuItemStyled onClick={handleClose}> 
+                    Create Note 
+                  </MenuItemStyled>
+                  <MenuItemStyled onClick={handleClose}>
+                    Create a chit
+                  </MenuItemStyled>
                     
-                    <MenuItemStyled onClick={handleClose}> Delete </MenuItemStyled>
+                  <MenuItemStyled onClick={()=> handleDeleteTask() }>
+                    Delete 
+                  </MenuItemStyled>
                   
 
 
@@ -185,7 +274,8 @@ const MenuPopupTasks = (props) => {
 
 const actions = {
   changeDisplaySpotlight,
-  openModal
+  openModal,
+  deleteTask
 }
 
 const mapState = state => ({

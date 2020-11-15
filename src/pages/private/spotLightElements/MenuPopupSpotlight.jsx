@@ -272,7 +272,7 @@ const MenuPopupSpotlight = (props) => {
         <DialogContent>
           <DialogContentText>
             
-            All children tasks and their notes will be lost.
+            All child tasks and their notes will be lost.
 
           </DialogContentText>
         </DialogContent>

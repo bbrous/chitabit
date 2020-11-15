@@ -19,6 +19,7 @@ import {
           ADD_SPOTLIGHT,
           UPDATE_SPOTLIGHT,
           DELETE_SPOTLIGHT,
+          DELETE_TASK,
           OPEN_MODAL,
           CLOSE_MODAL,
           // OPEN_SPOTLIGHT_PAGE,
@@ -458,6 +459,7 @@ const reducer_Main = produce((draft = initialState, action) => {
 
 
       draft.data.spotlightData.spotlights[parentId].taskArray = parentTaskArray
+
       childrenSpotlightArray.forEach((childSpotlight) => {
         return  draft.data.spotlightData.spotlights[childSpotlight].parent = ''
     });
@@ -475,6 +477,27 @@ const reducer_Main = produce((draft = initialState, action) => {
      }// end DELETE_SPOTLIGHT
 
 
+     case DELETE_TASK : 
+     {
+
+      /*
+        Doesn't actually delete the task....
+        It just changes the taskArray to eliminate showing the task
+      */
+      const{spotlightId, parentTaskArray} = payload
+
+     draft.data.spotlightData.spotlights[spotlightId].taskArray = parentTaskArray
+
+  
+
+
+
+     
+
+      return draft;
+      
+    }// end DELETE_TASK
+     
   // --------------------------------------------
     default:
       return draft

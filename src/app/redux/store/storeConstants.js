@@ -8,6 +8,7 @@ export const CLOSE_SPOTLIGHT = 'CLOSE_SPOTLIGHT';
 export const ADD_SPOTLIGHT = 'ADD_SPOTLIGHT';
 export const UPDATE_SPOTLIGHT = 'UPDATE_SPOTLIGHT';
 export const DELETE_SPOTLIGHT = 'DELETE_SPOTLIGHT';
+export const DELETE_TASK = 'DELETE_TASK';
 
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';

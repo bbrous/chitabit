@@ -19,6 +19,7 @@
           CLOSE_SPOTLIGHT_PAGE,
           ADD_SPOTLIGHT,
           DELETE_SPOTLIGHT,
+          DELETE_TASK,
 
           UPDATE_SPOTLIGHT,
           CHANGE_DISPLAY,
@@ -234,6 +235,14 @@
           }
         }
 
+        export const  deleteTask = (taskDeleteObject) => {
+          console.log('MAIN ACTIONS - task Delete  clicked', taskDeleteObject)
+          return {
+            type: DELETE_TASK,
+            payload: taskDeleteObject
+            
+          }
+        }
 
         
         export const  changeTimerStatus= (spotId, taskId, newTimerObject) => {

@@ -522,9 +522,12 @@ const SpotLightForm = (props) => {
     <Wrapper>
       {/* <div>       SpotLight Form - reducer main currently = true    </div> */}
       <FormContainer elevation = {2}>
-
+      {!passedId &&   
         <FormHeader> New Spotlight</FormHeader>
-
+      }
+      {passedId &&   
+        <FormHeader> Edit Spotlight</FormHeader>
+      }
         <FormWrapper>
 
           <form onSubmit = {handleSubmit(onSubmit) }>
