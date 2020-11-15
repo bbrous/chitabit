@@ -608,7 +608,7 @@ const Task= styled('div')({
 export const Spotlight = (props) => {
   // console.log('[SPOTLIGHT ] &&&& spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id]) 
 
-  // console.log('[SPOTLIGHT] id is: , ', props)
+  console.log('[SPOTLIGHT] id is: , ', props)
 
   let spotlightData = props.display.private.data.spotlightData
 

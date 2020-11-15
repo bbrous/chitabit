@@ -229,10 +229,8 @@
           console.log('MAIN ACTIONS - deleteSpotLight clicked', spotlightDeleteObject)
           return {
             type: DELETE_SPOTLIGHT,
-            payload: {
-               
-              spotlightDeleteObject: spotlightDeleteObject
-            }
+            payload: spotlightDeleteObject
+            
           }
         }
 
