@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react'
 import { useForm, Controller } from "react-hook-form";
-import WYSIWYGEditor from "./wysiwyg/WYSIWYGEditor";
+
 import{chitOrange, mediumLightGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
 import{setNote} from '../../../app/redux/actions/mainActions'
@@ -296,7 +296,7 @@ const onSubmit = data => {
           >
             
 
-            {/* <Controller as={StyledMultiline} name="note" 
+            <Controller as={StyledMultiline} name="note" 
                   InputProps={{style: { 
                      
                     fontSize: '.9rem',
@@ -310,15 +310,9 @@ const onSubmit = data => {
                   multiline
                   variant="outlined"
                    
-                  />  */}
+                  /> 
 
-<Controller
-          as={<WYSIWYGEditor />}
-          name="note"
-          control={control}
-          
-        />
-
+            
           </DialogWrapper>
         </DialogContent>
         <ButtonContainer>
