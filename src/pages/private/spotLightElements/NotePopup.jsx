@@ -1,4 +1,6 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useState, useEffect, useRef} from 'react'
+import { useForm, Controller } from "react-hook-form";
+
 import{chitOrange, mediumLightGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
 import{setNote} from '../../../app/redux/actions/mainActions'
@@ -14,7 +16,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import { TextField  } from "@material-ui/core";
 
  
 // import Button from '@material-ui/core/Button';
@@ -65,8 +67,7 @@ const DialogWrapper= styled(DialogContentText)({
   fontSize: '.9rem',
   color: 'black',
   backgroundColor: 'white',
-  minWidth: '30rem',
-  minHeight: '15rem',
+  
 
   [theme.breakpoints.down('sm')] : {
     // height: '1.25rem',
@@ -74,6 +75,38 @@ const DialogWrapper= styled(DialogContentText)({
   },
 })
 
+const StyledMultiline= styled(TextField)({
+  border: '1px solid orange',
+  borderRadius: '5px',
+  // width: '80%', 
+  margin: '0 0 0 8px',
+  padding: '0',
+  width: '26rem',
+ 
+  
+  '& textarea' : {
+     
+     fontSize: '.85rem'
+  }
+
+
+})
+
+const FormWrapper= styled('form')({
+  // display: 'flex',
+  // flexDirection: 'column',
+  // justifyContent: 'flex-start',
+  // alignItems: 'flex-start',
+
+  display: 'block',
+  
+  backgroundColor: 'yellow',
+  minWidth: '30rem',
+  minHeight: '15rem',
+  
+
+
+})
 
 
 
@@ -84,10 +117,46 @@ const NotePopup = (props) => {
   let note = props.note
   console.log('[NOTE POPUP - note', note)
 
+
+  // ------React-hook-form functions --------------
+
+  let initialValues
+  if(!note) {
+    initialValues = {
+      note: ''
+    }
+  }
+ 
+  if(note) {
+    initialValues = {
+      note: note
+    }
+  }
+
+  const {register, handleSubmit, watch, errors, control, setValue} = useForm({
+    
+    defaultValues: initialValues
+})
+
+const onSubmit = data => {
+
+  alert(data.note)
+    // console.log(' [SpotlightForm] , no Id so add new ', passedId)
+    // // no Id so create new ID and add spotlight
+    // let newSpotlightId = spotlightIdGenerator(allSpotlights)
+    
+    
+    
+
+    // props.addSpotLight(data, newSpotlightId) 
+  
+  
+  
+  }
   // -------Dialog functions ------------
 
-  const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
+  const [open, setOpen] = useState(false);
+  const [scroll, setScroll] = useState('paper');
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -98,7 +167,7 @@ const NotePopup = (props) => {
     setOpen(false);
   };
 
-  const descriptionElementRef = React.useRef(null);
+  const descriptionElementRef = useRef(null);
   React.useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
@@ -148,28 +217,38 @@ const NotePopup = (props) => {
         aria-describedby="scroll-dialog-description"
       >
         <HeaderTitle id="scroll-dialog-title">note for Title 1</HeaderTitle>
+        <FormWrapper onSubmit = {handleSubmit(onSubmit) }>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogWrapper
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
           >
- 
+            
 
-            {note}
+            <Controller as={StyledMultiline} name="note" 
+                  InputProps={{ outline: 'none' }}
+                  
+                  control={control} 
+                  defaultValue="" 
+                  multiline
+                  variant="outlined"
+                   
+                  /> 
 
-
+            
           </DialogWrapper>
         </DialogContent>
         <DialogActions>
-        <Button onClick={handleSetNote} color="primary">
+        <Button type ="submit" color="primary">
             Save
           </Button>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          
+
         </DialogActions>
+        </FormWrapper>
       </Dialog>
     </Fragment>
   );
