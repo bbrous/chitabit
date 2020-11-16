@@ -394,7 +394,7 @@ function CountDownDisplay(props) {
   useEffect(()=>{
 
     setStatus(spotlightStatus)
-    console.log('[COUNTDOWN DISPLAY status - ', status )
+    // console.log('[COUNTDOWN DISPLAY status - ', status )
 
       if(status === 'begun' ){
         startTimerRunningBegun.current()

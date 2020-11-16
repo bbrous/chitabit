@@ -28,7 +28,9 @@ import {
           UPDATE_TASK_ARRAY,
           ADD_TASK,
 
-          CHANGE_TIMER_STATUS
+          CHANGE_TIMER_STATUS,
+
+          SET_NOTE
         
         } from '../store/storeConstants';
 
@@ -488,15 +490,30 @@ const reducer_Main = produce((draft = initialState, action) => {
 
      draft.data.spotlightData.spotlights[spotlightId].taskArray = parentTaskArray
 
-  
-
-
-
-     
 
       return draft;
       
     }// end DELETE_TASK
+
+
+    case SET_NOTE : 
+    {
+
+     /*
+       Doesn't actually delete the task....
+       It just changes the taskArray to eliminate showing the task
+     */
+     const{note} = payload
+
+      console.log('[REDUCER MAIN SET_NOTE] note', note)
+      console.log('[REDUCER MAIN SET_NOTE] =============================')
+
+    // draft.data.spotlightData.spotlights[spotlightId].taskArray = parentTaskArray
+
+
+     return draft;
+     
+   }// end SET_NOTE
      
   // --------------------------------------------
     default:

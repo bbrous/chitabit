@@ -60,12 +60,12 @@ const MenuPopupTasks = (props) => {
 
   const {id, type, spotlightId} = props
 
-  console.log('[Menu Task Popup] XXXXXXXXXXXXXXXXXXXXXXXXXX  ')
-  console.log('[Menu Popup] --- id are : ', id)
-  console.log('[Menu Popup] --- type are : ', type)
-  console.log('[Menu Popup] --- spotlightId are : ', spotlightId)
+  // console.log('[Menu Task Popup] XXXXXXXXXXXXXXXXXXXXXXXXXX  ')
+  // console.log('[Menu Popup] --- id are : ', id)
+  // console.log('[Menu Popup] --- type are : ', type)
+  // console.log('[Menu Popup] --- spotlightId are : ', spotlightId)
 
-  console.log('[Menu Task Popup] XXXXXXXXXXXXXXXXXXXXXXXXXX  ')
+  // console.log('[Menu Task Popup] XXXXXXXXXXXXXXXXXXXXXXXXXX  ')
 
   //  handle Change Spotlight Menu option handler
 

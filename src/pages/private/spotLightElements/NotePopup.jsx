@@ -1,10 +1,19 @@
 import React, {Fragment} from 'react'
 import{chitOrange, mediumLightGrey} from '../../../styles/colors'
+import {connect} from 'react-redux'
+import{setNote} from '../../../app/redux/actions/mainActions'
+
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
-import Popover from '@material-ui/core/Popover';
+
 
 import NotesIcon from '@material-ui/icons/Notes';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
  
@@ -21,6 +30,9 @@ const NoteIcon= styled(NotesIcon)({
   margin: '0 .5rem .3rem 0',
   cursor: 'pointer',
   
+  '&.green': {
+    backgroundColor: 'green',
+  },
 
   '&:hover': {
     backgroundColor: mediumLightGrey
@@ -33,19 +45,12 @@ const NoteIcon= styled(NotesIcon)({
   },
 })
 
+const HeaderTitle= styled('div')({
+ 
 
-const StyledPopover= styled('div')({
-  backgroundColor: chitOrange,
-  borderRadius: '5px',
-  border: '1px solid lightgrey',
-  padding: '3px',
   fontSize: '.8rem',
-  color: 'white',
-  margin: '.25rem .5rem ',
-  cursor: 'pointer',
-  
-
-  
+  color: 'grey',
+  backgroundColor: 'white',
 
 
   [theme.breakpoints.down('sm')] : {
@@ -54,64 +59,128 @@ const StyledPopover= styled('div')({
   },
 })
 
+const DialogWrapper= styled(DialogContentText)({
+ 
+
+  fontSize: '.9rem',
+  color: 'black',
+  backgroundColor: 'white',
+  minWidth: '30rem',
+  minHeight: '15rem',
+
+  [theme.breakpoints.down('sm')] : {
+    // height: '1.25rem',
+    // backgroundColor: 'red'
+  },
+})
+
+
+
 
 // ===========================================
 const NotePopup = (props) => {
   let taskId = props.id
-  // let noteId = props.noteId
-  // let noteObject = props.spotlightData
+
   let note = props.note
-  // let note = noteId ? noteObject.notes[noteId].note:  ''
+  console.log('[NOTE POPUP - note', note)
 
+  // -------Dialog functions ------------
 
-  // let note = props.spotlightData.notes 
+  const [open, setOpen] = React.useState(false);
+  const [scroll, setScroll] = React.useState('paper');
 
-  // console.log('[NOTE POPUP ] -- inoteObjectd is ', note)
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    // console.log('[NotePopup] id is : ', event.currentTarget.id)
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+    setScroll(scrollType);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpen(false);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const descriptionElementRef = React.useRef(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
+
+  const handleSetNote= ()=>{
+  props.setNote( 
+    {
+      
+        note: note,
+         
+        
+      }
+    )
+    setOpen(false)
+  }
 
   return (
     <Fragment>
-      <NoteIcon 
-        id = {taskId}
-        aria-describedby={id} 
-        variant="contained" 
-        color="primary" 
-        onClick={handleClick}/>
+      {!note && 
+        <NoteIcon 
+          id = {taskId}
+           
+          onClick={handleClickOpen('paper')}
+          
+          />
         
-      <Popover
-        id={id}
+      }
+      {note && 
+        <NoteIcon 
+         
+          onClick={handleClickOpen('paper')}
+          className = 'green' 
+          />
+        
+      }
+
+<Dialog
         open={open}
-        anchorEl={anchorEl}
         onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'center',
-          horizontal: 'center',
-        }}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
       >
-        <StyledPopover onMouseOut = {()=> handleClose()}>
-        {note}
-        
-        </StyledPopover>
-      </Popover>
+        <HeaderTitle id="scroll-dialog-title">note for Title 1</HeaderTitle>
+        <DialogContent dividers={scroll === 'paper'}>
+          <DialogWrapper
+            id="scroll-dialog-description"
+            ref={descriptionElementRef}
+            tabIndex={-1}
+          >
+ 
+
+            {note}
+
+
+          </DialogWrapper>
+        </DialogContent>
+        <DialogActions>
+        <Button onClick={handleSetNote} color="primary">
+            Save
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          
+        </DialogActions>
+      </Dialog>
     </Fragment>
   );
 
       }
-export default NotePopup
+      const actions = {
+        setNote
+      }
+      
+      const mapState = state => ({
+        display: state
+      })
+      
+      export default connect(mapState, actions)(NotePopup)

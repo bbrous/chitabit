@@ -630,12 +630,12 @@ const handleUpdateTimerStatus = (evt) => {
             </StatusWrapper>
             <IconWrapper>
 
-              {note && 
+              
               <NotePopup 
                 note = {note} 
                 spotlightData = {spotlightData}
               />
-              }
+               
 
               {type === 'task' && 
                 <TimerPopup 

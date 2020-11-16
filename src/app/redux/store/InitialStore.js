@@ -364,7 +364,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },            
-         note: 'Task 1 Spot 2 note BBBB7'
+         note: ''
             
           },
     

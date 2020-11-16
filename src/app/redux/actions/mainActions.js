@@ -25,7 +25,9 @@
           CHANGE_DISPLAY,
           UPDATE_TASK_ARRAY,
           ADD_TASK,
-          CHANGE_TIMER_STATUS
+          CHANGE_TIMER_STATUS,
+
+          SET_NOTE
           
           
         } from '../store/storeConstants';
@@ -310,5 +312,14 @@
               spotId: spotId,
 
             }
+          }
+        }
+
+        export const  setNote = (note) => {
+          console.log('MAIN ACTIONS - setNote  clicked', note)
+          return {
+            type: SET_NOTE,
+            payload: note
+            
           }
         }
