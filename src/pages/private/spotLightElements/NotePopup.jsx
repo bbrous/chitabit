@@ -56,7 +56,7 @@ const DialogContainer= styled('div')({
   fontSize: '.9rem',
   color: 'black',
 
-  border: 'solid 5px red',
+ 
   padding: '0',
 
   [theme.breakpoints.down('sm')] : {
@@ -89,8 +89,7 @@ const FormWrapper= styled('form')({
   alignItems: 'flex-start',
 
   // display: 'block',
-  
-  // backgroundColor: 'yellow',
+ 
  height: '100%',
   width: '100%',
   
@@ -108,7 +107,7 @@ const DialogWrapper= styled(DialogContentText)({
   margin: '0',
   padding: '0',
   minWidth: '30rem',
-  
+  width: '100%',
 
   '&:focused': {
     borderColor: 'white',
