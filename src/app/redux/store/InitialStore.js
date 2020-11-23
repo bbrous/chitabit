@@ -379,7 +379,7 @@ const InitialStore = {
           accumulatedTime: 0,
           lastDate: null
          },
-            note: null
+            note: ''
             
           },
     
@@ -395,7 +395,9 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },
-            note: 'Task3 / Spot 2 note'
+
+            note: 'hi there note 2 task  3'
+            // note: {"blocks":[{"key":"d22o4","text":"hello shelby ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}}],"entityMap":{}}
             
           },
 

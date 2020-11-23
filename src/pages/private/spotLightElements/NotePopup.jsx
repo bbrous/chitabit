@@ -3,7 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import WYSIWYGEditor from "./wysiwyg/WYSIWYGEditor";
 import{chitOrange, mediumLightGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
-import{setNote} from '../../../app/redux/actions/mainActions'
+import{updateNote} from '../../../app/redux/actions/mainActions'
+
 
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
@@ -98,7 +99,7 @@ const FormWrapper= styled('form')({
 })
 
 
-const DialogWrapper= styled(DialogContentText)({
+const DialogWrapper= styled('div')({
  
 
   fontSize: '.9rem',
@@ -179,10 +180,28 @@ const ButtonContainer= styled('div')({
 
 // ===========================================
 const NotePopup = (props) => {
-  let taskId = props.id
+ 
 
-  let note = props.note
-  console.log('[NOTE POPUP - note', note)
+
+  const {note, type, spotlightData, spotlightId, taskId} = props
+
+
+
+  console.log('[NOTE POPUP - ===========================================')
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // ------React-hook-form functions --------------
@@ -207,15 +226,18 @@ const NotePopup = (props) => {
 
 const onSubmit = data => {
 
-  alert(data.note)
-    // console.log(' [SpotlightForm] , no Id so add new ', passedId)
-    // // no Id so create new ID and add spotlight
-    // let newSpotlightId = spotlightIdGenerator(allSpotlights)
     
+    let noteObject = {
+      note: data.note, 
+      type: type, 
+      spotlightId: spotlightId, 
+      taskId: taskId, 
+      spotlightData: spotlightData
+    }
     
-    
+    alert(data.note)
 
-    // props.addSpotLight(data, newSpotlightId) 
+    props.updateNote(noteObject) 
   
   
   
@@ -245,7 +267,7 @@ const onSubmit = data => {
   }, [open]);
 
   const handleSetNote= ()=>{
-  props.setNote( 
+  props.updateNote( 
     {
       
         note: note,
@@ -256,8 +278,11 @@ const onSubmit = data => {
     setOpen(false)
   }
 
+ 
+
   return (
     <Fragment>
+     
       {!note && 
         <NoteIcon 
           id = {taskId}
@@ -284,8 +309,10 @@ const onSubmit = data => {
         aria-describedby="scroll-dialog-description"
       >
 
-        <DialogContainer>   
+        <DialogContainer>  
+        <p>Task3 /</p> <p><span style={{color: "red"}}><ins>Spot 22 note</ins></span></p>
         <HeaderTitle id="scroll-dialog-title">note for Title 1</HeaderTitle>
+        
         <FormWrapper onSubmit = {handleSubmit(onSubmit) }>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogWrapper
@@ -315,7 +342,7 @@ const onSubmit = data => {
           as={<WYSIWYGEditor />}
           name="note"
           control={control}
-          
+          initialNote = {note}
         />
 
           </DialogWrapper>
@@ -337,7 +364,7 @@ const onSubmit = data => {
 
       }
       const actions = {
-        setNote
+        updateNote
       }
       
       const mapState = state => ({

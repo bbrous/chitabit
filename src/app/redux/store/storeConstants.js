@@ -28,5 +28,5 @@ export const UPDATE_TASK_ARRAY = 'UPDATE_TASK_ARRAY';
 
 export const CHANGE_TIMER_STATUS = 'CHANGE_TIMER_STATUS'
 
-export const SET_NOTE = 'SET_NOTE';
+export const UPDATE_NOTE = 'UPDATE_NOTE';
 

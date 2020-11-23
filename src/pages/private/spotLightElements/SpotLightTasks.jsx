@@ -633,7 +633,10 @@ const handleUpdateTimerStatus = (evt) => {
               
               <NotePopup 
                 note = {note} 
+                type = {type}
+                spotlightId = {spotlightId}
                 spotlightData = {spotlightData}
+                taskId = {taskId} // case task is a spotlight here
               />
                
 
@@ -732,7 +735,11 @@ const handleUpdateTimerStatus = (evt) => {
               {note && 
               <NotePopup 
                 note = {note} 
+                type = {type}
+                spotlightId = {spotlightId}
                 spotlightData = {spotlightData}
+                taskId = {taskId} // case task is a spotlight here
+
               />
               }
 

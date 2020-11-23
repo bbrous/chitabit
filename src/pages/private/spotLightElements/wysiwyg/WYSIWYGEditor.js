@@ -13,11 +13,40 @@ import PaletteIcon from '@material-ui/icons/Palette';
 
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
+/*
 
+
+
+CONVERSION PACKAGE FOR HTML to Draft
+https://www.npmjs.com/package/html-to-draftjs
+
+
+
+
+Answer abbout initial state see
+https://stackoverflow.com/questions/35884112/draftjs-how-to-initiate-an-editor-with-content
+
+from above ^ ... convert html to editor content
+https://www.npmjs.com/package/draft-js-import-html
+
+
+
+
+
+
+
+
+*/ 
 
 
 
 const WYSIWYGEditor = props => {
+  let initialNote = props.initialNote
+
+  console.log('WYSIWYG EDITOR initialNote - ', initialNote)
+  
+
+  
   const [editorState, setEditorState] = useState(EditorState.createWithContent(
     ContentState.createFromBlockArray(
 
@@ -25,7 +54,7 @@ const WYSIWYGEditor = props => {
 
 
       
-      convertFromHTML('<p>My initial content.</p>')
+      convertFromHTML('<p style={{color: "red"}}>My initial content.</p>')
 
 
 
@@ -46,8 +75,9 @@ const WYSIWYGEditor = props => {
   };
 
   return (
-    <React.Fragment>
+ 
       <div className="editor">
+        
         <Editor
           editorState={editorState}
           wrapperClassName="wrapper-class"
@@ -64,7 +94,7 @@ const WYSIWYGEditor = props => {
 
           toolbar ={
             {
-            options:['inline','fontSize' , 'colorPicker', 'list', ], // This is where you can specify what options you need in
+            options:['inline', 'colorPicker', 'list', 'fontSize' ,], // This is where you can specify what options you need in
             //the toolbar and appears in the same order as specified
             inline:
             {
@@ -88,12 +118,12 @@ const WYSIWYGEditor = props => {
     className: undefined,
     component: undefined,
     popupClassName: undefined,
-    colors: ['rgb(97,189,109)', 'rgb(26,188,156)', 'rgb(84,172,210)', 'rgb(44,130,201)',
-      'rgb(147,101,184)', 'rgb(71,85,119)', 'rgb(204,204,204)', 'rgb(65,168,95)', 'rgb(0,168,133)',
-      'rgb(61,142,185)', 'rgb(41,105,176)', 'rgb(85,57,130)', 'rgb(40,50,78)', 'rgb(0,0,0)',
+    colors: ['rgb(0,0,0)', 'rgb(97,189,109)', 'rgb(184,49,47)','rgb(26,188,156)', 'rgb(84,172,210)', 'rgb(44,130,201)', 'rgb(255,0,0)', 'rgb(255,255,0)',
+      'rgb(147,101,184)', 'rgb(71,85,119)', 'rgb(204,204,204)', 'rgb(57,57,57)','rgb(65,168,95)', 'rgb(0,168,133)',
+      'rgb(61,142,185)', 'rgb(41,105,176)', 'rgb(85,57,130)',
       'rgb(247,218,100)', 'rgb(251,160,38)', 'rgb(235,107,86)', 'rgb(226,80,65)', 'rgb(163,143,132)',
-      'rgb(239,239,239)', 'rgb(255,255,255)', 'rgb(250,197,28)', 'rgb(243,121,52)', 'rgb(209,72,65)',
-      'rgb(184,49,47)', 'rgb(124,112,107)', 'rgb(209,213,216)'],
+      'rgb(239,239,239)',  'rgb(250,197,28)', 'rgb(243,121,52)', 'rgb(209,72,65)',
+       'rgb(124,112,107)', 'rgb(209,213,216)',  ],
   },
 
   fontSize: {
@@ -112,7 +142,7 @@ const WYSIWYGEditor = props => {
 
         />
       </div>
-    </React.Fragment>
+     
   );
 };
 

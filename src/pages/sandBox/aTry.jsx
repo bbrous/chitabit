@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
  
 // import DateFormatEx from './dateLibrary/DateFormatEx'
 import RHFMui from './formLibrary/RHFMui'
-import RHFMuiRadio from './formLibrary/RHFMuiRadio'
+import DraftMain from './draftjs/DraftMain'
 
 // import RHFMuiRadio from './formLibrary/RHFMuiRadio'
 
@@ -112,7 +112,7 @@ const ATry = (props) => {
   {/* <Tasks/> */}
   {/* <DateFormatEx/> */}
 
-  {<RHFMuiRadio/>}
+  {<DraftMain/>}
  
 
 </ContentAreaSmall>

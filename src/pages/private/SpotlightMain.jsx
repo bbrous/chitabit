@@ -126,6 +126,9 @@ export const SpotlightMain = (props) => {
               <div>Choose a spotlight to be displayed</div>
               <div>or</div>
               <div>Create a new spotlight</div>
+
+
+              
             </NoneMessage>
           
            }

@@ -27,7 +27,7 @@
           ADD_TASK,
           CHANGE_TIMER_STATUS,
 
-          SET_NOTE
+          UPDATE_NOTE
           
           
         } from '../store/storeConstants';
@@ -315,11 +315,16 @@
           }
         }
 
-        export const  setNote = (note) => {
-          console.log('MAIN ACTIONS - setNote  clicked', note)
+
+
+        
+        export const  updateNote = (noteObject) => {
+          console.log('MAIN ACTIONS - Update Note clicked', noteObject)
           return {
-            type: SET_NOTE,
-            payload: note
-            
+            type: UPDATE_NOTE,
+            payload: {
+               
+              noteObject: noteObject
+            }
           }
         }
