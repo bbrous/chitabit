@@ -18,6 +18,14 @@ const EditorContainer = styled('div')({
   
 })
 
+const WYSIWYGContainer = styled(Editor)({
+
+  backgroundColor: 'white',
+  minHeight: '500px'
+
+  
+})
+
 
 
 // ================================================
@@ -28,7 +36,7 @@ export default function DraftEditor({value = null, onChange}) {
   useEffect(() => {});
   return (
   <EditorContainer>
-            <Editor
+      <WYSIWYGContainer
         editorState={editorState}
         toolbarClassName="toolbarClassName"
         wrapperClassName="wrapperClassName"

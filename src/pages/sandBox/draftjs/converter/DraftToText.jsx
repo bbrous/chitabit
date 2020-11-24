@@ -73,6 +73,11 @@ export default function DraftToText() {
           }}
         />
 
+<div  >
+        <h2>HTML</h2>
+        <DraftToHtml draft={draft} />
+      </div>
+
     </DraftContainer>
   )
 }

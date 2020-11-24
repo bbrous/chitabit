@@ -7,7 +7,7 @@ https://codesandbox.io/s/9zyn9r6j3p
 
 import React, {Fragment, useState} from 'react'
 
-import TextFromDraft from './TextFromDraft'
+import TextToDraft from './TextToDraft'
 import DraftToText from './DraftToText'
 
 import { styled} from "@material-ui/core/styles"
@@ -53,7 +53,7 @@ export default function ConverterMain() {
       case 'draftToText' :
         return <DraftToText/>;
       case 'textToDraft' :
-        return  <TextFromDraft/>;
+        return  <TextToDraft/>;
       default: 
         return <DraftToText/>
 
