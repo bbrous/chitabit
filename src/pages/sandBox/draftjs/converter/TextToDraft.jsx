@@ -111,6 +111,10 @@ const HTMLContainer = styled('div')({
 
 export default function TextToDraft() {
 
+  let databaseSavedText = {"blocks":[{"key":"6ifmk","text":"Hello Shelby","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}},{"key":"hqfo","text":"Good Girl","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":4,"length":5,"style":"BOLD"},{"offset":4,"length":5,"style":"color-rgb(41,105,176)"}],"entityRanges":[],"data":{}}],"entityMap":{}}
+
+  let initialText = stringToDraftState(databaseSavedText)
+
   const [text, setText] = useState("");
   const [safe, setSafe] = useState(true);
   const editorState = stringToDraftState(safe ? unEscape(text) : text);
@@ -120,7 +124,7 @@ export default function TextToDraft() {
 
     <DraftContainer>
       <Header> 
-      Text  - from -    Draft
+      Text  - to -    Draft
       </Header>
 
       <SwitchContainer>
@@ -144,7 +148,7 @@ export default function TextToDraft() {
         <div>Draft JS </div>
         <WYSIWGContainer
           key={new Date().toISOString()}
-          value={editorState}
+          value={initialText}
           onChange={() => {}}
         />
         </OuterBox>

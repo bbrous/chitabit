@@ -31,10 +31,10 @@ const PageContainer = styled('div')({
 
   
 })
-const AppBarContainer = styled(AppBar)({
+const AppBarContainer = styled('div')({
   backgroundColor: 'orange',
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
   alignItems:'center',
   color: 'blue'
   

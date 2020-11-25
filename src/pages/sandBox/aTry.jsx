@@ -107,17 +107,14 @@ const ATry = (props) => {
         <ContentArea>
 
 
-<ContentAreaSmall>
+{/* <ContentAreaSmall> */}
     
   {/* <Tasks/> */}
   {/* <DateFormatEx/> */}
 
-  {<DraftMain/>}
- 
-
-</ContentAreaSmall>
+{/* </ContentAreaSmall> */}
         
-       
+{<DraftMain/>}    
 
 
 

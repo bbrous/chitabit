@@ -3,15 +3,17 @@ Main Container for all Draft - JS Experiments
 
 */
 
-import React, {Fragment} from 'react'
+import React, {useState} from 'react'
 
 // import DraftBasic from './DraftBasic'
 import ConverterMain from './converter/ConverterMain'
+import MyDraftDraftMain from './myDraftDraft/MyDraftDraftMain'
 
 
 
  
-
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 
@@ -26,16 +28,52 @@ const DraftContainer = styled('div')({
   
 })
 
+
+const TabWrapper = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center' , 
+  position: 'relative',
+  width: '90%',
+  backgroundColor: 'white'
+  
+})
+
 // ================================================
 
 
 
 export default function DraftMain() {
 
+  const [state, setState]= useState('draftToText')
+  function getPage() {
+
+  switch(state){
+    case 'converter' :
+      return <ConverterMain/>;
+    case 'myDraftDraft' :
+      return  <MyDraftDraftMain/>;
+    default: 
+      return <ConverterMain/>
+
+  }
+}
+
   return (
     <DraftContainer>
-
-      <ConverterMain/>
+      <TabWrapper>
+      <Tabs
+          value={state}
+          onChange={(e, value) => {
+            setState(value);
+          }}
+        >
+          <Tab value="converter" label="Converter" />
+          <Tab value="myDraftDraft" label="My draft Draft" />
+        </Tabs>
+      </TabWrapper>
+ 
+      {getPage()}
 
     </DraftContainer>
   )
