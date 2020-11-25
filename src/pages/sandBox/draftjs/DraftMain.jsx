@@ -34,8 +34,9 @@ const TabWrapper = styled('div')({
   justifyContent: 'center',
   alignItems: 'center' , 
   position: 'relative',
-  width: '90%',
-  backgroundColor: 'white'
+  width: '100%',
+  backgroundColor: 'lightyellow',
+  color: 'red'
   
 })
 
@@ -54,7 +55,7 @@ export default function DraftMain() {
     case 'myDraftDraft' :
       return  <MyDraftDraftMain/>;
     default: 
-      return <ConverterMain/>
+      return <MyDraftDraftMain/>
 
   }
 }
