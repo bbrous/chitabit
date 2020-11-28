@@ -243,6 +243,7 @@ const reducer_Main = produce((draft = initialState, action) => {
             accumulatedTime: 0,
             lastDate: null
            }, 
+           note: '',
           // endEst:"2020-10-15T04:46:20.619Z",
           // note: 'note1',
           taskArray: [
@@ -294,7 +295,7 @@ const reducer_Main = produce((draft = initialState, action) => {
             accumulatedTime: 0,
             lastDate: null
           },             
-          
+          note: '',
         }
 
           draft.data.spotlightData.spotlights[id].taskArray.push(

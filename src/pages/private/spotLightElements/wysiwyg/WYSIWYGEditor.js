@@ -5,6 +5,7 @@ import { EditorState, convertToRaw } from "draft-js";
 import {ContentState, convertFromHTML }from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
+ 
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./WYSIWYG.scss";
@@ -47,30 +48,18 @@ const WYSIWYGEditor = props => {
   
 
   
-  const [editorState, setEditorState] = useState(EditorState.createWithContent(
-    ContentState.createFromBlockArray(
-
-
-
-
-      
-      convertFromHTML('<p style={{color: "red"}}>My initial content.</p>')
-
-
-
-
-
-
-    )
-  ),);
+  const [editorState, setEditorState] = useState(initialNote);
 
 
   
   const onEditorStateChange = editorState => {
     setEditorState(editorState);
     console.log("PROPS ==> ", props);
+    
     return props.onChange(
-      draftToHtml(convertToRaw(editorState.getCurrentContent()))
+      // draftToHtml(convertToRaw(editorState.getCurrentContent()))
+
+      JSON.stringify(convertToRaw(editorState.getCurrentContent()))
     );
   };
 

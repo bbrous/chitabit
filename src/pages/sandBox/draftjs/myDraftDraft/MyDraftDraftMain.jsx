@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import MyCustomEditor from './MyCustomEditor.js'
 import stringToDraftState from './utils/stringToDraftState'
-
+ 
 
 
 
@@ -16,9 +16,7 @@ const MyDraftDraftMain = () => {
 
   let initialText = stringToDraftState(databaseSavedText)
 
-
-
-  
+  const [value, setValue]= useState('')
   // ###################################################
   // ###################################################
   return (
@@ -30,6 +28,17 @@ const MyDraftDraftMain = () => {
       // value = ''
        onChange={() => {}}
       />
+    <div> <div> To search for this section later... <br/>Copy or add keyword(s)  separated by commas </div>
+      <input type = 'text'/>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
     </div>
   )
 }

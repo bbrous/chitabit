@@ -19,6 +19,66 @@ const InitialStore = {
 
 
   },
+
+   // ===== Key Words  =====================
+ 
+
+  'keywordArray' : {
+    'kw_1' : {
+      keywordId: 'kw_1',
+      locations: [
+        {locationId: 'n_01', locationType: 'note'},
+        {locationId: 'day_01_sec_01', locationType: 'section'},
+        {locationId: 'pe_01', locationType: 'chit'}
+      ]
+    },
+
+      'kw_2' : {
+        keywordId: 'kw_2',
+        locations: [
+          {locationId: 'n_01', locationType: 'note'},
+          {locationId: 'day_01_sec_01', locationType: 'section'},
+          {locationId: 'pe_01', locationType: 'chit'}
+        ]
+      }
+
+    
+  },
+
+  'keywords' : {
+    'kw_1' : {
+      keywordId: 'kw_1',
+      keyword: 'Chit Git'
+    },
+
+      'kw_2' : {
+        keywordId: 'kw_2',
+        keyword: 'pissant'
+      },
+
+    
+  },
+
+  'notes' : {
+    'spot_3_task_3_note' : {
+      noteId: 'spot_3_task_3_note',
+      noteHolderId: 'spot_3_task_3_note',
+      note: 'This is test note 1',
+      noteArray: ['kw_1']
+    },
+
+      // 'note_2' : {
+      //   noteId: 'spot_3_task_3_note',
+      //   noteHolderId: 'spot_3_task_3_note',
+      //   note: 'Note 2 test here',
+      //   noteArray: ['kw_2']
+      // },
+
+    
+  },
+
+     // =======================================
+     
  
  // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -163,7 +223,7 @@ const InitialStore = {
         
         timeEst: 311418000, 
         endEst: "2020-11-02T02:33:20.619Z",  //--------
-        note: 'This is a note for spot 1',
+        note: '',
  
 
         taskArray: [
@@ -210,7 +270,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },             
-            
+            note: '',
           }, 
           'spot_1_task_1' : {
             id: 'spot_1_task_1',
@@ -224,7 +284,7 @@ const InitialStore = {
           lastDate: '2020-10-25T01:46:20.619Z'
          },            
          
-         note: 'this is a note for task 1 /  spot 1',
+         note: '',
             
           },
     
@@ -239,7 +299,7 @@ const InitialStore = {
               accumulatedTime: 5600000,
               lastDate: null
             },             
-            
+            note: '',
           },
     
               
@@ -254,10 +314,8 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: '2020-10-26T01:46:20.619Z'
             },            
-            note: null
-            
+            note: '',
           },
-
           
           'spot_1_task_4' : {
             id: 'spot_1_task_4',
@@ -271,7 +329,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },             
-            
+            note: '',
           },
 
         }, 
@@ -287,7 +345,7 @@ const InitialStore = {
             accumulatedTime: 55566000,
             lastDate: null
           },             
-          
+          note: '',
         },
 
         
@@ -318,7 +376,7 @@ const InitialStore = {
           lastDate: null
         },        
          
-         note: 'Spot 2 note here',
+        note: '',
    
         
 
@@ -350,7 +408,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },             
-            
+            note: '',
           },
     
           'spot_2_task_1' : {
@@ -364,7 +422,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },            
-         note: ''
+         note: '',
             
           },
     
@@ -379,7 +437,7 @@ const InitialStore = {
           accumulatedTime: 0,
           lastDate: null
          },
-            note: ''
+            note: '',
             
           },
     
@@ -396,7 +454,7 @@ const InitialStore = {
               lastDate: null
             },
 
-            note: 'hi there note 2 task  3'
+            note: '',
             // note: {"blocks":[{"key":"d22o4","text":"hello shelby ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}}],"entityMap":{}}
             
           },
@@ -427,7 +485,7 @@ const InitialStore = {
           accumulatedTime: 0,
           lastDate: null
         },        
-         note: 'Spot 3 note - They are driving me crazy',
+        note: '',
    
         
 
@@ -457,7 +515,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },             
-            
+            note: '',
           },
     
           'spot_3_task_1' : {
@@ -471,7 +529,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },
-            note: 'task 1 / Spot 3 note here'
+            note: '',
             
           },
     
@@ -486,7 +544,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },
-            note: ''
+            note: '',
             
           },
     
@@ -502,7 +560,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },
-            note: ''
+            note: '',
             
           },
 
@@ -531,7 +589,7 @@ const InitialStore = {
           accumulatedTime: 0,
           lastDate: null
         },         
-   
+        note: '',
         
 
         taskArray: [
@@ -556,7 +614,7 @@ const InitialStore = {
               accumulatedTime: 0,
               lastDate: null
             },             
-            
+            note: '',
           },
 
         },
@@ -586,7 +644,7 @@ const InitialStore = {
           lastDate: null
         },
 
-         note: 'Spot 4 note here',
+        note: '',
    
         
 
@@ -611,7 +669,7 @@ const InitialStore = {
           accumulatedTime: 0,
           lastDate: null
         },         
-        
+        note: '',
       },
 
     },
