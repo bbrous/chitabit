@@ -30,7 +30,8 @@ import {
 
           CHANGE_TIMER_STATUS,
 
-          UPDATE_NOTE
+          UPDATE_NOTE,
+          ADD_NOTE
         
         } from '../store/storeConstants';
 
@@ -47,6 +48,10 @@ import {
 
           modalDisplayed: false,
           modalType: 'spotLightForm',
+
+          keywordsArray: InitialStore.keywordsArray,
+          keywords: InitialStore.keywords,
+          notes: InitialStore.notes,
 
           spotLightDisplay: {
             displaySpotLight: 'show',  //initial or ''  or 'show ' 
@@ -506,12 +511,12 @@ const reducer_Main = produce((draft = initialState, action) => {
      */
     //  const{noteObject} = payload
 
-      console.log('[REDUCER MAIN UPDATE_NOTE] type: ', type)
-      console.log('[REDUCER MAIN UPDATE_NOTE] spotlightId: ', spotlightId)
-      console.log('[REDUCER MAIN UPDATE_NOTE] taskId: ', taskId)
-      console.log('[REDUCER MAIN UPDATE_NOTE] note: ', note)
-      console.log('[REDUCER MAIN UPDATE_NOTE] spotlightData: ', spotlightData.spotlights[spotlightId].tasks[taskId].note)
-      console.log('[REDUCER MAIN UPDATE_NOTE] =============================')
+      // console.log('[REDUCER MAIN UPDATE_NOTE] type: ', type)
+      // console.log('[REDUCER MAIN UPDATE_NOTE] spotlightId: ', spotlightId)
+      // console.log('[REDUCER MAIN UPDATE_NOTE] taskId: ', taskId)
+      // console.log('[REDUCER MAIN UPDATE_NOTE] note: ', note)
+      // console.log('[REDUCER MAIN UPDATE_NOTE] spotlightData: ', spotlightData.spotlights[spotlightId].tasks[taskId].note)
+      // console.log('[REDUCER MAIN UPDATE_NOTE] =============================')
 
 
 
@@ -529,6 +534,19 @@ const reducer_Main = produce((draft = initialState, action) => {
      return draft;
      
    }// end UPDATE_NOTE
+
+   case ADD_NOTE : 
+   {
+    // console.log('[REDUCER MAIN UPDATE_NOTE] type: ', type)
+    // console.log('[REDUCER MAIN UPDATE_NOTE] spotlightId: ', spotlightId)
+    // console.log('[REDUCER MAIN UPDATE_NOTE] taskId: ', taskId)
+    // console.log('[REDUCER MAIN UPDATE_NOTE] note: ', note)
+    // console.log('[REDUCER MAIN UPDATE_NOTE] spotlightData: ', spotlightData.spotlights[spotlightId].tasks[taskId].note)
+    console.log('[REDUCER MAIN ADD_NOTE clicked] =============================')
+
+    return draft;
+    
+  }// end ADD_NOTE
      
   // --------------------------------------------
     default:

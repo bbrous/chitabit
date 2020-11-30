@@ -29,4 +29,5 @@ export const UPDATE_TASK_ARRAY = 'UPDATE_TASK_ARRAY';
 export const CHANGE_TIMER_STATUS = 'CHANGE_TIMER_STATUS'
 
 export const UPDATE_NOTE = 'UPDATE_NOTE';
+export const ADD_NOTE = 'ADD_NOTE';
 

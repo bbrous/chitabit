@@ -608,10 +608,10 @@ const Task= styled('div')({
 export const Spotlight = (props) => {
   // console.log('[SPOTLIGHT ] &&&& spotLightDisplay : ' ,  props.display.private.data.spotlightData.spotlights[props.id]) 
 
-  console.log('[SPOTLIGHT] id is: , ', props)
+  // console.log('[SPOTLIGHT] id is: , ', props)
 
   let spotlightData = props.display.private.data.spotlightData
-
+  
  
 
   let spotLightDisplayed = props.display.private.data.spotlightData.spotlights[props.id]
@@ -643,7 +643,7 @@ export const Spotlight = (props) => {
 
 
   console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
-  
+  let noteId = props.display.private.data.spotlightData.spotlights[id].note
 
 
   const handleSpotlightCompletedStatus = () => {
@@ -783,13 +783,16 @@ export const Spotlight = (props) => {
           </CheckBoxWrapper>
           
           <IconsWrapper> 
-          {note && 
+          
               <NotePopup 
-              note = {note} 
+              noteId = {noteId} 
+              type = 'spotlight'
               spotlightData = {spotlightData}
+              spotlightId = {id}
+              taskId = ''
               
               />
-          }
+          
           
           </IconsWrapper> 
           </BottomWrapper>

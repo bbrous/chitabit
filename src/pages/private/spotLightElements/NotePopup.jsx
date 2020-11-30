@@ -3,7 +3,9 @@ import { useForm, Controller } from "react-hook-form";
 import WYSIWYGEditor from "./wysiwyg/WYSIWYGEditor";
 import{chitOrange, mediumLightGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
-import{updateNote} from '../../../app/redux/actions/mainActions'
+import{updateNote, addNote} from '../../../app/redux/actions/mainActions'
+
+import safeJson from "js-string-escape"
 
 import stringToDraftState from './wysiwyg/utils/stringToDraftState'
 
@@ -183,9 +185,15 @@ const NotePopup = (props) => {
  
 
 
-  const {note, type, spotlightData, spotlightId, taskId} = props
+  const {noteId, type, spotlightData, spotlightId, taskId} = props
 
+  console.log('[NOTE POPUP - ===========================================')
 
+  console.log('[Note Popup]-- passed noteId: ' , noteId)
+  console.log('[Note Popup]-- passed type: ' , type)
+  console.log('[Note Popup]-- passed spotlightData: ' , spotlightData)
+  console.log('[Note Popup]-- passed spotlightId: ' , spotlightId)
+  console.log('[Note Popup]-- passed taskId: ' , taskId)
 
   console.log('[NOTE POPUP - ===========================================')
 
@@ -193,9 +201,10 @@ const NotePopup = (props) => {
 
   let databaseSavedText = '{"blocks":[{"key":"6ifmk","text":"Hello Shelby","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}},{"key":"hqfo","text":"Good Girl","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":4,"length":5,"style":"BOLD"},{"offset":4,"length":5,"style":"color-rgb(41,105,176)"}],"entityRanges":[],"data":{}}],"entityMap":{}}'
 
-  let initialText = stringToDraftState(databaseSavedText)
+  
+  // let initialText = ''
 
-
+ 
 
 
 
@@ -208,38 +217,82 @@ const NotePopup = (props) => {
 
   // ------React-hook-form functions --------------
 
-  let initialValues
-  if(!note) {
-    initialValues = {
-      note: 'Create note here'
-    }
+  let initialText
+
+  // if no previous note exists 
+  if(!noteId) {
+    // console.log('NotePopup - is note ? -- no ', noteId)
+    initialText = ''
+
   }
  
-  if(note) {
-    initialValues = {
-      note: note
-    }
+  let passedNoteId 
+  // a previous note exists
+  if(noteId) {
+    
+    passedNoteId = noteId
+    // console.log('NotePopup - is note ? -- YES ', passedNoteId)
+    initialText = stringToDraftState(passedNoteId)
   }
 
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
     
-    defaultValues: initialValues
+    defaultValues: ''
 })
 
 const onSubmit = data => {
 
-    
-    let noteObject = {
-      note: data.note, 
-      type: type, 
-      spotlightId: spotlightId, 
-      taskId: taskId, 
-      spotlightData: spotlightData
-    }
-    
-    alert(data.note)
 
-    props.updateNote(noteObject) 
+    if(!noteId && data.note) {
+
+      // console.log('[Note POPUP ]-- NO noteId + note = **  addNote with : ', data.note)
+
+      let noteObject = {
+        note: data.note, 
+        // type: type, 
+        // spotlightId: spotlightId, 
+        // taskId: taskId, 
+        // spotlightData: spotlightData
+      }
+      
+      alert(data.note)
+  
+      props.addNote(noteObject) 
+
+
+    }
+
+    if(noteId && data.note) {
+      // console.log('[Note POPUP ]-- noteId + note = updateNote with : ', data.note)
+
+      let noteObject = {
+        note: data.note, 
+        // type: type, 
+        // spotlightId: spotlightId, 
+        // taskId: taskId, 
+        // spotlightData: spotlightData
+      }
+      
+      alert(data.note)
+  
+      props.updateNote(noteObject) 
+
+
+
+    }
+
+
+    if(!noteId && !data.note) {
+      // console.log('[Note POPUP ]-- NO noteId + No note = Forgetta bout it : ')
+   }
+
+    if(noteId && !data.note) {
+      // console.log('[Note POPUP ]-- YES noteId + but No note = Will not happen... because empty object created by WYSIWG : ')
+    }
+
+
+
+
   
   
   
@@ -272,7 +325,7 @@ const onSubmit = data => {
   props.updateNote( 
     {
       
-        note: note,
+        note: noteId,
          
         
       }
@@ -285,7 +338,7 @@ const onSubmit = data => {
   return (
     <Fragment>
      
-      {!note && 
+      {!noteId && 
         <NoteIcon 
           id = {taskId}
            
@@ -294,7 +347,7 @@ const onSubmit = data => {
           />
         
       }
-      {note && 
+      {noteId && 
         <NoteIcon 
          
           onClick={handleClickOpen('paper')}
@@ -366,7 +419,8 @@ const onSubmit = data => {
 
       }
       const actions = {
-        updateNote
+        updateNote,
+        addNote
       }
       
       const mapState = state => ({

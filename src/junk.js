@@ -1,42 +1,7 @@
-/*
-Main Container for all Draft - JS Experiments
-
-*/
-
-import React, {Fragment, useState} from 'react'
-
-// import DraftBasic from './DraftBasic'
-import ConverterMain from './converter/ConverterMain'
-import MyDraftDraftMain from './myDraftDraft/MyDraftDraftMain'
+note: '{"blocks":[{"key":"d22o4","text":"hello Brady ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
 
 
- 
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import { styled, createMuiTheme } from "@material-ui/core/styles"
-
-
-// --- Styles--------------------------------
-
-const DraftContainer = styled('div')({
-  display: 'block',
-  justifyContent: 'center',
-  position: 'relative',
-  width: '90%',
-  backgroundColor: 'white'
+note: 'spot_2_task_3_note',
+//   note: '{"blocks":[{"key":"d22o4","text":"hello Brady ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}}],"entityMap":{}}'
   
-})
-
-const TabWrapper = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center' , 
-  position: 'relative',
-  width: '90%',
-  backgroundColor: 'white'
-  
-})
-
-// ================================================
-
-
+// },

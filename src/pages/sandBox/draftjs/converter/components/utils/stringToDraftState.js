@@ -1,4 +1,8 @@
-import { convertFromRaw, convertToRaw, EditorState } from "draft-js";
+import { convertFromRaw,  EditorState } from "draft-js";
+
+/*
+Takes Draft JS Raw output
+*/
 
 export default function stringToDraftState(text) {
   try {

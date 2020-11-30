@@ -1,5 +1,24 @@
 import React, { useState, useEffect } from "react";
 
+
+/*  Read me: 
+
+The data sent from the WYSIWG to Redux or the database must be in the form
+of a stringified JSON block...    ' {JSON OBJECT} '
+
+To database:  
+   1.  create stringified JSON object ... use draftToString ... escaped safe text
+
+From database: 
+   2.  unescape DraftToString
+   3.  convert from Raw ... use stringToDraft 
+
+*/
+
+
+
+
+
 // Components
 import { EditorState, convertToRaw } from "draft-js";
 import {ContentState, convertFromHTML }from "draft-js";
@@ -15,26 +34,6 @@ import PaletteIcon from '@material-ui/icons/Palette';
 import { styled, createMuiTheme } from "@material-ui/core/styles"
 
 /*
-
-
-
-CONVERSION PACKAGE FOR HTML to Draft
-https://www.npmjs.com/package/html-to-draftjs
-
-
-
-
-Answer abbout initial state see
-https://stackoverflow.com/questions/35884112/draftjs-how-to-initiate-an-editor-with-content
-
-from above ^ ... convert html to editor content
-https://www.npmjs.com/package/draft-js-import-html
-
-
-
-
-
-
 
 
 */ 
@@ -54,7 +53,7 @@ const WYSIWYGEditor = props => {
   
   const onEditorStateChange = editorState => {
     setEditorState(editorState);
-    console.log("PROPS ==> ", props);
+    // console.log("PROPS ==> ", props);
     
     return props.onChange(
       // draftToHtml(convertToRaw(editorState.getCurrentContent()))
