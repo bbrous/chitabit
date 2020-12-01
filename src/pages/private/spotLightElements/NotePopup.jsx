@@ -276,13 +276,16 @@ const onSubmit = data => {
 
       let noteObject = {
         note: data.note, 
+        noteHolderId: noteHolderId,
+        type: type
+
         // type: type, 
         // spotlightId: spotlightId, 
         // taskId: taskId, 
         // spotlightData: spotlightData
       }
       
-      alert(data.note)
+      // alert(data.note)
   
       props.updateNote(noteObject) 
 
