@@ -185,17 +185,20 @@ const NotePopup = (props) => {
  
 
 
-  const {noteId, type, spotlightData, spotlightId, taskId} = props
+  const {noteId, type, spotlightData, spotlightId, taskId, noteHolderId} = props
 
-  console.log('[NOTE POPUP - ===========================================')
+
+
+  console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 
   console.log('[Note Popup]-- passed noteId: ' , noteId)
   console.log('[Note Popup]-- passed type: ' , type)
   console.log('[Note Popup]-- passed spotlightData: ' , spotlightData)
   console.log('[Note Popup]-- passed spotlightId: ' , spotlightId)
   console.log('[Note Popup]-- passed taskId: ' , taskId)
+  console.log('[Note Popup]-- passed noteHolderId: ' , noteHolderId)
 
-  console.log('[NOTE POPUP - ===========================================')
+  console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 
   
 
@@ -218,21 +221,23 @@ const NotePopup = (props) => {
   // ------React-hook-form functions --------------
 
   let initialText
+ 
 
   // if no previous note exists 
   if(!noteId) {
     // console.log('NotePopup - is note ? -- no ', noteId)
     initialText = ''
 
+
   }
  
-  let passedNoteId 
-  // a previous note exists
+
+  // a previous note exists - get initial text from notes
+
   if(noteId) {
-    
-    passedNoteId = noteId
-    // console.log('NotePopup - is note ? -- YES ', passedNoteId)
-    initialText = stringToDraftState(passedNoteId)
+ 
+    console.log('NotePopup - is note ? -- YES ')
+    // initialText = stringToDraftState(passedNoteId)
   }
 
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
@@ -245,17 +250,21 @@ const onSubmit = data => {
 
     if(!noteId && data.note) {
 
+      // No note exists, but form filled out --- > Create a new note
+
       // console.log('[Note POPUP ]-- NO noteId + note = **  addNote with : ', data.note)
+
+
 
       let noteObject = {
         note: data.note, 
-        // type: type, 
-        // spotlightId: spotlightId, 
-        // taskId: taskId, 
-        // spotlightData: spotlightData
+        type: type, 
+        spotlightId: spotlightId, 
+        taskId: taskId, 
+        noteHolderId: noteHolderId
+
       }
       
-      alert(data.note)
   
       props.addNote(noteObject) 
 

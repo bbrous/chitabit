@@ -402,12 +402,7 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     itemObject = itemAddress[taskId]
     timerData = spotlightData.spotlights[spotlightId].tasks[taskId].clock
     taskStatus = spotlightData.spotlights[spotlightId].tasks[taskId].completed 
-      //  note: task - taskStatus is true / false
-    
-    // console.log('[SPOTLIGHT TASKS -- duh  Status : ' , spotlightData.spotlights[spotlightId].tasks[taskId].completed)
 
-    // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-    // console.log('[SPOTLIGHT TASKS] -- task TYPE in task : ' , value.type)
 
   } // end if - task
 
@@ -418,23 +413,15 @@ const SortableItem = SortableElement(({ handleClick, value , spotlightData, spot
     itemObject = itemAddress[taskId]
     spotlightTaskStatus = itemObject.spotlightStatus
 
-    // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-    // console.log('[SPOTLIGHT TASKS] -- task TYPE in SPOT : ' , value.type)
-    // console.log('[SPOTLIGHT TASKS] -- -------------------------' )
-    // console.log('[SPOTLIGHT TASKS] -- spotlight Status : ' , spotlightTaskStatus)
-  
-
 
   }// end if -  spotlight
 
-const { type, title, completed, note } = itemObject
+  const { type, title, completed, note } = itemObject
+  // note from itemObject here contains the noteId pointer in the database
 
-// console.log('[SPOTLIGHT TASKS] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' )
-//     console.log('[SPOTLIGHT TASKS] -- task TYPE in SPOT : ' , type)
-//     console.log('[SPOTLIGHT TASKS] XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' )
 
 // determine if specific spotlight has been started or not
-let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus
+  let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStatus
 // console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
 
 
@@ -442,10 +429,10 @@ let currentSpotlightStatus = spotlightData.spotlights[spotlightId].spotlightStat
 const handleTaskCompletedStatus = () => {
 
   // 1. get current Spotlight completed status
-  console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
+  
   if(spotlightTaskStatus === 'inactive'){
 
-    console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
+  //   console.log('SPOTLIGHT TASKS currentSpotlightStatus', currentSpotlightStatus)
   }
   
   let currentTaskStatus = spotlightData.spotlights[spotlightId].tasks[taskId].completed
@@ -630,16 +617,6 @@ const handleUpdateTimerStatus = (evt) => {
             </StatusWrapper>
             <IconWrapper>
 
-              
-              <NotePopup 
-                noteId = {note} 
-                type = {type}
-                spotlightId = {spotlightId}
-                spotlightData = {spotlightData}
-                taskId = {taskId} // case task is a spotlight here
-
-                
-              />
                
 
               {type === 'task' && 
@@ -650,7 +627,20 @@ const handleUpdateTimerStatus = (evt) => {
                   handleUpdateTimerStatus = {handleUpdateTimerStatus}
                   currentSpotlightStatus = {currentSpotlightStatus}
                 />    
-              }          
+              }     
+
+              
+              
+              <NotePopup 
+                noteId = {note} 
+                type = {type}
+                spotlightId = {spotlightId}
+                spotlightData = {spotlightData}
+                taskId = {taskId} // case task is a spotlight here
+                noteHolderId = {taskId}
+
+                
+              />     
             </IconWrapper>
  
 
@@ -734,16 +724,9 @@ const handleUpdateTimerStatus = (evt) => {
             </StatusWrapper>
             <IconWrapper>
 
-              {note && 
-              <NotePopup 
-                note = {note} 
-                type = {type}
-                spotlightId = {spotlightId}
-                spotlightData = {spotlightData}
-                taskId = {taskId} // case task is a spotlight here
+               
 
-              />
-              }
+              
 
               {type === 'task' && 
                 <TimerPopup 
@@ -752,7 +735,17 @@ const handleUpdateTimerStatus = (evt) => {
                   timerData = {timerData}
                   handleUpdateTimerStatus = {handleUpdateTimerStatus}
                 />    
-              }          
+              }    
+
+              <NotePopup 
+                noteId = {note} 
+                type = {type}
+                spotlightId = {spotlightId}
+                spotlightData = {spotlightData}
+                taskId = {taskId} // case task is a spotlight here
+                noteHolderId = {taskId}
+
+              />      
             </IconWrapper>
  
 

@@ -537,12 +537,50 @@ const reducer_Main = produce((draft = initialState, action) => {
 
    case ADD_NOTE : 
    {
-    // console.log('[REDUCER MAIN UPDATE_NOTE] type: ', type)
-    // console.log('[REDUCER MAIN UPDATE_NOTE] spotlightId: ', spotlightId)
-    // console.log('[REDUCER MAIN UPDATE_NOTE] taskId: ', taskId)
-    // console.log('[REDUCER MAIN UPDATE_NOTE] note: ', note)
-    // console.log('[REDUCER MAIN UPDATE_NOTE] spotlightData: ', spotlightData.spotlights[spotlightId].tasks[taskId].note)
-    console.log('[REDUCER MAIN ADD_NOTE clicked] =============================')
+
+    const {note, type,spotlightId, taskId, noteHolderId} = payload.noteObject
+      //  --- First create a new note Id ------------------
+    let newNoteId = noteHolderId + '_note'
+
+    let timestamp = new Date()
+
+    let newNote =  {
+      noteId: newNoteId,
+      noteHolderId: noteHolderId,
+      noteType: type,
+
+      note: note,
+
+      timeStamp: timestamp,  // September 14
+
+      noteArray: []
+      
+      
+    }
+
+    let noteHolderAddress
+    if(type === 'spotlight'){
+      noteHolderAddress = draft.data.spotlightData.spotlights[noteHolderId]
+    }
+
+    if(type === 'task'){
+      noteHolderAddress = draft.data.spotlightData.spotlights[spotlightId].tasks[taskId]
+    }
+    
+     
+    draft.notes[newNoteId] = newNote
+    noteHolderAddress.note = newNoteId
+
+    // console.log('[REDUCER MAIN ADD_NOTE clicked] ||||||||||||||||||||||||||||||')
+    // console.log('**** [REDUCER MAIN ADD_NOTE] timestamp: ', timestamp)
+    // console.log('**** [REDUCER MAIN ADD_NOTE] newNoteId: ', newNoteId)
+    // console.log('[REDUCER MAIN ADD_NOTE] type: ', type)
+    // console.log('[REDUCER MAIN ADD_NOTE] spotlightId: ', spotlightId)
+    // console.log('[REDUCER MAIN ADD_NOTE] taskId: ', taskId)
+    // console.log('[REDUCER MAIN ADD_NOTE] note: ', note)
+    // console.log('[REDUCER MAIN ADD_NOTE] noteHolderId: ', noteHolderId)
+
+    // console.log('[REDUCER MAIN ADD_NOTE clicked] ||||||||||||||||||||||||||||||')
 
     return draft;
     

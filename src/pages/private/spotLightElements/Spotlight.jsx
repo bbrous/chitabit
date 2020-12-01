@@ -720,15 +720,16 @@ export const Spotlight = (props) => {
 }
       </ParentContainer>
 
-<TopWrapper 
-  className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
-  > 
+  <TopWrapper 
+    className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
+    > 
 
 
     <TitleWrapper 
     className =  {spotlightState ===  'completed' ? "backgroundCompleted" : ""}
     > 
       <div><CheckCircleWrapper onClick={()=> handleSpotlightCompletedStatus( id)}> 
+      
       {spotlightState !== 'completed' && 
               <CheckCircle/>
               }
@@ -790,6 +791,7 @@ export const Spotlight = (props) => {
               spotlightData = {spotlightData}
               spotlightId = {id}
               taskId = ''
+              noteHolderId = {id}
               
               />
           

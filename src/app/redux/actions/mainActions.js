@@ -321,6 +321,18 @@
         
         export const  updateNote = (noteObject) => {
           console.log('MAIN ACTIONS - Update Note clicked', noteObject)
+          console.log('[MAIN ACTIONS - ===========================================')
+
+          console.log('[MAIN ACTIONS] UPDATE-- passed noteId: ' , noteObject.noteId)
+          console.log('[MAIN ACTIONS] UPDATE-- passed type: ' , noteObject.type)
+          console.log('[MAIN ACTIONS] UPDATE-- passed spotlightData: ' , noteObject.spotlightData)
+          console.log('[MAIN ACTIONS] UPDATE-- passed spotlightId: ' , noteObject.spotlightId)
+          console.log('[MAIN ACTIONS] UPDATE-- passed taskId: ' , noteObject.taskId)
+         
+        
+          console.log('[NOTE POPUP - ===========================================')
+
+
           return {
             type: UPDATE_NOTE,
             payload: {
@@ -332,6 +344,17 @@
 
         export const  addNote = (noteObject) => {
           console.log('MAIN ACTIONS - Add Note clicked', noteObject)
+
+          // console.log('[MAIN ACTIONS - ===========================================')
+
+ 
+          // console.log('[MAIN ACTIONS] ADD-- passed note: ' , noteObject.note)
+          // console.log('[MAIN ACTIONS] ADD-- passed type: ' , noteObject.type)
+          //  console.log('[MAIN ACTIONS] ADD-- passed spotlightId: ' , noteObject.spotlightId)
+          // console.log('[MAIN ACTIONS] ADD-- passed taskId: ' , noteObject.taskId)
+          // console.log('[MAIN ACTIONS] ADD-- passed noteHolderId: ' , noteObject.noteHolderId)
+      
+          // console.log('[MAIN ACTIONS - ===========================================')
           return {
             type: ADD_NOTE,
             payload: {
