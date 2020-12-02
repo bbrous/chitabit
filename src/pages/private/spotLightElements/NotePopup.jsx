@@ -4,8 +4,9 @@ import WYSIWYGEditor from "./wysiwyg/WYSIWYGEditor";
 import{chitOrange, mediumLightGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
 import{updateNote, addNote} from '../../../app/redux/actions/mainActions'
-
+import { EditorState, convertToRaw } from 'draft-js'
 import safeJson from "js-string-escape"
+import unEscape from 'unescape-js'
 
 import stringToDraftState from './wysiwyg/utils/stringToDraftState'
 
@@ -201,8 +202,10 @@ const NotePopup = (props) => {
   console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 
   
+// THIS WORKS
+  // let databaseSavedText = '{"blocks":[{"key":"6ifmk","text":"Hello Shelby","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}},{"key":"hqfo","text":"Good Girl","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":4,"length":5,"style":"BOLD"},{"offset":4,"length":5,"style":"color-rgb(41,105,176)"}],"entityRanges":[],"data":{}}],"entityMap":{}}'
 
-  let databaseSavedText = '{"blocks":[{"key":"6ifmk","text":"Hello Shelby","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}},{"key":"hqfo","text":"Good Girl","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":4,"length":5,"style":"BOLD"},{"offset":4,"length":5,"style":"color-rgb(41,105,176)"}],"entityRanges":[],"data":{}}],"entityMap":{}}'
+  let databaseSavedText = "{\"blocks\":[{\"key\":\"fg5pu\",\"text\":\"A new note\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":6,\"length\":4,\"style\":\"color-rgb(184,49,47)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
 
   
   // let initialText = ''
@@ -221,7 +224,6 @@ const NotePopup = (props) => {
   // ------React-hook-form functions --------------
 
   let initialText
- 
 
   // if no previous note exists 
   if(!noteId) {
@@ -235,9 +237,55 @@ const NotePopup = (props) => {
   // a previous note exists - get initial text from notes
 
   if(noteId) {
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++
+      ++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+    1. noteId is passed from Spotlight (ONLY) at this moment
+    2. but it may be ""  or a value_note
+    3. to make this work - I had to reconstruct the noteId with myNoteId
+       using spotlightId + '_note'
+
+    SO - DOES NOT WORK WITH TASK HERE ******
+    SO - DOES NOT WORK WITH TASK HERE ******
+    SO - DOES NOT WORK WITH TASK HERE ******
+    SO - DOES NOT WORK WITH TASK HERE ******
+    SO - DOES NOT WORK WITH TASK HERE ******
+    SO - DOES NOT WORK WITH TASK HERE ******
+
+
+
+
+      ++++++++++++++++++++++++++++++++++++++++++++++++
+    +++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  
+   let myNoteId = noteHolderId + '_note'
+
+
+    console.log('NotePopup - Yes there is a note Id -- displayNoteId ', noteId)
+    console.log('NotePopup - Yes there is a tasId in if -- displayNoteId ', taskId)
+
+
+    let myNoteHolderId = noteHolderId + '_note'
+    console.log('NotePopup - Yes there is a note Id -- myNoteHolderId ', myNoteHolderId)
+    /*   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+          Error -cant find note
+    */
+   let RAWBoolah = props.display.private.notes[myNoteId].note
+    let boolah = props.display.private.notes[myNoteId].note 
+    let boolahParsed=   JSON.stringify(boolah)
+    
+    console.log('NotePopup -  Redux initialText noteHolderId   ',   noteHolderId  )
+    console.log('NotePopup -  Redux initialText RAWBoolah   ',   RAWBoolah  )
+    console.log('NotePopup -  Redux initialText boolah   ',   boolah  )
+    console.log('NotePopup -  Redux initialText boolah boolahParsed   ',   boolahParsed  )
+    
+     
  
-    console.log('NotePopup - is note ? -- YES ')
-    // initialText = stringToDraftState(passedNoteId)
+ 
+    initialText = stringToDraftState(RAWBoolah)
   }
 
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
@@ -257,7 +305,7 @@ const onSubmit = data => {
 
 
       let noteObject = {
-        note: data.note, 
+        note:  safeJson(data.note), 
         type: type, 
         spotlightId: spotlightId, 
         taskId: taskId, 

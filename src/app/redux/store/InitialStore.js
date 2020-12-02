@@ -45,49 +45,7 @@ const InitialStore = {
     
   },
 
-  'keywords' : {
-    'kw_1' : {
-      keywordId: 'kw_1',
-      keyword: 'Chit Git'
-    },
 
-      'kw_2' : {
-        keywordId: 'kw_2',
-        keyword: 'pissant'
-      },
-
-    
-  },
-
-  'notes' : {
-    'spot_2_task_3_note' : {
-      
-      noteId: 'spot_2_task_3_note',
-      noteHolderId: 'spot_2_task_3',
-      noteType: 'task',
-
-      note: '{"blocks":[{"key":"d22o4","text":"hello Brady ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-
-      timeStamp:  "2020-11-01T11:16:20.619Z",  // September 14
-
-      noteArray: ['kw_1']
-    },
-
-    'spot_1_note' : {
-      
-      noteId: 'spot_1_note',
-      noteHolderId: 'spot_1_note',
-      noteType: 'spotlight',
-
-      note: '{"blocks":[{"key":"d22o4","text":"hello Brady ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-
-      timeStamp:  "2020-11-01T11:16:20.619Z",  // September 14
-
-      noteArray: ['kw_1']
-    },
-
-    
-  },
 
      // =======================================
      
@@ -699,12 +657,67 @@ const InitialStore = {
 
 
 
-}// end spotlightData
+},// end spotlightData
  // @@@@@@@@@@@@@  JOURNAL SPECIFIC    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // ==================================================
 
+'keywords' : {
+  'kw_1' : {
+    keywordId: 'kw_1',
+    keyword: 'Chit Git'
+  },
 
+    'kw_2' : {
+      keywordId: 'kw_2',
+      keyword: 'pissant'
+    },
+
+  
+},
+
+
+'notes' : {
+  'spot_2_task_3_note' : {
+    
+    noteId: 'spot_2_task_3_note',
+    noteHolderId: 'spot_2_task_3',
+    noteType: 'task',
+
+    note:"{\"blocks\":[{\"key\":\"bf1me\",\"text\":\"ASDd asdfaf\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":5,\"length\":6,\"style\":\"color-rgb(97,189,109)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+
+    timeStamp:  "2020-11-01T11:16:20.619Z",  // September 14
+
+    noteArray: ['kw_1']
+  },
+
+  'spot_1_note' : {
+    
+    noteId: 'spot_1_note',
+    noteHolderId: 'spot_1_note',
+    noteType: 'spotlight',
+
+    note: "{\"blocks\":[{\"key\":\"7plek\",\"text\":\"A vnote created by AddNote\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":18,\"length\":7,\"style\":\"color-rgb(184,49,47)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+
+    timeStamp:  "2020-11-01T11:16:20.619Z",  // September 14
+
+    noteArray: ['kw_1']
+  },
+
+  
+  'spot_2_note' : {
+    
+    noteId: 'spot_1_note',
+    noteHolderId: 'spot_1_note',
+    noteType: 'spotlight',
+
+    note: "{\"blocks\":[{\"key\":\"7plek\",\"text\":\"A VVVV created by AddNote\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":18,\"length\":7,\"style\":\"color-rgb(184,49,47)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+
+    timeStamp:  "2020-11-01T11:16:20.619Z",  // September 14
+
+    noteArray: ['kw_1']
+  },
+},
 
 }// end Initial Store
 

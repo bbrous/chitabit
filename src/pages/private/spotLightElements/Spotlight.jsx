@@ -644,7 +644,7 @@ export const Spotlight = (props) => {
 
   console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , id)
   let noteId = props.display.private.data.spotlightData.spotlights[id].note
-
+  console.log('[SPOTLIGHT $$$$$ ID is ] --- ' , noteId)
 
   const handleSpotlightCompletedStatus = () => {
 
