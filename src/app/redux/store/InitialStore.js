@@ -278,7 +278,7 @@ const InitialStore = {
             type: 'task',  //or spotlight
             completed: false,
 
-            title: 'Spot 1 -Clocks and Note Popups create',
+            title: 'Clocks and Note Popups create and Note Popups  and Note Popups  and Note Popups  and Note Popups ',
             clock: {
               timerStatus: 'running', // inactive, running, paused, stopped
               accumulatedTime: 0,

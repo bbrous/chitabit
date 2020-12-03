@@ -72,11 +72,34 @@ const DialogContainer= styled('div')({
 
 
 const HeaderTitle= styled('div')({
+  display: 'flex',
  
-
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  height: '1.5rem',
   fontSize: '.8rem',
   color: 'grey',
   backgroundColor: 'white',
+  width: '80%',
+  margin: '4px',
+
+
+  '& .left' :{
+    fontStyle: 'italic',
+    fontSize: '.65rem',
+  
+    margin: '0 8px 0 8px',
+  
+  },
+
+  '& .right' :{
+    overflow: 'hidden',
+    width: '70%',
+    minWidth: 0,
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+     
+  },
 
 
   [theme.breakpoints.down('sm')] : {
@@ -90,14 +113,14 @@ const FormWrapper= styled('form')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
-  alignItems: 'flex-start',
-
+  alignItems: 'center',
+ borderTop: '1px solid lightgrey',
   // display: 'block',
- 
+
  height: '100%',
   width: '100%',
   
- margin: '0',
+ margin: '4px 0',
  padding: '0',
 })
 
@@ -125,39 +148,12 @@ const DialogWrapper= styled('div')({
  
 })
 
-const StyledMultiline= styled(TextField)({
+const DialogContentWrapper= styled(DialogContent)({
  
   
   // width: '80%', 
-  
-  padding: '0',
-  width: '100%',
-  fontSize: '.5rem',
-  borderColor: 'white',
  
-  
-
-
-  '& .MuiInput-underline:after': {
-    borderBottomColor: 'white',
-  },
- 
-
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'white',
-    },
-    '&:hover fieldset': {
-      borderColor: 'white',
-    },
-    '&:active fieldset': {
-      borderColor: 'white',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'white',
-    },
-  },
-
+border: 'none'
 
 })
 
@@ -165,10 +161,52 @@ const StyledMultiline= styled(TextField)({
 const ButtonContainer= styled('div')({
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'flex-end',
+  justifyContent: 'center',
   alignItems: 'center',
   alignSelf : 'end',
  width: '100%',
+ textDecoration: 'underline',
+ textDecorationColor: 'orange',
+ fontSize: '1rem',
+ 
+  
+   [theme.breakpoints.down('sm')] : {
+     // height: '1.25rem',
+     // backgroundColor: 'red'
+   },
+ })
+
+ const CancelButton= styled(Button)({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+ position: 'absolute',
+ right: '8px',
+  fontSize: '.85rem',
+  height: '2rem',
+ textDecoration: 'underline',
+ textDecorationColor: 'orange',
+
+  // backgroundColor: 'red',
+  textTransform: 'none',
+   [theme.breakpoints.down('sm')] : {
+     // height: '1.25rem',
+     // backgroundColor: 'red'
+   },
+ })
+
+ const SaveButton= styled(Button)({
+  display: 'flex',
+ 
+  justifyContent: 'center',
+  alignItems: 'center',
+ 
+ 
+
+ textDecoration: 'underline',
+ textDecorationColor: 'orange',
+ textTransform: 'none',
   // backgroundColor: 'red',
  
    [theme.breakpoints.down('sm')] : {
@@ -188,7 +226,13 @@ const NotePopup = (props) => {
 
   const {noteId, type, spotlightData, spotlightId, taskId, noteHolderId} = props
 
-
+  let headerTitle
+    if(type === 'spotlight' ){
+      headerTitle = spotlightData.spotlights[spotlightId].title
+    }
+    if(type === 'task' ){
+      headerTitle = spotlightData.spotlights[spotlightId].tasks[noteHolderId].title
+    }
 
   console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 
@@ -305,7 +349,7 @@ const onSubmit = data => {
 
 
       let noteObject = {
-        note:  safeJson(data.note), 
+        note:  data.note, 
         type: type, 
         spotlightId: spotlightId, 
         taskId: taskId, 
@@ -425,11 +469,21 @@ const onSubmit = data => {
       >
 
         <DialogContainer>  
-        <p>Task3 /</p> <p><span style={{color: "red"}}><ins>Spot 22 note</ins></span></p>
-        <HeaderTitle id="scroll-dialog-title">note for Title 1</HeaderTitle>
+        <CancelButton onClick={handleClose} color="primary">
+            Cancel
+          </CancelButton>
+        
+        <HeaderTitle id="scroll-dialog-title">
+          <div className = 'left'>note for 
+            {type === 'spotlight' && <span> spotlight: </span>}
+            {type === 'task' && <span> task : </span>}
+          </div>
+          <div className = 'right'>{headerTitle}</div>
+          
+        </HeaderTitle>
         
         <FormWrapper onSubmit = {handleSubmit(onSubmit) }>
-        <DialogContent dividers={scroll === 'paper'}>
+        <DialogContentWrapper dividers={scroll === 'paper'}>
           <DialogWrapper
             id="scroll-dialog-description"
             ref={descriptionElementRef}
@@ -461,14 +515,15 @@ const onSubmit = data => {
         />
 
           </DialogWrapper>
-        </DialogContent>
+        </DialogContentWrapper>
         <ButtonContainer>
-        <Button type ="submit" color="primary">
-            Save
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
+        <SaveButton type ="submit" color="primary">
+            Save and continue
+          </SaveButton>
+          <SaveButton type ="submit" color="primary" onClick = {handleClose}>
+            Save and exit
+          </SaveButton>
+
 
         </ButtonContainer>
         </FormWrapper>
