@@ -683,6 +683,7 @@ const InitialStore = {
     noteId: 'spot_2_task_3_note',
     noteHolderId: 'spot_2_task_3',
     noteType: 'task',
+    title: 'Clocks and Note Popups create and Note Popups  and Note Popups  and Note Popups  and Note Popups ',
 
     note:"{\"blocks\":[{\"key\":\"bf1me\",\"text\":\"ASDd asdfaf\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":5,\"length\":6,\"style\":\"color-rgb(97,189,109)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
 
@@ -696,7 +697,7 @@ const InitialStore = {
     noteId: 'spot_1_note',
     noteHolderId: 'spot_1_note',
     noteType: 'spotlight',
-
+    title: 'Complete Journal and Spotlight',
     note: "{\"blocks\":[{\"key\":\"7plek\",\"text\":\"A vnote created by AddNote\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":18,\"length\":7,\"style\":\"color-rgb(184,49,47)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
 
     timeStamp:  "2020-11-01T11:16:20.619Z",  // September 14
@@ -707,10 +708,10 @@ const InitialStore = {
   
   'spot_2_note' : {
     
-    noteId: 'spot_1_note',
-    noteHolderId: 'spot_1_note',
+    noteId: 'spot_2_note',
+    noteHolderId: 'spot_2_note',
     noteType: 'spotlight',
-
+    title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
     note: "{\"blocks\":[{\"key\":\"7plek\",\"text\":\"A VVVV created by AddNote\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":18,\"length\":7,\"style\":\"color-rgb(184,49,47)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
 
     timeStamp:  "2020-11-01T11:16:20.619Z",  // September 14

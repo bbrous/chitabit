@@ -226,13 +226,7 @@ const NotePopup = (props) => {
 
   const {noteId, type, spotlightData, spotlightId, taskId, noteHolderId} = props
 
-  let headerTitle
-    if(type === 'spotlight' ){
-      headerTitle = spotlightData.spotlights[spotlightId].title
-    }
-    if(type === 'task' ){
-      headerTitle = spotlightData.spotlights[spotlightId].tasks[noteHolderId].title
-    }
+
 
   console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 
@@ -267,13 +261,19 @@ const NotePopup = (props) => {
 
   // ------React-hook-form functions --------------
 
-  let initialText
+  let initialText, headerTitle
 
   // if no previous note exists 
   if(!noteId) {
     // console.log('NotePopup - is note ? -- no ', noteId)
     initialText = ''
-
+     
+    if(type === 'spotlight' ){
+      headerTitle = spotlightData.spotlights[spotlightId].title
+    }
+    if(type === 'task' ){
+      headerTitle = spotlightData.spotlights[spotlightId].tasks[noteHolderId].title
+    }
 
   }
  
@@ -282,54 +282,33 @@ const NotePopup = (props) => {
 
   if(noteId) {
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++
-      ++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-    1. noteId is passed from Spotlight (ONLY) at this moment
-    2. but it may be ""  or a value_note
-    3. to make this work - I had to reconstruct the noteId with myNoteId
-       using spotlightId + '_note'
-
-    SO - DOES NOT WORK WITH TASK HERE ******
-    SO - DOES NOT WORK WITH TASK HERE ******
-    SO - DOES NOT WORK WITH TASK HERE ******
-    SO - DOES NOT WORK WITH TASK HERE ******
-    SO - DOES NOT WORK WITH TASK HERE ******
-    SO - DOES NOT WORK WITH TASK HERE ******
-
-
-
-
-      ++++++++++++++++++++++++++++++++++++++++++++++++
-    +++++++++++++++++++++++++++++++++++++++++++++++++++*/
   
+
    let myNoteId = noteHolderId + '_note'
 
-
+   headerTitle = props.display.private.notes[myNoteId].title
+   
     console.log('NotePopup - Yes there is a note Id -- displayNoteId ', noteId)
     console.log('NotePopup - Yes there is a tasId in if -- displayNoteId ', taskId)
 
 
     let myNoteHolderId = noteHolderId + '_note'
     console.log('NotePopup - Yes there is a note Id -- myNoteHolderId ', myNoteHolderId)
-    /*   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-          Error -cant find note
-    */
-   let RAWBoolah = props.display.private.notes[myNoteId].note
-    let boolah = props.display.private.notes[myNoteId].note 
-    let boolahParsed=   JSON.stringify(boolah)
+
+   
+   let noteText = props.display.private.notes[myNoteId].note
+    // let boolah = props.display.private.notes[myNoteId].note 
+    // let boolahParsed=   JSON.stringify(boolah)
     
     console.log('NotePopup -  Redux initialText noteHolderId   ',   noteHolderId  )
-    console.log('NotePopup -  Redux initialText RAWBoolah   ',   RAWBoolah  )
-    console.log('NotePopup -  Redux initialText boolah   ',   boolah  )
-    console.log('NotePopup -  Redux initialText boolah boolahParsed   ',   boolahParsed  )
+    console.log('NotePopup -  Redux initialText noteText   ',   noteText  )
+    // console.log('NotePopup -  Redux initialText boolah   ',   boolah  )
+    // console.log('NotePopup -  Redux initialText boolah boolahParsed   ',   boolahParsed  )
     
      
  
  
-    initialText = stringToDraftState(RAWBoolah)
+    initialText = stringToDraftState(noteText)
   }
 
   const {register, handleSubmit, watch, errors, control, setValue} = useForm({
@@ -346,11 +325,19 @@ const onSubmit = data => {
 
       // console.log('[Note POPUP ]-- NO noteId + note = **  addNote with : ', data.note)
 
+      let noteTitle
+      if(type === 'spotlight' ){
+        noteTitle = spotlightData.spotlights[spotlightId].title
+      }
+      if(type === 'task' ){
+        noteTitle = spotlightData.spotlights[spotlightId].tasks[noteHolderId].title
+      }
 
 
       let noteObject = {
         note:  data.note, 
         type: type, 
+        title:noteTitle,
         spotlightId: spotlightId, 
         taskId: taskId, 
         noteHolderId: noteHolderId

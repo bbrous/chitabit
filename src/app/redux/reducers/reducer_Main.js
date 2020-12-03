@@ -504,7 +504,7 @@ const reducer_Main = produce((draft = initialState, action) => {
 
     case UPDATE_NOTE : 
     {
-      const {note, type, noteHolderId} = payload.noteObject
+      const {note, type, noteHolderId, title} = payload.noteObject
       let noteId = noteHolderId + '_note'
       let timestamp = new Date()
 
@@ -512,7 +512,7 @@ const reducer_Main = produce((draft = initialState, action) => {
         noteId: noteId,
         noteHolderId: noteHolderId,
         noteType: type,
-  
+        title: title,
         note: note,
   
         timeStamp: timestamp,  // September 14
@@ -531,7 +531,7 @@ const reducer_Main = produce((draft = initialState, action) => {
    case ADD_NOTE : 
    {
 
-    const {note, type,spotlightId, taskId, noteHolderId} = payload.noteObject
+    const {note, type,spotlightId, taskId, noteHolderId, title} = payload.noteObject
       //  --- First create a new note Id ------------------
     let newNoteId = noteHolderId + '_note'
 
@@ -541,7 +541,7 @@ const reducer_Main = produce((draft = initialState, action) => {
       noteId: newNoteId,
       noteHolderId: noteHolderId,
       noteType: type,
-
+      title: title,
       note: note,
 
       timeStamp: timestamp,  // September 14
