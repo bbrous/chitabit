@@ -1,12 +1,10 @@
-import React, {Fragment, useState, useEffect, useRef} from 'react'
+import React, {Fragment, useState,  useRef} from 'react'
 import { useForm, Controller } from "react-hook-form";
 import WYSIWYGEditor from "./wysiwyg/WYSIWYGEditor";
 import{chitOrange, mediumLightGrey} from '../../../styles/colors'
 import {connect} from 'react-redux'
 import{updateNote, addNote} from '../../../app/redux/actions/mainActions'
-import { EditorState, convertToRaw } from 'draft-js'
-import safeJson from "js-string-escape"
-import unEscape from 'unescape-js'
+
 
 import stringToDraftState from './wysiwyg/utils/stringToDraftState'
 
@@ -16,14 +14,8 @@ import { styled, createMuiTheme } from "@material-ui/core/styles"
 import NotesIcon from '@material-ui/icons/Notes';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { TextField  } from "@material-ui/core";
 
- 
-// import Button from '@material-ui/core/Button';
 // -----------------------
 
 const theme = createMuiTheme(); // allows use of mui theme in styled component
@@ -228,34 +220,16 @@ const NotePopup = (props) => {
 
 
 
-  console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+  // console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 
-  console.log('[Note Popup]-- passed noteId: ' , noteId)
-  console.log('[Note Popup]-- passed type: ' , type)
-  console.log('[Note Popup]-- passed spotlightData: ' , spotlightData)
-  console.log('[Note Popup]-- passed spotlightId: ' , spotlightId)
-  console.log('[Note Popup]-- passed taskId: ' , taskId)
-  console.log('[Note Popup]-- passed noteHolderId: ' , noteHolderId)
+  // console.log('[Note Popup]-- passed noteId: ' , noteId)
+  // console.log('[Note Popup]-- passed type: ' , type)
+  // console.log('[Note Popup]-- passed spotlightData: ' , spotlightData)
+  // console.log('[Note Popup]-- passed spotlightId: ' , spotlightId)
+  // console.log('[Note Popup]-- passed taskId: ' , taskId)
+  // console.log('[Note Popup]-- passed noteHolderId: ' , noteHolderId)
 
-  console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
-
-  
-// THIS WORKS
-  // let databaseSavedText = '{"blocks":[{"key":"6ifmk","text":"Hello Shelby","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":5,"length":4,"style":"color-rgb(226,80,65)"}],"entityRanges":[],"data":{}},{"key":"hqfo","text":"Good Girl","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":4,"length":5,"style":"BOLD"},{"offset":4,"length":5,"style":"color-rgb(41,105,176)"}],"entityRanges":[],"data":{}}],"entityMap":{}}'
-
-  let databaseSavedText = "{\"blocks\":[{\"key\":\"fg5pu\",\"text\":\"A new note\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":6,\"length\":4,\"style\":\"color-rgb(184,49,47)\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
-
-  
-  // let initialText = ''
-
- 
-
-
-
-
-
-
-
+  // console.log('[NOTE POPUP -^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
 
 
 
@@ -269,7 +243,7 @@ const NotePopup = (props) => {
     initialText = ''
      
     if(type === 'spotlight' ){
-      headerTitle = spotlightData.spotlights[spotlightId].title
+      headerTitle = spotlightData.spotlights[noteHolderId].title
     }
     if(type === 'task' ){
       headerTitle = spotlightData.spotlights[spotlightId].tasks[noteHolderId].title
@@ -284,10 +258,10 @@ const NotePopup = (props) => {
 
   
 
-   let myNoteId = noteHolderId + '_note'
+   let newNoteId = noteHolderId + '_note'
 
-   headerTitle = props.display.private.notes[myNoteId].title
-   
+   headerTitle = props.display.private.notes[newNoteId].title
+
     console.log('NotePopup - Yes there is a note Id -- displayNoteId ', noteId)
     console.log('NotePopup - Yes there is a tasId in if -- displayNoteId ', taskId)
 
@@ -296,14 +270,12 @@ const NotePopup = (props) => {
     console.log('NotePopup - Yes there is a note Id -- myNoteHolderId ', myNoteHolderId)
 
    
-   let noteText = props.display.private.notes[myNoteId].note
-    // let boolah = props.display.private.notes[myNoteId].note 
-    // let boolahParsed=   JSON.stringify(boolah)
+   let noteText = props.display.private.notes[newNoteId].note
+   
     
     console.log('NotePopup -  Redux initialText noteHolderId   ',   noteHolderId  )
     console.log('NotePopup -  Redux initialText noteText   ',   noteText  )
-    // console.log('NotePopup -  Redux initialText boolah   ',   boolah  )
-    // console.log('NotePopup -  Redux initialText boolah boolahParsed   ',   boolahParsed  )
+ 
     
      
  
@@ -358,13 +330,8 @@ const onSubmit = data => {
         noteHolderId: noteHolderId,
         type: type
 
-        // type: type, 
-        // spotlightId: spotlightId, 
-        // taskId: taskId, 
-        // spotlightData: spotlightData
       }
       
-      // alert(data.note)
   
       props.updateNote(noteObject) 
 
@@ -373,13 +340,9 @@ const onSubmit = data => {
     }
 
 
-    if(!noteId && !data.note) {
-      // console.log('[Note POPUP ]-- NO noteId + No note = Forgetta bout it : ')
-   }
-
-    if(noteId && !data.note) {
-      // console.log('[Note POPUP ]-- YES noteId + but No note = Will not happen... because empty object created by WYSIWG : ')
-    }
+    // if(noteId && !data.note) {
+    //   // console.log('[Note POPUP ]-- YES noteId + but No note = Will not happen... because empty object created by WYSIWG : ')
+    // }
 
 
 
@@ -412,17 +375,17 @@ const onSubmit = data => {
     }
   }, [open]);
 
-  const handleSetNote= ()=>{
-  props.updateNote( 
-    {
+  // const handleSetNote= ()=>{
+  // props.updateNote( 
+  //   {
       
-        note: noteId,
+  //       note: noteId,
          
         
-      }
-    )
-    setOpen(false)
-  }
+  //     }
+  //   )
+  //   setOpen(false)
+  // }
 
  
 
