@@ -258,23 +258,26 @@ const NotePopup = (props) => {
 
   
 
-   let newNoteId = noteHolderId + '_note'
+  //  let newNoteId = noteHolderId + '_note'
 
-   headerTitle = props.display.private.notes[newNoteId].title
+   headerTitle = props.display.private.notes[noteId].title
 
-    console.log('NotePopup - Yes there is a note Id -- displayNoteId ', noteId)
-    console.log('NotePopup - Yes there is a tasId in if -- displayNoteId ', taskId)
+    // console.log('NotePopup - Yes there is a note Id -- displayNoteId ', noteId)
+
+    // console.log('@@@@@@NotePopup - Yes there is a note Id -- note ID is ', noteId)
+
+    // console.log('NotePopup - Yes there is a tasId in if -- displayNoteId ', taskId)
 
 
-    let myNoteHolderId = noteHolderId + '_note'
-    console.log('NotePopup - Yes there is a note Id -- myNoteHolderId ', myNoteHolderId)
+    // let myNoteHolderId = noteHolderId + '_note'
+    // console.log('NotePopup - Yes there is a note Id -- myNoteHolderId ', myNoteHolderId)
 
    
-   let noteText = props.display.private.notes[newNoteId].note
+   let noteText = props.display.private.notes[noteId].note
    
     
-    console.log('NotePopup -  Redux initialText noteHolderId   ',   noteHolderId  )
-    console.log('NotePopup -  Redux initialText noteText   ',   noteText  )
+    // console.log('NotePopup -  Redux initialText noteHolderId   ',   noteHolderId  )
+    // console.log('NotePopup -  Redux initialText noteText   ',   noteText  )
  
     
      

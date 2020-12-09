@@ -172,8 +172,8 @@ const InitialStore = {
 
     'spotlights': {
 
-      'spot_1': {
-        id: 'spot_1',
+      'duh': {
+        id: 'duh',
         type: 'spotlight',
         parent: '',
 
@@ -203,7 +203,7 @@ const InitialStore = {
           },
           {taskItem: 'spot_2', type: 'spotlight'},
           {taskItem: 'spot_1_task_1', type: 'task'}, 
-          {taskItem: 'spot_1_task_2', type: 'task'},
+          {taskItem: 'ohboy', type: 'task'},
           {taskItem: 'spot_1_task_3', type: 'task'},
           {taskItem: 'spot_1_task_6', type: 'task'},
           {taskItem: 'spot_1_task_4', type: 'task'}
@@ -258,8 +258,8 @@ const InitialStore = {
             
           },
     
-          'spot_1_task_2' :{
-            id: 'spot_1_task_2',
+          'ohboy' :{
+            id: 'ohboy',
             type: 'task',  //or spotlight
             completed: false,
     
@@ -325,7 +325,7 @@ const InitialStore = {
       'spot_2': {
         id: 'spot_2',
         type: 'spotlight',
-        parent: 'spot_1',
+        parent: 'duh',
 
         title: 'Complete Spotlight Tasks in A-try  Spotlight Tasks in A-try  ',
         spotlightStatus: 'inactive', // inactive, begun, completed

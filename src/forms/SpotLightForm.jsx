@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
 import{addSpotLight, updateSpotLight, closeModal} from '../app/redux/actions/mainActions'
 import{spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
-
+import cuid from 'cuid'
 import {UTCtoDate, DatetoUTC, convertMS, calculateEstimatedTime, msToStringDisplay} from '../app/helpers/dateHelper'
 // Material UI =============================
 
@@ -461,7 +461,7 @@ const SpotLightForm = (props) => {
     if(!passedId) { 
       console.log(' [SpotlightForm] , no Id so add new ', passedId)
       // no Id so create new ID and add spotlight
-      let newSpotlightId = spotlightIdGenerator(allSpotlights)
+      let newSpotlightId = cuid()
       
       
       

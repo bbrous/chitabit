@@ -42,6 +42,7 @@
     "recharts": "^1.8.5",
     "redux": "^4.0.5",
     "redux-form": "^8.3.5",
+    "redux-thunk": "^2.3.0",
     "sass": "^1.29.0",
     "unescape-js": "^1.1.4",
     "websocket-extensions": "^0.1.4",

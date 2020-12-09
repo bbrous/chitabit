@@ -17,6 +17,7 @@ import { combineReducers } from 'redux';
 
 import landingReducer from './reducer_Landing'
 import mainReducer from './reducer_Main'
+import asyncReducer from './asyncReducer'
 
 
 
@@ -24,7 +25,8 @@ import mainReducer from './reducer_Main'
 const rootReducer = combineReducers({
   // data: homeReducer,
     private : mainReducer,
-    public: landingReducer
+    public: landingReducer,
+    async: asyncReducer
   // crud : crudReducer
   
 

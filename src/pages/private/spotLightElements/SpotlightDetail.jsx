@@ -460,7 +460,7 @@ function SpotlightDetail(props) {
         
         {!completedTimeStamp &&
         <DetailRowRemaining>
-          <CountDownDisplay/>
+          <CountDownDisplay spotlightId = {spotlightId}/>
         </DetailRowRemaining>
       }
 

@@ -3,8 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
 
 import{addTask} from '../app/redux/actions/mainActions'
-import{taskIdGenerator, spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
-
+// import{taskIdGenerator, spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
+import cuid from 'cuid'
 // Material UI =============================
 
 import { styled, createMuiTheme, withStyles } from "@material-ui/core/styles"
@@ -212,8 +212,8 @@ function SpotLightTaskForm(props) {
 
 // &&&&&&&&&   ADD TASK ACTION HERE   &&&&&&&&&&&&&&&&&&&
 
-let newTaskId = taskIdGenerator(displayedId, currentTasks )
-let newSpotlightId = spotlightIdGenerator(allSpotlights)
+let newTaskId = cuid()
+let newSpotlightId = cuid()
 
   return (
     <Wrapper>

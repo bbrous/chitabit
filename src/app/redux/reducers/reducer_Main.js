@@ -420,7 +420,7 @@ const reducer_Main = produce((draft = initialState, action) => {
         // update the store here...
 
           draft.data.spotlightData.spotlights[newSpotlightId] = spotlight
-          draft.spotLightDisplay.displayedSpotLightId  = 'spot_1'
+          draft.spotLightDisplay.displayedSpotLightId  = newSpotlightId
 
 
          return draft;

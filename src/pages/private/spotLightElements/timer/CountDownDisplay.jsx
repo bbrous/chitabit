@@ -217,7 +217,7 @@ const DetailRowRight= styled('div')({
 // ==========================
 function CountDownDisplay(props) {
 
-  let spotlightId = 'spot_1'
+  let spotlightId = props.spotlightId
   let spotlightStatus = props.display.private.data.spotlightData.spotlights[spotlightId].spotlightStatus
 // let {spotlightId, taskId}  = props
 
