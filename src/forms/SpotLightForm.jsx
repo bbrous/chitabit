@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useForm, Controller } from "react-hook-form";
 import {connect} from 'react-redux'
 import{addSpotLight, updateSpotLight, closeModal} from '../app/redux/actions/mainActions'
-import{spotlightIdGenerator} from '../app/helpers/idKeyGenerators'
+// import{spotlightIdGenerator} from '../app/helpers/ddidKeyGenerators'
 import cuid from 'cuid'
 import {UTCtoDate, DatetoUTC, convertMS, calculateEstimatedTime, msToStringDisplay} from '../app/helpers/dateHelper'
 // Material UI =============================

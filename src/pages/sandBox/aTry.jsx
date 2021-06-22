@@ -7,6 +7,8 @@ import {connect} from 'react-redux'
 import RHFMui from './formLibrary/RHFMui'
 import DraftMain from './draftjs/DraftMain'
 
+import ReselectMain from './reselectSort/ReselectMain'
+
 // import RHFMuiRadio from './formLibrary/RHFMuiRadio'
 
 import { veryLightGrey } from '../../styles/colors'
@@ -113,11 +115,11 @@ const ATry = (props) => {
   {/* <DateFormatEx/> */}
 
 {/* </ContentAreaSmall> */}
-        
-{<DraftMain/>}    
+
+{/* {<DraftMain/>}     */}
 
 
-
+{<ReselectMain/>}
 
 
 

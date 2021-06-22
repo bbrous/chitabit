@@ -19,6 +19,8 @@ import landingReducer from './reducer_Landing'
 import mainReducer from './reducer_Main'
 import asyncReducer from './asyncReducer'
 
+import chitReducer from '../chitRedux/chitReducer'
+
 
 
 
@@ -26,7 +28,8 @@ const rootReducer = combineReducers({
   // data: homeReducer,
     private : mainReducer,
     public: landingReducer,
-    async: asyncReducer
+    async: asyncReducer,
+    chits: chitReducer
   // crud : crudReducer
   
 

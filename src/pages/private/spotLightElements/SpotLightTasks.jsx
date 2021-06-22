@@ -821,7 +821,15 @@ const SortableList = SortableContainer(({ items, spotlightData, spotlightId,chan
 });
 
 
- 
+/*
+
+REFACTOR *********************** REFACTOR *********************** REFACTOR
+
+Here is where you get the ID for the tasks
+line 839 -- spotlightData
+
+REFACTOR *********************** REFACTOR *********************** REFACTOR
+*/
 
 const SpotLightTasks = (props) => {
   // const {id, type, parent, completed, title, timeStamp, endEst, startClock, pausedClock, endClock, clockStatus, noteId, taskArray } = spotLightDisplayed
